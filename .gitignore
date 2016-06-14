@@ -1,0 +1,5 @@
+# Node modules' directory
+node_modules
+
+# Source code for production environment 
+build

@@ -1,0 +1,31 @@
+{
+  "name": "hummingbird",
+  "version": "1.0.0",
+  "description": "A Template Project for Traditional Front-end.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.13.21/zhengh/hummingbird.git"
+  },
+  "author": "Hank",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^1.2.0",
+    "koa-router": "^5.4.0",
+    "koa-session": "^3.3.1",
+    "koa-static": "^2.0.0",
+    "mongodb": "^2.1.18"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "load-json-file": "^2.0.0"
+  }
+}
