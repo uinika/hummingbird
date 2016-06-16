@@ -34,8 +34,8 @@ Gulp.task('build', function(){
     .pipe(Gulp.dest('./build/views'));
   /* Update index.html */
   Gulp.src(['./client/index.html'])
-    .pipe(Replace(/script/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
-    .pipe(Replace(/test/g, "<script src='scripts/app.min.js'></script>"))
+    .pipe(Replace(/<!-- CSS Bundle -->/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
+    .pipe(Replace(/<!-- JavaScript Bundle -->/g, "<script src='scripts/app.min.js'></script>"))
     .pipe(Gulp.dest('./build/'));
   /* Library */
   Gulp.src(['./client/libraries/**/*'])
