@@ -64,7 +64,9 @@
 
 ### Demo
 # User management
+
 -----
+
 ## User list
 ### Query user list
 #### /api/users
@@ -79,4 +81,5 @@
     phone            String         'Telephone number'
     department       String         'Department'
     email            String         'E-mail'
+
 -----
