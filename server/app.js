@@ -1,5 +1,6 @@
 const Koa = require('koa'),
       Static = require('koa-static'),
+      Router = require('koa-router')(),
       App = Koa();
 
 App.use(Static('.'));

@@ -6,6 +6,7 @@ const Gulp = require("gulp"),
       MinifyCSS = require('gulp-clean-css'),
       Rename = require('gulp-rename'),
       Sourcemap = require('gulp-sourcemaps'),
+      Replace = require('gulp-replace'),
       Delete = require('del');
 // gulp
 Gulp.task('default', function() {

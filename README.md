@@ -6,6 +6,7 @@
 2. cd hummingbird
 3. npm Install
 4. gulp
+5. Open browser http://localhost:5002/client/
 
 -----
 
@@ -14,6 +15,9 @@
 * [UI Router 0.3.x](https://github.com/angular-ui/ui-router/tree/legacy)
 * [Material Design 1.0.x](https://github.com/angular/material)
 * [Lodash 1.5.x](https://lodash.com/)
+* [Koa 1.2.x](https://lodash.com/)
+* [Koa-static 2.0.x](https://github.com/koajs/static)
+* [Koa-router 5.4.x](https://github.com/alexmingoia/koa-router)
 
 -----
 
