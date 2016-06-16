@@ -28,10 +28,15 @@ Gulp.task('default', function() {
 // gulp build
 Gulp.task('build', function(){
   /* HTML */
-  Gulp.src(['./client/**/*.html'])
+  Gulp.src(['./client/**/!(index).html'])
     .pipe(Gulp.dest('./build'));
   Gulp.src(['./client/views/*'])
     .pipe(Gulp.dest('./build/views'));
+  /* Update index.html */
+  Gulp.src(['./client/index.html'])
+    .pipe(Replace(/script/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
+    .pipe(Replace(/test/g, "<script src='scripts/app.min.js'></script>"))
+    .pipe(Gulp.dest('./build/'));
   /* Library */
   Gulp.src(['./client/libraries/**/*'])
     .pipe(Gulp.dest('./build/libraries'));

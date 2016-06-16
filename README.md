@@ -52,7 +52,7 @@
 
 -----
 
-## How to write markdown for API ?
+## How to write markdown for CORS API ?
 ### Summary
     # Page name
     ----- split line -----
