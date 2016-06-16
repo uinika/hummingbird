@@ -6,6 +6,7 @@
 2. cd hummingbird
 3. npm Install
 4. gulp
+
 -----
 
 ## Third party Library
@@ -13,6 +14,7 @@
 * [UI Router 0.3.x](https://github.com/angular-ui/ui-router/tree/legacy)
 * [Material Design 1.0.x](https://github.com/angular/material)
 * [Lodash 1.5.x](https://lodash.com/)
+
 -----
 
 ## JSON Transfer Protocol
@@ -43,6 +45,7 @@
         password: "admin"
       }
     }
+
 -----
 
 ## How to write markdown for API ?
@@ -60,21 +63,20 @@
     ----- split line -----
 
 ### Demo
+# User management
 -----
-  # User management
-  -----
-  ## User list
-  ### Query user list
-  #### /api/users
-      Type: GET
-  ##### Parameter:
-    department_id   String         ID for user's department(If superuser login ignore this parameter)
-  ##### Array:
-    username       String         'User's alias name'
-    password       String         'User's password'
-    age            Integer        'User's age'
-    realname       String         'User's real name'
-    phone          String         'Telephone number'
-    department     String         'Department'
-    email          String         'E-mail'
-  -----
+## User list
+### Query user list
+#### /api/users
+    Type: GET
+##### Parameter:
+    department_id    String         ID for user's department(If superuser login ignore this parameter)
+##### Array:
+    username         String         'User's alias name'
+    password         String         'User's password'
+    age              Integer        'User's age'
+    realname         String         'User's real name'
+    phone            String         'Telephone number'
+    department       String         'Department'
+    email            String         'E-mail'
+-----
