@@ -10,13 +10,13 @@
   "author": "Hank",
   "license": "MIT",
   "dependencies": {
-    "koa": "^1.2.0",
-    "koa-bodyparser": "^2.2.0",
-    "koa-multer": "^1.0.0",
-    "koa-router": "^5.4.0",
-    "koa-session": "^3.3.1",
-    "koa-static": "^2.0.0",
-    "mongodb": "^2.1.18"
+    "body-parser": "^1.15.1",
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.5.0",
+    "multer": "^1.1.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "del": "^2.2.0",

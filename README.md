@@ -11,14 +11,14 @@
 -----
 
 ## Third party Library
+* [Mongoose 4.x.x](http://mongoosejs.com/)
+* [Express 4.x.x](https://expressjs.com/)
 * [Angular 1.5.x](https://angularjs.org/)
+* [NodeJS 6.2.x](https://nodejs.org/)
 * [UI Router 0.3.x](https://github.com/angular-ui/ui-router/tree/legacy)
 * [Material Design 1.0.x](https://github.com/angular/material)
 * [Lodash 1.5.x](https://lodash.com/)
-* [Koa 1.2.x](https://lodash.com/)
-* [Koa-static 2.0.x](https://github.com/koajs/static)
-* [Koa-router 5.4.x](https://github.com/alexmingoia/koa-router)
-
+* [q 1.4.x](https://github.com/kriskowal/q)
 -----
 
 ## JSON Transfer Protocol
