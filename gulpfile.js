@@ -8,7 +8,7 @@ const Gulp = require("gulp"),
       Sourcemap = require('gulp-sourcemaps'),
       Replace = require('gulp-replace'),
       Delete = require('del');
-// gulp
+/** gulp */
 Gulp.task('default', function() {
   less();
   Nodemon({
@@ -25,22 +25,22 @@ Gulp.task('default', function() {
       .pipe(Gulp.dest('./client/styles/'));
   };
 });
-// gulp build
+/** gulp build */
 Gulp.task('build', function(){
-  /* HTML */
+  // HTML
   Gulp.src(['./client/**/!(index).html'])
     .pipe(Gulp.dest('./build'));
   Gulp.src(['./client/views/*'])
     .pipe(Gulp.dest('./build/views'));
-  /* Update index.html */
+  // Update index.html
   Gulp.src(['./client/index.html'])
     .pipe(Replace(/<!-- CSS Bundle -->/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
     .pipe(Replace(/<!-- JavaScript Bundle -->/g, "<script src='scripts/app.min.js'></script>"))
     .pipe(Gulp.dest('./build/'));
-  /* Library */
+  // Library
   Gulp.src(['./client/libraries/**/*'])
     .pipe(Gulp.dest('./build/libraries'));
-  /* JavaScript */
+  // JavaScript
   Gulp.src('./client/scripts/**/*.js')
     .pipe(Sourcemap.init())
     .pipe(Concat('app.js'))
@@ -49,10 +49,10 @@ Gulp.task('build', function(){
     .pipe(Rename({suffix: '.min'}))
     .pipe(Sourcemap.write('./'))
     .pipe(Gulp.dest('./build/scripts'));
-  /* Image */
+  // Image
   Gulp.src(['./client/styles/images/**/*'])
     .pipe(Gulp.dest('./build/styles/images'));
-  /* CSS */
+  // CSS
   Gulp.src('./client/styles/less/app.less')
     .pipe(Less())
     .pipe(Gulp.dest('./build/styles'))
@@ -60,7 +60,7 @@ Gulp.task('build', function(){
     .pipe(Rename({suffix: '.min'}))
     .pipe(Gulp.dest('./build/styles'));
 });
-// gulp clean
+/** gulp clean */
 Gulp.task('clean', function() {
   Delete(['./build/**/*']);
 });
