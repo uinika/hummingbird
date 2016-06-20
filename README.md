@@ -19,6 +19,7 @@
 * [Material Design 1.0.x](https://github.com/angular/material)
 * [Lodash 1.5.x](https://lodash.com/)
 * [q 1.4.x](https://github.com/kriskowal/q)
+
 -----
 
 ## JSON Transfer Protocol
