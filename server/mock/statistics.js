@@ -3,7 +3,11 @@ const Router = require('express').Router(),
 /** Router definition */
 Router.route('/statistics')
   .get(function(request, response) {
-    response.json("statistics");
+    let protocal = Util.Protocal();
+    protocal.head.status = '200';
+    protocal.head.message = 'http response sucess';
+    protocal.body = Util.Json('/statistics/demo.json');
+    response.json(protocal);
 });
 /** Module export */
 module.exports = Router;
