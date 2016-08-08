@@ -20,9 +20,9 @@ Gulp.task('default', function() {
     less();
   });
   function less(){
-    Gulp.src('./client/styles/less/app.less')
+    Gulp.src('./client/styles/lesses/index.less')
       .pipe(Less())
-      .pipe(Gulp.dest('./client/styles/'));
+      .pipe(Gulp.dest('./client/styles'));
   };
 });
 /** gulp build */
