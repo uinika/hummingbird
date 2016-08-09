@@ -16,13 +16,13 @@ Gulp.task('default', function() {
     execMap: {js: 'node --harmony'},
     env: {'NODE_ENV': 'development'}
   });
-  Gulp.watch(['./client/styles/less/**/*.*'], function(){
+  Gulp.watch(['./client/styles/lesses/**/*.*'], function(){
     less();
   });
-  function less(){
-    Gulp.src('./client/styles/lesses/index.less')
+  function less() {
+    Gulp.src('./client/styles/lesses/app.less')
       .pipe(Less())
-      .pipe(Gulp.dest('./client/styles'));
+      .pipe(Gulp.dest('./client/styles/'));
   };
 });
 /** gulp build */
@@ -53,7 +53,7 @@ Gulp.task('build', function(){
   Gulp.src(['./client/styles/images/**/*'])
     .pipe(Gulp.dest('./build/styles/images'));
   // CSS
-  Gulp.src('./client/styles/less/app.less')
+  Gulp.src('./client/styles/lesses/app.less')
     .pipe(Less())
     .pipe(Gulp.dest('./build/styles'))
     .pipe(MinifyCSS({compatibility: 'ie8'}))

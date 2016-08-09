@@ -9,7 +9,7 @@ const Express = require('express'),
 /** Middleware */
 App.use('/client', Express.static('./client'));
 App.use(Cors({
-  origin: 'http://localhost:6000',
+  origin: 'http://localhost:5005',
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -20,8 +20,8 @@ App.use('/', function (request, response, next) {
   Common.Log(request, response);
   next();
 });
-App.listen(6000);
-console.info(Color.rainbow('Server started http://localhost:6000') + Url);
+App.listen(5005);
+console.info(Color.rainbow('Server started http://localhost:5005') + Url);
 
 /** Basic config for express */
 // App.use(Url, require('./mock/dashboard'));

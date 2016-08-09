@@ -1,8 +1,6 @@
 // Entry module
 var App = angular.module('App', [
   'ui.router',
-  'ngMaterial',
-  'md.data.table',
   'Main',
   'Dashboard',
   'Indicator',
