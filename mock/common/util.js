@@ -1,17 +1,17 @@
 const JsonLoader = require('load-json-file');
 
 /** Basic path */
-exports.Path = (url) => {
+exports.url = (url) => {
   return __dirname + url
 };
 
 /** Json loader */
-exports.Json = name => {
+exports.json = name => {
   return JsonLoader.sync(__dirname  + name);
 };
 
 /** Protocal between server & client */
-exports.Protocal = (head, body) => {
+exports.protocal = (head, body) => {
   head = head || {};
   body = body || {};
   return {

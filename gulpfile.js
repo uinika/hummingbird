@@ -4,9 +4,8 @@ const Gulp = require("gulp"),
       Concat = require('gulp-concat'),
       UglifyJS = require('gulp-uglify'),
       MinifyCSS = require('gulp-clean-css'),
-      Sourcemap = require('gulp-sourcemaps'),
+      MinHtml = require('gulp-htmlmin'),
       Replace = require('gulp-replace'),
-      HtmlMin = require('gulp-htmlmin'),
       Delete = require('del');
 
 /** gulp */
@@ -25,39 +24,39 @@ Gulp.task('default', () => {
     execMap: {js: 'node --harmony'},
     env: {'NODE_ENV': 'development'}
   });
-  Gulp.watch([lessSource], () => {
-    less();
-  });
+  Gulp.watch([lessSource], () => less());
 });
 
 /** gulp build */
 Gulp.task('build', () => {
+  const releaseSource = './artifact/';
+  const releaseTarget = './release';
   // HTML
-  Gulp.src(['./artifact/partials/**/*.html'])
-    .pipe(HtmlMin({collapseWhitespace: true}))
-    .pipe(Gulp.dest('./release/partials'));
-  // Update index.html
-  Gulp.src(['./artifact/index.html'])
-    .pipe(Replace(/<!-- CSS Bundle -->/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
-    .pipe(Replace(/<!-- JavaScript Bundle -->/g, "<script src='scripts/app.min.js'></script>"))
-    .pipe(Gulp.dest('./release'));
+  Gulp.src([releaseSource + 'partials/**/*.html'])
+    .pipe(MinHtml({collapseWhitespace: true}))
+    .pipe(Gulp.dest(releaseTarget + '/partials'));
   // Library
-  Gulp.src(['./artifact/libraries/**/*'])
-    .pipe(Gulp.dest('./release/libraries'));
+  Gulp.src([releaseSource + 'libraries/**/*'])
+    .pipe(Gulp.dest(releaseTarget + '/libraries'));
   // JavaScript
-  Gulp.src(['./artifact/partials/**/*.js', './artifact/app.js'])
+  Gulp.src([releaseSource + 'partials/**/*.js', releaseSource + 'app.js'])
     .pipe(Concat('app.js'))
     .pipe(UglifyJS())
-    .pipe(Gulp.dest('./release'))
+    .pipe(Gulp.dest(releaseTarget))
   // Image & Fonts
-  Gulp.src(['./artifact/assets/**/*'])
+  Gulp.src([releaseSource + 'assets/**/*'])
     .pipe(Gulp.dest('./release/assets'));
   // CSS
-  Gulp.src('./artifact/partials/**/*.less')
+  Gulp.src([releaseSource + 'partials/**/*.less'])
     .pipe(Concat('bundle.css'))
     .pipe(Less())
     .pipe(MinifyCSS({compatibility: 'ie8'}))
-    .pipe(Gulp.dest('./release'));
+    .pipe(Gulp.dest(releaseTarget));
+  // Update index.html
+  Gulp.src([releaseSource + 'index.html'])
+    .pipe(Replace(/<!-- CSS Bundle -->/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
+    .pipe(Replace(/<!-- JavaScript Bundle -->/g, "<script src='scripts/app.min.js'></script>"))
+    .pipe(Gulp.dest(releaseTarget));
 });
 
 /** gulp clean */

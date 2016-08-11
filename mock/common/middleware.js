@@ -1,5 +1,5 @@
 /** Log for http request */
-const logMiddleware = (request, response) => {
+exports.log = (request, response) => {
   console.info('================================================');
   console.info('Request URL:', request.path);
   console.info('Request Type:', request.method);
@@ -8,9 +8,3 @@ const logMiddleware = (request, response) => {
   console.info('Request Query:', request.query);
   console.info('Request Parameter:', request.params);
 }
-
-const fuck = () => {
-  console.log('test');
-}
-
-module.exports = logMiddleware;

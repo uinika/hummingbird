@@ -2,7 +2,7 @@ const Express = require('express'),
       App = Express(),
       Cors = require('cors'),
       BodyParser = require('body-parser'),
-      logMiddleware = require('./common/middleware.js'),
+      Middleware = require('./common/middleware.js'),
       Color = require('colors/safe');
 
 /** Middleware */
@@ -16,7 +16,7 @@ App.use(Cors({
 }));
 App.use(BodyParser.json());
 App.use('/', (request, response, next) => {
-  logMiddleware(request, response);
+  Middleware.log(request, response);
   next();
 });
 App.listen(5005);
