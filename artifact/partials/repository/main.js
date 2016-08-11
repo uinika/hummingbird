@@ -1,4 +1,3 @@
-'use strict';
 /** Module */
 var repository = angular.module('app.repository', []);
 

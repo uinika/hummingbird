@@ -1,5 +1,8 @@
 # Node modules' directory
 node_modules
 
-# Source code for production environment
+# Source code with compiled
 release
+
+# Concat files
+artifact/bundles

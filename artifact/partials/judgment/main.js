@@ -1,4 +1,3 @@
-'use strict';
 /** Module */
 var judgment = angular.module('app.judgment', []);
 

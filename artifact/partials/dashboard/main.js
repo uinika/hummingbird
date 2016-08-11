@@ -1,4 +1,3 @@
-'use strict';
 /** Module */
 var dashboard = angular.module('app.dashboard', []);
 

@@ -1,4 +1,3 @@
-'use strict';
 /** Module */
 var login = angular.module('app.login', []);
 

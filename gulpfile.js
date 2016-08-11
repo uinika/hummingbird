@@ -10,21 +10,30 @@ const Gulp = require("gulp"),
 
 /** gulp */
 Gulp.task('default', () => {
-  const lessSource = './artifact/partials/**/*.less';
-  const lessTarget = './artifact';
-  const less = () => {
-    Gulp.src(lessSource)
-      .pipe(Concat('bundle.css'))
+  const source = './artifact/partials/';
+  const target = './artifact/bundles';
+  const concatStyles = () => {
+    Gulp.src(source + '**/*.less')
+      .pipe(Concat('styles.css'))
       .pipe(Less())
-      .pipe(Gulp.dest(lessTarget));
+      .pipe(Gulp.dest(target));
   };
-  less();
+  const concatScripts = () => {
+    Gulp.src([source + 'app.js', source + '**/*.js'])
+      .pipe(Concat('scripts.js'))
+      .pipe(Gulp.dest(target));
+  };
+  concatStyles();
+  concatScripts();
   Nodemon({
     script: './mock/server.js',
     execMap: {js: 'node --harmony'},
     env: {'NODE_ENV': 'development'}
   });
-  Gulp.watch([lessSource], () => less());
+  Gulp.watch([source + '**/*.less'. source + 'app.js', source + '**/*.js'], () => {
+    concatStyles();
+    concatScripts();
+  });
 });
 
 /** gulp build */
@@ -54,8 +63,7 @@ Gulp.task('build', () => {
     .pipe(Gulp.dest(releaseTarget));
   // Update index.html
   Gulp.src([releaseSource + 'index.html'])
-    .pipe(Replace(/<!-- CSS Bundle -->/g, "<link href='styles/app.min.css' rel='stylesheet'/>"))
-    .pipe(Replace(/<!-- JavaScript Bundle -->/g, "<script src='scripts/app.min.js'></script>"))
+    .pipe(Replace(/<!--Start-->[\s\S]* <!--End-->/g, "<script src='app.js'></script>"))
     .pipe(Gulp.dest(releaseTarget));
 });
 

@@ -1,4 +1,3 @@
-'use strict';
 /** Module */
 var frame = angular.module('app.frame', []);
 
