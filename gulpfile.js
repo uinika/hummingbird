@@ -4,11 +4,11 @@ const Gulp = require("gulp"),
       Concat = require('gulp-concat'),
       UglifyJS = require('gulp-uglify'),
       MinifyCSS = require('gulp-clean-css'),
-      Rename = require('gulp-rename'),
       Sourcemap = require('gulp-sourcemaps'),
       Replace = require('gulp-replace'),
       HtmlMin = require('gulp-htmlmin'),
       Delete = require('del');
+
 /** gulp */
 Gulp.task('default', () => {
   const lessSource = './artifact/partials/**/*.less';
@@ -46,13 +46,9 @@ Gulp.task('build', () => {
     .pipe(Gulp.dest('./release/libraries'));
   // JavaScript
   Gulp.src(['./artifact/partials/**/*.js', './artifact/app.js'])
-    .pipe(Sourcemap.init())
     .pipe(Concat('app.js'))
-    .pipe(Gulp.dest('./release'))
     .pipe(UglifyJS())
-    .pipe(Rename({suffix: '.min'}))
-    .pipe(Sourcemap.write('./'))
-    .pipe(Gulp.dest('./release'));
+    .pipe(Gulp.dest('./release'))
   // Image & Fonts
   Gulp.src(['./artifact/assets/**/*'])
     .pipe(Gulp.dest('./release/assets'));
@@ -60,8 +56,10 @@ Gulp.task('build', () => {
   Gulp.src('./artifact/partials/**/*.less')
     .pipe(Concat('bundle.css'))
     .pipe(Less())
+    .pipe(MinifyCSS({compatibility: 'ie8'}))
     .pipe(Gulp.dest('./release'));
 });
+
 /** gulp clean */
 Gulp.task('clean', () => {
   Delete(['./release/**/*']);

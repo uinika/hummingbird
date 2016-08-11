@@ -2,9 +2,8 @@ const Express = require('express'),
       App = Express(),
       Cors = require('cors'),
       BodyParser = require('body-parser'),
-      Color = require('colors/safe'),
-      Common = require('./common/golbal.js'),
-      Url = '/';
+      logMiddleware = require('./common/middleware.js'),
+      Color = require('colors/safe');
 
 /** Middleware */
 App.use('/dev', Express.static('./artifact'));
@@ -16,12 +15,12 @@ App.use(Cors({
   maxAge: 1728000
 }));
 App.use(BodyParser.json());
-App.use('/', function (request, response, next) {
-  Common.Log(request, response);
+App.use('/', (request, response, next) => {
+  logMiddleware(request, response);
   next();
 });
 App.listen(5005);
-console.info(Color.rainbow('Server started http://localhost:5005') + Url);
+console.info(Color.rainbow('Server started http://localhost:5005'));
 
 /** Basic config for express */
 // App.use(Url, require('./mock/dashboard'));
