@@ -1,16 +1,7 @@
-/** Module */
-var Dashboard = angular.module('Dashboard',[]);
-/** Controller */
-Dashboard.controller('Dashboard.Controller.Main',['$scope', 'Dashboard.Service.Main',
-  function($scope, _Service){
+angular
+  .module('app')
+  .controller('DashboardController', ['$scope', DashboardController]);
 
-  }
-]);
-/** Service */
-Dashboard.factory('Dashboard.Service.Main',['$http',
-  function($http){
-    return {
+function DashboardController($scope) {
 
-    };
-  }
-]);
+}
