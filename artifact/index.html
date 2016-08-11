@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='zh-CN' ng-app='app' ng-strict-di>
+  <head>
+    <meta charset='utf-8'/>
+    <title>Hummingbird</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <link rel='icon' href='/assets/favicon.ico' type='image/png'/>
+    <link href='libraries/font-awesome/css/font-awesome.min.css' rel='stylesheet'/>
+    <link href='libraries/bootstrap/css/bootstrap.min.css' rel='stylesheet'/>
+    <link href='libraries/animate/animate.min.css' rel='stylesheet'/>
+    <link href='libraries/angular-table/dataTable.css' rel='stylesheet'/>
+    <link href='libraries/angular-table/material.css' rel='stylesheet'/>
+    <!-- CSS Bundle -->
+    <link href='bundle.css' rel='stylesheet'/>
+  </head>
+  <body>
+    <div ui-view></div>
+    <!-- Libraries -->
+    <script src='libraries/jquery/jquery.min.js'></script>
+    <script src='libraries/angular/angular.min.js'></script>
+    <script src="libraries/angular/angular-animate.js"></script>
+    <script src='libraries/angular/i18n/angular-locale_zh-hans-cn.js'></script>
+    <script src='libraries/angular-router/angular-ui-router.min.js'></script>
+    <script src='libraries/angular-ui/ui-bootstrap-tpls.min.js'></script>
+    <script src='libraries/angular-table/dataTable.min.js'></script>
+    <script src='libraries/lodash/lodash.min.js'></script>
+    <!-- JavaScript Bundle -->
+    <!-- Entry Point -->
+    <script src='app.js'></script>
+    <!-- Login -->
+    <script src='partials/login/main.js'></script>
+    <!-- Frame -->
+    <script src='partials/frame/main.js'></script>
+    <!-- Dashboard -->
+    <script src='partials/dashboard/main.js'></script>
+    <!-- Judgment -->
+    <script src='partials/judgment/main.js'></script>
+    <!-- Repository -->
+    <script src='partials/repository/main.js'></script>
+  </body>
+</html>
