@@ -1,4 +1,5 @@
 const Gulp = require("gulp"),
+      Connect = require('gulp-connect'),
       Nodemon = require('gulp-nodemon'),
       Less = require('gulp-less'),
       Concat = require('gulp-concat'),
@@ -10,64 +11,80 @@ const Gulp = require("gulp"),
 
 /** gulp */
 Gulp.task('default', () => {
+  const server = './mock/server.js';
   const source = './artifact/partials/';
   const target = './artifact/bundles';
-  const concatStyles = () => {
-    Gulp.src(source + '**/*.less')
+  Nodemon({
+    script: server,
+    execMap: {js: 'node --harmony'},
+    env: {'NODE_ENV': 'development'}
+  });
+  const pack = () => {
+    Gulp.src([source + '**/*.less'])
       .pipe(Concat('styles.css'))
       .pipe(Less())
       .pipe(Gulp.dest(target));
-  };
-  const concatScripts = () => {
     Gulp.src([source + 'app.js', source + '**/*.js'])
       .pipe(Concat('scripts.js'))
       .pipe(Gulp.dest(target));
   };
-  concatStyles();
-  concatScripts();
-  Nodemon({
-    script: './mock/server.js',
-    execMap: {js: 'node --harmony'},
-    env: {'NODE_ENV': 'development'}
+  pack();
+  Gulp.watch([source + '**/*.less', source + 'app.js', source + '**/*.js'], pack);
+});
+
+/** gulp reload*/
+Gulp.task('live', ['default'], () => {
+  const target = [
+    './artifact/index.html',
+    './artifact/bundles/**/*'
+  ];
+  Connect.server({
+    root: 'artifact',
+    port: 5006,
+    livereload: true
   });
-  Gulp.watch([source + '**/*.less'. source + 'app.js', source + '**/*.js'], () => {
-    concatStyles();
-    concatScripts();
+  Gulp.watch(target, () => {
+    Gulp.src(target)
+      .pipe(Connect.reload());
   });
 });
 
 /** gulp build */
 Gulp.task('build', () => {
-  const releaseSource = './artifact/';
-  const releaseTarget = './release';
-  // HTML
-  Gulp.src([releaseSource + 'partials/**/*.html'])
+  const source = './artifact/';
+  const target = './release/';
+  // html
+  Gulp.src([source + 'partials/**/*.html'])
     .pipe(MinHtml({collapseWhitespace: true}))
-    .pipe(Gulp.dest(releaseTarget + '/partials'));
-  // Library
-  Gulp.src([releaseSource + 'libraries/**/*'])
-    .pipe(Gulp.dest(releaseTarget + '/libraries'));
-  // JavaScript
-  Gulp.src([releaseSource + 'partials/**/*.js', releaseSource + 'app.js'])
-    .pipe(Concat('app.js'))
-    .pipe(UglifyJS())
-    .pipe(Gulp.dest(releaseTarget))
-  // Image & Fonts
-  Gulp.src([releaseSource + 'assets/**/*'])
-    .pipe(Gulp.dest('./release/assets'));
-  // CSS
-  Gulp.src([releaseSource + 'partials/**/*.less'])
-    .pipe(Concat('bundle.css'))
+    .pipe(Gulp.dest(target + '/partials'));
+  // update index.html /<!--Start-->[\s\S]*<!--End-->/g
+  Gulp.src([source + 'index.html'])
+    .pipe(Replace('bundles/scripts', 'bundles/scripts.min'))
+    .pipe(Replace('bundles/styles', 'bundles/styles.min'))
+    .pipe(Gulp.dest(target));
+  // css
+  Gulp.src([source + 'partials/**/*.less'])
+    .pipe(Concat('styles.min.css'))
     .pipe(Less())
     .pipe(MinifyCSS({compatibility: 'ie8'}))
-    .pipe(Gulp.dest(releaseTarget));
-  // Update index.html
-  Gulp.src([releaseSource + 'index.html'])
-    .pipe(Replace(/<!--Start-->[\s\S]* <!--End-->/g, "<script src='app.js'></script>"))
-    .pipe(Gulp.dest(releaseTarget));
+    .pipe(Gulp.dest(target + 'bundles'));
+  // javascript
+  Gulp.src([source + 'partials/**/*.js', source + 'app.js'])
+    .pipe(Concat('scripts.min.js'))
+    .pipe(UglifyJS())
+    .pipe(Gulp.dest(target + 'bundles'));
+  // image & fonts
+  Gulp.src([source + 'assets/**/*'])
+    .pipe(Gulp.dest(target + 'assets'));
+  // library
+  Gulp.src([source + 'libraries/**/*'])
+    .pipe(Gulp.dest(target + '/libraries'));
 });
 
 /** gulp clean */
 Gulp.task('clean', () => {
-  Delete(['./release/**/*']);
+  Delete([
+    './release/**/*',
+    './artifact/bundles/**/*'
+  ]);
 });
