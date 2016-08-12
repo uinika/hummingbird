@@ -8,7 +8,8 @@ angular
     'app.login',
     'app.frame',
     'app.dashboard',
-    'app.repository'
+    'app.repository',
+    'app.judgment'
   ])
   .config([
     '$stateProvider',

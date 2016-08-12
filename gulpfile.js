@@ -36,6 +36,7 @@ Gulp.task('default', () => {
 Gulp.task('live', ['default'], () => {
   const target = [
     './artifact/index.html',
+    './artifact/partials/**/*.html',
     './artifact/bundles/**/*'
   ];
   Connect.server({
@@ -84,7 +85,6 @@ Gulp.task('build', () => {
 /** gulp clean */
 Gulp.task('clean', () => {
   Delete([
-    './release/**/*',
-    './artifact/bundles/**/*'
+    './release/**/*'
   ]);
 });

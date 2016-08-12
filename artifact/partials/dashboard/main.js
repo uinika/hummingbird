@@ -1,19 +1,22 @@
-/** Module */
-var dashboard = angular.module('app.dashboard', []);
+(function(){
+  /** Module */
+  var dashboard = angular.module('app.dashboard', []);
 
-/** Controller */
-dashboard.controller('dashboardController', ['$scope', 'dashboardFactory',
-  function($scope, dashboardFactory) {
-    var dashboard = this;
-    dashboard.hank='uinika'
-  }
-]);
+  /** Controller */
+  dashboard.controller('dashboardController', ['$scope', 'dashboardFactory',
+    function($scope, dashboardFactory) {
+      var dashboard = this;
 
-/** Service */
-dashboard.factory('dashboardFactory', [
-  function() {
-    return {
-      'hank':'uinika'
     }
-  }
-]);
+  ]);
+
+  /** Service */
+  dashboard.factory('dashboardFactory', [
+    function() {
+      return {
+        'hank':'uinika'
+      }
+    }
+  ]);
+
+})();

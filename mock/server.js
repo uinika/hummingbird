@@ -6,7 +6,7 @@ const Express = require('express'),
       Color = require('colors/safe');
 
 /** Middleware */
-App.use('/dev', Express.static('./artifact'));
+App.use('/wiserv', Express.static('./artifact'));
 App.use(Cors({
   origin: 'http://localhost:5005',
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
@@ -20,10 +20,10 @@ App.use('/', (request, response, next) => {
   next();
 });
 App.listen(5005);
-console.info(Color.rainbow('Server started http://localhost:5005'));
+console.info(Color.yellow('Mock started http://localhost:5005/wiserv'));
 
 /** Basic config for express */
-// App.use(Url, require('./mock/dashboard'));
+App.use('/', require('./login/api'));
 // Indicator
 // App.use(Url, require('./mock/indicator'));
 // Statistics
