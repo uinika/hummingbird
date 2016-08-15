@@ -1,10 +1,19 @@
 <div id="judgment">
-  <section class="filter col-md-11">
-
-  </section>
   <section class="table col-md-11">
     <div class="panel panel-default">
       <div class="panel-heading">知识库状态</div>
+      <div class="access">
+        <button href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"> 新增数据</span></button>
+        <button href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon glyphicon-grain"> 生成裁判文书</span></button>
+        <div class="search form-group">
+          <div class="input-group">
+            <input placeholder='请输入查询案件名称...' typ e="text" class="form-control input-sm">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-sm" type="button"><span class="glyphicon glyphicon-search">&nbsp搜索</span></button>
+            </span>
+          </div>
+        </div>
+      </div>
       <dtable options="judgment.options" rows="judgment.data" class="panel-body material">
         <column name="序号" flex-grow="2"></column>
         <column name="案件受理日期">
