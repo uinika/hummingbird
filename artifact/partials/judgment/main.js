@@ -7,7 +7,11 @@
     function($scope, judgmentFactory) {
       var judgment = this;
       judgment.options = {
-        scrollbarV: false
+        rowHeight: 50,
+        headerHeight: 30,
+        footerHeight: 20,
+        scrollbarV: false,
+        columnMode: 'force'
       };
       judgment.data = [
         { name: 'Austin', gender: 'Male' },

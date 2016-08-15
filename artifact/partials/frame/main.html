@@ -22,7 +22,18 @@
             <button type="submit" class="btn btn-default">查询</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">退出</a></li>
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+              <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                系统管理员 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem"><a href="#">用户详情</a></li>
+                <li role="menuitem"><a href="#">用户管理</a></li>
+                <li role="menuitem"><a href="#">修改密码</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">退出</a></li>
+              </ul>
+            </div>
           </ul>
         </div>
       </div>

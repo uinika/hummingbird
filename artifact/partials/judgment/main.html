@@ -1,8 +1,37 @@
 <div id="judgment">
-  <dtable options="judgment.options" rows="judgment.data" class="material dt">
-    <column name="Name" width="300" flex-grow="2"></column>
-    <column name="Gender">
-      <strong>{{$row.name}}</strong>: {{$cell}}
-    </column>
-  </dtable>
+  <section class="filter col-md-11">
+
+  </section>
+  <section class="table col-md-11">
+    <div class="panel panel-default">
+      <div class="panel-heading">知识库状态</div>
+      <dtable options="judgment.options" rows="judgment.data" class="panel-body material">
+        <column name="序号" flex-grow="2"></column>
+        <column name="案件受理日期">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="案件名称">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="案由">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="原告">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="原告诉讼代理人">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="被告">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+        <column name="被告诉讼代理人">
+          <strong>{{$row.name}}</strong>: {{$cell}}
+        </column>
+      </dtable>
+    </div>
+  </section>
+
+
+
 </div>

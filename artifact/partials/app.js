@@ -12,8 +12,7 @@ angular
     'app.judgment'
   ])
   .config([
-    '$stateProvider',
-    '$urlRouterProvider',
+    '$stateProvider', '$urlRouterProvider',
     function config($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/login');
       $stateProvider
