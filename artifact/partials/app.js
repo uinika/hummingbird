@@ -1,10 +1,12 @@
 'use strict';
+
 angular
   .module('app', [
     'ngAnimate',
     'ui.router',
     'ui.bootstrap',
     'data-table',
+    'xeditable',
     'app.login',
     'app.frame',
     'app.dashboard',
@@ -16,7 +18,7 @@ angular
     function config($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/login');
       $stateProvider
-        .state('login',{
+        .state('login', {
           url: '/login',
           templateUrl: 'partials/login/main.html',
           controller: 'loginController',
@@ -47,4 +49,10 @@ angular
           controllerAs: 'repository'
         });
     }
-]);
+  ])
+  .run([
+    'editableOptions',
+    function(editableOptions) {
+      editableOptions.theme = 'bs3';
+    }
+  ]);

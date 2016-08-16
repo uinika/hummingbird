@@ -1,13 +1,31 @@
 #frame {
-  .split {
-    width: 20px;
-  }
-  .search-shortcut{
-    input {
-      font-size: 13px;
+  #navbar {
+    display: block;
+    .navbar {
+      margin-bottom: 10px;
+      .navbar-right {
+        position: relative;
+        right: 14px;
+      }
     }
-    button > span {
-      font-size: 13px;
+  }
+  #menu {
+    display: inline-block;
+    width: 12%;
+    float: left;
+    li {
+      margin-top: -1px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      font-size: 12px;
+    }
+  }
+  #content {
+    >div {
+      display: inline-block;
+      width: 88%;
+      float: left;
+      padding: 0 12px 0 10px;
     }
   }
 }
