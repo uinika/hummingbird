@@ -11,6 +11,7 @@ angular
     'app.frame',
     'app.dashboard',
     'app.repository',
+    'app.repository.search',
     'app.judgment'
   ])
   .config([
@@ -47,6 +48,12 @@ angular
           templateUrl: 'partials/repository/main.html',
           controller: 'repositoryController',
           controllerAs: 'repository'
+        })
+        .state('frame.repository.search', {
+          url: '/search',
+          templateUrl: 'partials/repository/search/main.html',
+          controller: 'repositorySearchController',
+          controllerAs: 'repositorySearch'
         });
     }
   ])

@@ -61,10 +61,23 @@
           </li>
         </ul>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="frame.repository">
+      <li ui-sref-active="active" uib-dropdown dropdown-append-to-body>
+        <a ui-sref="frame.repository" uib-dropdown-toggle class="dropdown-toggle">
           <span class="glyphicon glyphicon-indent-right">&nbsp;知识库</span>
         </a>
+        <ul uib-dropdown-menu class="dropdown-menu patch">
+          <li ui-sref-active="active">
+            <a ui-sref="frame.repository.search">
+              <span class="glyphicon glyphicon-check">&nbsp;知识库（裁判文书搜索）</span>
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li ui-sref-active="active">
+            <a ui-sref="frame.repository.laws">
+              <span class="glyphicon glyphicon-file">&nbsp;知识库（法条库）</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </section>
