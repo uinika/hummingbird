@@ -10,3 +10,23 @@ body {
   background-color: @gray-background;
   background-size: cover;
 }
+
+// Patch for bootstrap's panel
+.patch {
+  .panel-heading{
+    padding: 0;
+    .input-group {
+      .form-control {
+        border: none;
+        font-size: 12px;
+      }
+    }
+    .btn {
+      border: none;
+      font-size: 12px;
+      padding: 12px 15px 11px 20px;
+      margin-left: 0px !important;
+      background: rgba(0, 0, 0, .1);
+    }
+  }
+}
