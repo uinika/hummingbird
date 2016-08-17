@@ -21,31 +21,31 @@ angular
       $stateProvider
         .state('login', {
           url: '/login',
-          templateUrl: 'partials/login/main.html',
+          templateUrl: 'partials/login/view.html',
           controller: 'loginController',
           controllerAs: 'login'
         })
         .state('frame', {
           url: '/frame',
-          templateUrl: 'partials/frame/main.html',
+          templateUrl: 'partials/frame/view.html',
           controller: 'frameController',
           controllerAs: 'frame'
         })
         .state('frame.dashboard', {
           url: '/dashboard',
-          templateUrl: 'partials/dashboard/main.html',
+          templateUrl: 'partials/dashboard/view.html',
           controller: 'dashboardController',
           controllerAs: 'dashboard'
         })
         .state('frame.judgment', {
           url: '/judgment',
-          templateUrl: 'partials/judgment/main.html',
+          templateUrl: 'partials/judgment/view.html',
           controller: 'judgmentController',
           controllerAs: 'judgment'
         })
         .state('frame.repository', {
           url: '/repository',
-          templateUrl: 'partials/repository/main.html',
+          templateUrl: 'partials/repository/view.html',
           controller: 'repositoryController',
           controllerAs: 'repository'
         })
