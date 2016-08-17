@@ -2,10 +2,10 @@
   <section>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <button href="#" class="add btn btn-primary btn-sm">
+        <button class="add btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-plus">&nbsp;新增数据</span>
         </button>
-        <button href="#" class="gerator btn btn-primary btn-sm">
+        <button class="generator btn btn-primary btn-sm">
           <span class="glyphicon glyphicon glyphicon-grain">&nbsp;生成裁判文书</span>
         </button>
         <div class="search form-group">
@@ -17,30 +17,33 @@
           </div>
         </div>
       </div>
-      <dtable options="judgment.options" rows="judgment.data" class="panel-body material">
-        <column name="序号" flex-grow="2"></column>
-        <column name="案件受理日期">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="案件名称">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="案由">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="原告">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="原告诉讼代理人">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="被告">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-        <column name="被告诉讼代理人">
-          <strong>{{$row.name}}</strong>: {{$cell}}
-        </column>
-      </dtable>
+      <div class="panel-body">
+        <dtable options="judgment.options" rows="judgment.data" class="material">
+          <column name="序号" flex-grow="2"></column>
+          <column name="案件受理日期">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="案件名称">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="案由">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="原告">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="原告诉讼代理人">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="被告">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+          <column name="被告诉讼代理人">
+            <strong>{{$row.name}}</strong>: {{$cell}}
+          </column>
+        </dtable>
+      </div>
+
     </div>
   </section>
 

@@ -9,7 +9,7 @@
       judgment.options = {
         rowHeight: 50,
         headerHeight: 30,
-        footerHeight: 20,
+        footerHeight: 50,
         scrollbarV: false,
         columnMode: 'force'
       };
