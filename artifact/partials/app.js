@@ -51,7 +51,7 @@ angular
         })
         .state('frame.repository.search', {
           url: '/search',
-          templateUrl: 'partials/repository/search/main.html',
+          templateUrl: 'partials/repository/search/view.html',
           controller: 'repositorySearchController',
           controllerAs: 'repositorySearch'
         });
