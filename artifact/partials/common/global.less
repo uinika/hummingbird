@@ -11,8 +11,9 @@ body {
   background-size: cover;
 }
 
-// Patch for bootstrap's panel
+/** Patch bootstrap */
 .patch {
+  // rewrite panel's head
   .panel-heading{
     padding: 0;
     .input-group {
@@ -28,5 +29,9 @@ body {
       margin-left: 0px !important;
       background: rgba(0, 0, 0, .1);
     }
+  }
+  // Fix divider overflow bug
+  .divider {
+    margin: 0;
   }
 }

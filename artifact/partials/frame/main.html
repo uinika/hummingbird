@@ -12,12 +12,16 @@
             <span class="glyphicon glyphicon-user">&nbsp;系统管理员</span>
             <span class="caret"></span>
           </a>
-          <ul uib-dropdown-menu class="dropdown-menu">
-            <li role="menuitem"><a href="#">用户详情</a></li>
-            <li role="menuitem"><a href="#">用户管理</a></li>
-            <li role="menuitem"><a href="#">修改密码</a></li>
+          <ul uib-dropdown-menu class="dropdown-menu patch">
+            <li><a href="#">用户详情</a></li>
+            <li><a href="#">用户管理</a></li>
+            <li><a href="#">修改密码</a></li>
             <li class="divider"></li>
-            <li role="menuitem"><a href="#">退出</a></li>
+            <li>
+              <a ui-sref="login">
+                <span class="glyphicon glyphicon-log-out">&nbsp;退出</span>
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -28,17 +32,31 @@
     <ul class="nav nav-pills nav-stacked">
       <li ui-sref-active="active" class="active">
         <a ui-sref="frame.dashboard">
-          <span class="glyphicon glyphicon-book">&nbsp;系统概览</span>
+          <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
         </a>
       </li>
-      <li ui-sref-active="active" class="active">
-        <a ui-sref="frame.judgment">
-          <span class="glyphicon glyphicon-book">&nbsp;裁判文书</span>
+      <li class="dropdown" uib-dropdown dropdown-append-to-body>
+        <a uib-dropdown-toggle class="dropdown-toggle">
+          <span class="glyphicon glyphicon-user">&nbsp;裁判文书</span>
+          <span class="caret"></span>
         </a>
+        <ul uib-dropdown-menu class="dropdown-menu patch">
+          <li ui-sref-active="active">
+            <a ui-sref="frame.judgment">
+              <span class="glyphicon glyphicon-check">&nbsp;场景选择</span>
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li ui-sref-active="active">
+            <a ui-sref="frame.judgment">
+              <span class="glyphicon glyphicon-file">&nbsp;分析记录</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li ui-sref-active="active">
         <a ui-sref="frame.repository">
-          <span class="glyphicon glyphicon-th">&nbsp;知识库</span>
+          <span class="glyphicon glyphicon-indent-right">&nbsp;知识库</span>
         </a>
       </li>
     </ul>
