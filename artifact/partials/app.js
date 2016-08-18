@@ -5,7 +5,7 @@ angular
     'ngAnimate',
     'ui.router',
     'ui.bootstrap',
-    'data-table',
+    'ngTable',
     'ng.ueditor',
     'app.login',
     'app.frame',
