@@ -1,8 +1,8 @@
 <div id="judgment">
-  <section>
     <div class="panel panel-primary patch">
       <div class="panel-heading">
-        <a ui-sref='frame.judgmentCreate' class="btn btn-primary">
+        <!-- ui-sref='frame.judgmentCreate' -->
+        <a class="btn btn-primary" ng-click="judgment.open()">
           <span class="glyphicon glyphicon-plus">&nbsp;新增裁判文书</span>
         </a>
         <div class="input-group">
@@ -38,10 +38,23 @@
           </column>
         </dtable>
       </div>
-
     </div>
-  </section>
-
-
-
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in items">
+                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

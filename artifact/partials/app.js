@@ -6,7 +6,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'data-table',
-    'xeditable',
+    'ng.ueditor',
     'app.login',
     'app.frame',
     'app.dashboard',
@@ -51,12 +51,6 @@ angular
           templateUrl: 'partials/judgment/view.html',
           controller: 'judgmentController',
           controllerAs: 'judgment'
-        })
-        .state('frame.judgmentCreate', {
-          url: '/judgmentCreate',
-          templateUrl: 'partials/judgment/create/view.html',
-          controller: 'judgmentCreateController',
-          controllerAs: 'judgmentCreate'
         })
         .state('frame.repository', {
           url: '/repository',
@@ -121,8 +115,6 @@ angular
     }
   ])
   .run([
-    'editableOptions',
-    function(editableOptions) {
-      editableOptions.theme = 'bs3';
+    function() {
     }
   ]);
