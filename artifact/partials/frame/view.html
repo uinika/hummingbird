@@ -42,24 +42,10 @@
           <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
         </a>
       </li>
-      <li class="dropdown" uib-dropdown dropdown-append-to-body>
-        <a uib-dropdown-toggle class="dropdown-toggle">
-          <span class="glyphicon glyphicon-user">&nbsp;裁判文书</span>
-          <span class="caret"></span>
+      <li ui-sref-active="active">
+        <a ui-sref="frame.judgment">
+          <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
         </a>
-        <ul uib-dropdown-menu class="dropdown-menu patch">
-          <li ui-sref-active="active">
-            <a ui-sref="frame.judgment">
-              <span class="glyphicon glyphicon-check">&nbsp;场景选择</span>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li ui-sref-active="active">
-            <a ui-sref="frame.judgment">
-              <span class="glyphicon glyphicon-file">&nbsp;分析记录</span>
-            </a>
-          </li>
-        </ul>
       </li>
       <li ui-sref-active="active" uib-dropdown dropdown-append-to-body>
         <a ui-sref="frame.repository" uib-dropdown-toggle class="dropdown-toggle">

@@ -12,7 +12,8 @@ angular
     'app.dashboard',
     'app.repository',
     'app.repository.search',
-    'app.judgment'
+    'app.judgment',
+    'app.judgment.create'
   ])
   .config([
     '$stateProvider', '$urlRouterProvider',
@@ -42,6 +43,12 @@ angular
           templateUrl: 'partials/judgment/view.html',
           controller: 'judgmentController',
           controllerAs: 'judgment'
+        })
+        .state('frame.judgmentCreate', {
+          url: '/judgmentCreate',
+          templateUrl: 'partials/judgment/create/view.html',
+          controller: 'judgmentCreateController',
+          controllerAs: 'judgmentCreate'
         })
         .state('frame.repository', {
           url: '/repository',
