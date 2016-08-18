@@ -20,6 +20,8 @@ angular
     'app.repository.summary.structure',
     'app.repository.summary.explain',
     'app.repository.summary.rule',
+    'app.repository.judgementLib',
+    'app.repository.judgementLib.search'
   ])
   .config([
     '$stateProvider', '$urlRouterProvider',
@@ -62,47 +64,59 @@ angular
           controller: 'repositoryController',
           controllerAs: 'repository'
         })
-        .state('frame.repository.search', {
-          url: '/search',
+        .state('frame.repositorySearch', {
+          url: '/repositorySearch',
           templateUrl: 'partials/repository/search/view.html',
           controller: 'repositorySearchController',
           controllerAs: 'repositorySearch'
         })
-        .state('frame.repository.laws', {
-          url: '/laws',
+        .state('frame.repositoryLaws', {
+          url: '/repositoryLaws',
           templateUrl: 'partials/repository/laws/view.html',
           controller: 'lawsController',
           controllerAs: 'laws'
         })
-        .state('frame.repository.laws.structure', {
-          url: '/structure',
+        .state('frame.lawsStructure', {
+          url: '/lawsStructure',
           templateUrl: 'partials/repository/laws/structure/view.html',
           controller: 'lawsStructureController',
           controllerAs: 'lawsStructure'
         })
-        .state('frame.repository.summary', {
-          url: '/summary',
+        .state('frame.repositorySummary', {
+          url: '/repositorySummary',
           templateUrl: 'partials/repository/summary/view.html',
           controller: 'summaryController',
           controllerAs: 'summary'
         })
-        .state('frame.repository.summary.structure', {
-          url: '/structure',
+        .state('frame.summaryStructure', {
+          url: '/summaryStructure',
           templateUrl: 'partials/repository/summary/structure/view.html',
           controller: 'summaryStructureController',
           controllerAs: 'summaryStructure'
         })
-        .state('frame.repository.summary.explain', {
-          url: '/explain',
+        .state('frame.summaryExplain', {
+          url: '/summaryExplain',
           templateUrl: 'partials/repository/summary/explain/view.html',
           controller: 'summaryExplainController',
           controllerAs: 'summaryExplain'
         })
-        .state('frame.repository.summary.rule', {
-          url: '/rule',
+        .state('frame.summaryRule', {
+          url: '/summaryRule',
           templateUrl: 'partials/repository/summary/rule/view.html',
           controller: 'summaryRuleController',
           controllerAs: 'summaryRule'
+        })
+        .state('frame.judgementLib', {
+          url: '/judgementLib',
+          templateUrl: 'partials/repository/judgementLib/view.html',
+          controller: 'judgementLibController',
+          controllerAs: 'judgementLib'
+        })
+        .state('frame.judgementLibSearch', {
+          url: '/judgementLibSearch',
+          templateUrl: 'partials/repository/judgementLib/search/view.html',
+          controller: 'judgementLibSearchController',
+          controllerAs: 'judgementLibSearch'
         });
     }
   ])
