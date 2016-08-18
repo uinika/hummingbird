@@ -13,7 +13,7 @@ angular
     'app.repository',
     'app.repository.search',
     'app.judgment',
-    'app.judgment.create'
+    'app.judgment.create',
     'app.repository.laws',
     'app.repository.laws.structure',
     'app.repository.summary',
