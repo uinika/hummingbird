@@ -4,22 +4,14 @@
 
   /** Controller */
   judgment.controller('judgmentController', [
-    '$scope', '$uibModal', 'judgmentFactory',
-    function($scope, $uibModal, judgmentFactory) {
+    '$scope', '$uibModal', 'judgmentFactory', "NgTableParams",
+    function($scope, $uibModal, judgmentFactory, NgTableParams) {
       var self = this;
-      self.options = {
-        rowHeight: 50,
-        headerHeight: 30,
-        footerHeight: 50,
-        scrollbarV: false,
-        columnMode: 'force'
-      };
-      self.data = [
-        { name: 'Austin', gender: 'Male' },
-        { name: 'Marjan', gender: 'Male' }
-      ];
 
-      self.open = function (size) {
+      var data = [{name: "Moroni", age: 50},{name: "Moroni", age: 50},{name: "Moroni", age: 50}];
+      self.tableParams = new NgTableParams({}, { dataset: data});
+
+      self.open = function() {
         $uibModal.open({
           animation: true,
           template: '<div/>',

@@ -13,30 +13,14 @@
         </div>
       </div>
       <div class="panel-body">
-        <dtable options="judgment.options" rows="judgment.data" class="material">
-          <column name="序号" flex-grow="2"></column>
-          <column name="案件受理日期">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="案件名称">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="案由">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="原告">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="原告诉讼代理人">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="被告">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-          <column name="被告诉讼代理人">
-            <strong>{{$row.name}}</strong>: {{$cell}}
-          </column>
-        </dtable>
+        <table ng-table="judgment.tableParams" class="table" show-filter="true">
+            <tr ng-repeat="user in $data">
+                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                    {{user.name}}</td>
+                <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                    {{user.age}}</td>
+            </tr>
+        </table>
       </div>
     </div>
 </div>
