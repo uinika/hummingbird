@@ -1,17 +1,15 @@
 (function(){
   /** Module */
-  var repository = angular.module('app.repository.search', []);
+  var search = angular.module('app.repository.search', []);
 
   /** Controller */
-  repository.controller('repositorySearchController', ['$scope', 'repositorySearchFactory',
-    function($scope, repositoryFactory) {
-      var repository = this;
-      repository.hank='uinika'
+  search.controller('repositorySearchController', ['$scope', 'repositorySearchFactory',
+    function($scope, repositorySearchFactory) {
     }
   ]);
 
   /** Service */
-  repository.factory('repositorySearchFactory', [
+  search.factory('repositorySearchFactory', [
     function() {
       return {
         'hank':'uinika'

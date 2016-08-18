@@ -14,6 +14,12 @@ angular
     'app.repository.search',
     'app.judgment',
     'app.judgment.create'
+    'app.repository.laws',
+    'app.repository.laws.structure',
+    'app.repository.summary',
+    'app.repository.summary.structure',
+    'app.repository.summary.explain',
+    'app.repository.summary.rule',
   ])
   .config([
     '$stateProvider', '$urlRouterProvider',
@@ -61,6 +67,42 @@ angular
           templateUrl: 'partials/repository/search/view.html',
           controller: 'repositorySearchController',
           controllerAs: 'repositorySearch'
+        })
+        .state('frame.repository.laws', {
+          url: '/laws',
+          templateUrl: 'partials/repository/laws/view.html',
+          controller: 'lawsController',
+          controllerAs: 'laws'
+        })
+        .state('frame.repository.laws.structure', {
+          url: '/structure',
+          templateUrl: 'partials/repository/laws/structure/view.html',
+          controller: 'lawsStructureController',
+          controllerAs: 'lawsStructure'
+        })
+        .state('frame.repository.summary', {
+          url: '/summary',
+          templateUrl: 'partials/repository/summary/view.html',
+          controller: 'summaryController',
+          controllerAs: 'summary'
+        })
+        .state('frame.repository.summary.structure', {
+          url: '/structure',
+          templateUrl: 'partials/repository/summary/structure/view.html',
+          controller: 'summaryStructureController',
+          controllerAs: 'summaryStructure'
+        })
+        .state('frame.repository.summary.explain', {
+          url: '/explain',
+          templateUrl: 'partials/repository/summary/explain/view.html',
+          controller: 'summaryExplainController',
+          controllerAs: 'summaryExplain'
+        })
+        .state('frame.repository.summary.rule', {
+          url: '/rule',
+          templateUrl: 'partials/repository/summary/rule/view.html',
+          controller: 'summaryRuleController',
+          controllerAs: 'summaryRule'
         });
     }
   ])
