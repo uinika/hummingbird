@@ -36,7 +36,7 @@
   </section>
 
   <section id='menu'>
-    <ul class="nav nav-pills nav-stacked">
+    <ul class="metismenu" wiserv-menu>
       <li ui-sref-active="active" class="active">
         <a ui-sref="frame.dashboard">
           <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
@@ -47,19 +47,8 @@
           <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
         </a>
       </li>
-      <li ui-sref-active="active" uib-dropdown dropdown-append-to-body>
-        <a ui-sref="frame.repository" uib-dropdown-toggle class="dropdown-toggle">
-          <span class="glyphicon glyphicon-indent-right">&nbsp;知识库</span>
-        </a>
-        <ul uib-dropdown-menu class="dropdown-menu patch">
-          <li ui-sref-active="active" >
-            <a ui-sref="frame.repositoryLaws" >
-              <span class="glyphicon glyphicon-file">&nbsp;知识库（法条库）</span>
-            </a>
-          </li>
-        </ul>
-      </li>
     </ul>
+
   </section>
 
   <section id="content">

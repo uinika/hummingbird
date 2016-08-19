@@ -1,4 +1,5 @@
 #frame {
+  .fill;
   >#navbar {
     width: 100%;
     display: block;
@@ -20,22 +21,15 @@
   >#menu {
     display: inline-block;
     width: 10%;
+    height: 100%;
     float: left;
-    position: relative;
-    top: 1px;
-    li {
-      margin-top: -1px;
-      border: 1px solid @blue;
-      font-size: 12px;
-      a {
-        padding: 12px 0px 11px 15px !important;
-      }
-    }
+    background: @blue;
   }
   >#content {
     >div {
       display: inline-block;
       width: 90%;
+      height: 90%;
       float: left;
       padding: 0;
       margin-left: -1px;
