@@ -18,24 +18,31 @@ body {
 }
 
 /** Patch bootstrap */
-.patch {
+.wiserv-ui {
   // rewrite panel's head
-  .panel-heading{
-    padding: 0;
-    height: 40px;
-    .input-group {
-      .form-control {
+  .panel {
+    border: none;
+    margin: 0;
+    .panel-heading{
+      padding: 0;
+      height: 40px;
+      .input-group {
+        .form-control {
+          border: none;
+          font-size: 12px;
+          color: @black;
+        }
+      }
+      .btn {
         border: none;
         font-size: 12px;
-        color: @black;
+        padding: 12px 15px 11px 20px;
+        margin-left: 0px !important;
+        background: rgba(0, 0, 0, .1);
       }
     }
-    .btn {
-      border: none;
-      font-size: 12px;
-      padding: 12px 15px 11px 20px;
-      margin-left: 0px !important;
-      background: rgba(0, 0, 0, .1);
+    .panel-body {
+      padding: 0;
     }
   }
   // Fix divider overflow bug
