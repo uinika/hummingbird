@@ -1,6 +1,6 @@
 (function(){
   /** Module */
-  var judgment = angular.module('app.judgment', []);
+  var judgment = angular.module('app.judgment');
 
   /** Controller */
   judgment.controller('judgmentController', [
@@ -16,7 +16,7 @@
           animation: true,
           template: '<div/>',
           size: 'lg',
-          windowTemplateUrl: 'partials/judgment/modal/view.html',
+          windowTemplateUrl: 'partials/judgment/case_list/view.html',
           resolve: {
             items: function () {
               return $scope.items;
@@ -24,7 +24,7 @@
           }
         })
         .result.then(function() {
-
+          
         });
       };
 

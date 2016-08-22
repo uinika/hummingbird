@@ -7,7 +7,7 @@
     function($scope, $state, loginFactory) {
       var login = this;
       login.submit = function() {
-        $state.go("frame.judgment");
+        $state.go("judgment.case_list");
         console.log(login.password + login.username);
       }
     }
