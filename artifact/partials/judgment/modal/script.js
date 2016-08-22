@@ -1,16 +1,13 @@
 (function(){
-  /** Module */
-  var judgmentCreate = angular.module('app.judgment.create', []);
+  var judgment = angular.module('app.judgment');
 
-  /** Controller */
-  judgmentCreate.controller('judgmentCreateController', ['$scope', 'judgmentCreateFactory',
-    function($scope, judgmentFactory) {
-      var judgmentCreate = this;
+  judgment.controller('modalController', ['$scope', 'modalFactory',
+    function($scope, modalFactory) {
+      var judgment = this;
     }
   ]);
 
-  /** Service */
-  judgmentCreate.factory('judgmentCreateFactory', [
+  judgment.factory('modalFactory', [
     function() {
       return {
         'hank':'uinika'
