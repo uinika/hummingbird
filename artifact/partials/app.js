@@ -6,6 +6,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'ngTable',
+    'xeditable',
     'app.login',
     'app.frame',
     'app.dashboard',

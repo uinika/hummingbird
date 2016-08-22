@@ -5,7 +5,6 @@
       return {
         restrict: 'ACE',
         link: function(scope, element, attrs) {
-          console.log(element);
           element.metisMenu({
            preventDefault: false
          });

@@ -16,7 +16,7 @@
           animation: true,
           template: '<div/>',
           size: 'lg',
-          windowTemplateUrl: 'partials/judgment/create/view.html',
+          windowTemplateUrl: 'partials/judgment/modal/view.html',
           resolve: {
             items: function () {
               return $scope.items;
