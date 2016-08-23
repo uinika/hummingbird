@@ -16,7 +16,8 @@
     ]);
 
   /** Controller */
-  module.controller('dashboardController', ['$scope', 'dashboardService',
+  module.controller('dashboardController', [
+    '$scope', 'dashboardService',
     function($scope, dashboardFactory) {
       var vm = this;
 

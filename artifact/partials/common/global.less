@@ -20,7 +20,7 @@ body {
 /** Patch bootstrap */
 .wiserv-ui {
   // rewrite panel's head
-  .panel {
+  >.panel {
     border: none;
     margin: 0;
     .panel-heading{
@@ -46,7 +46,17 @@ body {
     }
   }
   // Fix divider overflow bug
-  .divider {
+  >.divider {
     margin: 0;
+  }
+  >.list-group {
+    margin: 0;
+    .title {
+      font-weight: bold;
+      color: #222222;
+    }
+    .list-group-item:nth-child(1) {
+      border-top: 0;
+    }
   }
 }
