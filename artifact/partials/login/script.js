@@ -1,25 +1,37 @@
-(function(){
+(function() {
+
   /** Module */
-  var login = angular.module('app.login', []);
+    angular
+      .module('app.login', []);
 
   /** Controller */
-  login.controller('loginController', ['$scope', '$state', 'loginFactory',
-    function($scope, $state, loginFactory) {
-      var login = this;
-      login.submit = function() {
-        $state.go("judgment.case_list");
-        console.log(login.password + login.username);
-      }
+  angular
+      .module('app.login')
+      .controller('loginController', Controller);
+
+  Controller.$inject = ['$scope', '$state', 'loginService'];
+  function Controller ($scope, $state, loginService) {
+    var vm = this;
+    vm.submit = function() {
+      loginService.validate();
     }
-  ]);
+  }
 
   /** Service */
-  login.factory('loginFactory', [
-    function() {
-      return {
-        'hank':'uinika'
-      }
-    }
-  ]);
+  angular
+      .module('app.login')
+      .factory('loginService', Service);
+
+  Service.$inject = ['$state'];
+  function Service ($state) {
+    return {
+        validate: validate
+    };
+    /////
+    function validate () {
+      $state.go("judgment.case_list");
+    };
+
+  }
 
 })();

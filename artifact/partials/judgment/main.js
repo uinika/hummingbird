@@ -20,6 +20,13 @@
           templateUrl: 'partials/judgment/case_list/view.html',
           controller: 'judgmentController',
           controllerAs: 'judgment',
+        })
+        .state('judgment.doc_list', {
+          parent: 'judgment',
+          url: '/doc_list',
+          templateUrl: 'partials/judgment/doc_list/view.html',
+          controller: 'judgmentController',
+          controllerAs: 'judgment',
         });
     }
 

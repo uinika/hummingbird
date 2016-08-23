@@ -39,12 +39,6 @@ angular
           controller: 'frameController',
           controllerAs: 'frame'
         })
-        .state('frame.dashboard', {
-          url: '/dashboard',
-          templateUrl: 'partials/dashboard/view.html',
-          controller: 'dashboardController',
-          controllerAs: 'dashboard'
-        })
         .state('frame.repository', {
           url: '/repository',
           templateUrl: 'partials/repository/view.html',

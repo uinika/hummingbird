@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <!-- ui-sref='frame.judgmentCreate' -->
         <a class="btn btn-primary" ng-click="judgment.open()">
-          <span class="glyphicon glyphicon-plus">&nbsp;新增裁判文书</span>
+          <span class="glyphicon glyphicon-plus">&nbsp;生成裁判文书</span>
         </a>
         <div class="input-group">
           <input placeholder='请输入查询案件名称...' type="text" class="form-control">
@@ -16,10 +16,10 @@
       <div class="panel-body">
         <table ng-table="judgment.tableParams" class="table" show-filter="true">
             <tr ng-repeat="user in $data">
-                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                    {{user.name}}</td>
-                <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-                    {{user.age}}</td>
+              <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                  {{user.name}}</td>
+              <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                  {{user.age}}</td>
             </tr>
         </table>
       </div>

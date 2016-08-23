@@ -38,14 +38,27 @@
   <section id='menu'>
     <ul class="metismenu" wiserv-menu>
       <li ui-sref-active="active" class="active">
-        <a ui-sref="frame.dashboard">
+        <a ui-sref="dashboard">
           <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
         </a>
       </li>
       <li ui-sref-active="active">
-        <a ui-sref="judgment">
+        <a aria-expanded="true">
           <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
+          <span class="glyphicon arrow"></span>
         </a>
+        <ul aria-expanded="true">
+          <li ui-sref-active="active">
+            <a ui-sref="judgment.case_list" >
+              <span class="glyphicon glyphicon-grain">&nbsp;案件信息列表</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="judgment.doc_list" >
+              <span class="glyphicon glyphicon-grain">&nbsp;裁判文书列表</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li ui-sref-active="active">
         <a ui-sref="frame.repository">

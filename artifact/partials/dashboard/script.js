@@ -1,20 +1,33 @@
 (function(){
   /** Module */
-  var dashboard = angular.module('app.dashboard', []);
+  var module = angular.module('app.dashboard', [])
+    .config([
+      '$stateProvider', '$urlRouterProvider',
+      function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+          .state('dashboard', {
+            parent: 'frame',
+            url: '/dashboard',
+            templateUrl: 'partials/dashboard/view.html',
+            controller: 'dashboardController',
+            controllerAs: 'dashboard',
+          });
+      }
+    ]);
 
   /** Controller */
-  dashboard.controller('dashboardController', ['$scope', 'dashboardFactory',
+  module.controller('dashboardController', ['$scope', 'dashboardService',
     function($scope, dashboardFactory) {
-      var dashboard = this;
+      var vm = this;
 
     }
   ]);
 
   /** Service */
-  dashboard.factory('dashboardFactory', [
+  module.factory('dashboardService', [
     function() {
       return {
-        'hank':'uinika'
+
       }
     }
   ]);

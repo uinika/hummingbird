@@ -1,19 +1,22 @@
 (function(){
   /** Module */
-  var frame = angular.module('app.frame', []);
+  var module = angular.module('app.frame', []);
 
-  /** Controller */
-  frame.controller('frameController', ['$scope', 'frameFactory',
-    function($scope, frameFactory) {
+  module.controller('frameController', ['$scope',
+    function($scope) {
       var frame = this;
     }
   ]);
 
-  /** Service */
-  frame.factory('frameFactory', [
+  module.directive('wiservMenu', [
     function() {
       return {
-        'hank':'uinika'
+        restrict: 'ACE',
+        link: function(scope, element, attrs) {
+          element.metisMenu({
+           preventDefault: false
+         });
+        }
       }
     }
   ]);

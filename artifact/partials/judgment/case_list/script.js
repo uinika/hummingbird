@@ -16,7 +16,7 @@
           animation: true,
           template: '<div/>',
           size: 'lg',
-          windowTemplateUrl: 'partials/judgment/case_list/view.html',
+          windowTemplateUrl: 'partials/judgment/case_list/modal/view.html',
           resolve: {
             items: function () {
               return $scope.items;
@@ -24,7 +24,7 @@
           }
         })
         .result.then(function() {
-          
+
         });
       };
 
