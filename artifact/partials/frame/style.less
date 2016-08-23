@@ -1,5 +1,7 @@
 #frame {
   .fill;
+  display: flex;
+  flex-direction: column;
   >#navbar {
     width: 100%;
     display: block;
@@ -27,50 +29,43 @@
       font-size: 80%;
     }
   }
-  >#menu {
-    display: inline-block;
-    width: 10%;
-    height: 100%;
-    float: left;
-    background: @blue;
-    .metismenu {
-      font-size: 12px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      background: rgba(0, 0, 0, .1);
-      li, a {
-        display: block;
-        color: @white;
-      }
-      li:hover {
-        background: rgba(0, 0, 0, .2);
-      }
-      li {
+  >#main {
+    display: flex;
+    >.menu {
+      flex-basis: 10%;
+      background: @blue;
+      .metismenu {
+        font-size: 12px;
+        padding: 0;
         margin: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        a {
-          padding: 12px;
+        list-style: none;
+        background: rgba(0, 0, 0, .1);
+        li, a {
+          display: block;
+          color: @white;
         }
-        ul {
-          padding-left: 10px;
-          li {
-            background: transparent;
-            border: none;
+        li:hover {
+          background: rgba(0, 0, 0, .2);
+        }
+        li {
+          margin: 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          a {
+            padding: 12px;
+          }
+          ul {
+            padding-left: 10px;
+            li {
+              background: transparent;
+              border: none;
+            }
           }
         }
       }
     }
-
-  }
-  >#content {
-    .fill;
-    >div {
+    >.content {
+      flex-basis: 90%;
       border: 1px solid @blue;
-      display: inline-block;
-      width: 90%;
-      height: 100%;
-      float: left;
       padding: 0;
     }
   }
