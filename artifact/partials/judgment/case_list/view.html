@@ -1,8 +1,7 @@
-<div id="judgment">
+<div id="judgment-case-list">
   <div class="wiserv-ui">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <!-- ui-sref='frame.judgmentCreate' -->
         <a class="btn btn-primary" ng-click="judgment.open()">
           <span class="glyphicon glyphicon-plus">&nbsp;生成裁判文书</span>
         </a>
@@ -19,6 +18,7 @@
             <span class="badge">民事案件</span>
             <span class="glyphicon glyphicon-book">&nbsp;</span>
             <span class="title">刘永群诉陈真民间借贷纠纷</span>
+            <span class="button text-primary" ng-click="judgment.open()">生成裁判文书</span>
           </li>
           <li class="list-group-item">
             <span>原告：Hank</span>
@@ -36,6 +36,7 @@
             <span class="badge">民事案件</span>
             <span class="glyphicon glyphicon-book">&nbsp;</span>
             <span class="title">刘永群诉陈真民间借贷纠纷</span>
+            <span class="button text-primary" ng-click="judgment.open()">生成裁判文书</span>
           </li>
           <li class="list-group-item">
             <span>原告：Hank</span>
@@ -49,6 +50,7 @@
         </ul>
 
       </div>
+      <ul class='pull-right' uib-pagination total-items="32" ng-model="1" ng-change="pageChanged()"></ul>
     </div>
   </div>
 

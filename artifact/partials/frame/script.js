@@ -2,11 +2,12 @@
   /** Module */
   var module = angular.module('app.frame', []);
 
-  module.controller('frameController', ['$scope',
-    function($scope) {
-      var frame = this;
-    }
-  ]);
+  module.controller('frameController', Controller);
+  Controller.$inject = ['$scope'];
+  function Controller(dependencies) {
+    var vm = this;
+
+  }
 
   module.directive('wiservMenu', [
     function() {
