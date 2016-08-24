@@ -1,0 +1,40 @@
+{
+  "head": {
+    "court": "法院名称",
+    "name": "文书名称",
+    "number": "案号"
+  },
+  "body": {
+    "before": {
+      "plaintiff原告": {
+
+      },
+      "defendant被告": {
+
+      },
+      "case案件由来及经过": {
+
+      }
+    },
+    "truth": {
+
+    },
+    "reason": {
+
+    },
+    "item": {
+
+    },
+    "content": {
+
+    },
+    "after": {
+
+    }
+  },
+  "foot": {
+    "signature": "署名",
+    "date": "日期"
+  }
+
+}

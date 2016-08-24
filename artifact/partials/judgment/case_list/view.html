@@ -2,15 +2,20 @@
   <div class="wiserv-ui">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <a class="btn btn-primary" ng-click="judgment.open()">
-          <span class="glyphicon glyphicon-plus">&nbsp;生成裁判文书</span>
-        </a>
-        <div class="input-group">
-          <input placeholder='请输入查询案件名称...' type="text" class="form-control">
+        <div class="input-group name">
+          <input placeholder='查询案件名称' type="text" class="form-control">
           <span class="input-group-btn">
-            <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search">&nbsp;搜索</span></button>
+            <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search">&nbsp;查询</span></button>
           </span>
         </div>
+        <div class="input-group date">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-primary" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="查询日期"/>
+
+        </div>
+
       </div>
       <div class="panel-body wiserv-ui">
         <ul class="list-group">
@@ -50,7 +55,7 @@
         </ul>
 
       </div>
-      <ul class='pull-right' uib-pagination total-items="32" ng-model="1" ng-change="pageChanged()"></ul>
+      <ul class='pull-right' uib-pagination total-items=36 ng-model="test" ng-change=""></ul>
     </div>
   </div>
 
