@@ -25,6 +25,7 @@
           animation: true,
           template: '<div/>',
           size: 'lg',
+          controller: 'modalController',
           windowTemplateUrl: 'partials/judgment/case_list/modal/view.html',
         })
       }

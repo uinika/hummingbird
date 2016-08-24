@@ -1,40 +1,38 @@
 {
-  "head": {
-    "court": "法院名称",
-    "name": "文书名称",
-    "number": "案号"
+  //案件名称
+  "lawCaseName": "##lawCaseName##",
+  //标题（判决书标题、文书编号）
+  "indexTitle": {
+    "lawCaseTitle": "##courtName##\n民 事 判 决 书",
+    "lawCaseCode": "##lawCaseCode##"
   },
-  "body": {
-    "before": {
-      "plaintiff原告": {
-
-      },
-      "defendant被告": {
-
-      },
-      "case案件由来及经过": {
-
-      }
-    },
-    "truth": {
-
-    },
-    "reason": {
-
-    },
-    "item": {
-
-    },
-    "content": {
-
-    },
-    "after": {
-
-    }
+  //首部（当事人、案件由来与审理经过）
+  "parties": {
+    "accuser": "原告：##accuser##",
+    "accuserAgent": "原告委托代理人：##accuserAgent##",
+    "defendant": "被告：##defendant##",
+    "defendantAgent": "被告委托代理人：##defendantAgent##",
+    "caseGeneral": "原告##accuserName##诉被告##defendantName##民间借贷纠纷一案，本院于##acceptedDate##立案受理，并依法适用简易程序，于XXXX年X月X日公开开庭进行了审理。原告 ##accuserName## 及其委托代理人##accuserAgentName##、被告 ##defendantName## 到庭参加诉讼。本案现已依法审理终结。"
   },
-  "foot": {
-    "signature": "署名",
-    "date": "日期"
+  //事实
+  "fact": {
+    "claims": "原告##accuserName##诉称：XXXXXX",
+    "argued": "被告##defendantName##辩称：XXXXXX",
+    "factResult": "经审理查明：XXXXXX"
+  },
+  //理由
+  "reason": "本院认为：XXXXXX",
+  //裁判主文
+  "caseMain": "XXXXXX",
+  //尾部
+  "bottom": "本案案件受理费收取XXXX元，由被告##defendant##承担。（此款原告已预缴）
+  如果被告## defendant## 未按本判决指定的期间履行给付金钱义务， 应当依照《 中华人民共和国民事诉讼法》 第二百五十三条之规定， 加倍支付迟延履行期间的债务利息。
+  如不服本判决， 可在判决书送达之日起十五日内向本院递交上诉状， 并按对方当事人的人数提出副本， 上诉于四川省成都市中级人民法院。 ",
+  //落款
+  "inscribe": {
+    "chiefJudge": "审　判　长　　##chiefJudge## ",
+    "judge": 审判员　　## judge## ",
+    "judgmentDate": "##judgmentDate##",
+    "courtClerk": "书　记　员　　##courtClerk##"
   }
-
 }

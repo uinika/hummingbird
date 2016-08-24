@@ -1,18 +1,14 @@
 (function(){
-  var judgment = angular.module('app.judgment');
+  var module = angular.module('app.judgment');
 
-  judgment.controller('modalController', ['$scope', 'modalFactory',
-    function($scope, modalFactory) {
-      var judgment = this;
+  module.controller('modalController', [
+    '$scope',
+    function($scope) {
+      var vm = this;
+      
     }
   ]);
 
-  judgment.factory('modalFactory', [
-    function() {
-      return {
-        'hank':'uinika'
-      }
-    }
-  ]);
+
 
 })();
