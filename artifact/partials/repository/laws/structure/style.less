@@ -1,3 +1,50 @@
-#lawsStructure{
-  
+#lawsStructure {
+  .panel-heading {
+    span {
+      display: inline-block;
+      position: relative;
+      top: 10px;
+      left: 12px;
+      font-size: 12px;
+    }
+  }
+  .tree-nav {
+    padding: 15px;
+    .metismenu {
+      width: 20%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      background: #d9edf7;
+      li {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        a {
+          display: block;
+          padding: 10px 20px;
+          color: #aaa;
+          border-top: 1px solid rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+        }
+        ul {
+          background: #d9edf7;
+          padding: 0;
+        }
+      }
+      >li {
+        ul {
+          position: absolute;
+          left: 100%;
+          top: 0;
+          min-width: 200px;
+          border-left: 1px solid rgba(0, 0, 0, 0.3);
+          border-right: 1px solid rgba(0, 0, 0, 0.3);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+          -webkit-box-shadow: 6px 6px 10px rgba(0,0,0,.3);
+          box-shadow: 6px 6px 10px rgba(0,0,0,.3);
+        }
+      }
+    }
+  }
 }

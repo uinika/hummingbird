@@ -17,4 +17,16 @@
     }
   ]);
 
+  /** Directive*/
+  lawsStructure.directive('wiservLawsStructure', [
+    function() {
+      return {
+        restrict: 'ACE',
+        link: function(scope, element, attrs) {
+          element.metisMenu();
+        }
+      }
+    }
+  ]);
+
 })();
