@@ -1,8 +1,8 @@
 (function() {
 
   /** Module */
-    angular
-      .module('app.login', []);
+  angular
+    .module('app.login', []);
 
   /** Controller */
   angular
@@ -12,8 +12,17 @@
   Controller.$inject = ['$scope', '$state', 'loginService'];
   function Controller ($scope, $state, loginService) {
     var vm = this;
+    vm.message = '';
     vm.submit = function() {
-      loginService.validate();
+      loginService.auth({
+        loginName: vm.username,
+        password: vm.password
+      })
+      .then(function(message){
+        if(message)
+          vm.message = message;
+      })
+
     }
   }
 
@@ -22,14 +31,28 @@
       .module('app.login')
       .factory('loginService', Service);
 
-  Service.$inject = ['$state'];
-  function Service ($state) {
+  Service.$inject = ['$state', '$http', 'URL', 'validate'];
+  function Service ($state, $http, URL, validate) {
     return {
-        validate: validate
+      auth: auth
     };
-    /////
-    function validate () {
-      $state.go("judgment.case_list");
+    function auth (data) {
+      return $http.post(
+        URL + '/login', data
+      )
+      .then(function(result){
+        var data = result.data;
+        if(validate(data, 200)){
+          sessionStorage.token = data.head.token;
+          $state.go("judgment.case_list");
+          return data.head.message;
+        }
+        else{
+          $state.go("login");
+          return data.head.message;
+        }
+      })
+
     };
 
   }

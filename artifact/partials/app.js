@@ -7,6 +7,7 @@ angular
     'ui.bootstrap',
     'xeditable',
     'treeControl',
+    'common.http',
     'app.login',
     'app.frame',
     'app.judgment',
@@ -14,8 +15,8 @@ angular
     'app.repository'
   ])
   .config([
-    '$stateProvider', '$urlRouterProvider',
-    function config($stateProvider, $urlRouterProvider) {
+    '$stateProvider', '$urlRouterProvider', '$httpProvider',
+    function config($stateProvider, $urlRouterProvider, $httpProvider) {
       $urlRouterProvider.otherwise('/login');
       $stateProvider
         .state('login', {
@@ -30,6 +31,38 @@ angular
           controller: 'frameController',
           controllerAs: 'frame'
         });
+        /** HTTP Interceptor */
+        $httpProvider.interceptors.push(['$q',
+          function($q) {
+            return {
+              'request': function(config) {
+                config.withCredentials = true;
+                var token = sessionStorage.token;
+                if( token ) {
+                  config.headers = {'Authorization': 'Bearer ' + token};
+                };
+                return config;
+              },
+              'requestError': function(rejection) {
+                return rejection;
+              },
+              'response': function(response) {
+                $q.when(response, function(result){
+                  if( response.data && typeof response.data==='object'){
+                    if(result.data.head.status===300){
+                      sessionStorage.message = '登录超时，请重新登录！';
+                      $location.href = '/login';
+                    };
+                  };
+                });
+                return response;
+              },
+              'responseError': function(rejection) {
+                return rejection;
+              }
+            };
+          }
+        ]);
     }
   ])
   .run([
