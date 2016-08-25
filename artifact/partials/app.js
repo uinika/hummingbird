@@ -6,6 +6,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'xeditable',
+    'treeControl',
     'app.login',
     'app.frame',
     'app.judgment',

@@ -18,15 +18,15 @@
           parent: 'judgment',
           url: '/case_list',
           templateUrl: 'partials/judgment/case_list/view.html',
-          controller: 'judgmentController',
-          controllerAs: 'judgment',
+          controller: 'CaseListController',
+          controllerAs: 'CaseList',
         })
         .state('judgment.doc_list', {
           parent: 'judgment',
           url: '/doc_list',
           templateUrl: 'partials/judgment/doc_list/view.html',
-          controller: 'judgmentController',
-          controllerAs: 'judgment',
+          controller: 'DocListController',
+          controllerAs: 'DocList',
         });
     }
 

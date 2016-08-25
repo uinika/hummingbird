@@ -3,32 +3,21 @@
   var module = angular.module('app.judgment');
 
   /** Controller */
-  module.controller('judgmentController', [
-    '$scope', 'judgmentService',
-    function($scope, judgmentService) {
+  module.controller('DocListController', [
+    '$scope', 'docListService',
+    function($scope, docListService) {
       var vm = this;
-      vm.open = judgmentService.openCreateModal;
 
     }
   ]);
 
   /** Service */
-  module.factory('judgmentService', [
+  module.factory('docListService', [
     '$uibModal',
     function($uibModal) {
       return {
-        openCreateModal: openCreateModal
-      }
-      // Create Modal
-      function openCreateModal () {
-        $uibModal.open({
-          animation: true,
-          template: '<div/>',
-          size: 'lg',
-          windowTemplateUrl: 'partials/judgment/case_list/modal/view.html',
-        })
-      }
 
+      }
     }
   ]);
 

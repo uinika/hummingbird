@@ -4,10 +4,16 @@
     </div>
     <div class="panel-body">
       <menu class="left">
-        
+        <treecontrol class="tree-classic"
+           tree-model="dataForTheTree"
+           options="treeOptions"
+           on-selection="showSelected(node)"
+           selected-node="node1">
+           employee: {{node.name}} age {{node.age}}
+        </treecontrol>
       </menu>
       <article class="center">
-
+        {{dataForTheTree}}
       </article>
       <menu class="right">
 

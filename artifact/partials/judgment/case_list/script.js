@@ -1,19 +1,19 @@
 (function(){
   /** Module */
-  var judgment = angular.module('app.judgment');
+  var module = angular.module('app.judgment');
 
   /** Controller */
-  judgment.controller('judgmentController', [
-    '$scope', 'judgmentService',
-    function($scope, judgmentService) {
+  module.controller('CaseListController', [
+    '$scope', 'caseListService',
+    function($scope, caseListService) {
       var vm = this;
-      vm.open = judgmentService.openCreateModal;
+      vm.open = caseListService.openCreateModal;
 
     }
   ]);
 
   /** Service */
-  judgment.factory('judgmentService', [
+  module.factory('caseListService', [
     '$uibModal',
     function($uibModal) {
       return {
@@ -23,10 +23,10 @@
       function openCreateModal () {
         $uibModal.open({
           animation: true,
-          template: '<div/>',
           size: 'lg',
-          controller: 'modalController',
-          windowTemplateUrl: 'partials/judgment/case_list/modal/view.html',
+          controller: 'MyModalController',
+          templateUrl: 'partials/judgment/case_list/generator/view.html',
+          windowTopClass: 'wiserv-ui'
         })
       }
 
