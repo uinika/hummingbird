@@ -1,6 +1,25 @@
 <div id="judgment-case-list-modal" class='modal-dialog wiserv-ui'>
   <div class="panel panel-primary">
     <div class="panel-heading">
+      <ul class="access pull-left">
+        <li>
+          <button class="btn btn-primary">预览</button>
+        </li>
+        <li>
+          <button class="btn btn-primary">导出</button>
+        </li>
+        <li>
+          <button class="btn btn-primary">记录</button>
+        </li>
+      </ul>
+      <ul class="access pull-right">
+        <li>
+          <button ng-click='$close(result)' class="btn btn-primary">取消</button>
+        </li>
+        <li>
+          <button class="btn btn-primary">保存</button>
+        </li>
+      </ul>
     </div>
     <div class="panel-body">
       <section class='editor'>
@@ -17,7 +36,14 @@
           {{dataForTheTree}}
         </article>
         <menu class="right">
-          right
+          <uib-accordion>
+            <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
+              test
+            </div>
+            <div  heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
+              test
+            </div>
+          </uib-accordion>
         </menu>
       </section>
       <!--

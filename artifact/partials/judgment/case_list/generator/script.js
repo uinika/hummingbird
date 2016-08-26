@@ -3,8 +3,13 @@
 
   module.controller('JudgmentGeneratorController', [
     '$scope', 'treeData', 'judgmentGeneratorService',
-    function($scope, treeData, judgmentGeneratorFactory) {
+    function($scope, treeData, judgmentGeneratorService) {
       var vm = this;
+      judgmentGeneratorService.getJudgmentContent()
+      .then(function(data) {
+        console.log(data);
+        vm.template = data.body[0];
+      })
       $scope.treeOptions = {
           nodeChildren: "children",
           dirSelectable: true,
@@ -27,16 +32,21 @@
   ]);
 
   module.factory('judgmentGeneratorService', [
-    '$http',
-    function($http) {
+    '$http', 'URL', 'validate',
+    function($http, URL, validate) {
       return {
         getJudgmentContent: getJudgmentContent
       }
       //Get Judgment Content
-      function getJudgmentContent() {
+      function getJudgmentContent(params) {
         return $http.get(
-          URL + '/legal/verdict'
+          URL + '/verdict/template', params
         )
+        .then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
       }
     }
   ]);
