@@ -11,6 +11,7 @@
 
   Controller.$inject = ['$scope', '$state', 'loginService'];
   function Controller ($scope, $state, loginService) {
+    loginService.removeSessionStorage();
     var vm = this;
     vm.message = '';
     vm.submit = function() {
@@ -34,8 +35,16 @@
   Service.$inject = ['$state', '$http', 'URL', 'validate'];
   function Service ($state, $http, URL, validate) {
     return {
-      auth: auth
+      auth: auth,
+      removeSessionStorage: removeSessionStorage
     };
+    // Remove session storage
+    function removeSessionStorage () {
+      if(sessionStorage.token){
+        sessionStorage.removeItem("token");
+      }
+    }
+    // Auth
     function auth (data) {
       return $http.post(
         URL + '/login', data

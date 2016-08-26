@@ -28,7 +28,7 @@
         $uibModal.open({
           animation: true,
           size: 'lg',
-          controller: 'MyModalController',
+          controller: 'JudgmentGeneratorController',
           templateUrl: 'partials/judgment/case_list/generator/view.html',
           windowTopClass: 'wiserv-ui'
         })

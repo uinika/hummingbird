@@ -1,40 +1,45 @@
 (function(){
   var module = angular.module('app.judgment');
 
-  module.controller('MyModalController', [
-    '$scope',
-    function($scope) {
+  module.controller('JudgmentGeneratorController', [
+    '$scope', 'treeData', 'judgmentGeneratorService',
+    function($scope, treeData, judgmentGeneratorFactory) {
       var vm = this;
       $scope.treeOptions = {
           nodeChildren: "children",
           dirSelectable: true,
           injectClasses: {
-              ul: "a1",
-              li: "a2",
-              liSelected: "a7",
-              iExpanded: "a3",
-              iCollapsed: "a4",
-              iLeaf: "a5",
-              label: "a6",
-              labelSelected: "a8"
+            ul: "a1",
+            li: "a2",
+            liSelected: "a7",
+            iExpanded: "a3",
+            iCollapsed: "a4",
+            iLeaf: "a5",
+            label: "a6",
+            labelSelected: "a8"
           }
       }
-      $scope.dataForTheTree = [
-          { "name" : "Joe", "age" : "21", "children" : [
-              { "name" : "Smith", "age" : "42", "children" : [] },
-              { "name" : "Gary", "age" : "21", "children" : [
-                  { "name" : "Jenifer", "age" : "23", "children" : [
-                      { "name" : "Dani", "age" : "32", "children" : [] },
-                      { "name" : "Max", "age" : "34", "children" : [] }
-                  ]}
-              ]}
-          ]},
-          { "name" : "Albert", "age" : "33", "children" : [] },
-          { "name" : "Ron", "age" : "29", "children" : [] }
-      ];
+      if(treeData) {
+        $scope.dataForTheTree = treeData;
+      }
+
     }
   ]);
 
+  module.factory('judgmentGeneratorService', [
+    '$http',
+    function($http) {
+      return {
+        getJudgmentContent: getJudgmentContent
+      }
+      //Get Judgment Content
+      function getJudgmentContent() {
+        return $http.get(
+          URL + '/legal/verdict'
+        )
+      }
+    }
+  ]);
 
 
 })();

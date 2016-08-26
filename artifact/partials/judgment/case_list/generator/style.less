@@ -1,30 +1,22 @@
 #judgment-case-list-modal {
   .fill;
-  margin: 0;
-  padding: 0;
-  min-height: 500px;
-  .left {
-    display: inline-block;
-    width: 10%;
-    height: 100px;
-    border: 1px solid @blue;
-  }
-  .center {
-    display: inline-block;
-    width: 80%;
-    height: 100%;
-    border: 1px solid @blue;
-  }
-  .right {
-    display: inline-block;
-    width: 10%;
-    height: 100%;
-    border: 1px solid @blue;
-  }
-  .bottom {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 1px solid @blue;
+  .clean;
+  flex-direction: column;
+  align-items: strecth;
+  .editor {
+    display: flex;
+    flex-direction: row;
+    .left {
+      flex-basis: 500px;
+      .clean;
+    }
+    .center {
+      flex-basis: auto;
+      border: 1px solid @gray;
+    }
+    .right {
+      .clean;
+      flex-basis: 500px;
+    }
   }
 }
