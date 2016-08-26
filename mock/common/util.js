@@ -1,4 +1,5 @@
-const JsonLoader = require('load-json-file');
+const JsonLoader = require('load-json-file'),
+      Path = require('path');
 
 /** Basic path */
 exports.url = (url) => {
@@ -7,7 +8,9 @@ exports.url = (url) => {
 
 /** Json loader */
 exports.json = name => {
-  return JsonLoader.sync(__dirname  + name);
+  return JsonLoader.sync(
+    Path.resolve(__dirname, '..') + name
+  );
 };
 
 /** Protocal between server & client */

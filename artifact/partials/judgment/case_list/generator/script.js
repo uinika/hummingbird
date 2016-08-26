@@ -5,11 +5,15 @@
     '$scope', 'treeData', 'judgmentGeneratorService',
     function($scope, treeData, judgmentGeneratorService) {
       var vm = this;
-      judgmentGeneratorService.getJudgmentContent()
-      .then(function(data) {
-        console.log(data);
-        vm.template = data.body[0];
-      })
+      var parentTargetJudgment = $scope.CaseList.targetJudgment;
+      if ( parentTargetJudgment ) {
+        judgmentGeneratorService.getJudgmentTemplate(parentTargetJudgment)
+        .then(function(data) {
+          console.log(data.body);
+          vm.template = data.body[0];
+        })
+      };
+
       $scope.treeOptions = {
           nodeChildren: "children",
           dirSelectable: true,
@@ -35,12 +39,12 @@
     '$http', 'URL', 'validate',
     function($http, URL, validate) {
       return {
-        getJudgmentContent: getJudgmentContent
+        getJudgmentTemplate: getJudgmentTemplate
       }
       //Get Judgment Content
-      function getJudgmentContent(params) {
+      function getJudgmentTemplate(params) {
         return $http.get(
-          URL + '/verdict/template', params
+          URL + '/verdict/template', { params: params }
         )
         .then(function(result) {
           if(validate(result.data, 200)){

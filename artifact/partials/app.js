@@ -5,6 +5,7 @@ angular
     'ngAnimate',
     'ui.router',
     'ui.bootstrap',
+    'mgcrea.ngStrap',
     'xeditable',
     'treeControl',
     'common.http',

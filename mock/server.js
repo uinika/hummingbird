@@ -24,7 +24,3 @@ console.info(Color.yellow('Mock started on http://localhost:5005/wiserv'));
 
 /** Basic config for express */
 App.use('/', require('./login/api'));
-// Indicator
-// App.use(Url, require('./mock/indicator'));
-// Statistics
-// App.use(Url, require('./mock/statistics'));

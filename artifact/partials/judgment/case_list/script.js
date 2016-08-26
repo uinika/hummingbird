@@ -7,7 +7,13 @@
     '$scope', 'caseListService',
     function($scope, caseListService) {
       var vm = this;
-      vm.open = caseListService.openCreateModal;
+      vm.open = function(articleId, category){
+        vm.targetJudgment = {
+          articleId: articleId,
+          category: category
+        };
+        caseListService.openCreateModal($scope)
+      };
       caseListService.getCaseList()
       .then(function(result){
         vm.list = result.data.body
@@ -24,13 +30,15 @@
         getCaseList: getCaseList
       }
       // Create Modal
-      function openCreateModal () {
+      function openCreateModal ($scope) {
         $uibModal.open({
           animation: true,
           size: 'lg',
           controller: 'JudgmentGeneratorController',
+          controllerAs: 'JudgmentGenerator',
           templateUrl: 'partials/judgment/case_list/generator/view.html',
-          windowTopClass: 'wiserv-ui'
+          windowTopClass: 'wiserv-ui',
+          scope: $scope
         })
       }
       // Get CaseList

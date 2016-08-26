@@ -3,21 +3,31 @@
     <div class="panel-heading">
       <ul class="access pull-left">
         <li>
-          <button class="btn btn-primary">预览</button>
+          <button class="btn btn-primary">
+            <i class="glyphicon glyphicon-eye-open">&nbsp;预览</i>
+          </button>
         </li>
         <li>
-          <button class="btn btn-primary">导出</button>
+          <button class="btn btn-primary">
+            <i class="glyphicon glyphicon-record">&nbsp;记录</i>
+          </button>
         </li>
         <li>
-          <button class="btn btn-primary">记录</button>
+          <button class="btn btn-primary">
+            <i class="glyphicon glyphicon-export">&nbsp;导出</i>
+          </button>
         </li>
       </ul>
       <ul class="access pull-right">
         <li>
-          <button ng-click='$close(result)' class="btn btn-primary">取消</button>
+          <button ng-click='$close(result)' class="btn btn-primary">
+            <i class="glyphicon glyphicon-remove">&nbsp;取消</i>
+          </button>
         </li>
         <li>
-          <button class="btn btn-primary">保存</button>
+          <button class="btn btn-primary">
+            <i class="glyphicon glyphicon-ok">&nbsp;保存</i>
+          </button>
         </li>
       </ul>
     </div>
@@ -33,7 +43,16 @@
           </treecontrol>
         </menu>
         <article class="center">
-          {{dataForTheTree}}
+          <h1>{{JudgmentGenerator.template.templateArticle.indexTitle.lawCaseTitle}}</h1>
+          <h2>{{JudgmentGenerator.template.templateArticle.indexTitle.lawCaseCode}}</h2>
+          <p>{{JudgmentGenerator.template.templateArticle.bottom}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.caseMain}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.fact}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.inscribe}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.parties}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.reason}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.templateId}}</p>
+          <p>{{JudgmentGenerator.template.templateArticle.templateName}}</p>
         </article>
         <menu class="right">
           <uib-accordion>
