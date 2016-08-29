@@ -1,4 +1,4 @@
-#judgment-case-list-modal {
+#judgment-case-list-generator {
   .fill;
   .clean;
   flex-direction: column;
@@ -15,16 +15,30 @@
     display: flex;
     flex-direction: row;
     .left {
-      flex-basis: 500px;
-      .clean;
+      flex-basis: 250px;
     }
-    .center {
-      flex-basis: auto;
+    article.center {
+      flex-basis: 210mm;
+      width: 210mm;
+      font-size: 13px;
       border: 1px solid @gray;
+      h4 {
+        text-align: center;
+      }
+      h5 {
+        text-align: right;
+      }
+      p {
+        text-indent: 2em;
+      }
+      textarea {
+        width: 55em;
+        height: 10em;
+        margin-left: 24px;
+      }
     }
     .right {
-      .clean;
-      flex-basis: 500px;
+      flex-basis: auto;
     }
   }
 }

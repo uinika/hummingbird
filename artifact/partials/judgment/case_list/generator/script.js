@@ -10,7 +10,10 @@
         judgmentGeneratorService.getJudgmentTemplate(parentTargetJudgment)
         .then(function(data) {
           console.log(data.body);
-          vm.template = data.body[0];
+           var target = data.body[0];
+           if(target){
+             vm.article = target.templateArticle;
+           }
         })
       };
 
