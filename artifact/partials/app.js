@@ -13,7 +13,8 @@ angular
     'app.frame',
     'app.judgment',
     'app.dashboard',
-    'app.repository'
+    'app.repository',
+    'textAngular'
   ])
   .config([
     '$stateProvider', '$urlRouterProvider', '$httpProvider',
