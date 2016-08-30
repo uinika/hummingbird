@@ -18,6 +18,7 @@ angular
   .config([
     '$stateProvider', '$urlRouterProvider', '$httpProvider',
     function config($stateProvider, $urlRouterProvider, $httpProvider) {
+      /** UI-Router Config */
       $urlRouterProvider.otherwise('/login');
       $stateProvider
         .state('login', {
@@ -32,43 +33,44 @@ angular
           controller: 'frameController',
           controllerAs: 'frame'
         });
-        /** HTTP Interceptor */
-        $httpProvider.interceptors.push(['$q',
-          function($q) {
-            return {
-              'request': function(config) {
-                config.withCredentials = true;
-                var token = sessionStorage.token;
-                if( token ) {
-                  config.headers = {'Authorization': 'Bearer ' + token};
-                };
-                return config;
-              },
-              'requestError': function(rejection) {
-                return rejection;
-              },
-              'response': function(response) {
-                $q.when(response, function(result){
-                  if( response.data && typeof response.data==='object'){
-                    if(result.data.head.status===300){
-                      sessionStorage.message = '登录超时，请重新登录！';
-                      $location.href = '/login';
-                    };
+      /** HTTP Interceptor */
+      $httpProvider.interceptors.push(['$q',
+        function($q) {
+          return {
+            'request': function(config) {
+              config.withCredentials = true;
+              var token = sessionStorage.token;
+              if( token ) {
+                config.headers = {'Authorization': 'Bearer ' + token};
+              };
+              return config;
+            },
+            'requestError': function(rejection) {
+              return rejection;
+            },
+            'response': function(response) {
+              $q.when(response, function(result){
+                if( response.data && typeof response.data==='object'){
+                  if(result.data.head.status===300){
+                    sessionStorage.message = '登录超时，请重新登录！';
+                    $location.href = '/login';
                   };
-                });
-                return response;
-              },
-              'responseError': function(rejection) {
-                return rejection;
-              }
-            };
-          }
-        ]);
+                };
+              });
+              return response;
+            },
+            'responseError': function(rejection) {
+              return rejection;
+            }
+          };
+        }
+      ]);
     }
   ])
   .run([
     "editableOptions", "editableThemes",
     function(editableOptions, editableThemes) {
+      /** XEditable Config */
       editableThemes.bs3.inputClass = 'input-sm';
       editableThemes.bs3.buttonsClass = 'btn-sm';
       editableOptions.theme = 'bs3';

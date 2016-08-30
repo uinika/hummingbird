@@ -15,30 +15,82 @@
     display: flex;
     flex-direction: row;
     .left {
-      flex-basis: 250px;
+      flex: 1;
     }
     article.center {
-      flex-basis: 210mm;
-      width: 210mm;
-      font-size: 13px;
+      flex: 156mm;
+      height: 225mm;
       border: 1px solid @gray;
-      h4 {
-        text-align: center;
+      overflow-y: scroll;
+      text-align: justify;
+      .head {
+        p:nth-child(1) {
+          text-align: center;
+          line-height: 25pt;
+          margin: 0.5pt 0cm;
+          font-family: 宋体;
+          font-size: 22pt;
+        }
+        p:nth-child(2) {
+          text-align: center;
+          line-height: 30pt;
+          margin: 0.5pt 0cm;
+          font-family: 仿宋;
+          font-size: 26pt;
+        }
+        p:nth-child(3) {
+          text-align: right;
+          line-height: 30pt;
+          margin: 0.5pt 0cm;
+          font-family: 仿宋;
+          font-size: 16pt;
+        }
       }
-      h5 {
-        text-align: right;
+      .body {
+        p {
+          line-height: 25pt;
+          text-align: justify;
+          text-justify: inter-ideograph;
+          text-indent: 30pt;
+          margin: 0.5pt 0cm;
+          font-family: 仿宋;
+          font-size: 16pt;
+        }
       }
-      p {
-        text-indent: 2em;
+      .foot {
+        p {
+          text-align: right;
+          line-height: 25pt;
+          margin: 0.5pt 72pt 0.5pt 0cm;
+          font-family: 仿宋;
+          font-size: 16pt;
+        }
       }
       textarea {
         width: 55em;
         height: 10em;
-        margin-left: 24px;
+        margin-left: 15px;
       }
     }
     .right {
-      flex-basis: auto;
+      flex: 4;
+      margin: 0 0 0 -1px;
+      padding: 0;
+      .panel-group {
+        margin: 0;
+        .panel {
+          .clean;
+          border-top: none;
+          .panel-heading {
+            .panel-title {
+              font-size: 13px;
+              position: relative;
+              top: 13px;
+              left: 12px;
+            }
+          }
+        }
+      }
     }
   }
 }
