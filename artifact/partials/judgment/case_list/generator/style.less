@@ -3,94 +3,100 @@
   .clean;
   flex-direction: column;
   align-items: strecth;
-  .access {
-    .clean;
-    list-style: none;
-    li {
-      float: left;
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-    }
-  }
-  .editor {
-    display: flex;
-    flex-direction: row;
-    .left {
-      flex: 1;
-    }
-    article.center {
-      flex: 156mm;
-      height: 225mm;
-      border: 1px solid @gray;
-      overflow-y: scroll;
-      text-align: justify;
-      .head {
-        p:nth-child(1) {
-          text-align: center;
-          line-height: 25pt;
-          margin: 0.5pt 0cm;
-          font-family: 宋体;
-          font-size: 22pt;
+  .panel {
+    height: 100%;
+    .panel-heading {
+      .access {
+        .clean;
+        list-style: none;
+        li {
+          float: left;
+          border-right: 1px solid rgba(0, 0, 0, 0.2);
         }
-        p:nth-child(2) {
-          text-align: center;
-          line-height: 30pt;
-          margin: 0.5pt 0cm;
-          font-family: 仿宋;
-          font-size: 26pt;
-        }
-        p:nth-child(3) {
-          text-align: right;
-          line-height: 30pt;
-          margin: 0.5pt 0cm;
-          font-family: 仿宋;
-          font-size: 16pt;
-        }
-      }
-      .body {
-        p {
-          line-height: 25pt;
-          text-align: justify;
-          text-justify: inter-ideograph;
-          text-indent: 30pt;
-          margin: 0.5pt 0cm;
-          font-family: 仿宋;
-          font-size: 16pt;
-        }
-      }
-      .foot {
-        p {
-          text-align: right;
-          line-height: 25pt;
-          margin: 0.5pt 72pt 0.5pt 0cm;
-          font-family: 仿宋;
-          font-size: 16pt;
-        }
-      }
-      textarea {
-        width: 150mm;
-        height: 10em;
-        margin-left: 15px;
-        font-size: 14px;
-        line-height: 25px;
-        text-align: justify;
-        color: @font-gray;
       }
     }
-    .right {
-      flex: 4;
-      margin: 0 0 0 -1px;
-      padding: 0;
-      .panel-group {
-        margin: 0;
-        .panel {
+    .panel-body {
+      height: 100%;
+      .editor {
+        height: 95%;
+        display: flex;
+        flex-direction: row;
+        .left {
+          flex: 1;
           .clean;
-          border-top: none;
-          .panel-heading {
-            .panel-title {
-              font-size: 13px;
-              position: relative;
-              top: 13px;
-              left: 12px;
+        }
+        article.center {
+          background: url(../assets/images/judgment/paper.png);
+          flex: 156mm;
+          height: 100%;
+          padding: 1em;
+          border: 1px solid @gray;
+          overflow-y: scroll;
+          text-align: justify;
+          p:hover {
+            background: @yellow;
+          }
+          .head {
+            p:nth-child(1) {
+              text-align: center;
+              line-height: 25pt;
+              margin: 0.5pt 0cm;
+              font-family: 宋体;
+              font-size: 22pt;
+            }
+            p:nth-child(2) {
+              text-align: center;
+              line-height: 30pt;
+              margin: 0.5pt 0cm;
+              font-family: 仿宋;
+              font-size: 26pt;
+            }
+            p:nth-child(3) {
+              text-align: right;
+              line-height: 30pt;
+              margin: 0.5pt 0cm;
+              font-family: 仿宋;
+              font-size: 16pt;
+            }
+          }
+          .body {
+            p {
+              line-height: 25pt;
+              text-align: justify;
+              text-justify: inter-ideograph;
+              text-indent: 30pt;
+              margin: 0.5pt 0cm;
+              font-family: 仿宋;
+              font-size: 16pt;
+            }
+          }
+          .foot {
+            p {
+              text-align: right;
+              line-height: 25pt;
+              margin: 0.5pt 72pt 0.5pt 0cm;
+              font-family: 仿宋;
+              font-size: 16pt;
+            }
+          }
+        }
+        .right {
+          flex: 4;
+          margin: 0 0 0 -1px;
+          padding: 0;
+          .panel-group {
+            margin: 0;
+            .panel {
+              .clean;
+              border-top: none;
+              .panel-heading {
+                .panel-title {
+                  font-size: 13px;
+                  position: relative;
+                  top: 13px;
+                  left: 12px;
+                }
+              }
             }
           }
         }

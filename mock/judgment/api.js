@@ -15,5 +15,9 @@ Router.route('/verdict/writ')
   .get(function(request, response) {
     response.json(Util.json('/judgment/data/doc_list/verdict-writ.json'));
 });
+Router.route('/verdict/writ')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/doc_list/verdict-writ.json'));
+});
 /** Module export */
 module.exports = Router;

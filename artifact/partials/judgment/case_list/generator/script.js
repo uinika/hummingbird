@@ -16,7 +16,17 @@
            }
         })
       };
+      vm.save = function() {
+        console.log($('.editor>.center').html());
+        console.log($('.editor>.center').text());
+        console.log(vm.article);
+      }
 
+      /* Config */
+      $scope.mediumEditorOptions = {
+        toolbar:false,
+        spellcheck: false
+      };
       $scope.treeOptions = {
           nodeChildren: "children",
           dirSelectable: true,
