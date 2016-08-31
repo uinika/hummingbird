@@ -35,7 +35,7 @@
           animation: true,
           size: 'lg',
           controller: 'JudgmentGeneratorController',
-          controllerAs: 'JudgmentGenerator',
+          controllerAs: 'Generator',
           templateUrl: 'partials/judgment/case_list/generator/view.html',
           windowTopClass: 'wiserv-ui',
           scope: $scope

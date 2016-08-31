@@ -2,48 +2,34 @@
   var module = angular.module('app.judgment');
 
   module.controller('JudgmentGeneratorController', [
-    '$scope', 'treeData', 'judgmentGeneratorService',
-    function($scope, treeData, judgmentGeneratorService) {
+    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService',
+    function($scope, TreeData, TreeOptions, judgmentGeneratorService) {
       var vm = this;
+      // Config for Tree
+      vm.treeOptions = TreeOptions;
+      vm.treeData = TreeData;
+      // Config MediumEditor
+      vm.mediumEditorOptions = {
+        toolbar:false,
+        spellcheck: false
+      };
+      // Initial Template
       var parentTargetJudgment = $scope.CaseList.targetJudgment;
       if ( parentTargetJudgment ) {
         judgmentGeneratorService.getJudgmentTemplate(parentTargetJudgment)
         .then(function(data) {
-          console.log(data.body);
            var target = data.body[0];
            if(target){
              vm.article = target.templateArticle;
            }
         })
       };
+      // Save Judgment
       vm.save = function() {
         console.log($('.editor>.center').html());
         console.log($('.editor>.center').text());
         console.log(vm.article);
-      }
-
-      /* Config */
-      $scope.mediumEditorOptions = {
-        toolbar:false,
-        spellcheck: false
       };
-      $scope.treeOptions = {
-          nodeChildren: "children",
-          dirSelectable: true,
-          injectClasses: {
-            ul: "a1",
-            li: "a2",
-            liSelected: "a7",
-            iExpanded: "a3",
-            iCollapsed: "a4",
-            iLeaf: "a5",
-            label: "a6",
-            labelSelected: "a8"
-          }
-      }
-      if(treeData) {
-        $scope.dataForTheTree = treeData;
-      }
 
     }
   ]);
@@ -52,9 +38,10 @@
     '$http', 'URL', 'validate',
     function($http, URL, validate) {
       return {
-        getJudgmentTemplate: getJudgmentTemplate
+        getJudgmentTemplate: getJudgmentTemplate,
+        saveJudgmentTemplate: saveJudgmentTemplate
       }
-      //Get Judgment Content
+      // Get Judgment Content
       function getJudgmentTemplate(params) {
         return $http.get(
           URL + '/verdict/template', { params: params }
@@ -64,7 +51,19 @@
             return result.data;
           }
         })
+      };
+      // Save Judgment Content
+      function saveJudgmentTemplate(data) {
+        return $http.post(
+          URL + '/verdict/template', { data: data }
+        )
+        .then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
       }
+
     }
   ]);
 

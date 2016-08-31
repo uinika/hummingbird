@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <ul class="access pull-left">
         <li>
-          <button class="btn btn-primary" ng-click='JudgmentGenerator.save()'>
+          <button class="btn btn-primary" ng-click='Generator.save()'>
             <i class="glyphicon glyphicon-ok">&nbsp;保存</i>
           </button>
         </li>
@@ -31,38 +31,37 @@
       <section class='editor'>
         <menu class="left">
           <treecontrol class="tree-classic"
-             tree-model="dataForTheTree"
-             options="treeOptions"
-             on-selection="showSelected(node)"
-             selected-node="node1">
+             tree-model="Generator.treeData"
+             options="Generator.treeOptions"
+             on-selection="showSelected(node)">
              <a ng-href="{{node.link}}">{{node.name}}</a>
           </treecontrol>
         </menu>
         <article class="center">
           <section class="head">
-            <p ng-model="JudgmentGenerator.article.indexTitle.courtName" data-placeholder="文书标题-法院名称" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.indexTitle.lawCaseTitle" data-placeholder="文书标题-文书名称" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.indexTitle.lawCaseCode" data-placeholder="文书标题-案号" medium-editor bind-options="mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.indexTitle.courtName" data-placeholder="文书标题-法院名称" medium-editor bind-options="Generator.Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.indexTitle.lawCaseTitle" data-placeholder="文书标题-文书名称" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.indexTitle.lawCaseCode" data-placeholder="文书标题-案号" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
           </section>
           <section class="body">
-            <p ng-model="JudgmentGenerator.article.parties.accuser" data-placeholder="首部-当事人" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.parties.accuserAgent" data-placeholder="首部-当事人" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.parties.defendant" data-placeholder="首部-当事人" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.parties.defendantAgent" data-placeholder="首部-当事人" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.parties.caseGeneral" data-placeholder="首部-案件由来和审理经过" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.fact.claims" data-placeholder="事实-诉讼请求" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.fact.argued" data-placeholder="事实-证据" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.fact.factResult" data-placeholder="事实-事实" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.reason" data-placeholder="理由" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.caseMain" data-placeholder="裁判主文" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.bottom.legalCosts" data-placeholder="尾部-诉讼费用负担" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.bottom.informInfo" data-placeholder="尾部-告知事项" medium-editor bind-options="mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.parties.accuser" data-placeholder="首部-当事人" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.parties.accuserAgent" data-placeholder="首部-当事人" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.parties.defendant" data-placeholder="首部-当事人" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.parties.defendantAgent" data-placeholder="首部-当事人" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.parties.caseGeneral" data-placeholder="首部-案件由来和审理经过" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.fact.claims" data-placeholder="事实-诉讼请求" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.fact.argued" data-placeholder="事实-证据" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.fact.factResult" data-placeholder="事实-事实" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.reason" data-placeholder="理由" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.caseMain" data-placeholder="裁判主文" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.bottom.legalCosts" data-placeholder="尾部-诉讼费用负担" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.bottom.informInfo" data-placeholder="尾部-告知事项" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
           </section>
           <section class="foot">
-            <p ng-model="JudgmentGenerator.article.inscribe.chiefJudge" data-placeholder="落款-署名" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.inscribe.judge" data-placeholder="事实-证据" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.inscribe.courtClerk" data-placeholder="事实-证据" medium-editor bind-options="mediumEditorOptions" ></p>
-            <p ng-model="JudgmentGenerator.article.inscribe.judgmentDate" data-placeholder="落款-日期" medium-editor bind-options="mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.inscribe.chiefJudge" data-placeholder="落款-署名" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.inscribe.judge" data-placeholder="事实-证据" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.inscribe.courtClerk" data-placeholder="事实-证据" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
+            <p ng-model="Generator.article.inscribe.judgmentDate" data-placeholder="落款-日期" medium-editor bind-options="Generator.mediumEditorOptions" ></p>
           </section>
         </article>
         <menu class="right">
