@@ -7,12 +7,12 @@
     '$scope', 'caseListService',
     function($scope, caseListService) {
       var vm = this;
-      vm.open = function(articleId, category){
+      vm.openModule = function(articleId, category){
         vm.targetJudgment = {
           articleId: articleId,
           category: category
         };
-        caseListService.openCreateModal($scope)
+        caseListService.openGeneratorModal($scope)
       };
       caseListService.getCaseList()
       .then(function(result){
@@ -26,14 +26,13 @@
     '$uibModal', '$http', 'URL',
     function($uibModal, $http, URL) {
       return {
-        openCreateModal: openCreateModal,
+        openGeneratorModal: openGeneratorModal,
         getCaseList: getCaseList
       }
       // Create Modal
-      function openCreateModal ($scope) {
+      function openGeneratorModal ($scope) {
         $uibModal.open({
           animation: true,
-          size: 'lg',
           controller: 'JudgmentGeneratorController',
           controllerAs: 'Generator',
           templateUrl: 'partials/judgment/case_list/generator/view.html',
