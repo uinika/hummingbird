@@ -44,70 +44,30 @@
         </menu>
         <article class="center">
           <section class='head'>
-            <p editable-textarea="JudgmentGenerator.article.indexTitle.courtName" e-label="文书标题-法院名称">
-              {{ JudgmentGenerator.article.indexTitle.courtName || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.indexTitle.lawCaseTitle" e-label="文书标题-文书名称">
-              {{ JudgmentGenerator.article.indexTitle.lawCaseTitle || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.indexTitle.lawCaseCode" e-label="文书标题-案号">
-              {{ JudgmentGenerator.article.indexTitle.lawCaseCode || 'empty' }}
-            </p>
+            <p ng-model="JudgmentGenerator.article.indexTitle.courtName" data-placeholder="文书标题-法院名称" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.indexTitle.lawCaseTitle" data-placeholder="文书标题-文书名称" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.indexTitle.lawCaseCode" data-placeholder="文书标题-案号" medium-editor></p>
           </section>
           <section class="body">
-            <p editable-textarea="JudgmentGenerator.article.parties.accuser" e-label="首部-当事人">
-              {{JudgmentGenerator.article.parties.accuser || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.parties.accuserAgent" e-label="首部-当事人">
-              {{JudgmentGenerator.article.parties.accuserAgent || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.parties.defendant" e-label="首部-当事人">
-              {{JudgmentGenerator.article.parties.defendant || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.parties.defendantAgent" e-label="首部-当事人">
-              {{JudgmentGenerator.article.parties.defendantAgent || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.parties.caseGeneral" e-label="首部-案件由来和审理经过">
-              {{JudgmentGenerator.article.parties.caseGeneral || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.fact.claims" e-label="事实-诉讼请求">
-              {{JudgmentGenerator.article.fact.claims || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.fact.argued" e-label="事实-证据">
-              {{JudgmentGenerator.article.fact.argued || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.fact.factResult" e-label="事实-事实">
-              {{JudgmentGenerator.article.fact.factResult || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.reason" e-label="理由">
-              {{JudgmentGenerator.article.reason || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.caseMain" e-label="裁判主文">
-              {{JudgmentGenerator.article.caseMain || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.bottom.legalCosts" e-label="尾部-诉讼费用负担">
-              {{JudgmentGenerator.article.bottom.legalCosts || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.bottom.informInfo" e-label="尾部-告知事项">
-              {{JudgmentGenerator.article.bottom.informInfo || 'empty' }}
-            </p>
+            <p ng-model="JudgmentGenerator.article.parties.accuser" data-placeholder="首部-当事人" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.parties.accuserAgent" data-placeholder="首部-当事人" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.parties.defendant" data-placeholder="首部-当事人" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.parties.defendantAgent" data-placeholder="首部-当事人" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.parties.caseGeneral" data-placeholder="首部-案件由来和审理经过" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.fact.claims" data-placeholder="事实-诉讼请求" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.fact.argued" data-placeholder="事实-证据" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.fact.factResult" data-placeholder="事实-事实" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.reason" data-placeholder="理由" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.caseMain" data-placeholder="裁判主文" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.bottom.legalCosts" data-placeholder="尾部-诉讼费用负担" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.bottom.informInfo" data-placeholder="尾部-告知事项" medium-editor></p>
           </section>
           <section class="foot">
-            <p editable-textarea="JudgmentGenerator.article.inscribe.chiefJudge" e-label="落款-署名">
-              {{JudgmentGenerator.article.inscribe.chiefJudge || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.inscribe.judge" e-label="事实-证据">
-              {{JudgmentGenerator.article.inscribe.judge || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.inscribe.courtClerk" e-label="事实-证据">
-              {{JudgmentGenerator.article.inscribe.courtClerk || 'empty' }}
-            </p>
-            <p editable-textarea="JudgmentGenerator.article.inscribe.judgmentDate" e-label="落款-日期">
-              {{JudgmentGenerator.article.inscribe.judgmentDate || 'empty' }}
-            </p>
+            <p ng-model="JudgmentGenerator.article.inscribe.chiefJudge" data-placeholder="落款-署名" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.inscribe.judge" data-placeholder="事实-证据" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.inscribe.courtClerk" data-placeholder="事实-证据" medium-editor></p>
+            <p ng-model="JudgmentGenerator.article.inscribe.judgmentDate" data-placeholder="落款-日期" medium-editor></p>
           </section>
-
-
         </article>
         <menu class="right">
           <uib-accordion>

@@ -7,14 +7,15 @@ angular
     'ui.bootstrap',
     'mgcrea.ngStrap',
     'xeditable',
+    'textAngular',
+    'angular-medium-editor',
     'treeControl',
     'common.http',
     'app.login',
     'app.frame',
     'app.judgment',
     'app.dashboard',
-    'app.repository',
-    'textAngular'
+    'app.repository'
   ])
   .config([
     '$stateProvider', '$urlRouterProvider', '$httpProvider',
