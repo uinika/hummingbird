@@ -6,8 +6,6 @@ angular
     'ui.router',
     'ui.bootstrap',
     'mgcrea.ngStrap',
-    'xeditable',
-    'textAngular',
     'angular-medium-editor',
     'treeControl',
     'common.http',
@@ -70,11 +68,6 @@ angular
     }
   ])
   .run([
-    "editableOptions", "editableThemes",
-    function(editableOptions, editableThemes) {
-      /** XEditable Config */
-      editableThemes.bs3.inputClass = 'input-sm';
-      editableThemes.bs3.buttonsClass = 'btn-sm';
-      editableOptions.theme = 'bs3';
+    function() {
     }
   ]);
