@@ -41,7 +41,7 @@ angular
               config.withCredentials = true;
               var token = sessionStorage.token;
               if( token ) {
-                config.headers = {'Authorization': 'Bearer ' + token};
+                config.headers = _.assign({}, {'Authorization': 'Bearer ' + token}, config.headers)
               };
               return config;
             },

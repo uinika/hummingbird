@@ -19,5 +19,13 @@ Router.route('/verdict/writ')
   .post(function(request, response) {
     response.json(Util.json('/judgment/data/doc_list/verdict-writ.json'));
 });
+Router.route('/verdict/export/word')
+  .post(function(request, response) {
+    console.log(request.body.data);
+    let protocal = Util.protocal();
+    protocal.head.status = 200;
+    protocal.head.message = 'http response sucess';
+    response.json(protocal);
+});
 /** Module export */
 module.exports = Router;

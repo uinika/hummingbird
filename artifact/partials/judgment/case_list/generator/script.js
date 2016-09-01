@@ -35,12 +35,15 @@
         $location.hash(id);
         $anchorScroll();
       }
-      //
+      // Export document
       vm.export = function() {
         judgmentGeneratorService.exportJudgmentDoc({
-          lawCaseName: "",
+          lawCaseName: "test",
           articleHtml: $('.editor>.center').html().trim()
-        });
+        })
+        .then(function(data){
+          console.log(data);
+        })
       }
     }
   ]);
@@ -74,18 +77,18 @@
             return result.data;
           }
         })
-      }
+      };
       // Export Judgment Document
       function exportJudgmentDoc(data) {
         return $http.post(
-          URL + '/verdict/export/word', { data: data }
+          URL + '/verdict/export/word', data
         )
         .then(function(result) {
           if(validate(result.data, 200)){
             return result.data;
           }
         })
-      }
+      };
     }
   ]);
 

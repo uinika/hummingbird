@@ -3,8 +3,8 @@
   var module = angular.module('common.http', []);
 
   module.constant('URL',
-    // 'http://172.16.1.67:8080/court_decision_system'  Test
-    'http://localhost:5005'  // Localhost
+    'http://172.16.1.67:8080/court_decision_system'
+    // 'http://localhost:5005'
   );
 
   module.factory('validate', [
@@ -34,38 +34,5 @@
       };
     }
   ]);
-
-
-  // module.provider('config', function() {
-  //   this.$get = function($httpProvider) {
-  //     $httpProvider.interceptors.push(['$q',
-  //       function($q) {
-  //         return {
-  //           'request': function(config) {
-  //             config.withCredentials = true;
-  //             return config;
-  //           },
-  //           'requestError': function(rejection) {
-  //             return rejection;
-  //           },
-  //           'response': function(response) {
-  //             $q.when(response, function(result){
-  //               if( response.data && typeof response.data==='object'){
-  //                 if(result.data.head.status===300){
-  //                   sessionStorage.message = '登录超时，请重新登录！';
-  //                   window.location.href='/build';
-  //                 };
-  //               };
-  //             });
-  //             return response;
-  //           },
-  //           'responseError': function(rejection) {
-  //             return rejection;
-  //           }
-  //         };
-  //       }
-  //     ]);
-  //   }
-  // });
 
 })();
