@@ -2,8 +2,8 @@
   var module = angular.module('app.judgment');
 
   module.controller('JudgmentGeneratorController', [
-    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService',
-    function($scope, TreeData, TreeOptions, judgmentGeneratorService) {
+    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService', '$location', '$anchorScroll',
+    function($scope, TreeData, TreeOptions, judgmentGeneratorService, $location, $anchorScroll) {
       var vm = this;
       // Config for Tree
       vm.treeOptions = TreeOptions;
@@ -30,6 +30,11 @@
         console.log($('.editor>.center').text());
         console.log(vm.article);
       };
+      // Goto target article id
+      vm.goto = function(id) {
+        $location.hash(id);
+        $anchorScroll();
+      }
 
     }
   ]);
