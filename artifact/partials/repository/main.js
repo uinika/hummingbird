@@ -10,7 +10,8 @@
           'app.repository.summary.explain',
           'app.repository.summary.rule',
           'app.repository.judgementLib',
-          'app.repository.judgementLib.search'
+          'app.repository.judgementLib.search',
+          'app.repository.statistic',
         ])
         .config(config);
 
@@ -86,6 +87,13 @@
           templateUrl: 'partials/repository/judgementLib/search/view.html',
           controller: 'judgementLibSearchController',
           controllerAs: 'judgementLibSearch'
+        })
+        .state('repository.repositoryStatistic', {
+          parent: 'repository',
+          url: '/repositoryStatistic',
+          templateUrl: 'partials/repository/statistic/view.html',
+          controller: 'statisticController',
+          controllerAs: 'statistic'
         });
     }
 
