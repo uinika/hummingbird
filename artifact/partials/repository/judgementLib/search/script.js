@@ -5,7 +5,9 @@
     /** Controller */
     judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory',
       function($scope, judgementLibSearchFactory) {
-
+        $scope.showProvince = function(e){
+          e.stopPropagation();
+        }
       }
     ]);
 

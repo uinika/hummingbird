@@ -31,7 +31,7 @@
     padding-right: 50px;
     .search-condition {
       margin: 0;
-      padding: 15px 0 10px 0;
+      padding: 15px 0 10px;
       list-style: none;
       li {
         display: inline-block;
@@ -228,10 +228,51 @@
     }
   }
 }
-#chinaMapUl{
-  background:rgba(255,255,255,.9);
-  #chinaMap{
-    width:600px;
-    height:500px;
+#chinaMapUl {
+  background: rgba(191, 221, 234, 0.88);
+  #chinaMap {
+    width: 600px;
+    height: 500px;
+  }
+  .map-detail {
+    width: 300px;
+    height: 500px;
+    padding-left: 15px;
+    border-left: 4px dotted #a99b97;
+    >h2 {
+      font-family: 微软雅黑;
+      font-size: 22px;
+      color: rgb(194, 30, 36);
+      text-align: center;
+    }
+    >.seperate-line {
+      height: 10px;
+      line-height: 55px;
+      border-bottom: 1px dashed rgb(194, 30, 36);
+      margin: 0 auto;
+    }
+    >.area-court {
+      height: 424px;
+      overflow-y: scroll;
+      >ul {
+        list-style: none;
+        padding-left: 10px;
+        padding-top: 10px;
+        li {
+          text-align: left;
+          margin: 5px 0;
+          a {
+            font-family: 微软雅黑;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover {
+              color: #03A9F4;
+              text-shadow: 1px 0 0 #03A9F4;
+            }
+          }
+        }
+      }
+    }
   }
 }

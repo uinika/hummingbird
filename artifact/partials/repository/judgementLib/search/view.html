@@ -34,8 +34,36 @@
                 <span class="glyphicon glyphicon-map-marker"></span>&nbsp;地域
                 <span class="caret"></span>
               </a>
-              <ul uib-dropdown-menu class="dropdown-menu patch" id='chinaMapUl'>
-                <li><wiserv-china-map/></li>
+              <ul uib-dropdown-menu class="dropdown-menu patch" id='chinaMapUl' ng-click='showProvince($event)'>
+                <li>
+                  <div class='pull-left'><wiserv-china-map /></div>
+                  <div class='pull-right map-detail'>
+                    <div class='prov-img'></div>
+                    <h2>四川</h2>
+                    <div class='seperate-line'></div>
+                    <div class='area-court'>
+                      <ul>
+                        <li><a>四川省高级人民法院</a></li>
+                        <li><a>四川省成都市中级人民法院</a></li>
+                        <li><a>四川省自贡市中级人民法院</a></li>
+                        <li><a>四川省攀枝花市中级人民法院</a></li>
+                        <li><a>四川省泸州市中级人民法院</a></li>
+                        <li><a>四川省德阳市中级人民法院</a></li>
+                        <li><a>四川省绵阳市中级人民法院</a></li>
+                        <li><a>四川省广元市中级人民法院</a></li>
+                        <li><a>四川省遂宁市中级人民法院</a></li>
+                        <li><a>四川省内江市中级人民法院</a></li>
+                        <li><a>四川省乐山市中级人民法院</a></li>
+                        <li><a>四川省宜宾市中级人民法院</a></li>
+                        <li><a>四川省南充市中级人民法院</a></li>
+                        <li><a>四川省达州市中级人民法院</a></li>
+                        <li><a>四川省雅安市中级人民法院</a></li>
+                        <li><a>四川省阿坝藏族羌族自治州中级人民法院</a></li>
+                        <li><a>四川省崇州市中级人民法院</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </li>
             <li class="dropdown" uib-dropdown dropdown-append-to-body>
