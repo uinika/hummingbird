@@ -15,10 +15,11 @@
           padding-top: 10px;
           padding-bottom: 10px;
           cursor: pointer;
+          font-size:12px;
           &:hover {
             color: @blue;
           }
-          &:visited {
+          &:visited ,&[aria-expanded='true']{
             color: @blue;
             text-decoration: none;
             background-color: #eeeeee;
@@ -232,7 +233,7 @@
 #chinaMapUl {
   background: rgba(191, 221, 234, 0.88);
   #chinaMap {
-    width: 600px;
+    width: 580px;
     height: 500px;
   }
   .map-detail {

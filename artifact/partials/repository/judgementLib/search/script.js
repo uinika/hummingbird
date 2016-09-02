@@ -32,6 +32,10 @@
                   series: [{
                       type: 'map',
                       map: 'china',
+                      left:10,
+                      top:10,
+                      right:10,
+                      bottom:10,
                       label: {
                         normal: {
                           show: true
