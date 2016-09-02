@@ -26,9 +26,15 @@
       };
       // Save Judgment
       vm.save = function() {
-        console.log($('.editor>.center').html());
-        console.log($('.editor>.center').text());
-        console.log(vm.article);
+        judgmentGeneratorService.saveJudgmentTemplate({
+          articleContentJson: JSON.stringify(vm.article),
+          articleContent: $('.editor>.center').text().trim(),
+          articleHtml: $('.editor>.center').html().trim(),
+          articleId: "",
+          templateId: "",
+          causeOfAction: "",
+          lawCaseName: ""
+        })
       };
       // Goto target article id
       vm.goto = function(id) {
@@ -42,15 +48,15 @@
           articleHtml: $('.editor>.center').html().trim()
         })
         .then(function(data){
-          console.log(data);
+          // console.log(data);
         })
       }
     }
   ]);
 
   module.factory('judgmentGeneratorService', [
-    '$http', 'URL', 'validate',
-    function($http, URL, validate) {
+    '$http', 'URL', 'validate', '$window',
+    function($http, URL, validate, $window) {
       return {
         getJudgmentTemplate: getJudgmentTemplate,
         saveJudgmentTemplate: saveJudgmentTemplate,
@@ -70,7 +76,7 @@
       // Save Judgment Content
       function saveJudgmentTemplate(data) {
         return $http.post(
-          URL + '/verdict/template', { data: data }
+          URL + '/verdict/writ', data
         )
         .then(function(result) {
           if(validate(result.data, 200)){
@@ -81,12 +87,17 @@
       // Export Judgment Document
       function exportJudgmentDoc(data) {
         return $http.post(
-          URL + '/verdict/export/word', data
+          URL + '/verdict/export/word', data, {
+            headers: {
+              "Content-Type": "application/msword;charset=UTF-8",
+              "Content-Disposition": "attachment",
+              'responseType': 'arraybuffer'
+            }
+          }
         )
         .then(function(result) {
-          if(validate(result.data, 200)){
-            return result.data;
-          }
+          var blob = new Blob([result.data], {type: 'application/msword;charset=UTF-8'});
+          $window.open (window.URL.createObjectURL(blob));
         })
       };
     }
