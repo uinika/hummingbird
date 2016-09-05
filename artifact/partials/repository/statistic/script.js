@@ -5,16 +5,24 @@
   /** Controller */
   module.controller('statisticController', ['$scope', 'statisticFactory',
     function($scope, statisticFactory) {
-      var repository = this;
-      repository.hank='uinika'
+      var model = this;
+      statisticFactory.getStatistics().then(function(result) {
+        model.data = result.data.body;
+      })
     }
   ]);
 
   /** Service */
-  module.factory('statisticFactory', [
-    function() {
+  module.factory('statisticFactory', ['$http', 'URL',
+    function($http,URL) {
       return {
-        'hank':'uinika'
+        getStatistics: getStatistics
+      }
+      // Get Statistics data
+      function getStatistics () {
+        return $http.get(
+          URL + '/verdict/writ'
+        )
       }
     }
   ]);
