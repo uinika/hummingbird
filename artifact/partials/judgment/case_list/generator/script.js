@@ -15,12 +15,14 @@
       };
       // Initial Template
       var parentTargetJudgment = $scope.CaseList.targetJudgment;
+      var targetTemplate;
       if ( parentTargetJudgment ) {
         judgmentGeneratorService.getJudgmentTemplate(parentTargetJudgment)
         .then(function(data) {
            var target = data.body[0];
+           targetTemplate = target;
            if(target){
-             vm.article = target.templateArticle;
+             vm.article = targetTemplate.templateArticle;
            }
         })
       };
@@ -30,10 +32,10 @@
           articleContentJson: JSON.stringify(vm.article),
           articleContent: $('.editor>.center').text().trim(),
           articleHtml: $('.editor>.center').html().trim(),
-          articleId: "",
-          templateId: "",
-          causeOfAction: "",
-          lawCaseName: ""
+          articleId: parentTargetJudgment.articleId,
+          templateId: targetTemplate.templateId,
+          causeOfAction: parentTargetJudgment.causeOfAction,
+          lawCaseName: parentTargetJudgment.lawCaseName
         })
       };
       // Goto target article id
@@ -44,7 +46,8 @@
       // Export document
       vm.export = function() {
         judgmentGeneratorService.exportJudgmentDoc({
-          lawCaseName: "test",
+          articleId: parentTargetJudgment.articleId,
+          lawCaseName: parentTargetJudgment.lawCaseName,
           articleHtml: $('.editor>.center').html().trim()
         })
         .then(function(data){
@@ -87,17 +90,13 @@
       // Export Judgment Document
       function exportJudgmentDoc(data) {
         return $http.post(
-          URL + '/verdict/export/word', data, {
-            headers: {
-              "Content-Type": "application/msword;charset=UTF-8",
-              "Content-Disposition": "attachment",
-              'responseType': 'arraybuffer'
-            }
-          }
+          URL + '/verdict/export/word', data
         )
         .then(function(result) {
-          var blob = new Blob([result.data], {type: 'application/msword;charset=UTF-8'});
-          $window.open (window.URL.createObjectURL(blob));
+          if(validate(result.data, 200)){
+            console.log(result.data.body[0].downloadUrl);
+            $window.open(URL + '/' + result.data.body[0].downloadUrl);
+          }
         })
       };
     }

@@ -7,11 +7,8 @@
     '$scope', 'caseListService',
     function($scope, caseListService) {
       var vm = this;
-      vm.openModule = function(articleId, category){
-        vm.targetJudgment = {
-          articleId: articleId,
-          category: category
-        };
+      vm.openModule = function(item){
+        vm.targetJudgment = item;
         caseListService.openGeneratorModal($scope)
       };
       caseListService.getCaseList()
