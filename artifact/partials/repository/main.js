@@ -27,7 +27,7 @@
         })
         .state('repository.repositorySearch', {
           parent: 'repository',
-          url: '/repositorySearch',
+          url: '/repositorySearch/:keyword',
           templateUrl: 'partials/repository/search/result/view.html',
           controller: 'repositorySearchController',
           controllerAs: 'repositorySearch'

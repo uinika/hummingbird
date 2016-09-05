@@ -3,12 +3,25 @@
   var module = angular.module('app.repository.statistic', []);
 
   /** Controller */
-  module.controller('statisticController', ['$scope', 'statisticFactory',
-    function($scope, statisticFactory) {
+  module.controller('statisticController', ['$scope', 'statisticFactory', '$state',
+    function($scope, statisticFactory, $state) {
       var model = this;
+      // get statistics data
       statisticFactory.getStatistics().then(function(result) {
         model.data = result.data.body;
-      })
+      });
+
+      // filter
+      $scope.filterBy = function() {
+        console.log($scope.keyword);
+      }
+
+      // go to search result
+      $scope.search = function() {
+        $state.go("repository.repositorySearch", {keyword:$scope.keyword}, {
+          reload: true
+        });
+      }
     }
   ]);
 

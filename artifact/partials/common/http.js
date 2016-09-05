@@ -3,8 +3,8 @@
   var module = angular.module('common.http', []);
 
   module.constant('URL',
-    'http://172.16.1.67:8080/court_decision_system'
-    // 'http://localhost:5005'
+    // 'http://172.16.1.67:8080/court_decision_system'
+     'http://localhost:5005'
   );
 
   module.factory('validate', [

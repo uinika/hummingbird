@@ -1,18 +1,19 @@
 #summaryExplain {
   .tree-nav {
     padding: 15px;
+    position: relative;
     .metismenu {
       width: 20%;
       li {
-        &.active{
-          >a{
-            color:#FFF;
+        &.active {
+          >a {
+            color: #FFF;
           }
         }
         a {
           display: inline-block;
           width: 100%;
-          cursor:pointer;
+          cursor: pointer;
         }
       }
       >li {
@@ -24,6 +25,31 @@
           -webkit-box-shadow: 6px 6px 10px rgba(0,0,0,.3);
           box-shadow: 6px 6px 10px rgba(0,0,0,.3);
         }
+      }
+    }
+    .explain-content {
+      position: absolute;
+      width: 38%;
+      right: 30px;
+      top: 15px;
+      z-index: 99;
+      //background: rgb(202, 239, 255);
+      background: url("../assets/images/judgment/paper.png");
+      padding: 10px 15px;
+      color: #545454;
+      font-family: '微软雅黑';
+      .close-icon {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .media-heading {
+        font-weight: 600;
+      }
+      .content {
+        text-indent: 2em;
       }
     }
   }
