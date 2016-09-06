@@ -10,7 +10,7 @@ const Gulp = require("gulp"),
       Delete = require('del');
 
 /** gulp */
-Gulp.task('default', () => {
+Gulp.task('pack', () => {
   const server = './mock/server.js';
   const source = './artifact/partials/';
   const target = './artifact/bundles';
@@ -19,7 +19,7 @@ Gulp.task('default', () => {
     execMap: {js: 'node --harmony'},
     env: {'NODE_ENV': 'development'}
   });
-  const pack = () => {
+  const combine = () => {
     Gulp.src([source + '**/*.less'])
       .pipe(Concat('styles.css'))
       .pipe(Less())
@@ -29,11 +29,11 @@ Gulp.task('default', () => {
       .pipe(Gulp.dest(target));
   };
   pack();
-  Gulp.watch([source + '**/*.less', source + 'app.js', source + '**/*.js'], pack);
+  Gulp.watch([source + '**/*.less', source + 'app.js', source + '**/*.js'], combine);
 });
 
 /** gulp reload*/
-Gulp.task('live', ['default'], () => {
+Gulp.task('default', ['pack'], () => {
   const target = [
     './artifact/index.html',
     './artifact/partials/**/*.html',
