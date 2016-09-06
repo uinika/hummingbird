@@ -24,7 +24,6 @@
             <i class="glyphicon glyphicon-remove">&nbsp;关闭</i>
           </button>
         </li>
-
       </ul>
     </div>
     <div class="panel-body">
@@ -38,109 +37,105 @@
           </treecontrol>
         </menu>
         <div class="center">
-          <div style="text-align: justify">
-            <div class="head">
+          <div id='judgment' style="text-align: justify">
+            <style>
+              #judgment-head #courtName {
+                text-align: center; line-height: 25pt; margin: 0.5pt 0cm; font-family: 宋体; font-size: 22pt;
+              }
+              #judgment-head #lawCaseTitle {
+                text-align: center; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 26pt;
+              }
+              #judgment-head #lawCaseCode {
+                text-align: right; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+              }
+              #judgment-body p {
+                line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+              }
+              #judgment-foot p {
+                text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+              }
+            </style>
+            <div id="judgment-head">
               <p data-placeholder="文书标题-法院名称"
                  id="courtName"
                  ng-model="Generator.article.indexTitle.courtName"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: center; line-height: 25pt; margin: 0.5pt 0cm; font-family: 宋体; font-size: 22pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-文书名称"
                  id="lawCaseTitle"
                  ng-model="Generator.article.indexTitle.lawCaseTitle"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: center; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 26pt;"
-                 ></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-案号"
                  id="lawCaseCode"
                  ng-model="Generator.article.indexTitle.lawCaseCode"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: right; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"
-                 ></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
             </div>
-            <div class="body">
+            <div id="judgment-body">
               <p data-placeholder="首部-当事人"
                  id="accuser"
                  ng-model="Generator.article.parties.accuser"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="accuserAgent"
                  ng-model="Generator.article.parties.accuserAgent"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendant"
                  ng-model="Generator.article.parties.defendant"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendantAgent"
                  ng-model="Generator.article.parties.defendantAgent"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="首部-案件由来和审理经过"
                  id="caseGeneral"
                  ng-model="Generator.article.parties.caseGeneral"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="事实-诉讼请求"
                  id="claims"
                  ng-model="Generator.article.fact.claims"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="argued"
                  ng-model="Generator.article.fact.argued"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="事实-事实"
                  id="factResult"
                  ng-model="Generator.article.fact.factResult"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="理由"
                  id="reason"
                  ng-model="Generator.article.reason"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="裁判主文"
                  id="caseMain"
                  ng-model="Generator.article.caseMain"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="尾部-诉讼费用负担"
                  id="legalCosts"
                  ng-model="Generator.article.bottom.legalCosts"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="尾部-告知事项"
                  id="informInfo"
                  ng-model="Generator.article.bottom.informInfo"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
             </div>
-            <div class="foot">
+            <div id="judgment-foot">
               <p data-placeholder="落款-署名"
                  id="chiefJudge"
                  ng-model="Generator.article.inscribe.chiefJudge"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="judge"
                  ng-model="Generator.article.inscribe.judge"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="courtClerk"
                  ng-model="Generator.article.inscribe.courtClerk"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
               <p data-placeholder="落款-日期"
                  id="judgmentDate"
                  ng-model="Generator.article.inscribe.judgmentDate"
-                 medium-editor bind-options="Generator.mediumEditorOptions"
-                 style="text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;"></p>
+                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
             </div>
           </div>
         </div>

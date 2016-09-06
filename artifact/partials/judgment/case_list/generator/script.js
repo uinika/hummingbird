@@ -2,8 +2,8 @@
   var module = angular.module('app.judgment');
 
   module.controller('JudgmentGeneratorController', [
-    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService', '$location', '$anchorScroll',
-    function($scope, TreeData, TreeOptions, judgmentGeneratorService, $location, $anchorScroll) {
+    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService', '$location', '$anchorScroll', '$alert',
+    function($scope, TreeData, TreeOptions, judgmentGeneratorService, $location, $anchorScroll, $alert) {
       var vm = this;
       // Config for Tree
       vm.treeOptions = TreeOptions;
@@ -36,6 +36,11 @@
           templateId: targetTemplate.templateId,
           causeOfAction: parentTargetJudgment.causeOfAction,
           lawCaseName: parentTargetJudgment.lawCaseName
+        })
+        .then(function(data) {
+          if(data && data.head) {
+            $alert({title: 'uinika', content: data.head.message, placement: 'top', type: 'info', show: true});
+          }
         })
       };
       // Goto target article id

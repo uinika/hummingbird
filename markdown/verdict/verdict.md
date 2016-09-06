@@ -37,15 +37,15 @@
     articleId   String          裁判文书id 【选填】
     causeOfAction       String          案由 【选填】
 #### Result:
-   articleId   String          裁判文书id
-   articleContentJson   String          带html标签的json文本
-   articleContent       String          纯文本文书内容体
-   articleHtml          String         html文本 【选填】
-   causeOfAction       String          案由
-   lawCaseName         String          案件名称
-   creater             String     创建人
-   createTime          String     创建时间
-   finalJudgment       String      最终判决标记(0表示非最终判决，1表示最终判决)
+    articleId   String          裁判文书id
+    articleContentJson   String          带html标签的json文本
+    articleContent       String          纯文本文书内容体
+    articleHtml          String         html文本 【选填】
+    causeOfAction       String          案由
+    lawCaseName         String          案件名称
+    creater             String     创建人
+    createTime          String     创建时间
+    finalJudgment       String      最终判决标记(0表示非最终判决，1表示最终判决)
 -----
 
 ## 删除裁决文书(编辑后的裁判文书)
