@@ -28,7 +28,7 @@ Gulp.task('pack', () => {
       .pipe(Concat('scripts.js'))
       .pipe(Gulp.dest(target));
   };
-  pack();
+  combine();
   Gulp.watch([source + '**/*.less', source + 'app.js', source + '**/*.js'], combine);
 });
 
