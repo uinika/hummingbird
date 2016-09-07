@@ -142,7 +142,7 @@
         <menu class="right">
           <uib-tabset active="activeJustified" justified="true">
             <uib-tab index="1" heading="案件基本信息">
-              <uib-accordion>
+              <uib-accordion close-others=false>
                 <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
                   <div class="list-group">
                     <a class="list-group-item">案件名称：</a>
@@ -159,21 +159,19 @@
                     <a class="list-group-item">委托代理人证明：</a>
                     <a class="list-group-item">起诉事项证明材料：</a>
                     <a class="list-group-item">证据材料：</a>
-                  </div>
-                </div>
-                <div heading='材料略缩图' uib-accordion-group class="panel-default" is-open=true>
-                  <div class="row">
-                    <div class="col-xs-7 col-md-7">
-                      <a class="thumbnail">
-                        <img src="..." alt="...">
-                      </a>
-                    </div>
+                    <a class="row" class="list-group-item">
+                      <div class="col-xs-9 col-md-9">
+                        <a class="thumbnail">
+                          <img src="..." alt="...">
+                        </a>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </uib-accordion>
             </uib-tab>
             <uib-tab index="2" heading="案件推荐信息">
-              <uib-accordion>
+              <uib-accordion close-others=false>
                 <div heading='案件推荐裁判文书' uib-accordion-group class="panel-default" is-open=true>
                   test
                 </div>
