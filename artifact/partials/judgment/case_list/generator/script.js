@@ -39,7 +39,7 @@
         })
         .then(function(data) {
           if(data && data.head) {
-            $alert({title: 'uinika', content: data.head.message, placement: 'top', type: 'info', show: true});
+            alert(data.head.message);
           }
         })
       };
