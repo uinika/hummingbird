@@ -30,7 +30,7 @@
       <section class='editor'>
         <menu class="left">
           <treecontrol class="tree-classic"
-             expanded-nodes="Generator.treeData"
+             expanded-nodes="[Generator.treeData[0],Generator.treeData[1], Generator.treeData[2], Generator.treeData[3] ,Generator.treeData[4] ,Generator.treeData[5], Generator.treeData[6]]"
              tree-model="Generator.treeData"
              options="Generator.treeOptions"
              on-selection="showSelected(node)">
@@ -146,24 +146,31 @@
               <uib-accordion close-others=false>
                 <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
                   <div class="list-group">
-                    <a class="list-group-item">案件名称：</a>
-                    <a class="list-group-item">审理程序：</a>
-                    <a class="list-group-item">案件类型：</a>
-                    <a class="list-group-item">案由：</a>
-                    <a class="list-group-item">受理日期：</a>
+                    <a class="list-group-item">案件名称：{{Generator.targetJudgment.lawCaseTitle}}</a>
+                    <a class="list-group-item">审理程序：{{Generator.targetJudgment.targetJudgment}}</a>
+                    <a class="list-group-item">案件类型：{{Generator.targetJudgment.category}}</a>
+                    <a class="list-group-item">案由：{{Generator.targetJudgment.causeOfAction}}</a>
+                    <a class="list-group-item">受理日期：{{Generator.targetJudgment.acceptedDate}}</a>
                   </div>
                 </div>
                 <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
-                  <div class="list-group">
-                    <a class="list-group-item">起诉书：</a>
-                    <a class="list-group-item">原告身份证明：</a>
-                    <a class="list-group-item">委托代理人证明：</a>
-                    <a class="list-group-item">起诉事项证明材料：</a>
-                    <a class="list-group-item">证据材料：</a>
-                    <a class="thumbnail">
-                      <img src="..." alt="...">
-                    </a>
-                  </div>
+                  <uib-tabset active="active">
+                    <uib-tab index="0" heading="起诉书">
+                      <div class="material"><img src="/assets/images/demo/material-1.jpg"></div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="原告身份证明">
+                      <div class="material"><img src="/assets/images/demo/material-2.jpg"></div>
+                    </uib-tab>
+                    <uib-tab index="3" heading="委托代理人证明">
+                      <div class="material"><img src="/assets/images/demo/material-3.jpg"></div>
+                    </uib-tab>
+                    <uib-tab index="4" heading="起诉事项证明材料">
+                      <div class="material"><img src="/assets/images/demo/material-4.jpg"></div>
+                    </uib-tab>
+                    <uib-tab index="5" heading="证据材料">
+                      <div class="material"><img src="/assets/images/demo/material-5.jpg"></div>
+                    </uib-tab>
+                  </uib-tabset>
                 </div>
               </uib-accordion>
             </uib-tab>
