@@ -40,6 +40,20 @@
           flex: 4;
           margin: 0 0 0 -1px;
           padding: 0;
+          .nav-item {
+            font-size: 12px;
+          }
+          .nav-item .nav-link {
+            color: @font-gray;
+          }
+          .nav-item.active .nav-link {
+            background: @dark-gray;
+            color: @black;
+          }
+          .quote {
+            display: inline-block;
+            width: 100%;
+          }
           .panel-group {
             margin: 0;
             .panel {
