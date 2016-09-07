@@ -15,10 +15,10 @@
       name: "首部",
       id: "",
       children: [
-        { name: "当事人", id: "accuser" },
-        { name: "当事人", id: "accuserAgent" },
-        { name: "当事人", id: "defendant" },
-        { name: "当事人", id: "defendantAgent" },
+        { name: "原告", id: "accuser" },
+        { name: "原告代理人", id: "accuserAgent" },
+        { name: "被告", id: "defendant" },
+        { name: "被告代理人", id: "defendantAgent" },
         { name: "案件由来及审理经过", id: "caseGeneral" }
       ]
     },
@@ -44,17 +44,17 @@
     {
       name: "落款",
       children: [
-        { name: "署名", id: "chiefJudge" },
-        { name: "署名", id: "judge" },
-        { name: "署名", id: "courtClerk" },
-        { name: "日期", id: "judgmentDate" }
+        { name: "审判长", id: "chiefJudge" },
+        { name: "审判员", id: "judge" },
+        { name: "书记员", id: "courtClerk" },
+        { name: "判决日期", id: "judgmentDate" }
       ]
     }
   ]);
 
   module.constant('TreeOptions', {
       nodeChildren: "children",
-      dirSelectable: true,
+      dirSelectable: false,
       injectClasses: {
         ul: "a1",
         li: "a2",

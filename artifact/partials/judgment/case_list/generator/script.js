@@ -14,16 +14,13 @@
         spellcheck: false
       };
       // Initial Template
-      var parentTargetJudgment = $scope.CaseList.targetJudgment;
-      var targetTemplate;
-      if ( parentTargetJudgment ) {
-        judgmentGeneratorService.getJudgmentTemplate(parentTargetJudgment)
+      vm.targetJudgment = $scope.CaseList.targetJudgment;
+      if ( vm.targetJudgment ) {
+        judgmentGeneratorService.getJudgmentTemplate(vm.targetJudgment)
         .then(function(data) {
            var target = data.body[0];
-           targetTemplate = target;
-           if(target){
-             vm.article = targetTemplate.templateArticle;
-           }
+           vm.targetTemplate = target;
+           vm.article = target.templateArticle;
         })
       };
       // Save Judgment
@@ -32,10 +29,10 @@
           articleContentJson: JSON.stringify(vm.article),
           articleContent: $('.editor>.center').text().trim(),
           articleHtml: $('.editor>.center').html().trim(),
-          articleId: parentTargetJudgment.articleId,
-          templateId: targetTemplate.templateId,
-          causeOfAction: parentTargetJudgment.causeOfAction,
-          lawCaseName: parentTargetJudgment.lawCaseName
+          articleId: vm.targetJudgment.articleId,
+          templateId: vm.targetTemplate.templateId,
+          causeOfAction: vm.targetJudgment.causeOfAction,
+          lawCaseName: vm.targetJudgment.lawCaseName
         })
         .then(function(data) {
           if(data && data.head) {
@@ -51,8 +48,8 @@
       // Export document
       vm.export = function() {
         judgmentGeneratorService.exportJudgmentDoc({
-          articleId: parentTargetJudgment.articleId,
-          lawCaseName: parentTargetJudgment.lawCaseName,
+          articleId: vm.targetJudgment.articleId,
+          lawCaseName: vm.targetJudgment.lawCaseName,
           articleHtml: $('.editor>.center').html().trim()
         })
         .then(function(data){
