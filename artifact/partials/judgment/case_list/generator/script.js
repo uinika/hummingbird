@@ -23,6 +23,14 @@
            vm.article = target.templateArticle;
         })
       };
+      // Match Judgment
+      vm.match = function(target, part) {
+        judgmentGeneratorService.matchJudgment(target, part)
+        .then(function(data){
+          vm.proposals = data.body;
+          console.log(data.body);
+        })
+      }
       // Save Judgment
       vm.save = function() {
         judgmentGeneratorService.saveJudgmentTemplate({
@@ -65,7 +73,8 @@
       return {
         getJudgmentTemplate: getJudgmentTemplate,
         saveJudgmentTemplate: saveJudgmentTemplate,
-        exportJudgmentDoc: exportJudgmentDoc
+        exportJudgmentDoc: exportJudgmentDoc,
+        matchJudgment: matchJudgment
       }
       // Get Judgment Content
       function getJudgmentTemplate(params) {
@@ -100,6 +109,38 @@
             $window.open(URL + '/' + result.data.body[0].downloadUrl);
           }
         })
+      };
+      // Match all Judgment
+      function matchJudgment(target, part) {
+        switch(part) {
+          case 'factResult':
+          return $http.post(
+            URL + '/verdict/fact/result', { articleContent: target }
+          ).then(function(result){
+            if(validate(result.data, 200)){
+              return result.data;
+            }
+          });
+          break;
+          case 'reason':
+          return $http.post(
+            URL + '/verdict/reason', { articleContent: target }
+          ).then(function(result){
+            if(validate(result.data, 200)){
+              return result.data;
+            }
+          });
+          break;
+          case 'caseMain':
+          return $http.post(
+            URL + '/verdict/case/main', { articleContent: target }
+          ).then(function(result){
+            if(validate(result.data, 200)){
+              return result.data;
+            }
+          });
+          break;
+        }
       };
     }
   ]);
