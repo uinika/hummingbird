@@ -5,22 +5,38 @@
   /** Controller */
   module.controller('statisticController', ['$scope', 'statisticFactory', '$state',
     function($scope, statisticFactory, $state) {
-      var model = this;
+      var vm = this;
+      vm.resultShow = false;
       // get statistics data
       statisticFactory.getStatistics().then(function(result) {
-        model.data = result.data.body;
+        vm.data = result.data.body;
       });
 
       // filter
-      $scope.filterBy = function() {
-        console.log($scope.keyword);
-      }
+      vm.filterBy = filterBy;
 
       // go to search result
-      $scope.search = function() {
+      vm.search = search;
+
+      // write input back
+      vm.writeback = writeback;
+
+      function filterBy(){
+        console.log(vm.keyword);
+        vm.resultShow = true;
+      }
+
+      function search() {
         $state.go("repository.repositorySearch", {keyword:$scope.keyword}, {
           reload: true
         });
+      }
+
+      function writeback(ev){
+        if( !ev ) ev = window.event;
+        var target = ev.target||ev.srcElement;
+        vm.keyword = target.innerHTML;
+        vm.resultShow = false;
       }
     }
   ]);

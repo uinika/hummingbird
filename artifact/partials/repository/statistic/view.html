@@ -5,10 +5,29 @@
       <div class="panel-body">
         <div class='search-box'>
           <div class='search-input'>
-            <input type='text' ng-model='keyword' placeholder='输入案由、关键词' ng-keyup='filterBy()'/>
+            <input type='text' ng-model='statistic.keyword' placeholder='输入案由、关键词' ng-keyup='statistic.filterBy()'/>
           </div>
           <div class='search-btn'>
-            <button type='button' ng-click='search()' class='btn-search'>搜索</button>
+            <button type='button' ng-click='statistic.search()' class='btn-search'>搜索</button>
+          </div>
+          <div class='suggest-result' ng-show='statistic.resultShow && statistic.keyword'>
+            <div class='search-type'>案由</div>
+            <ul>
+              <li ng-click='statistic.writeback($event)'>证券纠纷</li>
+              <li ng-click='statistic.writeback($event)'>遗赠纠纷</li>
+              <li ng-click='statistic.writeback($event)'>抚养纠纷</li>
+              <li ng-click='statistic.writeback($event)'>垄断纠纷</li>
+            </ul>
+            <div class='search-type'>关键词</div>
+            <ul>
+              <li ng-click='statistic.writeback($event)'>债务纠纷</li>
+              <li ng-click='statistic.writeback($event)'>劳务纠纷</li>
+              <li ng-click='statistic.writeback($event)'>遗产继承纠纷</li>
+            </ul>
+            <div class='search-type'>法律依据</div>
+            <ul>
+              <li>最高人民法院关于参照《医疗事故处理条例》审理医疗纠纷民事案件的通知</li>
+            </ul>
           </div>
         </div>
         <div class='main-statistic'>
