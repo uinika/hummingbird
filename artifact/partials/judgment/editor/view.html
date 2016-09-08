@@ -1,14 +1,14 @@
-<div id="judgment-case-list-generator" class='wiserv-ui'>
+<div id="judgment-case-list-Editor" class='wiserv-ui'>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <ul class="access pull-left">
         <li>
-          <button class="btn btn-primary" ng-click='Generator.save()'>
+          <button class="btn btn-primary" ng-click='Editor.save()'>
             <i class="glyphicon glyphicon-ok">&nbsp;保存</i>
           </button>
         </li>
         <li>
-          <button class="btn btn-primary" ng-click='Generator.export()'>
+          <button class="btn btn-primary" ng-click='Editor.export()'>
             <i class="glyphicon glyphicon-export">&nbsp;导出</i>
           </button>
         </li>
@@ -30,11 +30,11 @@
       <section class='editor'>
         <menu class="left">
           <treecontrol class="tree-classic"
-             expanded-nodes="[Generator.treeData[0],Generator.treeData[1], Generator.treeData[2], Generator.treeData[3] ,Generator.treeData[4] ,Generator.treeData[5], Generator.treeData[6]]"
-             tree-model="Generator.treeData"
-             options="Generator.treeOptions"
+             expanded-nodes="[Editor.treeData[0],Editor.treeData[1], Editor.treeData[2], Editor.treeData[3] ,Editor.treeData[4] ,Editor.treeData[5], Editor.treeData[6]]"
+             tree-model="Editor.treeData"
+             options="Editor.treeOptions"
              on-selection="showSelected(node)">
-             <a ng-click="Generator.goto(node.id)">{{node.name}}</a>
+             <a ng-click="Editor.goto(node.id)">{{node.name}}</a>
           </treecontrol>
         </menu>
         <div class="center">
@@ -59,105 +59,105 @@
             <div id="judgment-head">
               <p data-placeholder="文书标题-法院名称"
                  id="courtName"
-                 ng-model="Generator.article.indexTitle.courtName"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.indexTitle.courtName"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-文书名称"
                  id="lawCaseTitle"
-                 ng-model="Generator.article.indexTitle.lawCaseTitle"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.indexTitle.lawCaseTitle"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-案号"
                  id="lawCaseCode"
-                 ng-model="Generator.article.indexTitle.lawCaseCode"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.indexTitle.lawCaseCode"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
             <div id="judgment-body">
               <p data-placeholder="首部-当事人"
                  id="accuser"
-                 ng-model="Generator.article.parties.accuser"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.parties.accuser"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="accuserAgent"
-                 ng-model="Generator.article.parties.accuserAgent"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.parties.accuserAgent"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendant"
-                 ng-model="Generator.article.parties.defendant"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.parties.defendant"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendantAgent"
-                 ng-model="Generator.article.parties.defendantAgent"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.parties.defendantAgent"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-案件由来和审理经过"
                  id="caseGeneral"
-                 ng-model="Generator.article.parties.caseGeneral"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.parties.caseGeneral"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-诉讼请求"
                  id="claims"
-                 ng-model="Generator.article.fact.claims"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.fact.claims"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="argued"
-                 ng-model="Generator.article.fact.argued"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.fact.argued"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-事实"
                  id="factResult"
-                 ng-dblclick = "Generator.match(
-                      Generator.article.parties.caseGeneral
-                    + Generator.article.fact.claims
-                    + Generator.article.fact.argued
-                    + Generator.article.fact.factResult,
+                 ng-dblclick = "Editor.match(
+                      Editor.article.parties.caseGeneral
+                    + Editor.article.fact.claims
+                    + Editor.article.fact.argued
+                    + Editor.article.fact.factResult,
                     'factResult')"
-                 ng-model="Generator.article.fact.factResult"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.fact.factResult"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="理由"
                  id="reason"
-                 ng-dblclick = "Generator.match(
-                      Generator.article.parties.caseGeneral
-                    + Generator.article.fact.claims
-                    + Generator.article.fact.argued
-                    + Generator.article.fact.factResult
-                    + Generator.article.reason,
+                 ng-dblclick = "Editor.match(
+                      Editor.article.parties.caseGeneral
+                    + Editor.article.fact.claims
+                    + Editor.article.fact.argued
+                    + Editor.article.fact.factResult
+                    + Editor.article.reason,
                   'reason')"
-                 ng-model="Generator.article.reason"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.reason"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="裁判主文"
                  id="caseMain"
-                 ng-dblclick = "Generator.match(
-                       Generator.article.parties.caseGeneral
-                     + Generator.article.fact.claims
-                     + Generator.article.fact.argued
-                     + Generator.article.fact.factResult
-                     + Generator.article.reason
-                     + Generator.article.caseMain,
+                 ng-dblclick = "Editor.match(
+                       Editor.article.parties.caseGeneral
+                     + Editor.article.fact.claims
+                     + Editor.article.fact.argued
+                     + Editor.article.fact.factResult
+                     + Editor.article.reason
+                     + Editor.article.caseMain,
                    'caseMain')"
-                 ng-model="Generator.article.caseMain"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.caseMain"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="尾部-诉讼费用负担"
                  id="legalCosts"
-                 ng-model="Generator.article.bottom.legalCosts"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.bottom.legalCosts"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="尾部-告知事项"
                  id="informInfo"
-                 ng-model="Generator.article.bottom.informInfo"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.bottom.informInfo"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
             <div id="judgment-foot">
               <p data-placeholder="落款-署名"
                  id="chiefJudge"
-                 ng-model="Generator.article.inscribe.chiefJudge"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.inscribe.chiefJudge"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="judge"
-                 ng-model="Generator.article.inscribe.judge"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.inscribe.judge"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="courtClerk"
-                 ng-model="Generator.article.inscribe.courtClerk"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.inscribe.courtClerk"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="落款-日期"
                  id="judgmentDate"
-                 ng-model="Generator.article.inscribe.judgmentDate"
-                 medium-editor bind-options="Generator.mediumEditorOptions"></p>
+                 ng-model="Editor.article.inscribe.judgmentDate"
+                 medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
           </div>
         </div>
@@ -167,11 +167,11 @@
               <uib-accordion close-others=false>
                 <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
                   <div class="list-group">
-                    <a class="list-group-item">案件名称：{{Generator.targetJudgment.lawCaseTitle}}</a>
-                    <a class="list-group-item">审理程序：{{Generator.targetJudgment.targetJudgment}}</a>
-                    <a class="list-group-item">案件类型：{{Generator.targetJudgment.category}}</a>
-                    <a class="list-group-item">案由：{{Generator.targetJudgment.causeOfAction}}</a>
-                    <a class="list-group-item">受理日期：{{Generator.targetJudgment.acceptedDate}}</a>
+                    <a class="list-group-item">案件名称：{{Editor.targetJudgment.lawCaseTitle}}</a>
+                    <a class="list-group-item">审理程序：{{Editor.targetJudgment.targetJudgment}}</a>
+                    <a class="list-group-item">案件类型：{{Editor.targetJudgment.category}}</a>
+                    <a class="list-group-item">案由：{{Editor.targetJudgment.causeOfAction}}</a>
+                    <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
                   </div>
                 </div>
                 <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
@@ -199,13 +199,13 @@
               <uib-accordion close-others=false>
                 <div heading='案件推荐裁判文书' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab ng-repeat='proposal in Generator.proposals' index="$index" heading="{{proposal.templateArticle}}">{{proposal.templateArticle}}</uib-tab>
+                    <uib-tab ng-repeat='proposal in Editor.proposals' index="$index" heading="{{proposal.templateArticle}}">{{proposal.templateArticle}}</uib-tab>
                   </uib-tabset>
                   <button type="button" class="quote btn btn-info btn-xs">引&nbsp;用</button>
                 </div>
                 <div  heading='案件关联法条' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab ng-repeat='lawItem in Generator.lawItems' index="$index" heading="{{lawItem.case_accord}}">{{lawItem.case_accord}}</uib-tab>
+                    <uib-tab ng-repeat='lawItem in Editor.lawItems' index="$index" heading="{{lawItem.case_accord}}">{{lawItem.case_accord}}</uib-tab>
                   </uib-tabset>
                 </div>
                 <div heading='同类案例' uib-accordion-group class="panel-default" is-open=true>

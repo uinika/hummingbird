@@ -14,6 +14,13 @@
           url: '/judgment',
           template: '<ui-view/>'
         })
+        .state('judgment.editor', {
+          parent: 'judgment',
+          url: '/editor',
+          templateUrl: 'partials/judgment/editor/view.html',
+          controller: 'EditorController',
+          controllerAs: 'Editor',
+        })
         .state('judgment.case_list', {
           parent: 'judgment',
           url: '/case_list',

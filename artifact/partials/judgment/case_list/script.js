@@ -4,12 +4,11 @@
 
   /** Controller */
   module.controller('CaseListController', [
-    '$scope', 'caseListService',
-    function($scope, caseListService) {
+    'caseListService',
+    function(caseListService) {
       var vm = this;
-      vm.openModule = function(item){
-        vm.targetJudgment = item;
-        caseListService.openGeneratorModal($scope)
+      vm.storage = function(item){
+        sessionStorage.targetJudgment = JSON.stringify(item);
       };
       caseListService.getCaseList()
       .then(function(result){
@@ -23,19 +22,7 @@
     '$uibModal', '$http', 'URL',
     function($uibModal, $http, URL) {
       return {
-        openGeneratorModal: openGeneratorModal,
         getCaseList: getCaseList
-      }
-      // Create Modal
-      function openGeneratorModal ($scope) {
-        $uibModal.open({
-          animation: true,
-          controller: 'JudgmentGeneratorController',
-          controllerAs: 'Generator',
-          templateUrl: 'partials/judgment/case_list/generator/view.html',
-          windowTopClass: 'wiserv-ui',
-          scope: $scope
-        })
       }
       // Get CaseList
       function getCaseList () {
