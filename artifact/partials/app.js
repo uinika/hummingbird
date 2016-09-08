@@ -22,7 +22,7 @@ angular
       $stateProvider
         .state('login', {
           url: '/login',
-          templateUrl: 'partials/dashboard/view.html',
+          templateUrl: 'partials/login/view.html',
           controller: 'loginController',
           controllerAs: 'login'
         })
