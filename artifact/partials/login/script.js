@@ -53,7 +53,7 @@
         var data = result.data;
         if(validate(data, 200)){
           sessionStorage.token = data.head.token;
-          $state.go("judgment.case_list");
+          $state.go("dashboard");
           return data.head.message;
         }
         else{

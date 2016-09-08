@@ -6,7 +6,6 @@
 
   function EditorController($scope, TreeData, TreeOptions, editorService, $location, $anchorScroll) {
     var vm = this;
-
     // Config for Tree
     vm.treeOptions = TreeOptions;
     vm.treeData = TreeData;
@@ -17,7 +16,6 @@
     };
     // Initial Template
     vm.targetJudgment = JSON.parse(sessionStorage.targetJudgment);
-    console.log(vm.targetJudgment);
     if ( vm.targetJudgment ) {
       editorService.getJudgmentTemplate(vm.targetJudgment)
       .then(function(data) {
@@ -30,6 +28,12 @@
       })
       .then(function(data) {
          vm.lawItems = data.body;
+      });
+      editorService.fetchSimilarCase({
+        articleContent: vm.targetJudgment.articleContent
+      })
+      .then(function(data){
+        vm.similarCases = data.body;
       });
     };
     // Match Judgment

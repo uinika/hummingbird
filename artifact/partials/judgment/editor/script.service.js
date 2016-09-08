@@ -10,7 +10,8 @@
       saveJudgmentTemplate: saveJudgmentTemplate,
       exportJudgmentDoc: exportJudgmentDoc,
       matchJudgment: matchJudgment,
-      fetchLawItem: fetchLawItem
+      fetchLawItem: fetchLawItem,
+      fetchSimilarCase: fetchSimilarCase
     }
     // Get Judgment Content
     function getJudgmentTemplate(params) {
@@ -86,7 +87,17 @@
         }
       })
     };
-
+    // Fetch Similar Case
+    function fetchSimilarCase(data) {
+      return $http.post(
+        URL + '/case/similar/verdict', data
+      )
+      .then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      })
+    };
   };
 
 

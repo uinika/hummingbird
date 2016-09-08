@@ -12,14 +12,16 @@
     }
   }
 
-  module.directive('wiservMenu', [
+  module.directive('wiservSidebar', [
     function() {
       return {
         restrict: 'ACE',
         link: function(scope, element, attrs) {
-          element.metisMenu({
-           preventDefault: false
-         });
+          console.log(element);
+          element.sidr({
+            name: 'sidebar',
+            side: 'left'
+          });
         }
       }
     }

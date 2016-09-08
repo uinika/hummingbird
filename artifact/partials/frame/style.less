@@ -1,137 +1,45 @@
 #frame {
   .fill;
-  width: 100%;
-  height: 100%;
-  // display: -moz-box;
-  display: -webkit-box;
-  display: box;
-  -moz-box-orient: vertical;
-  -webkit-box-orient: vertical;
-  box-orient: vertical;
-  >#navbar {
-    width: 100%;
-    height: 46px;
+  >#navigator {
     .navbar {
-      margin-bottom: 1px;
-      .navbar-brand {
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      .clean;
+      border-bottom: 1px solid @dark-gray;
+    }
+    .logo {
+      height: 55px;
+      cursor: pointer;
+      .clean;
+      .image {
+        float: left;
+        display: inline-block;
+        width: 55px;
+        height: 55px;
+        background: url("/assets/images/login/court.png") no-repeat;
+        background-size: 51px 51px;
+        margin: 2px 15px 2px 18px;
       }
-      .navbar-right {
-        position: relative;
-        right: 25px;
-        border-left: 1px solid rgba(0, 0, 0, 0.1);
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      .text {
+        float: left;
+        padding: 16px 0;
+        font-size: 20px;
+        display: inline-block;
+        width: 225px;
+        height: 55px;
       }
     }
-    .breadcrumb {
-      display: inline-block;
-      position: relative;
-      top: 11px;
-      left: 15px;
-      margin: 0;
-      border: 0;
-      border-radius: 10px;
-      padding: 3px 10px;
-      font-size: 80%;
+    .admin {
+      li {
+        height: 55px;
+        a {
+          padding-top: 15px;
+          height: 55px;
+        }
+      }
     }
   }
-  >#main {
-    -moz-box-flex: 1;
-    -webkit-box-flex: 1;
-    box-flex: 1;
-    display: -moz-box;
-    display: -webkit-box;
-    display: box;
-    -moz-box-orient: horizontal;
-    -webkit-box-orient: horizontal;
-    box-orient: horizontal;
-    >.menu {
-      width:12%;
-      background: @blue;
-      .metismenu {
-        font-size: 12px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        background: rgba(0, 0, 0, .1);
-        li,
-        a {
-          display: block;
-          color: @white;
-        }
-        li:hover {
-          background: rgba(0, 0, 0, .2);
-        }
-        li {
-          margin: 0;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-          a {
-            padding: 12px;
-          }
-          ul {
-            padding-left: 10px;
-            li {
-              background: transparent;
-              border: none;
-            }
-          }
-        }
-      }
-    }
-    >.content {
-      display: -moz-box;
-      display: -webkit-box;
-      display: box;
-      -moz-box-orient: vertical;
-      -webkit-box-orient: vertical;
-      box-orient: vertical;
-      -moz-box-flex: 1;
-      -webkit-box-flex: 1;
-      box-flex: 1;
-      border: 1px solid @blue;
-      padding: 0;
-      >ui-view{
-        display: -moz-box;
-        display: -webkit-box;
-        display: box;
-        -moz-box-orient: vertical;
-        -webkit-box-orient: vertical;
-        box-orient: vertical;
-        -webkit-box-flex: 1;
-        >div,>section{
-          display: -moz-box;
-          display: -webkit-box;
-          display: box;
-          -moz-box-orient: vertical;
-          -webkit-box-orient: vertical;
-          box-orient: vertical;
-          -webkit-box-flex: 1;
-          .wiserv-ui{
-            display: -moz-box;
-            display: -webkit-box;
-            display: box;
-            -moz-box-orient: vertical;
-            -webkit-box-orient: vertical;
-            box-orient: vertical;
-            -webkit-box-flex: 1;
-            >.panel{
-              display: -moz-box;
-              display: -webkit-box;
-              display: box;
-              -moz-box-orient: vertical;
-              -webkit-box-orient: vertical;
-              box-orient: vertical;
-              -webkit-box-flex: 1;
-              >.panel-body{
-                -moz-box-flex: 1;
-                -webkit-box-flex: 1;
-                box-flex: 1;
-                overflow-y:overlay;
-              }
-            }
-          }
-        }
-      }
+  >#sidebar {
+    .glyphicon {
+      line-height: 40px !important;
     }
   }
 }

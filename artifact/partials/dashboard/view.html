@@ -1,36 +1,7 @@
-<div class='' id='index-page'>
-  <!--header-->
-  <div class='header'>
-    <div class=''>
-      <nav class="navbar">
-        <div class="navbar-header">
-          <a ui-sref="repository.dashboard" class="navbar-brand">
-            <img class='fa-logo' src='assets/images/login/court.png' alt='法院logo'/>&nbsp;法官判案智能辅助系统
-          </a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li >
-              <a>
-                <span class="glyphicon glyphicon-user"></span>&nbsp;个人中心
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-  <!--./header-->
-
+<div id='dashboard'>
   <!--banner-->
   <div class='banner'>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <!-- <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol> -->
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
@@ -41,7 +12,7 @@
             <h4>通过同步或者输入法院审管系统案件信息，系统自动生成与案件相关的文字准确、格式规范的裁判文书。</h4>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-demo">观看演示</button>
-              <button type="button" class="btn btn-sm btn-use">立即使用</button>
+              <button type="button" class="btn btn-sm btn-use" ui-sref='judgment.case_list'>立即使用</button>
             </div>
           </div>
         </div>

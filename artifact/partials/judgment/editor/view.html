@@ -20,23 +20,24 @@
       </ul>
       <ul class="access pull-right">
         <li>
-          <button ng-click='$close(result)' class="btn btn-primary">
-            <i class="glyphicon glyphicon-remove">&nbsp;关闭</i>
+          <button ui-sref='judgment.case_list' class="btn btn-primary">
+            <i class="glyphicon glyphicon-share-alt">&nbsp;返回</i>
           </button>
         </li>
       </ul>
     </div>
     <div class="panel-body">
       <section class='editor'>
-        <menu class="left">
-          <treecontrol class="tree-classic"
+        <div class="left">
+          <br />
+          <treecontrol class="tree-light"
              expanded-nodes="[Editor.treeData[0],Editor.treeData[1], Editor.treeData[2], Editor.treeData[3] ,Editor.treeData[4] ,Editor.treeData[5], Editor.treeData[6]]"
              tree-model="Editor.treeData"
              options="Editor.treeOptions"
              on-selection="showSelected(node)">
              <a ng-click="Editor.goto(node.id)">{{node.name}}</a>
           </treecontrol>
-        </menu>
+        </div>
         <div class="center">
           <div id='judgment' style="text-align: justify">
             <style>
@@ -199,17 +200,36 @@
               <uib-accordion close-others=false>
                 <div heading='案件推荐裁判文书' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab ng-repeat='proposal in Editor.proposals' index="$index" heading="{{proposal.templateArticle}}">{{proposal.templateArticle}}</uib-tab>
+                    <uib-tab index="$index"
+                      ng-repeat='proposal in Editor.proposals'
+                      heading="{{proposal.similarity}} {{proposal.templateArticle | limitTo:30}}">
+                      <div class="content">
+                        {{proposal.templateArticle}}
+                      </div>
+                    </uib-tab>
                   </uib-tabset>
-                  <button type="button" class="quote btn btn-info btn-xs">引&nbsp;用</button>
                 </div>
-                <div  heading='案件关联法条' uib-accordion-group class="panel-default" is-open=true>
+                <div class='lawitem' heading='案件关联法条' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab ng-repeat='lawItem in Editor.lawItems' index="$index" heading="{{lawItem.case_accord}}">{{lawItem.case_accord}}</uib-tab>
+                    <uib-tab index="$index"
+                    ng-repeat='lawItem in Editor.lawItems'
+                    heading="{{lawItem.case_accord | limitTo:20 }}">
+                    <div class="content">
+                      {{lawItem.case_accord}}
+                    </div>
+                  </uib-tab>
                   </uib-tabset>
                 </div>
                 <div heading='同类案例' uib-accordion-group class="panel-default" is-open=true>
-                  test
+                  <uib-tabset active="activePill" vertical="true" type="pills">
+                    <uib-tab index="$index"
+                    ng-repeat='similarCase in Editor.similarCases'
+                    heading="{{similarCase | limitTo:20 }}">
+                    <div class="content">
+                      {{similarCase}}
+                    </div>
+                  </uib-tab>
+                  </uib-tabset>
                 </div>
               </uib-accordion>
             </uib-tab>

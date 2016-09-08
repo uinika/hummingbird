@@ -1,18 +1,16 @@
 <div id='frame'>
-  <section id='navbar'>
-    <nav class="navbar navbar-inverse">
+  <section id='navigator'>
+    <nav class="navbar navbar-default">
       <div class="navbar-header">
-        <a ui-sref="repository.dashboard" class="navbar-brand">
-          <span class="glyphicon glyphicon-home">&nbsp;法官判案智能辅助系统</span>
+        <a class="navbar-brand logo" wiserv-sidebar>
+          <span class="image"></span>
+          <span class="text">法官判案智能辅助系统</span>
         </a>
       </div>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-left breadcrumb">
-          <li><a href="#">系统管理</a></li>
-          <li><a href="#">用户管理</a></li>
-          <li class="active">权限管理</li>
+        <ul class="navbar-left">
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="admin nav navbar-nav navbar-right">
           <li class="dropdown" uib-dropdown dropdown-append-to-body>
             <a uib-dropdown-toggle class="dropdown-toggle">
               <span class="glyphicon glyphicon-user">&nbsp;系统管理员</span>
@@ -35,102 +33,104 @@
     </nav>
   </section>
 
-  <section id="main">
-    <div class='menu'>
-      <ul class="metismenu" wiserv-menu>
-        <li ui-sref-active="active" class="active">
-          <a ui-sref="dashboard">
-            <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
-          </a>
-        </li>
-        <li ui-sref-active="active">
-          <a aria-expanded="true">
-            <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
-            <span class="glyphicon arrow"></span>
-          </a>
-          <ul aria-expanded="true">
-            <li ui-sref-active="active">
-              <a ui-sref="judgment.case_list" >
-                <span class="glyphicon glyphicon-grain">&nbsp;案件信息列表</span>
-              </a>
-            </li>
-            <li ui-sref-active="active">
-              <a ui-sref="judgment.doc_list" >
-                <span class="glyphicon glyphicon-grain">&nbsp;裁判文书列表</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li ui-sref-active="active">
-          <a>
-            <span class="glyphicon glyphicon-grain">&nbsp;知识库</span>
-            <span class="glyphicon arrow"></span>
-          </a>
-          <ul aria-expanded="true">
-            <li ui-sref-active="active">
-              <a ui-sref="repository.repositoryStatistic">
-                <span class="glyphicon glyphicon-grain">&nbsp;统计</span>
-              </a>
-            </li>
-            <li ui-sref-active="active">
-              <a ui-sref="repository.repositorySearch">
-                <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
-              </a>
-            </li>
-            <li ui-sref-active="active">
-              <a ui-sref="repository.repositoryLaws">
-                <span class="glyphicon glyphicon-grain">&nbsp;法条库</span>
-              </a>
-              <ul aria-expanded="true">
-                <li ui-sref-active="active">
-                  <a ui-sref="repository.lawsStructure">
-                    <span class="glyphicon glyphicon-grain">&nbsp;结构</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li ui-sref-active="active">
-              <a ui-sref="repository.repositorySummary">
-                <span class="glyphicon glyphicon-grain">&nbsp;案由库</span>
-              </a>
-              <ul aria-expanded="true">
-                <li ui-sref-active="active">
-                  <a ui-sref="repository.summaryStructure">
-                    <span class="glyphicon glyphicon-grain">&nbsp;结构</span>
-                  </a>
-                </li>
-                <li ui-sref-active="active">
-                  <a ui-sref="repository.summaryExplain">
-                    <span class="glyphicon glyphicon-grain">&nbsp;解释</span>
-                  </a>
-                </li>
-                <li ui-sref-active="active">
-                  <a ui-sref="repository.summaryRule">
-                    <span class="glyphicon glyphicon-grain">&nbsp;法规</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li ui-sref-active="active">
-              <a ui-sref="repository.judgementLib">
-                <span class="glyphicon glyphicon-grain">&nbsp;裁判文书库</span>
-              </a>
-              <ul aria-expanded="true">
-                <li ui-sref-active="active">
-                  <a ui-sref="repository.judgementLibSearch">
-                    <span class="glyphicon glyphicon-grain">&nbsp;分类</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+  <section id="sidebar">
+    <ul class='menu'>
+      <li ui-sref-active="active">
+        <a ui-sref="dashboard">
+          <span class="glyphicon glyphicon-th">&nbsp;系统概览</span>
+          <span class="name"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a aria-expanded="true">
+          <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
+          <span class="glyphicon arrow"></span>
+        </a>
+        <ul aria-expanded="true">
+          <li ui-sref-active="active">
+            <a ui-sref="judgment.case_list" >
+              <span class="glyphicon glyphicon-grain">&nbsp;案件信息列表</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="judgment.doc_list" >
+              <span class="glyphicon glyphicon-grain">&nbsp;裁判文书列表</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li ui-sref-active="active">
+        <a>
+          <span class="glyphicon glyphicon-grain">&nbsp;知识库</span>
+          <span class="glyphicon arrow"></span>
+        </a>
+        <ul aria-expanded="true">
+          <li ui-sref-active="active">
+            <a ui-sref="repository.repositoryStatistic">
+              <span class="glyphicon glyphicon-grain">&nbsp;统计</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="repository.repositorySearch">
+              <span class="glyphicon glyphicon-grain">&nbsp;裁判文书</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="repository.repositoryLaws">
+              <span class="glyphicon glyphicon-grain">&nbsp;法条库</span>
+            </a>
+            <ul aria-expanded="true">
+              <li ui-sref-active="active">
+                <a ui-sref="repository.lawsStructure">
+                  <span class="glyphicon glyphicon-grain">&nbsp;结构</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="repository.repositorySummary">
+              <span class="glyphicon glyphicon-grain">&nbsp;案由库</span>
+            </a>
+            <ul aria-expanded="true">
+              <li ui-sref-active="active">
+                <a ui-sref="repository.summaryStructure">
+                  <span class="glyphicon glyphicon-grain">&nbsp;结构</span>
+                </a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="repository.summaryExplain">
+                  <span class="glyphicon glyphicon-grain">&nbsp;解释</span>
+                </a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="repository.summaryRule">
+                  <span class="glyphicon glyphicon-grain">&nbsp;法规</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="repository.judgementLib">
+              <span class="glyphicon glyphicon-grain">&nbsp;裁判文书库</span>
+            </a>
+            <ul aria-expanded="true">
+              <li ui-sref-active="active">
+                <a ui-sref="repository.judgementLibSearch">
+                  <span class="glyphicon glyphicon-grain">&nbsp;分类</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-    <div class="content" ui-view></div>
-
-  </div>
+  <section id="content" ui-view>
+    <!--
+    Main Content
+    -->
+  </section>
 
 
 </div>
