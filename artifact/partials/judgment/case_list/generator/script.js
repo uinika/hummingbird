@@ -2,8 +2,8 @@
   var module = angular.module('app.judgment');
 
   module.controller('JudgmentGeneratorController', [
-    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService', '$location', '$anchorScroll', '$alert',
-    function($scope, TreeData, TreeOptions, judgmentGeneratorService, $location, $anchorScroll, $alert) {
+    '$scope', 'TreeData', 'TreeOptions', 'judgmentGeneratorService', '$location', '$anchorScroll',
+    function($scope, TreeData, TreeOptions, judgmentGeneratorService, $location, $anchorScroll) {
       var vm = this;
       // Config for Tree
       vm.treeOptions = TreeOptions;
@@ -15,22 +15,28 @@
       };
       // Initial Template
       vm.targetJudgment = $scope.CaseList.targetJudgment;
+      console.log(vm.targetJudgment);
       if ( vm.targetJudgment ) {
         judgmentGeneratorService.getJudgmentTemplate(vm.targetJudgment)
         .then(function(data) {
            var target = data.body[0];
            vm.targetTemplate = target;
            vm.article = target.templateArticle;
+        });
+        judgmentGeneratorService.fetchLawItem({
+          causeOfAction: vm.targetJudgment.causeOfAction
         })
+        .then(function(data) {
+           vm.lawItems = data.body;
+        });
       };
       // Match Judgment
       vm.match = function(target, part) {
         judgmentGeneratorService.matchJudgment(target, part)
         .then(function(data){
           vm.proposals = data.body;
-          console.log(data.body);
         })
-      }
+      };
       // Save Judgment
       vm.save = function() {
         judgmentGeneratorService.saveJudgmentTemplate({
@@ -74,7 +80,8 @@
         getJudgmentTemplate: getJudgmentTemplate,
         saveJudgmentTemplate: saveJudgmentTemplate,
         exportJudgmentDoc: exportJudgmentDoc,
-        matchJudgment: matchJudgment
+        matchJudgment: matchJudgment,
+        fetchLawItem: fetchLawItem
       }
       // Get Judgment Content
       function getJudgmentTemplate(params) {
@@ -120,8 +127,7 @@
             if(validate(result.data, 200)){
               return result.data;
             }
-          });
-          break;
+          }); break;
           case 'reason':
           return $http.post(
             URL + '/verdict/reason', { articleContent: target }
@@ -129,8 +135,7 @@
             if(validate(result.data, 200)){
               return result.data;
             }
-          });
-          break;
+          }); break;
           case 'caseMain':
           return $http.post(
             URL + '/verdict/case/main', { articleContent: target }
@@ -138,10 +143,21 @@
             if(validate(result.data, 200)){
               return result.data;
             }
-          });
-          break;
+          }); break;
         }
       };
+      // Fetch Low Item
+      function fetchLawItem(params) {
+        return $http.get(
+          URL + '/case/brief/find/laws', { params: params }
+        )
+        .then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
+
     }
   ]);
 

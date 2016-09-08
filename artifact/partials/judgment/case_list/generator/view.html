@@ -205,11 +205,7 @@
                 </div>
                 <div  heading='案件关联法条' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab index="0" heading="案件关联法条 1">详细内容 1</uib-tab>
-                    <uib-tab index="1" heading="案件关联法条 2">详细内容 2</uib-tab>
-                    <uib-tab index="3" heading="案件关联法条 3">详细内容 3</uib-tab>
-                    <uib-tab index="4" heading="案件关联法条 4">详细内容 4</uib-tab>
-                    <uib-tab index="5" heading="案件关联法条 5">详细内容 5</uib-tab>
+                    <uib-tab ng-repeat='lawItem in Generator.lawItems' index="$index" heading="{{lawItem.case_accord}}">{{lawItem.case_accord}}</uib-tab>
                   </uib-tabset>
                 </div>
                 <div heading='同类案例' uib-accordion-group class="panel-default" is-open=true>
