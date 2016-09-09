@@ -11,22 +11,9 @@
             <button type='button' ng-click='statistic.search()' class='btn-search'>搜索</button>
           </div>
           <div class='suggest-result' ng-show='statistic.resultShow && statistic.keyword'>
-            <div class='search-type'>案由</div>
-            <ul>
-              <li ng-click='statistic.writeback($event)'>证券纠纷</li>
-              <li ng-click='statistic.writeback($event)'>遗赠纠纷</li>
-              <li ng-click='statistic.writeback($event)'>抚养纠纷</li>
-              <li ng-click='statistic.writeback($event)'>垄断纠纷</li>
-            </ul>
-            <div class='search-type'>关键词</div>
-            <ul>
-              <li ng-click='statistic.writeback($event)'>债务纠纷</li>
-              <li ng-click='statistic.writeback($event)'>劳务纠纷</li>
-              <li ng-click='statistic.writeback($event)'>遗产继承纠纷</li>
-            </ul>
-            <div class='search-type'>法律依据</div>
-            <ul>
-              <li>最高人民法院关于参照《医疗事故处理条例》审理医疗纠纷民事案件的通知</li>
+            <div class='search-type' ng-repeat-start='obj in statistic.suggest'>{{obj.tableType}}</div>
+            <ul ng-repeat-end>
+              <li ng-repeat='item in obj.autoFillInfo' data-type={{obj.tableType}} ng-click='statistic.writeback($event)'>{{item}}</li>
             </ul>
           </div>
         </div>
@@ -37,10 +24,10 @@
               <span class='item-text'>
                 <p class='head-title'>法条库</p>
                 <p>共
-                  <strong>1233245</strong>
+                  <strong>{{statistic.data.fa_tiao}}</strong>
                   条</p>
                 <p>今日新增
-                  <strong>24353</strong>
+                  <strong>{{statistic.today.fa_tiao}}</strong>
                   条</p>
               </span>
             </li>
@@ -49,10 +36,10 @@
               <span class='item-text'>
                 <p class='head-title'>案由库</p>
                 <p>共
-                  <strong>1233245</strong>
+                  <strong>{{statistic.data.an_you}}</strong>
                   条</p>
                 <p>今日新增
-                  <strong>24353</strong>
+                  <strong>{{statistic.today.an_you}}</strong>
                   条</p>
               </span>
             </li>
@@ -61,10 +48,10 @@
               <span class='item-text'>
                 <p class='head-title'>裁判文书库</p>
                 <p>共
-                  <strong>1233245</strong>
+                  <strong>{{statistic.data.wen_shu}}</strong>
                   条</p>
                 <p>今日新增
-                  <strong>24353</strong>
+                  <strong>{{statistic.today.wen_shu}}</strong>
                   条</p>
               </span>
             </li>
