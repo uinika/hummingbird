@@ -27,5 +27,29 @@ Router.route('/verdict/export/word')
     protocal.head.message = 'http response sucess';
     response.json(protocal);
 });
+// Editor
+// Match
+Router.route('/verdict/fact/result')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/verdict-fact-result.json'));
+});
+Router.route('/verdict/reason')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/verdict-reason.json'));
+});
+Router.route('/verdict/case/main')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/verdict-case-main.json'));
+});
+// Low Item
+Router.route('/case/brief/find/laws')
+  .get(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/case-brief-find-laws.json'));
+});
+// Similar Case
+Router.route('/case/similar/verdict')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/case-similar-verdict.json'));
+});
 /** Module export */
 module.exports = Router;
