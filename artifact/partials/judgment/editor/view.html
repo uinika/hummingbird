@@ -213,7 +213,7 @@
                   <uib-tabset active="activePill" vertical="true" type="pills">
                     <uib-tab index="$index"
                     ng-repeat='lawItem in Editor.lawItems'
-                    heading="{{lawItem.case_accord | limitTo:20 }}">
+                    heading="{{lawItem.case_accord | limitTo:30 }}">
                     <div class="content">
                       {{lawItem.case_accord}}
                     </div>
@@ -224,9 +224,9 @@
                   <uib-tabset active="activePill" vertical="true" type="pills">
                     <uib-tab index="$index"
                     ng-repeat='similarCase in Editor.similarCases'
-                    heading="{{similarCase | limitTo:20 }}">
+                    heading="{{similarCase.similarity}} {{similarCase.orgText | limitTo:30 }}">
                     <div class="content">
-                      {{similarCase}}
+                      {{similarCase.orgText}}
                     </div>
                   </uib-tab>
                   </uib-tabset>

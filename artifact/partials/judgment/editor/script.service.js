@@ -90,7 +90,7 @@
     // Fetch Similar Case
     function fetchSimilarCase(data) {
       return $http.post(
-        URL + '/case/similar/verdict', data
+        URL + '/case/similar/verdict', { articleContent: data }
       )
       .then(function(result){
         if(validate(result.data, 200)){
