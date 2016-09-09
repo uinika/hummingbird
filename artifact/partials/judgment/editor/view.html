@@ -197,12 +197,12 @@
               </uib-accordion>
             </uib-tab>
             <uib-tab index="2" heading="案件推荐信息">
-              <uib-accordion close-others=false>
+              <uib-accordion>
                 <div heading='案件推荐裁判文书' uib-accordion-group class="panel-default" is-open=true>
                   <uib-tabset active="activePill" vertical="true" type="pills">
                     <uib-tab index="$index"
                       ng-repeat='proposal in Editor.proposals'
-                      heading="{{proposal.similarity}} {{proposal.templateArticle | limitTo:30}}">
+                      heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
                       <div class="content">
                         {{proposal.templateArticle}}
                       </div>
@@ -224,7 +224,7 @@
                   <uib-tabset active="activePill" vertical="true" type="pills">
                     <uib-tab index="$index"
                     ng-repeat='similarCase in Editor.similarCases'
-                    heading="{{similarCase.similarity}} {{similarCase.orgText | limitTo:30 }}">
+                    heading="【{{similarCase.similarity}}】 {{similarCase.caseTitle}} ({{similarCase.judgeDate}})">
                     <div class="content">
                       {{similarCase.orgText}}
                     </div>
