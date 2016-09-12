@@ -48,6 +48,10 @@
           flex: 4;
           margin: 0 0 0 -1px;
           padding: 0;
+          .split {
+            height: 1px;
+            .clean;
+          }
           .nav-item {
             font-size: 12px;
           }
@@ -95,6 +99,14 @@
             padding: 10px 15px;
             text-indent: 2em;
             line-height: 1.6em;
+            cursor: pointer;
+          }
+          .content:hover {
+            background: @yellow;
+          }
+          .content:active {
+            font-weight: bold;
+            text-decoration: underline;
           }
         }
       }

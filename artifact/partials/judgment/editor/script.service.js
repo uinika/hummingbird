@@ -9,7 +9,9 @@
       getJudgmentTemplate: getJudgmentTemplate,
       saveJudgmentTemplate: saveJudgmentTemplate,
       exportJudgmentDoc: exportJudgmentDoc,
-      matchJudgment: matchJudgment,
+      matchByFactResult: matchByFactResult,
+      matchByReason: matchByReason,
+      matchByCaseMain: matchByCaseMain,
       fetchLawItem: fetchLawItem,
       fetchSimilarCase: fetchSimilarCase
     }
@@ -48,33 +50,32 @@
       })
     };
     // Match all Judgment
-    function matchJudgment(target, part) {
-      switch(part) {
-        case 'factResult':
-        return $http.post(
-          URL + '/verdict/fact/result', { articleContent: target }
-        ).then(function(result){
-          if(validate(result.data, 200)){
-            return result.data;
-          }
-        }); break;
-        case 'reason':
-        return $http.post(
-          URL + '/verdict/reason', { articleContent: target }
-        ).then(function(result){
-          if(validate(result.data, 200)){
-            return result.data;
-          }
-        }); break;
-        case 'caseMain':
-        return $http.post(
-          URL + '/verdict/case/main', { articleContent: target }
-        ).then(function(result){
-          if(validate(result.data, 200)){
-            return result.data;
-          }
-        }); break;
-      }
+    function matchByFactResult(target) {
+      return $http.post(
+        URL + '/verdict/fact/result', { articleContent: target }
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
+    };
+    function matchByReason(target) {
+      return $http.post(
+        URL + '/verdict/reason', { articleContent: target }
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
+    };
+    function matchByCaseMain(target) {
+      return $http.post(
+        URL + '/verdict/case/main', { articleContent: target }
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
     };
     // Fetch Low Item
     function fetchLawItem(params) {

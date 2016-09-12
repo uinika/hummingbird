@@ -102,7 +102,8 @@
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-事实"
                  id="factResult"
-                 ng-dblclick = "Editor.match(
+                 ng-click = "Editor.openStatus.isFactResult = !Editor.openStatus.isFactResult"
+                 ng-dblclick = "Editor.matchFactResult(
                       Editor.article.parties.caseGeneral
                     + Editor.article.fact.claims
                     + Editor.article.fact.argued
@@ -112,7 +113,8 @@
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="理由"
                  id="reason"
-                 ng-dblclick = "Editor.match(
+                 ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
+                 ng-dblclick = "Editor.matchReason(
                       Editor.article.parties.caseGeneral
                     + Editor.article.fact.claims
                     + Editor.article.fact.argued
@@ -123,7 +125,8 @@
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="裁判主文"
                  id="caseMain"
-                 ng-dblclick = "Editor.match(
+                 ng-click = "Editor.openStatus.isCaseMain = !Editor.openStatus.isCaseMain"
+                 ng-dblclick = "Editor.matchCaseMain(
                        Editor.article.parties.caseGeneral
                      + Editor.article.fact.claims
                      + Editor.article.fact.argued
@@ -163,78 +166,92 @@
           </div>
         </div>
         <menu class="right">
-          <uib-tabset active="activeJustified" justified="true">
-            <uib-tab index="1" heading="案件基本信息">
-              <uib-accordion close-others=false>
-                <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
-                  <div class="list-group">
-                    <a class="list-group-item">案件名称：{{Editor.targetJudgment.lawCaseTitle}}</a>
-                    <a class="list-group-item">审理程序：{{Editor.targetJudgment.targetJudgment}}</a>
-                    <a class="list-group-item">案件类型：{{Editor.targetJudgment.category}}</a>
-                    <a class="list-group-item">案由：{{Editor.targetJudgment.causeOfAction}}</a>
-                    <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
+          <p class='split'></p>
+          <uib-accordion close-others=true>
+            <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
+              <div class="list-group">
+                <a class="list-group-item">案件名称：{{Editor.targetJudgment.lawCaseTitle}}</a>
+                <a class="list-group-item">审理程序：{{Editor.targetJudgment.targetJudgment}}</a>
+                <a class="list-group-item">案件类型：{{Editor.targetJudgment.category}}</a>
+                <a class="list-group-item">案由：{{Editor.targetJudgment.causeOfAction}}</a>
+                <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
+              </div>
+            </div>
+            <div heading='推荐文书 - (经审理查明)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isFactResult">
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                  ng-repeat='proposal in Editor.proposalsFactResult'
+                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
+                  <div class="content" ng-click='Editor.transferFactResult(proposal.templateArticle)'>
+                    {{proposal.templateArticle}}
                   </div>
+                </uib-tab>
+              </uib-tabset>
+            </div>
+            <div heading='推荐文书 - (本院认为)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                  ng-repeat='proposal in Editor.proposalsReason'
+                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
+                  <div class="content">
+                    {{proposal.templateArticle}}
+                  </div>
+                </uib-tab>
+              </uib-tabset>
+            </div>
+            <div heading='推荐文书 - (裁判主文内容)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isCaseMain">
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                  ng-repeat='proposal in Editor.proposalsCaseMain'
+                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
+                  <div class="content" ng-click='Editor.transferCaseMain(proposal.templateArticle)'>
+                    {{proposal.templateArticle}}
+                  </div>
+                </uib-tab>
+              </uib-tabset>
+            </div>
+            <div class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                ng-repeat='lawItem in Editor.lawItems'
+                heading="{{lawItem.case_accord | limitTo:30 }}">
+                <div class="content">
+                  {{lawItem.case_accord}}
                 </div>
-                <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
-                  <uib-tabset active="active">
-                    <uib-tab index="0" heading="起诉书">
-                      <div class="material"><img src="/assets/images/demo/material-1.jpg"></div>
-                    </uib-tab>
-                    <uib-tab index="1" heading="原告身份证明">
-                      <div class="material"><img src="/assets/images/demo/material-2.jpg"></div>
-                    </uib-tab>
-                    <uib-tab index="3" heading="委托代理人证明">
-                      <div class="material"><img src="/assets/images/demo/material-3.jpg"></div>
-                    </uib-tab>
-                    <uib-tab index="4" heading="起诉事项证明材料">
-                      <div class="material"><img src="/assets/images/demo/material-4.jpg"></div>
-                    </uib-tab>
-                    <uib-tab index="5" heading="证据材料">
-                      <div class="material"><img src="/assets/images/demo/material-5.jpg"></div>
-                    </uib-tab>
-                  </uib-tabset>
+              </uib-tab>
+              </uib-tabset>
+            </div>
+            <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
+              <uib-tabset active="active">
+                <uib-tab index="0" heading="起诉书">
+                  <div class="material"><img src="/assets/images/demo/material-1.jpg"></div>
+                </uib-tab>
+                <uib-tab index="1" heading="原告身份证明">
+                  <div class="material"><img src="/assets/images/demo/material-2.jpg"></div>
+                </uib-tab>
+                <uib-tab index="3" heading="委托代理人证明">
+                  <div class="material"><img src="/assets/images/demo/material-3.jpg"></div>
+                </uib-tab>
+                <uib-tab index="4" heading="起诉事项证明材料">
+                  <div class="material"><img src="/assets/images/demo/material-4.jpg"></div>
+                </uib-tab>
+                <uib-tab index="5" heading="证据材料">
+                  <div class="material"><img src="/assets/images/demo/material-5.jpg"></div>
+                </uib-tab>
+              </uib-tabset>
+            </div>
+            <div heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                ng-repeat='similarCase in Editor.similarCases'
+                heading="【{{similarCase.similarity}}】 {{similarCase.caseTitle}} ({{similarCase.judgeDate}})">
+                <div class="content">
+                  {{similarCase.orgText}}
                 </div>
-              </uib-accordion>
-            </uib-tab>
-            <uib-tab index="2" heading="案件推荐信息">
-              <uib-accordion>
-                <div heading='案件推荐裁判文书' uib-accordion-group class="panel-default" is-open=true>
-                  <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab index="$index"
-                      ng-repeat='proposal in Editor.proposals'
-                      heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
-                      <div class="content">
-                        {{proposal.templateArticle}}
-                      </div>
-                    </uib-tab>
-                  </uib-tabset>
-                </div>
-                <div class='lawitem' heading='案件关联法条' uib-accordion-group class="panel-default" is-open=true>
-                  <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab index="$index"
-                    ng-repeat='lawItem in Editor.lawItems'
-                    heading="{{lawItem.case_accord | limitTo:30 }}">
-                    <div class="content">
-                      {{lawItem.case_accord}}
-                    </div>
-                  </uib-tab>
-                  </uib-tabset>
-                </div>
-                <div heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
-                  <uib-tabset active="activePill" vertical="true" type="pills">
-                    <uib-tab index="$index"
-                    ng-repeat='similarCase in Editor.similarCases'
-                    heading="【{{similarCase.similarity}}】 {{similarCase.caseTitle}} ({{similarCase.judgeDate}})">
-                    <div class="content">
-                      {{similarCase.orgText}}
-                    </div>
-                  </uib-tab>
-                  </uib-tabset>
-                </div>
-              </uib-accordion>
-            </uib-tab>
-          </uib-tabset>
-
+              </uib-tab>
+              </uib-tabset>
+            </div>
+          </uib-accordion>
         </menu>
       </section>
       <!--

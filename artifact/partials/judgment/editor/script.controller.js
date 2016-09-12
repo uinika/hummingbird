@@ -14,6 +14,11 @@
       toolbar:false,
       spellcheck: false
     };
+    vm.openStatus = {
+      isFactResult: false,
+      isReason: false,
+      isCaseMain: false
+    };
     // Initial Template
     vm.targetJudgment = JSON.parse(sessionStorage.targetJudgment);
     if ( vm.targetJudgment ) {
@@ -24,7 +29,28 @@
          vm.targetTemplate = target;
          vm.article = target.templateArticle;
          // Init match judgment
-         editorService.matchJudgment((function(){
+         editorService.matchByFactResult((function(){
+           var httpParam = vm.article.parties.caseGeneral
+             + vm.article.fact.claims
+             + vm.article.fact.argued
+             + vm.article.fact.factResult
+             return httpParam
+         })())
+         .then(function(data){
+           vm.proposalsFactResult = data.body;
+         });
+         editorService.matchByReason((function(){
+           var httpParam = vm.article.parties.caseGeneral
+             + vm.article.fact.claims
+             + vm.article.fact.argued
+             + vm.article.fact.factResult
+             + vm.article.reason
+             return httpParam
+         })())
+         .then(function(data){
+           vm.proposalsReason = data.body;
+         });
+         editorService.matchByCaseMain((function(){
            var httpParam = vm.article.parties.caseGeneral
              + vm.article.fact.claims
              + vm.article.fact.argued
@@ -32,9 +58,9 @@
              + vm.article.reason
              + vm.article.caseMain
              return httpParam
-         })(), 'caseMain')
+         })())
          .then(function(data){
-           vm.proposals = data.body;
+           vm.proposalsCaseMain = data.body;
          });
          // Init similar case
          editorService.fetchSimilarCase((function(){
@@ -59,11 +85,32 @@
 
     };
     // Match Judgment
-    vm.match = function(target, part) {
-      editorService.matchJudgment(target, part)
+    vm.matchFactResult = function(target) {
+      editorService.matchByFactResult(target)
       .then(function(data){
-        vm.proposals = data.body;
+        vm.proposalsFactResult = data.body;
       })
+    };
+    vm.matchReason = function(target) {
+      editorService.matchByReason(target)
+      .then(function(data){
+        vm.proposalsReason = data.body;
+      })
+    };
+    vm.matchCaseMain = function(target) {
+      editorService.matchByCaseMain(target)
+      .then(function(data){
+        vm.proposalsCaseMain = data.body;
+      })
+    };
+    // Transfer
+    vm.transferFactResult = function(target) {
+      console.log(target);
+      vm.article.fact.factResult = target;
+    };
+    vm.transferCaseMain = function(target) {
+      console.log(target);
+        vm.article.caseMain = target;
     };
     // Save Judgment
     vm.save = function() {
