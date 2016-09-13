@@ -35,7 +35,7 @@
         }
         .center {
           background: url("/assets/images/judgment/paper.png");
-          flex: 156mm;
+          flex: 190mm;
           height: 100%;
           padding: 1em;
           border: 1px solid @gray;
@@ -45,7 +45,7 @@
           }
         }
         .right {
-          flex: 4;
+          flex: 3;
           margin: 0 0 0 -1px;
           padding: 0;
           .split {
@@ -62,6 +62,12 @@
             background: @dark-gray;
             color: @black;
           }
+          .list-group {
+            .clean;
+            .list-group-item {
+              cursor: pointer;
+            }
+          }
           .material {
             display: flex;
             flex-direction: row;
@@ -71,10 +77,6 @@
               width: 30%;
               margin: 12px;
             }
-          }
-          .quote {
-            display: inline-block;
-            width: 100%;
           }
           .panel-group {
             margin: 0;
@@ -99,7 +101,7 @@
             padding: 10px 15px;
             text-indent: 2em;
             line-height: 1.6em;
-            cursor: pointer;
+            cursor: w-resize;
           }
           .content:hover {
             background: @yellow;
@@ -107,6 +109,17 @@
           .content:active {
             font-weight: bold;
             text-decoration: underline;
+          }
+          .similarCases {
+            .content {
+              cursor: text;
+              max-height: 250px;
+              overflow-y: scroll;
+            }
+            .content:active {
+              font-weight: normal;
+              text-decoration: none;
+            }
           }
         }
       }

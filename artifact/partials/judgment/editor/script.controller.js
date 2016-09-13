@@ -2,9 +2,9 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['editorConstant', 'editorService', '$location', '$anchorScroll'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$location', '$anchorScroll', '$uibModal'];
 
-  function EditorController(editorConstant, editorService, $location, $anchorScroll) {
+  function EditorController(editorConstant, editorService, $location, $anchorScroll, $uibModal) {
     var vm = this;
     /* Constant */
     vm.treeData = editorConstant.TreeData;
@@ -20,15 +20,22 @@
     vm.proposalsFactResult = [];
     vm.proposalsReason = [];
     vm.proposalsCaseMain = [];
+    vm.selectedSimilarCase = {};
     vm.selectedReason = '';
+    vm.selectedFactResult = '';
+    vm.selectedCaseMain = '';
     /* Event */
+    vm.selectSimilarCase = selectSimilarCase;
     vm.matchFactResult = matchFactResult;
-    vm.matchCaseMain = matchCaseMain;
+    vm.selectFactResult = selectFactResult;
     vm.transferFactResult = transferFactResult;
+    vm.matchCaseMain = matchCaseMain;
+    vm.selectCaseMain = selectCaseMain;
+    vm.transferCaseMain = transferCaseMain;
     vm.saveJudgment = saveJudgment;
     vm.jumpToSection = jumpToSection;
     vm.exportWORD = exportWORD;
-    vm.switchReason = switchReason;
+    vm.selectReason = selectReason;
     vm.transferReason = transferReason;
     /* Initial */
     activate();
@@ -81,36 +88,41 @@
       };
     }
     /* Match by FactResult */
-    function matchFactResult (target) {
-      editorService.matchByFactResult(target)
+    function matchFactResult (factResult) {
+      editorService.matchByFactResult(factResult)
       .then(function(data){
         vm.proposalsFactResult = data.body;
       })
     };
-    /* Match by Reason */
-    function matchReason(target) {
-      editorService.matchByReason(target)
-      .then(function(data){
-        vm.proposalsReason = data.body;
-      })
+    function selectFactResult(factResult) {
+      vm.selectedFactResult = factResult ? factResult : '暂无内容，请继续输入条件';
+    }
+    function transferFactResult(factResult) {
+      vm.template.templateArticle.fact.factResult = factResult;
     };
     /* Match by CaseMain */
-    function matchCaseMain(target) {
-      editorService.matchByCaseMain(target)
+    function matchCaseMain(caseMain) {
+      editorService.matchByCaseMain(caseMain)
       .then(function(data){
         vm.proposalsCaseMain = data.body;
       })
     };
-    /* Append factResult to Editor */
-    function transferFactResult(target) {
-      console.log(target);
-      vm.template.templateArticle.fact.factResult = target;
+    function selectCaseMain(caseMain) {
+      vm.selectedCaseMain = caseMain ? caseMain : '暂无内容，请继续输入条件';
     };
-    vm.transferCaseMain =
-    /* Append caseMain to Editor */
-    function transferCaseMain(target) {
-      console.log(target);
-        vm.template.templateArticle.caseMain = target;
+    function transferCaseMain(caseMain) {
+        vm.template.templateArticle.caseMain = caseMain;
+    };
+    /* Select similar case */
+    function selectSimilarCase(similarCase) {
+      vm.selectedSimilarCase = similarCase;
+    };
+    /* Reason's Tree & Transfer */
+    function selectReason(reason) {
+      vm.selectedReason = reason ? reason : '暂无内容，请继续选择下级条件';
+    };
+    function transferReason(reason) {
+      vm.template.templateArticle.reason = reason;
     };
     /* Save Judgment */
     function saveJudgment() {
@@ -145,12 +157,6 @@
         // console.log(data);
       })
     };
-    // Reason 's Tree & Transfer
-    function switchReason(reason) {
-      vm.selectedReason = reason ? reason : '暂无内容，请继续选择下级条件';
-    };
-    function transferReason(reason) {
-      vm.template.templateArticle.reason = reason;
-    };
+
   };
 })();

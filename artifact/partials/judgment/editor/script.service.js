@@ -14,7 +14,7 @@
       matchByCaseMain: matchByCaseMain,
       fetchLawItem: fetchLawItem,
       fetchSimilarCase: fetchSimilarCase
-    }
+    };
     // Get Judgment Content
     function getJudgmentTemplate(params) {
       return $http.get(
@@ -94,6 +94,7 @@
         }
       })
     };
+
   };
 
 

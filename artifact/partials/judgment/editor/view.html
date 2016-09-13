@@ -114,13 +114,6 @@
               <p data-placeholder="理由"
                  id="reason"
                  ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
-                 ng-dblclick = "Editor.matchReason(
-                      Editor.template.templateArticle.parties.caseGeneral
-                    + Editor.template.templateArticle.fact.claims
-                    + Editor.template.templateArticle.fact.argued
-                    + Editor.template.templateArticle.fact.factResult
-                    + Editor.template.templateArticle.reason,
-                  'reason')"
                  ng-model="Editor.template.templateArticle.reason"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="裁判主文"
@@ -177,38 +170,42 @@
                 <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
               </div>
             </div>
-            <div heading='推荐文书 - (经审理查明)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isFactResult">
-              <uib-tabset active="activePill" vertical="true" type="pills">
-                <uib-tab index="$index"
-                  ng-repeat='proposal in Editor.proposalsFactResult'
-                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
-                  <div class="content" ng-click='Editor.transferFactResult(proposal.templateArticle)'>
-                    {{proposal.templateArticle}}
-                  </div>
-                </uib-tab>
-              </uib-tabset>
+            <div class='' heading='推荐文书 - (经审理查明)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isFactResult">
+              <ul class="list-group">
+                <a class="list-group-item"
+                   ng-repeat='proposal in Editor.proposalsFactResult'
+                   ng-click = "Editor.selectFactResult(proposal.templateArticle)">
+                  <span class="badge">{{proposal.similarity}}</span>
+                  （{{$index+1}}）{{proposal.templateArticle|limitTo:30}}
+                </a>
+              </ul>
+              <div class="content" ng-click='Editor.transferFactResult(Editor.selectedFactResult)'>
+                {{Editor.selectedFactResult}}
+              </div>
             </div>
-            <div heading='推荐文书 - (本院认为)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
+            <div class='' heading='推荐文书 - (本院认为)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
               <treecontrol class="tree-classic"
                  tree-model="Editor.reasonTree"
                  options="Editor.reasonTreeOptions"
                  on-selection="showSelected(node)">
-                 <span ng-click='Editor.switchReason(node.conditonExplain)'>{{node.conditionName}}</span>
+                 <span ng-click='Editor.selectReason(node.conditonExplain)'>{{node.conditionName}}</span>
               </treecontrol>
               <div class="content" ng-click='Editor.transferReason(Editor.selectedReason)'>
                 {{Editor.selectedReason}}
               </div>
             </div>
-            <div heading='推荐文书 - (裁判主文内容)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isCaseMain">
-              <uib-tabset active="activePill" vertical="true" type="pills">
-                <uib-tab index="$index"
-                  ng-repeat='proposal in Editor.proposalsCaseMain'
-                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
-                  <div class="content" ng-click='Editor.transferCaseMain(proposal.templateArticle)'>
-                    {{proposal.templateArticle}}
-                  </div>
-                </uib-tab>
-              </uib-tabset>
+            <div class='' heading='推荐文书 - (裁判主文内容)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isCaseMain">
+              <ul class="list-group">
+                <a class="list-group-item"
+                   ng-repeat='proposal in Editor.proposalsCaseMain'
+                   ng-click = "Editor.selectCaseMain(proposal.templateArticle)">
+                  <span class="badge">{{proposal.similarity}}</span>
+                  （{{$index+1}}）{{proposal.templateArticle|limitTo:30}}
+                </a>
+              </ul>
+              <div class="content" ng-click='Editor.transferCaseMain(Editor.selectedCaseMain)'>
+                {{Editor.selectedCaseMain}}
+              </div>
             </div>
             <div class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
               <uib-tabset active="activePill" vertical="true" type="pills">
@@ -220,6 +217,19 @@
                 </div>
               </uib-tab>
               </uib-tabset>
+            </div>
+            <div class='similarCases' heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
+              <ul class="list-group">
+                <a class="list-group-item"
+                   ng-repeat='similarCase in Editor.similarCases'
+                   ng-click = "Editor.selectSimilarCase(similarCase)">
+                  <span class="badge">{{similarCase.similarity}}</span>
+                  （{{$index+1}}）{{similarCase.caseTitle}} ({{similarCase.judgeDate}})
+                </a>
+              </ul>
+              <div class="content">
+                {{Editor.selectedSimilarCase.orgText}}
+              </div>
             </div>
             <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
               <uib-tabset active="active">
@@ -238,17 +248,6 @@
                 <uib-tab index="5" heading="证据材料">
                   <div class="material"><img src="/assets/images/demo/material-5.jpg"></div>
                 </uib-tab>
-              </uib-tabset>
-            </div>
-            <div heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
-              <uib-tabset active="activePill" vertical="true" type="pills">
-                <uib-tab index="$index"
-                ng-repeat='similarCase in Editor.similarCases'
-                heading="【{{similarCase.similarity}}】 {{similarCase.caseTitle}} ({{similarCase.judgeDate}})">
-                <div class="content">
-                  {{similarCase.orgText}}
-                </div>
-              </uib-tab>
               </uib-tabset>
             </div>
           </uib-accordion>
