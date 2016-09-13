@@ -5,7 +5,7 @@
       <div class="panel-body">
         <div class='search-box'>
           <div class='search-input'>
-            <input type='text' ng-model='statistic.keyword' placeholder='输入案由、关键词' ng-change='statistic.filterBy()'/>
+            <input type='text' ng-model='statistic.keyword' placeholder='输入案由、关键词' ng-change='statistic.filterBy()' ng-keydown='statistic.keydown($event)'/>
           </div>
           <div class='search-btn'>
             <button type='button' ng-click='statistic.search()' class='btn-search'>搜索</button>

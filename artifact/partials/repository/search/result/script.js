@@ -18,7 +18,11 @@
         pageSize: vm.Paging.itemsPerPage,
         current: vm.Paging.currentPage
       }).then(function(result) {
-        vm.data = result.data.body;
+        if(result.data.body) {
+          vm.data = result.data.body;
+          vm.total = result.data.head.total;
+        }
+
       })
 
     }

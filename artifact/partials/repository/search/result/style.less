@@ -8,8 +8,8 @@
       font-size: 12px;
     }
   }
-  .result-wrap{
-    padding:20px 50px;
+  .result-wrap {
+    padding: 20px 50px;
     .timeline {
       list-style: none;
       padding: 0;
@@ -23,7 +23,7 @@
         width: 3px;
         background-color: @light-blue;
         left: 9%;
-        margin-left:-1.5px;
+        margin-left: -1.5px;
       }
       &>li {
         margin-bottom: 20px;
@@ -43,7 +43,7 @@
           border-radius: 2px;
           padding: 20px;
           position: relative;
-          top:-11px;
+          top: -11px;
           -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
           box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
           &:before {
@@ -150,15 +150,26 @@
           .timeline-title {
             margin-top: 0;
             color: inherit;
+            font-size: 16px;
+            color:@black;
+            font-family: 微软雅黑;
           }
           .timeline-body {
             &>p,
             &>ul {
               margin-bottom: 0;
+              font-family: '宋体';
+              font-size: 14px;
+              word-spacing: 12px;
+              line-height: 25px;
+              color: @font-gray;
+              text-align: left;
+              .label-text {
+                font-family: 微软雅黑;
+                font-size: 15px;
+              }
             }
-            &>p+p {
-              margin-top: 5px;
-            }
+            &>p+p {}
           }
         }
       }
@@ -181,5 +192,4 @@
       }
     }
   }
-
 }

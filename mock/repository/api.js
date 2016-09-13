@@ -5,5 +5,9 @@ Router.route('/case_brief/find/list')
   .get(function(request, response) {
     response.json(Util.json('/repository/data/summaryStructure.json'));
 });
+Router.route('/kb/search/find')
+  .get(function(request, response) {
+    response.json(Util.json('/repository/data/result.json'));
+});
 /** Module export */
 module.exports = Router;
