@@ -7,8 +7,9 @@
   function EditorController(editorConstant, editorService, $location, $anchorScroll) {
     var vm = this;
     /* Constant */
-    vm.treeOptions = editorConstant.TreeOptions;
     vm.treeData = editorConstant.TreeData;
+    vm.treeOptions = editorConstant.TreeOptions;
+    vm.reasonTreeOptions = editorConstant.ReasonTreeOptions;
     vm.mediumEditorOptions = editorConstant.mediumEditorOptions;
     vm.openStatus = editorConstant.openStatus;
     /* Variable */
@@ -19,14 +20,16 @@
     vm.proposalsFactResult = [];
     vm.proposalsReason = [];
     vm.proposalsCaseMain = [];
+    vm.selectedReason = '';
     /* Event */
     vm.matchFactResult = matchFactResult;
     vm.matchCaseMain = matchCaseMain;
-    vm.matchReason = matchReason;
     vm.transferFactResult = transferFactResult;
-    vm.save = save;
+    vm.saveJudgment = saveJudgment;
     vm.jumpToSection = jumpToSection;
     vm.exportWORD = exportWORD;
+    vm.switchReason = switchReason;
+    vm.transferReason = transferReason;
     /* Initial */
     activate();
     function activate() {
@@ -47,13 +50,6 @@
            ).then(function(data){
              vm.proposalsFactResult = data.body;
            });
-           editorService.matchByReason(
-             baseArticle
-             + vm.template.templateArticle.fact.factResult
-             + vm.template.templateArticle.reason
-           ).then(function(data){
-             vm.proposalsReason = data.body;
-           });
            editorService.matchByCaseMain(
              baseArticle
              + vm.template.templateArticle.fact.factResult
@@ -61,6 +57,10 @@
              + vm.template.templateArticle.caseMain
            ).then(function(data){
              vm.proposalsCaseMain = data.body;
+           });
+           editorService.matchByReasonTree()
+           .then(function(data){
+             vm.reasonTree = data.body;
            });
            // Init similar case
            editorService.fetchSimilarCase(
@@ -112,8 +112,8 @@
       console.log(target);
         vm.template.templateArticle.caseMain = target;
     };
-    /*  */
-    function save() {
+    /* Save Judgment */
+    function saveJudgment() {
       editorService.saveJudgmentTemplate({
         articleContentJson: JSON.stringify(vm.template.templateArticle),
         articleContent: $('.editor>.center').text().trim(),
@@ -144,7 +144,13 @@
       .then(function(data){
         // console.log(data);
       })
-    }
-
+    };
+    // Reason 's Tree & Transfer
+    function switchReason(reason) {
+      vm.selectedReason = reason ? reason : '暂无内容，请继续选择下级条件';
+    };
+    function transferReason(reason) {
+      vm.template.templateArticle.reason = reason;
+    };
   };
 })();

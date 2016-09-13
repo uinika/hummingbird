@@ -10,7 +10,7 @@
       saveJudgmentTemplate: saveJudgmentTemplate,
       exportJudgmentDoc: exportJudgmentDoc,
       matchByFactResult: matchByFactResult,
-      matchByReason: matchByReason,
+      matchByReasonTree: matchByReasonTree,
       matchByCaseMain: matchByCaseMain,
       fetchLawItem: fetchLawItem,
       fetchSimilarCase: fetchSimilarCase
@@ -19,8 +19,7 @@
     function getJudgmentTemplate(params) {
       return $http.get(
         URL + '/verdict/template', { params: params }
-      )
-      .then(function(result) {
+      ).then(function(result) {
         if(validate(result.data, 200)){
           return result.data;
         }
@@ -30,8 +29,7 @@
     function saveJudgmentTemplate(data) {
       return $http.post(
         URL + '/verdict/writ', data
-      )
-      .then(function(result) {
+      ).then(function(result) {
         if(validate(result.data, 200)){
           return result.data;
         }
@@ -41,8 +39,7 @@
     function exportJudgmentDoc(data) {
       return $http.post(
         URL + '/verdict/export/word', data
-      )
-      .then(function(result) {
+      ).then(function(result) {
         if(validate(result.data, 200)){
           console.log(result.data.body[0].downloadUrl);
           $window.open(URL + '/' + result.data.body[0].downloadUrl);
@@ -59,18 +56,18 @@
         }
       });
     };
-    function matchByReason(target) {
+    function matchByCaseMain(target) {
       return $http.post(
-        URL + '/verdict/reason', { articleContent: target }
+        URL + '/verdict/case/main', { articleContent: target }
       ).then(function(result){
         if(validate(result.data, 200)){
           return result.data;
         }
       });
     };
-    function matchByCaseMain(target) {
-      return $http.post(
-        URL + '/verdict/case/main', { articleContent: target }
+    function matchByReasonTree(target) {
+      return $http.get(
+        URL + '/conditon/tree'
       ).then(function(result){
         if(validate(result.data, 200)){
           return result.data;
@@ -81,8 +78,7 @@
     function fetchLawItem(params) {
       return $http.get(
         URL + '/case/brief/find/laws', { params: params }
-      )
-      .then(function(result){
+      ).then(function(result){
         if(validate(result.data, 200)){
           return result.data;
         }
@@ -92,8 +88,7 @@
     function fetchSimilarCase(data) {
       return $http.post(
         URL + '/case/similar/verdict', { articleContent: data }
-      )
-      .then(function(result){
+      ).then(function(result){
         if(validate(result.data, 200)){
           return result.data;
         }

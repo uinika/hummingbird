@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <ul class="access pull-left">
         <li>
-          <button class="btn btn-primary" ng-click='Editor.save()'>
+          <button class="btn btn-primary" ng-click='Editor.saveJudgment()'>
             <i class="glyphicon glyphicon-ok">&nbsp;保存</i>
           </button>
         </li>
@@ -189,15 +189,15 @@
               </uib-tabset>
             </div>
             <div heading='推荐文书 - (本院认为)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
-              <uib-tabset active="activePill" vertical="true" type="pills">
-                <uib-tab index="$index"
-                  ng-repeat='proposal in Editor.proposalsReason'
-                  heading="【{{proposal.similarity}}】 {{proposal.templateArticle | limitTo:30}}">
-                  <div class="content">
-                    {{proposal.templateArticle}}
-                  </div>
-                </uib-tab>
-              </uib-tabset>
+              <treecontrol class="tree-classic"
+                 tree-model="Editor.reasonTree"
+                 options="Editor.reasonTreeOptions"
+                 on-selection="showSelected(node)">
+                 <span ng-click='Editor.switchReason(node.conditonExplain)'>{{node.conditionName}}</span>
+              </treecontrol>
+              <div class="content" ng-click='Editor.transferReason(Editor.selectedReason)'>
+                {{Editor.selectedReason}}
+              </div>
             </div>
             <div heading='推荐文书 - (裁判主文内容)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isCaseMain">
               <uib-tabset active="activePill" vertical="true" type="pills">
