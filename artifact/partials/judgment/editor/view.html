@@ -207,17 +207,6 @@
                 {{Editor.selectedCaseMain}}
               </div>
             </div>
-            <div class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
-              <uib-tabset active="activePill" vertical="true" type="pills">
-                <uib-tab index="$index"
-                ng-repeat='lawItem in Editor.lawItems'
-                heading="{{lawItem.case_accord | limitTo:30 }}">
-                <div class="content">
-                  {{lawItem.case_accord}}
-                </div>
-              </uib-tab>
-              </uib-tabset>
-            </div>
             <div class='similarCases' heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
               <ul class="list-group">
                 <a class="list-group-item"
@@ -230,6 +219,17 @@
               <div class="content">
                 {{Editor.selectedSimilarCase.orgText}}
               </div>
+            </div>
+            <div class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
+              <uib-tabset active="activePill" vertical="true" type="pills">
+                <uib-tab index="$index"
+                ng-repeat='lawItem in Editor.lawItems'
+                heading="{{lawItem.case_accord | limitTo:30 }}">
+                <div class="content">
+                  {{lawItem.case_accord}}
+                </div>
+              </uib-tab>
+              </uib-tabset>
             </div>
             <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
               <uib-tabset active="active">
