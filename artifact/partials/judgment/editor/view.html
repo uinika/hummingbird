@@ -60,107 +60,107 @@
             <div id="judgment-head">
               <p data-placeholder="文书标题-法院名称"
                  id="courtName"
-                 ng-model="Editor.article.indexTitle.courtName"
+                 ng-model="Editor.template.templateArticle.indexTitle.courtName"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-文书名称"
                  id="lawCaseTitle"
-                 ng-model="Editor.article.indexTitle.lawCaseTitle"
+                 ng-model="Editor.template.templateArticle.indexTitle.lawCaseTitle"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="文书标题-案号"
                  id="lawCaseCode"
-                 ng-model="Editor.article.indexTitle.lawCaseCode"
+                 ng-model="Editor.template.templateArticle.indexTitle.lawCaseCode"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
             <div id="judgment-body">
               <p data-placeholder="首部-当事人"
                  id="accuser"
-                 ng-model="Editor.article.parties.accuser"
+                 ng-model="Editor.template.templateArticle.parties.accuser"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="accuserAgent"
-                 ng-model="Editor.article.parties.accuserAgent"
+                 ng-model="Editor.template.templateArticle.parties.accuserAgent"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendant"
-                 ng-model="Editor.article.parties.defendant"
+                 ng-model="Editor.template.templateArticle.parties.defendant"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-当事人"
                  id="defendantAgent"
-                 ng-model="Editor.article.parties.defendantAgent"
+                 ng-model="Editor.template.templateArticle.parties.defendantAgent"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="首部-案件由来和审理经过"
                  id="caseGeneral"
-                 ng-model="Editor.article.parties.caseGeneral"
+                 ng-model="Editor.template.templateArticle.parties.caseGeneral"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-诉讼请求"
                  id="claims"
-                 ng-model="Editor.article.fact.claims"
+                 ng-model="Editor.template.templateArticle.fact.claims"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="argued"
-                 ng-model="Editor.article.fact.argued"
+                 ng-model="Editor.template.templateArticle.fact.argued"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-事实"
                  id="factResult"
                  ng-click = "Editor.openStatus.isFactResult = !Editor.openStatus.isFactResult"
                  ng-dblclick = "Editor.matchFactResult(
-                      Editor.article.parties.caseGeneral
-                    + Editor.article.fact.claims
-                    + Editor.article.fact.argued
-                    + Editor.article.fact.factResult,
+                      Editor.template.templateArticle.parties.caseGeneral
+                    + Editor.template.templateArticle.fact.claims
+                    + Editor.template.templateArticle.fact.argued
+                    + Editor.template.templateArticle.fact.factResult,
                     'factResult')"
-                 ng-model="Editor.article.fact.factResult"
+                 ng-model="Editor.template.templateArticle.fact.factResult"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="理由"
                  id="reason"
                  ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
                  ng-dblclick = "Editor.matchReason(
-                      Editor.article.parties.caseGeneral
-                    + Editor.article.fact.claims
-                    + Editor.article.fact.argued
-                    + Editor.article.fact.factResult
-                    + Editor.article.reason,
+                      Editor.template.templateArticle.parties.caseGeneral
+                    + Editor.template.templateArticle.fact.claims
+                    + Editor.template.templateArticle.fact.argued
+                    + Editor.template.templateArticle.fact.factResult
+                    + Editor.template.templateArticle.reason,
                   'reason')"
-                 ng-model="Editor.article.reason"
+                 ng-model="Editor.template.templateArticle.reason"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="裁判主文"
                  id="caseMain"
                  ng-click = "Editor.openStatus.isCaseMain = !Editor.openStatus.isCaseMain"
                  ng-dblclick = "Editor.matchCaseMain(
-                       Editor.article.parties.caseGeneral
-                     + Editor.article.fact.claims
-                     + Editor.article.fact.argued
-                     + Editor.article.fact.factResult
-                     + Editor.article.reason
-                     + Editor.article.caseMain,
+                       Editor.template.templateArticle.parties.caseGeneral
+                     + Editor.template.templateArticle.fact.claims
+                     + Editor.template.templateArticle.fact.argued
+                     + Editor.template.templateArticle.fact.factResult
+                     + Editor.template.templateArticle.reason
+                     + Editor.template.templateArticle.caseMain,
                    'caseMain')"
-                 ng-model="Editor.article.caseMain"
+                 ng-model="Editor.template.templateArticle.caseMain"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="尾部-诉讼费用负担"
                  id="legalCosts"
-                 ng-model="Editor.article.bottom.legalCosts"
+                 ng-model="Editor.template.templateArticle.bottom.legalCosts"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="尾部-告知事项"
                  id="informInfo"
-                 ng-model="Editor.article.bottom.informInfo"
+                 ng-model="Editor.template.templateArticle.bottom.informInfo"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
             <div id="judgment-foot">
               <p data-placeholder="落款-署名"
                  id="chiefJudge"
-                 ng-model="Editor.article.inscribe.chiefJudge"
+                 ng-model="Editor.template.templateArticle.inscribe.chiefJudge"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="judge"
-                 ng-model="Editor.article.inscribe.judge"
+                 ng-model="Editor.template.templateArticle.inscribe.judge"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="事实-证据"
                  id="courtClerk"
-                 ng-model="Editor.article.inscribe.courtClerk"
+                 ng-model="Editor.template.templateArticle.inscribe.courtClerk"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
               <p data-placeholder="落款-日期"
                  id="judgmentDate"
-                 ng-model="Editor.article.inscribe.judgmentDate"
+                 ng-model="Editor.template.templateArticle.inscribe.judgmentDate"
                  medium-editor bind-options="Editor.mediumEditorOptions"></p>
             </div>
           </div>
