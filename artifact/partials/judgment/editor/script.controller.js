@@ -2,25 +2,31 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['$scope', 'editorConstant', 'editorService', '$location', '$anchorScroll'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$location', '$anchorScroll'];
 
-  function EditorController($scope, editorConstant, editorService, $location, $anchorScroll) {
+  function EditorController(editorConstant, editorService, $location, $anchorScroll) {
     var vm = this;
     /* Constant */
     vm.treeOptions = editorConstant.TreeOptions;
     vm.treeData = editorConstant.TreeData;
     vm.mediumEditorOptions = editorConstant.mediumEditorOptions;
     vm.openStatus = editorConstant.openStatus;
-    /* Value */
-    
+    /* Variable */
+    vm.targetJudgment = {};
+    vm.template = {};
+    vm.lawItems = [];
+    vm.similarCases = [];
+    vm.proposalsFactResult = [];
+    vm.proposalsReason = [];
+    vm.proposalsCaseMain = [];
     /* Event */
     vm.matchFactResult = matchFactResult;
     vm.matchCaseMain = matchCaseMain;
     vm.matchReason = matchReason;
     vm.transferFactResult = transferFactResult;
     vm.save = save;
-    vm.goto = goto;
-    vm.export = exporter;
+    vm.jumpToSection = jumpToSection;
+    vm.exportWORD = exportWORD;
     /* Initial */
     activate();
     function activate() {
@@ -31,50 +37,36 @@
         editorService.getJudgmentTemplate(vm.targetJudgment)
         .then(function(data) {
            vm.template = data.body[0];
-           // Init match judgment
-           editorService.matchByFactResult((function(){
-             var httpParam = vm.template.templateArticle.parties.caseGeneral
-               + vm.template.templateArticle.fact.claims
-               + vm.template.templateArticle.fact.argued
-               + vm.template.templateArticle.fact.factResult
-               return httpParam
-           })())
-           .then(function(data){
+           var baseArticle = vm.template.templateArticle.parties.caseGeneral
+             + vm.template.templateArticle.fact.claims
+             + vm.template.templateArticle.fact.argued
+           // Init judgment match
+           editorService.matchByFactResult(
+             baseArticle
+             + vm.template.templateArticle.fact.factResult
+           ).then(function(data){
              vm.proposalsFactResult = data.body;
            });
-           editorService.matchByReason((function(){
-             var httpParam = vm.template.templateArticle.parties.caseGeneral
-               + vm.template.templateArticle.fact.claims
-               + vm.template.templateArticle.fact.argued
-               + vm.template.templateArticle.fact.factResult
-               + vm.template.templateArticle.reason
-               return httpParam
-           })())
-           .then(function(data){
+           editorService.matchByReason(
+             baseArticle
+             + vm.template.templateArticle.fact.factResult
+             + vm.template.templateArticle.reason
+           ).then(function(data){
              vm.proposalsReason = data.body;
            });
-           editorService.matchByCaseMain((function(){
-             var httpParam = vm.template.templateArticle.parties.caseGeneral
-               + vm.template.templateArticle.fact.claims
-               + vm.template.templateArticle.fact.argued
-               + vm.template.templateArticle.fact.factResult
-               + vm.template.templateArticle.reason
-               + vm.template.templateArticle.caseMain
-               return httpParam
-           })())
-           .then(function(data){
+           editorService.matchByCaseMain(
+             baseArticle
+             + vm.template.templateArticle.fact.factResult
+             + vm.template.templateArticle.reason
+             + vm.template.templateArticle.caseMain
+           ).then(function(data){
              vm.proposalsCaseMain = data.body;
            });
            // Init similar case
-           editorService.fetchSimilarCase((function(){
-             var httpParam = vm.template.templateArticle.parties.caseGeneral
-               + vm.template.templateArticle.fact.claims
-               + vm.template.templateArticle.fact.argued
-               + vm.template.templateArticle.fact.factResult
-             return httpParam
-           })())
-           .then(function(data){
-             console.log(data);
+           editorService.fetchSimilarCase(
+             baseArticle
+             + vm.template.templateArticle.fact.factResult
+           ).then(function(data){
              vm.similarCases = data.body;
            });
         });
@@ -88,34 +80,34 @@
 
       };
     }
-    /*  */
+    /* Match by FactResult */
     function matchFactResult (target) {
       editorService.matchByFactResult(target)
       .then(function(data){
         vm.proposalsFactResult = data.body;
       })
     };
-    /*  */
+    /* Match by Reason */
     function matchReason(target) {
       editorService.matchByReason(target)
       .then(function(data){
         vm.proposalsReason = data.body;
       })
     };
-    /*  */
+    /* Match by CaseMain */
     function matchCaseMain(target) {
       editorService.matchByCaseMain(target)
       .then(function(data){
         vm.proposalsCaseMain = data.body;
       })
     };
-    /*  */
+    /* Append factResult to Editor */
     function transferFactResult(target) {
       console.log(target);
       vm.template.templateArticle.fact.factResult = target;
     };
     vm.transferCaseMain =
-    /*  */
+    /* Append caseMain to Editor */
     function transferCaseMain(target) {
       console.log(target);
         vm.template.templateArticle.caseMain = target;
@@ -137,13 +129,13 @@
         }
       })
     };
-    /*  */
-    function goto(id) {
+    /* Jump to section by anchor */
+    function jumpToSection(id) {
       $location.hash(id);
       $anchorScroll();
     }
-    /*  */
-    function exporter() {
+    /* Export MS word */
+    function exportWORD() {
       editorService.exportJudgmentDoc({
         articleId: vm.targetJudgment.articleId,
         lawCaseName: vm.targetJudgment.lawCaseName,
