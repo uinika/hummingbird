@@ -10,8 +10,8 @@
       vm.detail = detail;
 
       function detail(ev) {
-        ev.stopPropagation();
         if (!ev) ev = window.event;
+        ev.stopPropagation();
         var target = ev.target || ev.srcElement;
         vm.name = target.getAttribute('data-name');
         summaryExplainFactory.getExpalinByName({

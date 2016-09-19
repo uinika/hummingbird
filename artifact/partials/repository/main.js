@@ -69,7 +69,7 @@
         })
         .state('repository.summaryRule', {
           parent: 'repository',
-          url: '/summaryRule',
+          url: '/summaryRule/:caseBrief',
           templateUrl: 'partials/repository/summary/rule/view.html',
           controller: 'summaryRuleController',
           controllerAs: 'summaryRule'
