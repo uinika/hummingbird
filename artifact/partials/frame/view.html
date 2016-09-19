@@ -1,39 +1,5 @@
 <div id='frame'>
-  <section id='navigator'>
-    <nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <a class="navbar-brand logo" wiserv-sidebar>
-          <span class="image"></span>
-          <span class="text">法官判案智能辅助系统</span>
-        </a>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-left">
-        </ul>
-        <ul class="admin nav navbar-nav navbar-right">
-          <li class="dropdown" uib-dropdown dropdown-append-to-body>
-            <a uib-dropdown-toggle class="dropdown-toggle">
-              <span class="glyphicon glyphicon-user">&nbsp;系统管理员</span>
-              <span class="caret"></span>
-            </a>
-            <ul uib-dropdown-menu class="dropdown-menu patch">
-              <li><a href="#">用户详情</a></li>
-              <li><a href="#">用户管理</a></li>
-              <li><a href="#">修改密码</a></li>
-              <li class="divider"></li>
-              <li>
-                <a ng-click='frame.logout()'>
-                  <span class="glyphicon glyphicon-log-out">&nbsp;退出</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </section>
-
-  <section id="sidebar">
+  <section id="sidebar" class='sidr left'>
     <ul class='menu'>
       <li ui-sref-active="active">
         <a ui-sref="dashboard">
@@ -48,12 +14,12 @@
         </a>
         <ul aria-expanded="true">
           <li ui-sref-active="active">
-            <a ui-sref="judgment.case_list" >
+            <a ui-sref="judgment.case_list">
               <span class="glyphicon glyphicon-grain">&nbsp;案件信息列表</span>
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="judgment.doc_list" >
+            <a ui-sref="judgment.doc_list">
               <span class="glyphicon glyphicon-grain">&nbsp;裁判文书列表</span>
             </a>
           </li>
@@ -126,11 +92,49 @@
     </ul>
   </section>
 
-  <section id="content" ui-view>
+  <section id='content-main'>
+    <section id='navigator'>
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a class="navbar-brand logo" wiserv-sidebar>
+            <span class="image"></span>
+            <span class="text">法官判案智能辅助系统</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-left"></ul>
+          <ul class="admin nav navbar-nav navbar-right">
+            <li class="dropdown" uib-dropdown dropdown-append-to-body>
+              <a uib-dropdown-toggle class="dropdown-toggle">
+                <span class="glyphicon glyphicon-user">&nbsp;系统管理员</span>
+                <span class="caret"></span>
+              </a>
+              <ul uib-dropdown-menu class="dropdown-menu patch">
+                <li>
+                  <a href="#">用户详情</a>
+                </li>
+                <li>
+                  <a href="#">用户管理</a>
+                </li>
+                <li>
+                  <a href="#">修改密码</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a ng-click='frame.logout()'>
+                    <span class="glyphicon glyphicon-log-out">&nbsp;退出</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <section id="content" ui-view></section>
     <!--
     Main Content
     -->
   </section>
-
 
 </div>

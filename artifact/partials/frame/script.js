@@ -17,10 +17,15 @@
       return {
         restrict: 'ACE',
         link: function(scope, element, attrs) {
-          element.sidr({
-            name: 'sidebar',
-            side: 'left'
-          });
+          element.bind('click',function() {
+            console.log('2');
+            $("#content-main").toggleClass('content-collapse');
+            $("#sidebar").toggleClass('sidebar-collapse');
+          })
+          // element.sidr({
+          //   name: 'sidebar',
+          //   side: 'left'
+          // });
         }
       }
     }
