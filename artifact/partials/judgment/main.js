@@ -9,7 +9,7 @@
     function config($stateProvider, $urlRouterProvider) {
       $stateProvider
         .state('judgment', {
-          parent: 'frame',
+          parent: 'layout',
           abstract: true,
           url: '/judgment',
           template: '<ui-view/>'

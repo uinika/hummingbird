@@ -20,7 +20,7 @@
     function config($stateProvider, $urlRouterProvider) {
       $stateProvider
         .state('repository', {
-          parent: 'frame',
+          parent: 'layout',
           abstract: true,
           url: '/repository',
           template: '<ui-view/>'

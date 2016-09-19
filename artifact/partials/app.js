@@ -10,7 +10,7 @@
     'treeControl',
     'common.http',
     'app.login',
-    'app.frame',
+    'app.layout',
     'app.judgment',
     'app.dashboard',
     'app.repository'
@@ -29,11 +29,11 @@
         controller: 'loginController',
         controllerAs: 'login'
       })
-      .state('frame', {
-        url: '/frame',
-        templateUrl: 'partials/frame/view.html',
-        controller: 'frameController',
-        controllerAs: 'frame'
+      .state('layout', {
+        url: '/layout',
+        templateUrl: 'partials/layout/view.html',
+        controller: 'layoutController',
+        controllerAs: 'layout'
       });
     /** HTTP Interceptor */
     $httpProvider.interceptors.push(interceptor);

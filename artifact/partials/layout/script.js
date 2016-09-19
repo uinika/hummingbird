@@ -1,8 +1,8 @@
 (function(){
   /** Module */
-  var module = angular.module('app.frame', []);
+  var module = angular.module('app.layout', []);
 
-  module.controller('frameController', Controller);
+  module.controller('layoutController', Controller);
   Controller.$inject = ['$scope', '$state'];
   function Controller($scope, $state) {
     var vm = this;

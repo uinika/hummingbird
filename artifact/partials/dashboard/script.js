@@ -6,7 +6,7 @@
       function($stateProvider, $urlRouterProvider) {
         $stateProvider
           .state('dashboard', {
-            parent: 'frame',
+            parent: 'layout',
             url: '/dashboard',
             templateUrl: 'partials/dashboard/view.html',
             controller: 'dashboardController',
