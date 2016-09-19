@@ -195,7 +195,7 @@
 
 ## 裁判文书区块模板-（经审理查明） 查询
 ### /verdict/fact/result
-    Type: GET
+    Type: POST
 #### Parameter:
     articleContent   String          计算相似度输入文本 【必填】
 #### Result:
@@ -206,7 +206,7 @@
 
 ## 裁判文书区块模板-（本院认为） 查询
 ### /verdict/reason
-    Type: GET
+    Type: POST
 #### Parameter:
     articleContent   String          计算相似度输入文本 【必填】
 #### Result:
@@ -216,7 +216,7 @@
 
 ## 裁判文书区块模板-（裁判主文） 查询
 ### /verdict/case/main
-    Type: GET
+    Type: POST
 #### Parameter:
     articleContent   String          计算相似度输入文本 【必填】
 #### Result:
@@ -239,6 +239,83 @@
 ## 下载裁判文书word
 ### /download/{fileName}
     Type: GET
+#### Parameter:
+    null
+#### Result:
+    null
+-----
+
+## 根据案由找法律条文
+### /case/brief/find/laws
+    Type: GET
+#### Parameter:
+    causeOfAction       String        案由【必填】
+#### Result:
+    case_accord       String        法律条文字符串数组
+-----
+
+## 根据事实内容查询裁判文书相似案例
+### /case/similar/verdict
+    Type: POST
+#### Parameter:
+    articleContent   String         计算相似度输入文本(案件事实) 【必填】
+#### Result:
+    articleId          String         裁判文书Id
+    caseTitle      String         案件名称
+    caseNO          String         裁决文书案件号
+    judgeDate       String         判决日期
+    courtName            String         法院名称
+    orgText       String        裁判文书相似案例
+    similarity       String             相似度
+-----
+
+## 本院认为决策树
+### /conditon/tree
+    Type: GET
+#### Parameter:
+    null
+#### Result:
+    treeId          String         条件树id
+    conditionName      String         条件名称
+    conditonExplain          String         条件解释(暂时存储了本院认为内容)
+    childNode       Object         叶子节点
+-----
+
+## 自动保存裁判文书
+### /verdict/auto/store
+    Type: POST
+#### Parameter:
+    articleId   String          裁判文书id 【必填】
+    templateId   String         使用大模板id 【必填】
+    articleContentJson   String          带html标签的json文本 【必填】
+    articleContent       String          纯文本文书内容体 【必填】
+    articleHtml          String         html文本 【必填】
+    causeOfAction       String          案由 【必填】
+    lawCaseName         String          案件名称 【必填】
+#### Result:
+    null
+-----
+
+## 查询自动保存的裁决文书(自动保存的裁判文书)
+### /verdict/auto/store
+    Type: GET
+#### Parameter:
+    articleId   String          裁判文书id 【必填】
+#### Result:
+    articleId   String          裁判文书id
+    templateId   String         使用大模板id
+    articleContentJson   String          带html标签的json文本
+    articleContent       String          纯文本文书内容体
+    articleHtml          String         html文本
+    causeOfAction       String          案由
+    lawCaseName         String          案件名称
+    creater             String     创建人
+    createTime          String     创建时间
+-----
+
+## 删除自动保存的裁决文书(自动保存的裁判文书)
+### /verdict/auto/store/{articleId}
+    Type: DELETE
 #### Parameter:
     null
 #### Result:
