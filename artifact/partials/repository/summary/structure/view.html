@@ -7,26 +7,26 @@
           <ul class="metismenu list-group" id="summaryStructureMenu" wiserv-summary-structure>
 
             <li ui-sref-active="active" class=" list-group-item" ng-repeat='item in data'>
-                <a  aria-expanded="true" ng-repeat-start='(key,value) in item'>
-                  <span class="sidebar-nav-item">{{key}}</span>
+                <a  aria-expanded="true">
+                  <span class="sidebar-nav-item">{{item.caseBriefName}}</span>
                   <span class="fa arrow"></span>
                 </a>
-                <ul aria-expanded="false" class=" list-group" ng-repeat-end>
-                  <li ui-sref-active="active" class=" list-group-item" ng-repeat='item1 in value'>
-                    <a aria-expanded="true" ng-repeat-start='(key1,value1) in item1'>
-                      <span>{{key1}}</span>
+                <ul aria-expanded="false" class=" list-group">
+                  <li ui-sref-active="active" class=" list-group-item" ng-repeat='item1 in item.childNode'>
+                    <a aria-expanded="true">
+                      <span>{{item1.caseBriefName}}</span>
                       <span class="fa arrow"></span>
                     </a>
-                    <ul aria-expanded="false" class=" list-group" ng-repeat-end>
-                      <li ui-sref-active="active" class=" list-group-item" ng-repeat='item2 in value1'>
-                        <a aria-expanded="false" ng-repeat-start='(key2,value2) in item2'>
-                          <span>{{key2}}</span>
+                    <ul aria-expanded="false" class=" list-group">
+                      <li ui-sref-active="active" class=" list-group-item" ng-repeat='item2 in item1.childNode'>
+                        <a aria-expanded="false" >
+                          <span>{{item2.caseBriefName}}</span>
                           <span class="fa arrow"></span>
                         </a>
-                        <ul aria-expanded="false" class=" list-group" ng-repeat-end>
-                          <li ui-sref-active="active" class=" list-group-item" ng-repeat='item3 in value2'>
-                            <a aria-expanded="false" ng-repeat='(key3,value3) in item3'>
-                              <span>{{value3}}</span>
+                        <ul aria-expanded="false" class=" list-group">
+                          <li ui-sref-active="active" class=" list-group-item" ng-repeat='item3 in item2.childNode'>
+                            <a aria-expanded="false" >
+                              <span>{{item3.caseBriefName}}</span>
                               <span class="fa arrow"></span>
                             </a>
                           </li>
