@@ -35,6 +35,7 @@
     vm.saveJudgment = saveJudgment;
     vm.jumpToSection = jumpToSection;
     vm.exportWORD = exportWORD;
+    vm.exportPDF = exportPDF;
     vm.selectReason = selectReason;
     vm.transferReason = transferReason;
     /* Initial */
@@ -144,11 +145,12 @@
     /* Jump to section by anchor */
     function jumpToSection(id) {
       $location.hash(id);
+      $anchorScroll.yOffset = 58;
       $anchorScroll();
     }
     /* Export MS word */
     function exportWORD() {
-      editorService.exportJudgmentDoc({
+      editorService.exportWORD({
         articleId: vm.targetJudgment.articleId,
         lawCaseName: vm.targetJudgment.lawCaseName,
         articleHtml: $('.editor>.center').html().trim()
@@ -157,6 +159,16 @@
         // console.log(data);
       })
     };
-
+    /* Export PDF */
+    function exportPDF() {
+      editorService.exportPDF({
+        articleId: vm.targetJudgment.articleId,
+        lawCaseName: vm.targetJudgment.lawCaseName,
+        articleHtml: $('.editor>.center').html().trim()
+      })
+      .then(function(data){
+        // console.log(data);
+      })
+    };
   };
 })();

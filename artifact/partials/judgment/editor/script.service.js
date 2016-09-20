@@ -8,7 +8,8 @@
     return {
       getJudgmentTemplate: getJudgmentTemplate,
       saveJudgmentTemplate: saveJudgmentTemplate,
-      exportJudgmentDoc: exportJudgmentDoc,
+      exportWORD: exportWORD,
+      exportPDF: exportPDF,
       matchByFactResult: matchByFactResult,
       matchByReasonTree: matchByReasonTree,
       matchByCaseMain: matchByCaseMain,
@@ -35,10 +36,21 @@
         }
       })
     };
-    // Export Judgment Document
-    function exportJudgmentDoc(data) {
+    // Export Judgment by WORD
+    function exportWORD(data) {
       return $http.post(
         URL + '/verdict/export/word', data
+      ).then(function(result) {
+        if(validate(result.data, 200)){
+          console.log(result.data.body[0].downloadUrl);
+          $window.open(URL + '/' + result.data.body[0].downloadUrl);
+        }
+      })
+    };
+    // Export Judgment by PDF
+    function exportPDF(data) {
+      return $http.post(
+        URL + '/verdict/export/pdf', data
       ).then(function(result) {
         if(validate(result.data, 200)){
           console.log(result.data.body[0].downloadUrl);
