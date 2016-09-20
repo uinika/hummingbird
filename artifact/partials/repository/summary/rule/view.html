@@ -24,13 +24,13 @@
       <div class="panel-body">
         <ul class="list-group" ng-repeat='item in summaryRule.list'>
           <li class="list-group-item list-group-item-info">
-            <span class="badge">2016-05-10</span>
+            <span class="badge">{{item.shijian | date:"yyyy-MM-dd"}}</span>
             <span class="glyphicon glyphicon-book">&nbsp;</span>
-            <span class="title">{{item.fa_gui}}</span>
+            <span class="title">{{item.fagui}}</span>
           </li>
           <li class='list-group-item'>
             <p>
-              第三十二条 【离婚诉讼】男女一方要求离婚的，可由有关部门进行调解或直接向人民法院提出离婚诉讼。 人民法院审理离婚案件，应当进行调解；如感情确已破裂，调解无效，应准予离婚。 有下列情形之一，调解无效的，应准予离婚： （一）重婚或有配偶者与他人同居的； （二）实施家庭暴力或虐待、遗弃家庭成员的； （三）有赌博、吸毒等恶习屡教不改的； （四）因感情不和分居满二年的； （五）其他导致夫妻 感情..
+              {{item.jieshi}}
             </p>
           </li>
         </ul>
