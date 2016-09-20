@@ -13,5 +13,17 @@ Router.route('/case_brief/find/explain')
   .get(function(request, response) {
     response.json(Util.json('/repository/data/explain.json'));
 });
+Router.route('/verdict/count/by/casebrief')
+  .get(function(request, response) {
+    response.json(Util.json('/repository/data/searchByCaseBrief.json'));
+});
+Router.route('/verdict/count/by/courtlevel')
+  .get(function(request, response) {
+    response.json(Util.json('/repository/data/searchByCourtLevel.json'));
+});
+Router.route('/verdict/count/by/doctype')
+  .get(function(request, response) {
+    response.json(Util.json('/repository/data/searchByDoctype.json'));
+});
 /** Module export */
 module.exports = Router;

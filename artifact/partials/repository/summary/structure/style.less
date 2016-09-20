@@ -1,20 +1,20 @@
 #summaryStructure {
   .tree-nav {
     padding: 15px;
-    min-height:500px;
+    min-height: 500px;
     position: relative;
     .metismenu {
       width: 120px;
       li {
-        &.active{
-          >a{
-            color:#FFF;
+        &.active {
+          >a {
+            color: #FFF;
           }
         }
         a {
           display: inline-block;
           width: 100%;
-          cursor:pointer;
+          cursor: pointer;
         }
       }
       >li {
@@ -38,16 +38,16 @@
       padding: 10px 15px;
       color: #545454;
       font-family: '微软雅黑';
-      .total-item{
-        padding:10px 15px;
-        cursor:pointer;
-        label{
-          font-size:16px;
+      .total-item {
+        padding: 10px 15px;
+        cursor: pointer;
+        label {
+          font-size: 16px;
         }
-        number{
-          padding-left:10px;
-          font-size:18px;
-          font-weight:bold;
+        number {
+          padding-left: 10px;
+          font-size: 18px;
+          font-weight: bold;
         }
       }
       .close-icon {
@@ -58,10 +58,12 @@
         cursor: pointer;
       }
     }
-
     .explain-content {
       position: absolute;
       width: 38%;
+      height: 90%;
+      overflow-x:hidden;
+      overflow-y: scroll;
       right: 30px;
       top: 15px;
       z-index: 99;

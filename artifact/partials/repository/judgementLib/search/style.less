@@ -10,16 +10,43 @@
     }
     .navbar-nav {
       >li {
+        .metismenu {
+          width: 180px;
+          li {
+            &.active {
+              >a {
+                color: #FFF;
+              }
+            }
+            a {
+              display: inline-block;
+              width: 100%;
+              cursor: pointer;
+              padding: 0;
+            }
+          }
+          >li {
+            ul {
+              position: absolute;
+              left: 100%;
+              top: 0;
+              min-width: 200px;
+              -webkit-box-shadow: 6px 6px 10px rgba(0,0,0,.3);
+              box-shadow: 6px 6px 10px rgba(0,0,0,.3);
+            }
+          }
+        }
         >a {
           color: @white;
           padding-top: 10px;
           padding-bottom: 10px;
           cursor: pointer;
-          font-size:12px;
+          font-size: 12px;
           &:hover {
             color: @blue;
           }
-          &:visited ,&[aria-expanded='true']{
+          &:visited,
+          &[aria-expanded='true'] {
             color: @blue;
             text-decoration: none;
             background-color: #eeeeee;
@@ -28,13 +55,13 @@
       }
     }
   }
-  .panel-body{
-    padding:20px 50px;
+  .panel-body {
+    padding: 20px 50px;
     .search-container {
       padding-right: 50px;
       .search-condition {
         margin: 0;
-        padding: 15px 0 10px;
+        padding: 15px 0 24px;
         list-style: none;
         li {
           display: inline-block;
@@ -59,7 +86,6 @@
       }
     }
   }
-
   .timeline {
     list-style: none;
     padding: 0;
@@ -94,7 +120,7 @@
         border-radius: 2px;
         padding: 20px;
         position: relative;
-        top:-11px;
+        top: -11px;
         -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
         &:before {
@@ -206,7 +232,9 @@
           color: inherit;
         }
         .timeline-body {
-          &>p,
+          &>p {
+            line-height: 24px;
+          }
           &>ul {
             margin-bottom: 0;
           }
@@ -280,6 +308,16 @@
           }
         }
       }
+    }
+  }
+}
+.list-group-item {
+  >a {
+    padding: 0 !important;
+    >.badge {
+      cursor: pointer;
+      float: right;
+      margin-left: 10px;
     }
   }
 }
