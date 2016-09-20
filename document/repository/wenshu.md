@@ -28,14 +28,19 @@
     verdictNum  String       统计数量
 ----
 
-##裁判文书（法院 地区）统计
+##裁判文书（法院 地区）统计 返回树结构
 ### /verdict/count/by/courtplace
     Type:GET
 #### Parameter:
     null
 #### Result:
-    courtName   String         法院
+    courtPlace  String       地区
     verdictNum  String       统计数量
+    childNode   Object       法院名称统计
+    {
+        courtName   String         法院
+        verdictNum  String       统计数量
+    }
 ----
 
 ##裁判文书（案由）统计 （返回一棵树节点）

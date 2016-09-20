@@ -10,8 +10,6 @@
       getDoctype();
       getCourtlevel();
       getGudgmentdate();
-      getCourtplace();
-      //  getCasebrief();
 
       vm.searchByCaseBrief = searchByCaseBrief;
       vm.searchByCourtLevel = searchByCourtLevel;
@@ -46,15 +44,6 @@
           var body = result.data.body;
           if (body) {
             vm.gudgmentdateData = body;
-          }
-        })
-      }
-
-      function getCourtplace() {
-        judgementLibSearchFactory.getCourtplace().then(function(result) {
-          var body = result.data.body;
-          if (body) {
-            vm.courtplaceData = body;
           }
         })
       }
@@ -104,14 +93,6 @@
         $scope.searchParam.courtLevel = null;
         searchByCondition();
       }
-        // function getCasebrief() {
-        //   judgementLibSearchFactory.getCasebrief().then(function(result) {
-        //     var body = result.data.body;
-        //     if(body) {
-        //       vm.casebriefData = body;
-        //     }
-        //   })
-        // }
 
     }
   ]);
@@ -123,8 +104,6 @@
         getDoctype: getDoctype,
         getCourtlevel: getCourtlevel,
         getGudgmentdate: getGudgmentdate,
-        getCourtplace: getCourtplace,
-        getCasebrief: getCasebrief,
         getByCondition: getByCondition
       }
 
@@ -146,18 +125,6 @@
         )
       }
 
-      function getCourtplace() {
-        return $http.get(
-          URL + '/verdict/count/by/courtplace'
-        )
-      }
-
-      function getCasebrief() {
-        return $http.get(
-          URL + '/verdict/count/by/casebrief'
-        )
-      }
-
       function getByCondition(params) {
         return $http.get(
           URL + '/verdict/search/by/category', {
@@ -175,6 +142,21 @@
         return $http({
           method: 'GET',
           url: URL + '/verdict/count/by/casebrief',
+          withCredentials: true
+        });
+      } else {
+        console.error('API Not Found in config.js');
+      }
+    }
+  ]);
+
+  // map data service
+  judgementLibSearch.service('judgementLibSearch.mapData', ['$http', 'URL',
+    function($http, URL) {
+      if (URL) {
+        return $http({
+          method: 'GET',
+          url: URL + '/verdict/count/by/courtplace',
           withCredentials: true
         });
       } else {
@@ -209,38 +191,56 @@
   ]);
 
   /** Directive*/
-  judgementLibSearch.directive('wiservChinaMap', [
-    function() {
+  judgementLibSearch.directive('wiservChinaMap', ['judgementLibSearch.mapData',
+    function(mapData) {
       return {
         restrict: 'ACE',
         template: "<div id='chinaMap'></div>",
         link: function(scope, element, attrs) {
-          var chart = echarts.init(document.getElementById('chinaMap'));
-          chart.setOption({
-            series: [{
-              type: 'map',
-              map: 'china',
-              left: 10,
-              top: 10,
-              right: 10,
-              bottom: 10,
-              label: {
-                normal: {
-                  show: true
-                },
-                emphasis: {
-                  show: true
-                }
-              },
-              itemStyle: {
-                normal: {
-                  areaColor: '#f5f3f0',
-                  borderColor: '#7b7b7b',
-                  borderType: 'solid',
-                }
-              }
-            }]
-          });
+          mapData.then(function(response) {
+            scope.provinceDataList = response.data.body;
+            scope.$applyAsync(function() {
+              var chart = echarts.init(document.getElementById('chinaMap'));
+              chart.setOption({
+                series: [{
+                  type: 'map',
+                  map: 'china',
+                  left: 10,
+                  top: 10,
+                  right: 10,
+                  bottom: 10,
+                  selectedMode: 'single',
+                  label: {
+                    normal: {
+                      show: true
+                    },
+                    emphasis: {
+                      show: true
+                    }
+                  },
+                  itemStyle: {
+                    normal: {
+                      areaColor: '#f5f3f0',
+                      borderColor: '#7b7b7b',
+                      borderType: 'solid',
+                    }
+                  }
+                }]
+              });
+
+              chart.on('mapselectchanged', function(params) {
+                scope.province = params.name;
+
+                scope.provinceData = _.find(scope.provinceDataList, function(o) {
+                  console.log(o);
+                  return o.courtPlace.indexOf(scope.province) > -1;
+                });
+
+                console.log(scope.provinceData);
+              })
+            })
+          })
+
         }
       }
     }
