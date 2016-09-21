@@ -1,25 +1,61 @@
 (function() {
   /** Module */
-  var judgementLibSearch = angular.module('app.repository.judgementLib.search', []);
+  var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap']);
 
   /** Controller */
   judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory',
     function($scope, judgementLibSearchFactory) {
       var vm = this;
+      // init
       $scope.searchParam = {};
+      vm.calendarView = 'year';
+      vm.viewDate = new Date();
       getDoctype();
       getCourtlevel();
       getGudgmentdate();
+      searchByCondition()
 
+      // search by condition
       vm.searchByCaseBrief = searchByCaseBrief;
       vm.searchByCourtLevel = searchByCourtLevel;
       vm.searchByDocType = searchByDocType;
       vm.searchByArea = searchByArea;
-      
+
+      // remove condition
       vm.removeCauseOfAction = removeCauseOfAction;
       vm.removeDoctype = removeDoctype;
       vm.removeCourtLevel = removeCourtLevel;
       vm.removeCourtPlace = removeCourtPlace;
+      vm.removeJudgmentDate = removeJudgmentDate;
+
+      // calendar view changed event
+      vm.viewChangeClicked = function(nextView) {
+        if (nextView === 'month') {
+          return false;
+        }
+      };
+
+      // calendar cell cliked event
+      vm.timespanClicked = function(date) {
+        var month = date.getMonth() + 1;
+        month = (month.length == 2 ? month : ("0" + month));
+        var year = date.getFullYear();
+        $scope.searchParam.judgmentDate = year + month;
+        searchByCondition();
+      };
+
+      // calendar cell format
+      vm.modifyCell = function(cell) {
+        var month = moment(cell.date).month() + 1;
+        month = (month.length == 2 ? month : ("0" + month));
+        var yearMonth = new Array(moment(cell.date).year(), month);
+        yearMonth = yearMonth.join("");
+        _.find(vm.gudgmentdateData, function(o) {
+          if (o.yearMonth == yearMonth) {
+            cell.label = cell.label + '   (' + o.verdictNum + ')';
+          }
+        });
+      };
 
       vm.showProvince = function(e) {
         e.stopPropagation();
@@ -93,6 +129,7 @@
           var body = result.data.body;
           if (body) {
             vm.dataList = body;
+            vm.total = result.data.head.total;
           }
         })
       }
@@ -117,6 +154,10 @@
         searchByCondition();
       }
 
+      function removeJudgmentDate() {
+        $scope.searchParam.judgmentDate = null;
+        searchByCondition();
+      }
     }
   ]);
 
