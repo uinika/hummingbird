@@ -137,23 +137,33 @@
         </div>
       </div>
       <menu class="right">
-        <uib-accordion close-others=true>
+        <div class="btn-group">
+          <button class="btn btn-default btn-sm" ng-click='Editor.saveJudgment()'>
+            <i class="fa fa-floppy-o">&nbsp;保存</i>
+          </button>
+          <button class="btn btn-default btn-sm">
+            <i class="fa fa-eye">&nbsp;预览</i>
+          </button>
+          <button class="btn btn-default btn-sm" ng-click='Editor.exportWORD()'>
+            <i class="fa fa-file-word-o">&nbsp;导出</i>
+          </button>
           <div class="btn-group">
-            <button class="btn btn-default btn-sm" ng-click='Editor.saveJudgment()'>
-              <i class="glyphicon glyphicon-ok">&nbsp;保存</i>
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-history">&nbsp;历史</i>
+              <span class="caret"></span>
             </button>
-            <button class="btn btn-default btn-sm">
-              <i class="glyphicon glyphicon-record">&nbsp;记录</i>
-            </button>
-
-            <button class="btn btn-default btn-sm" ng-click='Editor.exportWORD()'>
-              <i class="glyphicon glyphicon-export">&nbsp;导出Word</i>
-            </button>
-            <button class="btn btn-default btn-sm" ng-click='Editor.exportPDF()'>
-              <i class="glyphicon glyphicon-export">&nbsp;导出PDF</i>
-            </button>
+            <ul class="dropdown-menu">
+              <div class="list-group">
+                <a class="list-group-item">第1次修改</a>
+                <a class="list-group-item">第2次修改</a>
+                <a class="list-group-item">第3次修改</a>
+                <a class="list-group-item">第4次修改</a>
+              </div>
+            </ul>
           </div>
 
+        </div>
+        <uib-accordion close-others=true>
           <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
             <div class="list-group">
               <a class="list-group-item">案件名称：{{Editor.targetJudgment.lawCaseTitle}}</a>
@@ -225,21 +235,21 @@
             </uib-tabset>
           </div>
           <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
-            <uib-tabset active="active">
+            <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="起诉书">
-                <div class="material"><img src="/assets/images/demo/material-1.jpg"></div>
+                <div class="material"><img src="assets/images/demo/material-1.jpg"></div>
               </uib-tab>
               <uib-tab index="1" heading="原告身份证明">
-                <div class="material"><img src="/assets/images/demo/material-2.jpg"></div>
+                <div class="material"><img src="assets/images/demo/material-2.jpg"></div>
               </uib-tab>
               <uib-tab index="3" heading="委托代理人证明">
-                <div class="material"><img src="/assets/images/demo/material-3.jpg"></div>
+                <div class="material"><img src="assets/images/demo/material-3.jpg"></div>
               </uib-tab>
               <uib-tab index="4" heading="起诉事项证明材料">
-                <div class="material"><img src="/assets/images/demo/material-4.jpg"></div>
+                <div class="material"><img src="assets/images/demo/material-4.jpg"></div>
               </uib-tab>
               <uib-tab index="5" heading="证据材料">
-                <div class="material"><img src="/assets/images/demo/material-5.jpg"></div>
+                <div class="material"><img src="assets/images/demo/material-5.jpg"></div>
               </uib-tab>
             </uib-tabset>
           </div>

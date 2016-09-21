@@ -35,7 +35,6 @@
     vm.saveJudgment = saveJudgment;
     vm.jumpToSection = jumpToSection;
     vm.exportWORD = exportWORD;
-    vm.exportPDF = exportPDF;
     vm.selectReason = selectReason;
     vm.transferReason = transferReason;
     /* Initial */
@@ -154,20 +153,6 @@
         articleId: vm.targetJudgment.articleId,
         lawCaseName: vm.targetJudgment.lawCaseName,
         articleHtml: $('.editor>.center').html().trim()
-      })
-      .then(function(data){
-        // console.log(data);
-      })
-    };
-    /* Export PDF */
-    function exportPDF() {
-      editorService.exportPDF({
-        articleId: vm.targetJudgment.articleId,
-        lawCaseName: vm.targetJudgment.lawCaseName,
-        articleHtml: $('.editor>.center').html().trim()
-      })
-      .then(function(data){
-        // console.log(data);
       })
     };
   };
