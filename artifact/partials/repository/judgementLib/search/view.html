@@ -70,7 +70,7 @@
                     <div class='seperate-line'></div>
                     <div class='area-court'>
                       <ul>
-                        <li ng-repeat="item in provinceData.childNode"><a>{{item.courtName}}({{item.verdictNum}})</a></li>
+                        <li ng-repeat="item in provinceData.childNode"><a data-court-place={{item.courtName}}  ng-click='judgementLibSearch.searchByArea($event)'>{{item.courtName}}({{item.verdictNum}})</a></li>
                       </ul>
                     </div>
                   </div>
@@ -108,10 +108,11 @@
 
           <ul class='search-condition'>
             <span>检索条件：</span>
-            <li><label>案由：</label>民事案件<span class='removeCondition glyphicon glyphicon-remove'></span></li>
+            <li ng-show='searchParam.causeOfAction'><label>案由：</label>{{searchParam.causeOfAction}}<span class='removeCondition glyphicon glyphicon-remove' ng-click='judgementLibSearch.removeCauseOfAction()'></span></li>
             <!-- <li><label>关键词：</label>财产纠纷<span class='removeCondition glyphicon glyphicon-remove'></span></li> -->
             <li ng-show='searchParam.courtLevel'><label>法院：</label>{{searchParam.courtLevel}}<span class='removeCondition glyphicon glyphicon-remove' ng-click='judgementLibSearch.removeCourtLevel()'></span></li>
             <li ng-show='searchParam.docType'><label>文书类型：</label>{{searchParam.docType}}<span class='removeCondition glyphicon glyphicon-remove' ng-click='judgementLibSearch.removeDoctype()'></span></li>
+            <li ng-show='searchParam.courtPlace'><label>地域：</label>{{searchParam.courtPlace}}<span class='removeCondition glyphicon glyphicon-remove' ng-click='judgementLibSearch.removeCourtPlace()'></span></li>
           </ul>
         </div>
 

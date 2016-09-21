@@ -14,8 +14,12 @@
       vm.searchByCaseBrief = searchByCaseBrief;
       vm.searchByCourtLevel = searchByCourtLevel;
       vm.searchByDocType = searchByDocType;
+      vm.searchByArea = searchByArea;
+      
+      vm.removeCauseOfAction = removeCauseOfAction;
       vm.removeDoctype = removeDoctype;
       vm.removeCourtLevel = removeCourtLevel;
+      vm.removeCourtPlace = removeCourtPlace;
 
       vm.showProvince = function(e) {
         e.stopPropagation();
@@ -75,6 +79,15 @@
         searchByCondition();
       }
 
+      function searchByArea(ev) {
+        if (!ev) ev = window.event;
+        ev.stopPropagation();
+        var target = ev.target || ev.srcElement;
+        vm.courtPlace = target.getAttribute('data-court-place');
+        $scope.searchParam.courtPlace = vm.courtPlace;
+        searchByCondition();
+      }
+
       function searchByCondition() {
         judgementLibSearchFactory.getByCondition($scope.searchParam).then(function(result) {
           var body = result.data.body;
@@ -84,6 +97,11 @@
         })
       }
 
+      function removeCauseOfAction() {
+        $scope.searchParam.causeOfAction = null;
+        searchByCondition();
+      }
+
       function removeDoctype() {
         $scope.searchParam.docType = null;
         searchByCondition();
@@ -91,6 +109,11 @@
 
       function removeCourtLevel() {
         $scope.searchParam.courtLevel = null;
+        searchByCondition();
+      }
+
+      function removeCourtPlace() {
+        $scope.searchParam.courtPlace = null;
         searchByCondition();
       }
 
