@@ -10,6 +10,16 @@
       $scope.searchParam = {};
       vm.calendarView = 'year';
       vm.viewDate = new Date();
+
+      $scope.Paging = {};
+      $scope.Paging.currentPage = 1;
+      $scope.Paging.maxSize = 5;
+      $scope.Paging.itemsPerPage = 10;
+
+      $scope.Paging.pageChanged = function() {
+        searchByCondition();
+      }
+
       getDoctype();
       getCourtlevel();
       getGudgmentdate();
@@ -126,11 +136,15 @@
       }
 
       function searchByCondition() {
+        $scope.searchParam.current = $scope.Paging.currentPage;
         judgementLibSearchFactory.getByCondition($scope.searchParam).then(function(result) {
           var body = result.data.body;
           if (body) {
             vm.dataList = body;
             vm.total = result.data.head.total;
+            $scope.Paging.totalItems = vm.total;
+            console.log($scope.Paging.totalItems);
+            console.log($scope.Paging.currentPage);
           }
         })
       }
