@@ -3,8 +3,8 @@
   var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap']);
 
   /** Controller */
-  judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory',
-    function($scope, judgementLibSearchFactory) {
+  judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory','$filter',
+    function($scope, judgementLibSearchFactory,$filter) {
       var vm = this;
       // init
       $scope.searchParam = {};
@@ -13,7 +13,7 @@
       getDoctype();
       getCourtlevel();
       getGudgmentdate();
-      searchByCondition()
+      searchByCondition();
 
       // search by condition
       vm.searchByCaseBrief = searchByCaseBrief;
@@ -88,12 +88,13 @@
         })
       }
 
-      function searchByCaseBrief(ev) {
+      function searchByCaseBrief(ev,level) {
         if (!ev) ev = window.event;
         ev.stopPropagation();
         var target = ev.target || ev.srcElement;
         vm.name = target.getAttribute('data-name');
         $scope.searchParam.causeOfAction = vm.name;
+        $scope.searchParam.level = level;
         searchByCondition();
       }
 
@@ -136,6 +137,7 @@
 
       function removeCauseOfAction() {
         $scope.searchParam.causeOfAction = null;
+        $scope.searchParam.level = null;
         searchByCondition();
       }
 
@@ -309,5 +311,27 @@
       }
     }
   ]);
+
+  judgementLibSearch.filter('cut', ['$stateParams',function ($stateParams) {
+        return function (value, wordwise, max, tail) {
+            if (!value) return '';
+            max= 200;
+            max = parseInt(max, 10);
+            if (!max) return value;
+            if (value.length <= max) return value;
+            console.log(wordwise);
+            if(wordwise) {
+              value = value.substr(0, max);
+              //if (wordwise) {
+                  var lastspace = value.lastIndexOf(' ');
+                  if (lastspace != -1) {
+                      value = value.substr(0, lastspace);
+                  }
+              //}
+              return value + (tail || ' …');
+            }
+            return value + (tail || ' ');
+        };
+    }]);
 
 })();

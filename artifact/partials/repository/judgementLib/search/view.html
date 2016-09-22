@@ -12,28 +12,28 @@
             <ul uib-dropdown-menu class="metismenu dropdown-menu patch list-group" id="libSearch" wiserv-lib-search>
               <li ui-sref-active="active" class=" list-group-item" ng-repeat='item in data'>
 
-                <a aria-expanded="true" data-name={{item.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event)'>
+                <a aria-expanded="true" data-name={{item.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event,1)'>
                   {{item.caseBriefName}}({{item.verdictNum ? item.verdictNum :0}})
                   <span class="fa arrow"></span>
                 </a>
                 <ul aria-expanded="false" class=" list-group">
                   <li ui-sref-active="active" class=" list-group-item" ng-repeat='item1 in item.childNode'>
 
-                    <a aria-expanded="true" data-name={{item1.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event)'>
+                    <a aria-expanded="true" data-name={{item1.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event,2)'>
                       {{item1.caseBriefName}}({{item1.verdictNum ? item1.verdictNum :0}})
                       <span class="fa arrow"></span>
                     </a>
                     <ul aria-expanded="false" class=" list-group">
                       <li ui-sref-active="active" class=" list-group-item" ng-repeat='item2 in item1.childNode'>
 
-                        <a aria-expanded="false" data-name={{item2.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event)'>
+                        <a aria-expanded="false" data-name={{item2.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event,3)'>
                           {{item2.caseBriefName}}({{item2.verdictNum ? item2.verdictNum :0}})
                           <span class="fa arrow"></span>
                         </a>
                         <ul aria-expanded="false" class=" list-group">
                           <li ui-sref-active="active" class=" list-group-item" ng-repeat='item3 in item2.childNode'>
 
-                            <a aria-expanded="false" data-name={{item3.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event)'>
+                            <a aria-expanded="false" data-name={{item3.caseBriefName}} ng-click='judgementLibSearch.searchByCaseBrief($event,4)'>
                               {{item3.caseBriefName}}({{item3.verdictNum ? item3.verdictNum :0}})
                             </a>
                           </li>
@@ -172,10 +172,15 @@
                 <h5 class="timeline-title">{{item.title}}</h5>
               </div>
               <div class="timeline-body">
-                <p>案例释义：{{item.orgText}}</p>
-                <p>
-                  终审法院：{{item.courtName}}
-                </p>
+                <div class='subtitle'>
+                  <div class='col-sm-4'>{{item.courtName}}</div><div class='col-sm-4'>{{item.caseNO}}</div>
+                </div>
+                <h5 class='conent-label'>【正文】</h5>
+                <p >{{item.orgText | cut:filtered}}
+                  <a ng-init='filtered= true' ng-click='filtered = !filtered'>
+                    <span ng-show='filtered'>展开<i class='fa fa-hand-o-down'></i></span>
+                    <span ng-show='!filtered'>收起<i class='fa fa-hand-o-up'></i></span>
+                  </a></p>
               </div>
               <!-- <div class='timeline-label'>
                 <span class="label label-success">摘要</span>
