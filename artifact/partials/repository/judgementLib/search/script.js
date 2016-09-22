@@ -54,19 +54,6 @@
         searchByCondition();
       };
 
-      // calendar cell format
-      vm.modifyCell = function(cell) {
-        var month = moment(cell.date).month() + 1;
-        month = (month.length == 2 ? month : ("0" + month));
-        var yearMonth = new Array(moment(cell.date).year(), month);
-        yearMonth = yearMonth.join("");
-        _.find(vm.gudgmentdateData, function(o) {
-          if (o.yearMonth == yearMonth) {
-            cell.label = cell.label + '   (' + o.verdictNum + ')';
-          }
-        });
-      };
-
       vm.showProvince = function(e) {
         e.stopPropagation();
       }
@@ -94,6 +81,18 @@
           var body = result.data.body;
           if (body) {
             vm.gudgmentdateData = body;
+            // calendar cell format
+            vm.modifyCell = function(cell) {
+              var month = moment(cell.date).month() + 1;
+              month = (month.length == 2 ? month : ("0" + month));
+              var yearMonth = new Array(moment(cell.date).year(), month);
+              yearMonth = yearMonth.join("");
+              _.find(vm.gudgmentdateData, function(o) {
+                if (o.yearMonth == yearMonth) {
+                  cell.label = cell.label + '   (' + o.verdictNum + ')';
+                }
+              });
+            };
           }
         })
       }
