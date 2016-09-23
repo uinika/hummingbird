@@ -1,6 +1,6 @@
 (function() {
   /** Module */
-  var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap']);
+  var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap','cgBusy']);
 
   /** Controller */
   judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory','$filter',
@@ -136,14 +136,12 @@
 
       function searchByCondition() {
         $scope.searchParam.current = $scope.Paging.currentPage;
-        judgementLibSearchFactory.getByCondition($scope.searchParam).then(function(result) {
+        vm.promise = judgementLibSearchFactory.getByCondition($scope.searchParam).then(function(result) {
           var body = result.data.body;
           if (body) {
             vm.dataList = body;
             vm.total = result.data.head.total;
             $scope.Paging.totalItems = vm.total;
-            console.log($scope.Paging.totalItems);
-            console.log($scope.Paging.currentPage);
           }
         })
       }
@@ -311,11 +309,8 @@
                 scope.province = params.name;
 
                 scope.provinceData = _.find(scope.provinceDataList, function(o) {
-                  console.log(o);
                   return o.courtPlace.indexOf(scope.province) > -1;
                 });
-
-                console.log(scope.provinceData);
               })
             })
           })
@@ -332,7 +327,6 @@
             max = parseInt(max, 10);
             if (!max) return value;
             if (value.length <= max) return value;
-            console.log(wordwise);
             if(wordwise) {
               value = value.substr(0, max);
               //if (wordwise) {

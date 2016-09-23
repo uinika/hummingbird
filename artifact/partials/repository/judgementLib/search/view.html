@@ -154,7 +154,7 @@
           </ul>
         </div>
 
-        <ul class="timeline">
+        <ul class="timeline" cg-busy="{promise:judgementLibSearch.promise,message:'加载中',backdrop:backdrop,delay:delay,minDuration:minDuration}">
           <li class="timeline-inverted" ng-repeat='item in judgementLibSearch.dataList'>
             <div class="timeline-time">
               <span class="bg-warning">
