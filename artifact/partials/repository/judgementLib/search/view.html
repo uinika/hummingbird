@@ -174,16 +174,16 @@
                   <div class='col-sm-4'>{{item.caseNO}}</div>
                 </div>
                 <h5 class='conent-label'>【正文】</h5>
-                <p >{{item.orgText | cut:filtered}}
-                  <a ng-init='filtered= true' ng-click='filtered = !filtered'>
-                    <span ng-show='filtered'>展开
-                      <i class='glyphicon glyphicon-chevron-down'></i>
-                    </span>
-                    <span ng-show='!filtered'>收起
-                      <i class='glyphicon glyphicon-chevron-up'></i>
-                    </span>
-                  </a>
+                <p ng-bind-html='item.orgText | cut:filtered | highlight:keyword'>
                 </p>
+                <a ng-init='filtered= true' ng-click='filtered = !filtered'>
+                  <span ng-show='filtered'>展开
+                    <i class='glyphicon glyphicon-chevron-down'></i>
+                  </span>
+                  <span ng-show='!filtered'>收起
+                    <i class='glyphicon glyphicon-chevron-up'></i>
+                  </span>
+                </a>
               </div>
               <!-- <div class='timeline-label'>
                 <span class="label label-success">摘要</span>

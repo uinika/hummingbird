@@ -102,6 +102,9 @@
               }
             }
           }
+          .highlightedText{
+            background:yellow;
+          }
         }
         &>.timeline-badge {
           color: @white;
@@ -155,7 +158,7 @@
             font-family: 微软雅黑;
           }
           .timeline-body {
-            &>p,
+            &>div,
             &>ul {
               margin-bottom: 0;
               font-family: '宋体';
@@ -169,7 +172,11 @@
                 font-size: 15px;
               }
             }
-            &>p+p {}
+            &>div {
+              p{
+                display:inline;
+              }
+            }
           }
         }
       }

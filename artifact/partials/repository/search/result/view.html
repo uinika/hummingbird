@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <span>
           搜索
-          <strong>&nbsp;劳动合同&nbsp;</strong>共找到
+          <strong>&nbsp;{{repositorySearch.keyword}}&nbsp;</strong>共找到
           <em>&nbsp;{{repositorySearch.total}}&nbsp;</em>条
         </span>
       </div>
@@ -21,15 +21,16 @@
             </div>
             <div class="timeline-panel">
               <div class="timeline-heading">
-                <h5 class="timeline-title">{{obj.title}}</h5>
+                <h5 class="timeline-title" ng-bind-html='obj.title | highlight:repositorySearch.keyword'></h5>
               </div>
               <div class="timeline-body">
-                <p ng-repeat='(key,value) in obj.attr'><span class='label-text'>【{{key}}】</span>：{{value}}</p>
+                <div ng-repeat='(key,value) in obj.attr'>
+                  <span class='label-text'>【{{key}}】</span>：<p ng-bind-html='value | highlight:repositorySearch.keyword'></p></div>
               </div>
-              <div class='timeline-label'>
+              <!-- <div class='timeline-label'>
                 <span class="label label-success">摘要</span>
                 <span class="label label-info">案由</span>
-              </div>
+              </div> -->
             </div>
           </li>
         </ul>

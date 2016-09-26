@@ -11,9 +11,10 @@
       vm.Paging.currentPage = 1;
       vm.Paging.maxSize = 5;
       vm.Paging.itemsPerPage = 10;
+      vm.keyword = $stateParams.keyword;
 
       repositorySearchFactory.searchByKeyword({
-        keyword:$stateParams.keyword,
+        keyword:vm.keyword,
         type:$stateParams.type,
         pageSize: vm.Paging.itemsPerPage,
         current: vm.Paging.currentPage
@@ -44,5 +45,24 @@
       }
     }
   ]);
+
+  search.filter("highlight", ['$sce', '$log', function($sce) {
+
+    var fn = function(text, search) {
+
+      if (!search) {
+        return $sce.trustAsHtml(text);
+      }
+      text = encodeURI(text);
+      search = encodeURI(search);
+
+      var regex = new RegExp(search, 'gi')
+      var result = text.replace(regex, '<span class="highlightedText">$&</span>');
+      result = decodeURI(result);
+      return $sce.trustAsHtml(result);
+    };
+
+    return fn;
+  }]);
 
 })();

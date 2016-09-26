@@ -1,10 +1,10 @@
 (function() {
   /** Module */
-  var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap','cgBusy']);
+  var judgementLibSearch = angular.module('app.repository.judgementLib.search', ['mwl.calendar', 'ui.bootstrap', 'cgBusy']);
 
   /** Controller */
-  judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory','$filter',
-    function($scope, judgementLibSearchFactory,$filter) {
+  judgementLibSearch.controller('judgementLibSearchController', ['$scope', 'judgementLibSearchFactory', '$filter',
+    function($scope, judgementLibSearchFactory, $filter) {
       var vm = this;
       // init
       $scope.searchParam = {};
@@ -97,7 +97,7 @@
         })
       }
 
-      function searchByCaseBrief(ev,level) {
+      function searchByCaseBrief(ev, level) {
         if (!ev) ev = window.event;
         ev.stopPropagation();
         var target = ev.target || ev.srcElement;
@@ -320,25 +320,47 @@
     }
   ]);
 
-  judgementLibSearch.filter('cut', ['$stateParams',function ($stateParams) {
-        return function (value, wordwise, max, tail) {
-            if (!value) return '';
-            max= 200;
-            max = parseInt(max, 10);
-            if (!max) return value;
-            if (value.length <= max) return value;
-            if(wordwise) {
-              value = value.substr(0, max);
-              //if (wordwise) {
-                  var lastspace = value.lastIndexOf(' ');
-                  if (lastspace != -1) {
-                      value = value.substr(0, lastspace);
-                  }
-              //}
-              return value + (tail || ' …');
-            }
-            return value + (tail || ' ');
-        };
-    }]);
+  judgementLibSearch.filter('cut', ['$stateParams', function($stateParams) {
+    return function(value, wordwise, max, tail) {
+      if (!value) return '';
+      max = 200;
+      max = parseInt(max, 10);
+      if (!max) return value;
+      if (value.length <= max) return value;
+      // var action_html = "<a ng-init='filtered= true' ng-click='filtered = !filtered'>" +
+      //   "<span ng-show='filtered'>展开<i class='glyphicon glyphicon-chevron-down'></i></span>"+
+      //   "<span ng-show='!filtered'>收起<i class='glyphicon glyphicon-chevron-up'></i></span></a>";
+      if (wordwise) {
+        value = value.substr(0, max);
+        //if (wordwise) {
+        var lastspace = value.lastIndexOf(' ');
+        if (lastspace != -1) {
+          value = value.substr(0, lastspace);
+        }
+        //}
+        return value + (tail || ' …');
+      }
+      return value + (tail || ' ');
+    };
+  }]);
+
+  judgementLibSearch.filter("highlight", ['$sce', '$log', function($sce) {
+
+    var fn = function(text, search) {
+
+      if (!search) {
+        return $sce.trustAsHtml(text);
+      }
+      text = encodeURI(text);
+      search = encodeURI(search);
+
+      var regex = new RegExp(search, 'gi')
+      var result = text.replace(regex, '<span class="highlightedText">$&</span>');
+      result = decodeURI(result);
+      return $sce.trustAsHtml(result);
+    };
+
+    return fn;
+  }]);
 
 })();
