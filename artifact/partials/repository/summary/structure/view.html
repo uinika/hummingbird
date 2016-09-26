@@ -7,19 +7,19 @@
           <ul class="metismenu list-group" id="summaryStructureMenu" wiserv-summary-structure>
 
             <li ui-sref-active="active" class=" list-group-item" ng-repeat='item in data'>
-              <a aria-expanded="true">
+              <a aria-expanded="true" ng-click='summaryStructure.showTotal = false'>
                 <span class="sidebar-nav-item">{{item.caseBriefName}}</span>
                 <span class="fa arrow"></span>
               </a>
               <ul aria-expanded="false" class=" list-group">
                 <li ui-sref-active="active" class=" list-group-item" ng-repeat='item1 in item.childNode'>
-                  <a aria-expanded="true">
+                  <a aria-expanded="true" ng-click='summaryStructure.showTotal = false'>
                     <span>{{item1.caseBriefName}}</span>
                     <span class="fa arrow"></span>
                   </a>
                   <ul aria-expanded="false" class=" list-group">
                     <li ui-sref-active="active" class=" list-group-item" ng-repeat='item2 in item1.childNode'>
-                      <a aria-expanded="false">
+                      <a aria-expanded="false" ng-click='summaryStructure.showTotal = false'>
                         <span>{{item2.caseBriefName}}</span>
                         <span class="fa arrow"></span>
                       </a>
