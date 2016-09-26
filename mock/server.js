@@ -5,8 +5,9 @@ const Express = require('express'),
       Middleware = require('./common/middleware.js'),
       Color = require('colors/safe');
 
-/** Middleware */
-App.use('/wiserv', Express.static('./artifact'));
+/** Middlewares */
+App.use('/dev', Express.static('./artifact'));
+App.use('/pro', Express.static('./release'));
 App.use(Cors({
   origin: 'http://localhost:5006',
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
@@ -20,9 +21,13 @@ App.use('/', (request, response, next) => {
   next();
 });
 App.listen(5005);
-console.info(Color.yellow('Mock started on http://localhost:5005/wiserv'));
 
-/** Basic config for express */
+/* Informations */
+console.info(Color.blue('Livereload  started on http://localhost:5006'));
+console.info(Color.blue('Development started on http://localhost:5005/dev'));
+console.info(Color.blue('Production  started on http://localhost:5005/pro'));
+
+/** Routers */
 App.use('/', require('./login/api'));
 App.use('/', require('./judgment/api'));
 App.use('/', require('./repository/api'));

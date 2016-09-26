@@ -51,5 +51,10 @@ Router.route('/case/similar/verdict')
   .post(function(request, response) {
     response.json(Util.json('/judgment/data/editor/case-similar-verdict.json'));
 });
+// Similar Case
+Router.route('/conditon/tree')
+  .get(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/conditon-tree.json'));
+});
 /** Module export */
 module.exports = Router;
