@@ -7,7 +7,6 @@
         <hr />
         <div class="menu-tree">
           <treecontrol class="tree-classic"
-             expanded-nodes="[Editor.treeData[0],Editor.treeData[1], Editor.treeData[2], Editor.treeData[3] ,Editor.treeData[4] ,Editor.treeData[5], Editor.treeData[6]]"
              tree-model="Editor.treeData"
              options="Editor.treeOptions"
              on-selection="showSelected(node)">
@@ -81,12 +80,6 @@
             <p data-placeholder="事实-事实"
                id="factResult"
                ng-click = "Editor.openStatus.isFactResult = !Editor.openStatus.isFactResult"
-               ng-dblclick = "Editor.matchFactResult(
-                    Editor.template.templateArticle.parties.caseGeneral
-                  + Editor.template.templateArticle.fact.claims
-                  + Editor.template.templateArticle.fact.argued
-                  + Editor.template.templateArticle.fact.factResult,
-                  'factResult')"
                ng-model="Editor.template.templateArticle.fact.factResult"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="理由"
@@ -96,15 +89,6 @@
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
-               ng-click = "Editor.openStatus.isCaseMain = !Editor.openStatus.isCaseMain"
-               ng-dblclick = "Editor.matchCaseMain(
-                     Editor.template.templateArticle.parties.caseGeneral
-                   + Editor.template.templateArticle.fact.claims
-                   + Editor.template.templateArticle.fact.argued
-                   + Editor.template.templateArticle.fact.factResult
-                   + Editor.template.templateArticle.reason
-                   + Editor.template.templateArticle.caseMain,
-                 'caseMain')"
                ng-model="Editor.template.templateArticle.caseMain"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
@@ -173,20 +157,7 @@
               <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
             </div>
           </div>
-          <div heading='推荐文书 - (经审理查明)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isFactResult">
-            <ul class="list-group">
-              <a class="list-group-item"
-                 ng-repeat='proposal in Editor.proposalsFactResult'
-                 ng-click = "Editor.selectFactResult(proposal.templateArticle)">
-                <span class="badge">{{proposal.similarity}}</span>
-                （{{$index+1}}）{{proposal.templateArticle|limitTo:30}}
-              </a>
-            </ul>
-            <div class="content" ng-click='Editor.transferFactResult(Editor.selectedFactResult)'>
-              {{Editor.selectedFactResult}}
-            </div>
-          </div>
-          <div heading='推荐文书 - (本院认为)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
+          <div heading='文书模板' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
             <treecontrol class="tree-light"
                tree-model="Editor.reasonTree"
                options="Editor.reasonTreeOptions"
@@ -195,19 +166,6 @@
             </treecontrol>
             <div class="content" ng-click='Editor.transferReason(Editor.selectedReason)'>
               {{Editor.selectedReason}}
-            </div>
-          </div>
-          <div heading='推荐文书 - (裁判主文内容)' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isCaseMain">
-            <ul class="list-group">
-              <a class="list-group-item"
-                 ng-repeat='proposal in Editor.proposalsCaseMain'
-                 ng-click = "Editor.selectCaseMain(proposal.templateArticle)">
-                <span class="badge">{{proposal.similarity}}</span>
-                （{{$index+1}}）{{proposal.templateArticle|limitTo:30}}
-              </a>
-            </ul>
-            <div class="content" ng-click='Editor.transferCaseMain(Editor.selectedCaseMain)'>
-              {{Editor.selectedCaseMain}}
             </div>
           </div>
           <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
