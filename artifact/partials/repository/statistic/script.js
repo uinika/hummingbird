@@ -40,10 +40,10 @@
 
       var selected_index = -1; // keydown event selceted index
       function keydown(ev) {
+        ev.stopPropagation();
         ev = window.event||ev;
         var keycode = ev.keyCode;
         var list_length = $('.suggest-result').find('li').length;
-
         if(keycode == 13) {// press enter
           search();
         }
@@ -58,6 +58,9 @@
           if(selected_index == list_length) {
             selected_index = 0;
           }
+        }
+        if(selected_index == -1) {
+          return;
         }
         var selected_li = $('.suggest-result').find('li').removeClass('active').eq(selected_index);
         selected_li.addClass('active');
