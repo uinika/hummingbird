@@ -13,7 +13,7 @@
           <div class='suggest-result' ng-show='statistic.resultShow && statistic.keyword'>
             <div class='search-type' ng-repeat-start='obj in statistic.suggest'>{{obj.tableType}}</div>
             <ul ng-repeat-end>
-              <li ng-repeat='item in obj.autoFillInfo' data-type={{obj.tableType}} ng-click='statistic.writeback($event)'>{{item}}</li>
+              <li ng-repeat='item in obj.autoFillInfo track by $index' data-type={{obj.tableType}} ng-click='statistic.writeback($event)'>{{item}}</li>
             </ul>
           </div>
         </div>
