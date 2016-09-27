@@ -11,7 +11,7 @@
                 <span class="sidebar-nav-item">{{item.caseBriefName}}</span>
                 <span class="fa arrow"></span>
               </a>
-              <ul aria-expanded="false" class=" list-group">
+              <ul aria-expanded="false" class=" list-group collapse" >
                 <li ui-sref-active="active" class=" list-group-item" ng-repeat='item1 in item.childNode'>
                   <a aria-expanded="true" ng-click='summaryStructure.showTotal = false'>
                     <span>{{item1.caseBriefName}}</span>
