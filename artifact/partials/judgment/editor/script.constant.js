@@ -68,7 +68,7 @@
       // Left Tree Options
       'ReasonTreeOptions': {
         nodeChildren: "childNode",
-        dirSelectable: false,
+        dirSelectable: true,
         injectClasses: {
           ul: "a1",
           li: "a2",

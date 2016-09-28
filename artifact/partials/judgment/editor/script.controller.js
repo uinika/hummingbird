@@ -17,26 +17,18 @@
     vm.template = {};
     vm.lawItems = [];
     vm.similarCases = [];
-    vm.proposalsFactResult = [];
-    vm.proposalsReason = [];
-    vm.proposalsCaseMain = [];
     vm.selectedSimilarCase = {};
     vm.selectedReason = '';
-    vm.selectedFactResult = '';
-    vm.selectedCaseMain = '';
+    vm.accordThinkInfo  = '';
+    vm.verdictThinkInfo = '';
     /* Event */
     vm.selectSimilarCase = selectSimilarCase;
-    vm.matchFactResult = matchFactResult;
-    vm.selectFactResult = selectFactResult;
-    vm.transferFactResult = transferFactResult;
-    vm.matchCaseMain = matchCaseMain;
-    vm.selectCaseMain = selectCaseMain;
-    vm.transferCaseMain = transferCaseMain;
     vm.saveJudgment = saveJudgment;
     vm.jumpToSection = jumpToSection;
     vm.exportWORD = exportWORD;
-    vm.selectReason = selectReason;
-    vm.transferReason = transferReason;
+    vm.matchTemplateTreeInfo = matchTemplateTreeInfo;
+    vm.transferTemplateTreeInfo = transferTemplateTreeInfo;
+    vm.updateTemplateTreeInfo = updateTemplateTreeInfo;
     /* Initial */
     activate();
     function activate() {
@@ -51,21 +43,7 @@
              + vm.template.templateArticle.fact.claims
              + vm.template.templateArticle.fact.argued
            // Init judgment match
-           editorService.matchByFactResult(
-             baseArticle
-             + vm.template.templateArticle.fact.factResult
-           ).then(function(data){
-             vm.proposalsFactResult = data.body;
-           });
-           editorService.matchByCaseMain(
-             baseArticle
-             + vm.template.templateArticle.fact.factResult
-             + vm.template.templateArticle.reason
-             + vm.template.templateArticle.caseMain
-           ).then(function(data){
-             vm.proposalsCaseMain = data.body;
-           });
-           editorService.matchByReasonTree()
+           editorService.matchTemplateTree()
            .then(function(data){
              vm.reasonTree = data.body;
            });
@@ -74,7 +52,9 @@
              baseArticle
              + vm.template.templateArticle.fact.factResult
            ).then(function(data){
-             vm.similarCases = data.body;
+             if(data && data.body){
+               vm.similarCases = data.body;
+             }
            });
         });
         // Init low item
@@ -87,43 +67,40 @@
 
       };
     }
-    /* Match by FactResult */
-    function matchFactResult (factResult) {
-      editorService.matchByFactResult(factResult)
-      .then(function(data){
-        vm.proposalsFactResult = data.body;
-      })
-    };
-    function selectFactResult(factResult) {
-      vm.selectedFactResult = factResult ? factResult : '暂无内容，请继续输入条件';
-    }
-    function transferFactResult(factResult) {
-      vm.template.templateArticle.fact.factResult = factResult;
-    };
-    /* Match by CaseMain */
-    function matchCaseMain(caseMain) {
-      editorService.matchByCaseMain(caseMain)
-      .then(function(data){
-        vm.proposalsCaseMain = data.body;
-      })
-    };
-    function selectCaseMain(caseMain) {
-      vm.selectedCaseMain = caseMain ? caseMain : '暂无内容，请继续输入条件';
-    };
-    function transferCaseMain(caseMain) {
-        vm.template.templateArticle.caseMain = caseMain;
-    };
     /* Select similar case */
     function selectSimilarCase(similarCase) {
       vm.selectedSimilarCase = similarCase;
     };
-    /* Reason's Tree & Transfer */
-    function selectReason(reason) {
-      vm.selectedReason = reason ? reason : '暂无内容，请继续选择下级条件';
+    /* Template Tree & Transfer */
+    function matchTemplateTreeInfo(treeId) {
+      editorService.matchTemplateTreeInfo({treeId: treeId })
+      .then(function(data) {
+        if(data
+           && data.body
+           && data.body[0]
+           && data.body[0].accordThinkInfo
+           && data.body[0].verdictThinkInfo) {
+           vm.accordThinkInfo  = data.body[0].accordThinkInfo;
+           vm.verdictThinkInfo = data.body[0].verdictThinkInfo;
+        }
+        else {
+          vm.accordThinkInfo  = '';
+          vm.verdictThinkInfo = '';
+        }
+      })
     };
-    function transferReason(reason) {
-      vm.template.templateArticle.reason = reason;
+    function transferTemplateTreeInfo(info) {
+      vm.template.templateArticle.reason = info;
     };
+    function updateTemplateTreeInfo(info) {
+      editorService.updateTemplateTreeInfo({
+        autoId: 1,
+        treeId: 1,
+        conditionName: '',
+        accordThinkInfo: '',
+        verdictThinkInfo: ''
+      })
+    }
     /* Save Judgment */
     function saveJudgment() {
       editorService.saveJudgmentTemplate({

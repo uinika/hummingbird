@@ -9,9 +9,9 @@
       getJudgmentTemplate: getJudgmentTemplate,
       saveJudgmentTemplate: saveJudgmentTemplate,
       exportWORD: exportWORD,
-      matchByFactResult: matchByFactResult,
-      matchByReasonTree: matchByReasonTree,
-      matchByCaseMain: matchByCaseMain,
+      matchTemplateTree: matchTemplateTree,
+      matchTemplateTreeInfo: matchTemplateTreeInfo,
+      updateTemplateTreeInfo: updateTemplateTreeInfo,
       fetchLawItem: fetchLawItem,
       fetchSimilarCase: fetchSimilarCase
     };
@@ -40,34 +40,6 @@
       var converted = htmlDocx.asBlob(data.articleHtml);
       window.saveAs(converted, data.lawCaseName+'.docx');
     };
-    // Match all Judgment
-    function matchByFactResult(target) {
-      return $http.post(
-        URL + '/verdict/fact/result', { articleContent: target }
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
-    };
-    function matchByCaseMain(target) {
-      return $http.post(
-        URL + '/verdict/case/main', { articleContent: target }
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
-    };
-    function matchByReasonTree(target) {
-      return $http.get(
-        URL + '/conditon/tree'
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
-    };
     // Fetch Low Item
     function fetchLawItem(params) {
       return $http.get(
@@ -87,6 +59,34 @@
           return result.data;
         }
       })
+    };
+    // Match all Judgment
+    function matchTemplateTree(target) {
+      return $http.get(
+        URL + '/conditon/tree'
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
+    };
+    function matchTemplateTreeInfo(params) {
+      return $http.get(
+        URL + '/conditon/tree/info', { params: params }
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
+    };
+    function updateTemplateTreeInfo(data) {
+      return $http.put(
+        URL + '/conditon/tree/info', data
+      ).then(function(result){
+        if(validate(result.data, 200)){
+          return result.data;
+        }
+      });
     };
 
   };

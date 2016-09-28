@@ -55,6 +55,14 @@
           .panel-body {
             .clean;
             border: none;
+            .template-tree {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              border-bottom: 1px solid @dark-gray;
+              .tree-item {
+                font-size: 12px;
+              }
+            }
           }
         }
       }
@@ -88,22 +96,16 @@
           margin: 12px;
         }
       }
-
       .content {
         font-size: 12px;
         color: @footer-bg;
         border: 1px solid @gray;
-        padding: 10px 15px;
+        padding: 6px 8px;
         text-indent: 2em;
         line-height: 1.6em;
-        cursor: w-resize;
-      }
-      .content:hover {
         background: @yellow;
-      }
-      .content:active {
-        font-weight: bold;
-        text-decoration: underline;
+        max-height: 20em;
+        overflow-y: scroll;
       }
       .similarCases {
         .content {

@@ -16,7 +16,7 @@
 
       </div>
       <div class="center">
-        <div id='judgment' editor-select-parties style="text-align: justify">
+        <div id='judgment' style="text-align: justify">
           <style>
             #judgment-head #courtName {
               text-align: center; line-height: 25pt; margin: 0.5pt 0cm; font-family: 宋体; font-size: 22pt;
@@ -89,6 +89,7 @@
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
+               ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
                ng-model="Editor.template.templateArticle.caseMain"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
@@ -158,15 +159,37 @@
             </div>
           </div>
           <div heading='文书模板' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
-            <treecontrol class="tree-light"
-               tree-model="Editor.reasonTree"
-               options="Editor.reasonTreeOptions"
-               on-selection="showSelected(node)">
-               <span ng-click='Editor.selectReason(node.conditonExplain)'>{{node.conditionName}}</span>
-            </treecontrol>
-            <div class="content" ng-click='Editor.transferReason(Editor.selectedReason)'>
-              {{Editor.selectedReason}}
+            <div class="template-tree">
+              <treecontrol class="tree-light"
+                 tree-model="Editor.reasonTree"
+                 options="Editor.reasonTreeOptions"
+                 on-selection="showSelected(node)">
+                 <span class='tree-item' ng-click='Editor.matchTemplateTreeInfo(node.treeId)'>{{node.conditionName}}</span>
+              </treecontrol>
             </div>
+            <div ng-if='Editor.accordThinkInfo' >
+              <button ng-click='Editor.transferTemplateTreeInfo(Editor.accordThinkInfo)' class="btn btn-default btn-xs">
+                <i class="fa fa-code-fork"> 引用</i>
+              </button>
+              <button ng-click='Editor.updateTemplateTreeInfo(Editor.accordThinkInfo)' class="btn btn-primary btn-xs pull-right">
+                <i class="fa fa-floppy-o"> 修改</i>
+              </button>
+              <div class="content" contenteditable="true" ng-model='Editor.accordThinkInfo'>
+                {{Editor.accordThinkInfo}}
+              </div>
+            </div>
+            <div ng-if='Editor.verdictThinkInfo'>
+              <button  class="btn btn-default btn-xs">
+                <i class="fa fa-code-fork"> 引用</i>
+              </button>
+              <button class="btn btn-primary btn-xs pull-right">
+                <i class="fa fa-floppy-o"> 修改</i>
+              </button>
+              <div class="content" contenteditable="true">
+                {{Editor.verdictThinkInfo}}
+              </div>
+            </div>
+
           </div>
           <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
             <ul class="list-group">
@@ -177,19 +200,24 @@
                 （{{$index+1}}）{{similarCase.caseTitle}} ({{similarCase.judgeDate}})
               </a>
             </ul>
-            <div class="content">
+            <div ng-if='Editor.selectedSimilarCase.orgText' class="content">
               {{Editor.selectedSimilarCase.orgText}}
             </div>
           </div>
           <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
-            <uib-tabset active="activePill" vertical="true" type="pills">
-              <uib-tab index="$index"
-              ng-repeat='lawItem in Editor.lawItems'
-              heading="{{lawItem.case_accord | limitTo:30 }}">
-              <div class="content">
-                {{lawItem.case_accord}}
-              </div>
-            </uib-tab>
+            <uib-tabset active="activeJustified" justified="true">
+              <uib-tab index="0" heading="相似案例关联法条">
+                <div class="content" ng-repeat='similarCase in Editor.similarCases'>
+                  {{similarCase.laws}}
+                </div>
+              </uib-tab>
+              <uib-tab index="1"
+                ng-repeat='lawItem in Editor.lawItems'
+                heading="案件类型关联法条">
+                <div class="content">
+                  {{lawItem.case_accord}}
+                </div>
+              </uib-tab>
             </uib-tabset>
           </div>
           <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
