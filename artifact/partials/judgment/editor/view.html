@@ -79,17 +79,14 @@
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-事实"
                id="factResult"
-               ng-click = "Editor.openStatus.isFactResult = !Editor.openStatus.isFactResult"
                ng-model="Editor.template.templateArticle.fact.factResult"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="理由"
                id="reason"
-               ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
                ng-model="Editor.template.templateArticle.reason"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
-               ng-click = "Editor.openStatus.isReason = !Editor.openStatus.isReason"
                ng-model="Editor.template.templateArticle.caseMain"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
@@ -146,7 +143,11 @@
               </div>
             </ul>
           </div>
-
+          <button class="btn btn-default btn-sm"
+              uib-popover-template="Editor.calculator"
+              popover-placement="bottom-right">
+            <i class="fa fa-calculator">&nbsp;计算器</i>
+          </button>
         </div>
         <uib-accordion close-others=true>
           <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
@@ -158,7 +159,7 @@
               <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
             </div>
           </div>
-          <div heading='文书模板' uib-accordion-group class="panel-default" is-open="Editor.openStatus.isReason">
+          <div heading='文书模板' uib-accordion-group class="panel-default">
             <div class="template-tree">
               <treecontrol class="tree-light"
                  tree-model="Editor.reasonTree"
@@ -191,7 +192,7 @@
             </div>
 
           </div>
-          <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default" is-open=true>
+          <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default">
             <ul class="list-group">
               <a class="list-group-item"
                  ng-repeat='similarCase in Editor.similarCases'
@@ -204,23 +205,27 @@
               {{Editor.selectedSimilarCase.orgText}}
             </div>
           </div>
-          <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default" is-open=true>
+          <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default">
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="相似案例关联法条">
-                <div class="content" ng-repeat='similarCase in Editor.similarCases'>
-                  {{similarCase.laws}}
-                </div>
+                <ul class="list-group">
+                  <a ng-repeat='similarCase in Editor.similarCases' class="list-group-item">
+                    <span class="badge">{{similarCase.similarity}}</span>
+                    {{similarCase.laws[0]}}
+                  </a>
+                </ul>
               </uib-tab>
               <uib-tab index="1"
-                ng-repeat='lawItem in Editor.lawItems'
                 heading="案件类型关联法条">
-                <div class="content">
-                  {{lawItem.case_accord}}
-                </div>
+                <ul class="list-group">
+                  <a ng-repeat='lawItem in Editor.lawItems' class="list-group-item">
+                    {{lawItem.case_accord}}
+                  </a>
+                </ul>
               </uib-tab>
             </uib-tabset>
           </div>
-          <div heading='案件材料' uib-accordion-group class="panel-default" is-open=true>
+          <div heading='案件材料' uib-accordion-group class="panel-default">
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="起诉书">
                 <div class="material"><img src="assets/images/demo/material-1.jpg"></div>
@@ -249,3 +254,36 @@
     -->
   </div>
 </div>
+
+
+<script type="text/ng-template" id="calculator.html">
+  <div id="calculator">
+    <div class="input-group input-group-sm">
+      <span class="input-group-btn">
+        <button class="btn btn-danger"><i class="fa fa-share"></i></button>
+      </span>
+      <input class="form-control" type="number" placeholder="计算结果">
+    </div>
+    <div>
+      <button class="btn btn-primary">7</button>
+      <button class="btn btn-primary">8</button>
+      <button class="btn btn-primary">9</button>
+      <button class="btn btn-default">&plus;</button>
+      <button class="btn btn-default">&minus;</button>
+    </div>
+    <div>
+      <button class="btn btn-primary">4</button>
+      <button class="btn btn-primary">5</button>
+      <button class="btn btn-primary">6</button>
+      <button class="btn btn-default">&times;</button>
+      <button class="btn btn-default">&divide;</button>
+    </div>
+    <div>
+      <button class="btn btn-primary">1</button>
+      <button class="btn btn-primary">2</button>
+      <button class="btn btn-primary">3</button>
+      <button class="btn btn-primary">0</button>
+      <button class="btn btn-success">&equals;</button>
+    </div>
+  </div>
+</script>

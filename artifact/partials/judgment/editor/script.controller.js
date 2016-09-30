@@ -7,11 +7,11 @@
   function EditorController(editorConstant, editorService, $location, $anchorScroll, $uibModal) {
     var vm = this;
     /* Constant */
+    vm.calculator = 'calculator.html';
     vm.treeData = editorConstant.TreeData;
     vm.treeOptions = editorConstant.TreeOptions;
     vm.reasonTreeOptions = editorConstant.ReasonTreeOptions;
     vm.mediumEditorOptions = editorConstant.mediumEditorOptions;
-    vm.openStatus = editorConstant.openStatus;
     /* Variable */
     vm.targetJudgment = {};
     vm.template = {};
