@@ -10,18 +10,12 @@
     .left {
       flex: 2;
       .clean;
-      hr {
-        .clean;
-      }
       .menu-tree {
         position: relative;
-        top: 10px;
+        top: 1em;
         a {
           color: @gray-font;
         }
-      }
-      .btn-close {
-        border-radius: 0 0 20%;
       }
     }
     .center {
@@ -32,6 +26,9 @@
       height: 900px;
       overflow-y: scroll;
       p:hover {
+        background: @index-bg;
+      }
+      p:focus {
         background: @yellow;
       }
       #judgment {
@@ -56,12 +53,15 @@
             .clean;
             border: none;
             .template-tree {
-              padding-top: 10px;
-              padding-bottom: 10px;
-              border-bottom: 1px solid @dark-gray;
+              padding-top: 12px;
+              padding-bottom: 15px;
               .tree-item {
                 font-size: 12px;
               }
+            }
+            .template-tree-box {
+              border-top: 1px solid @gray-light;
+              margin-bottom: 5px;
             }
           }
         }
@@ -99,13 +99,14 @@
       .content {
         font-size: 12px;
         color: @footer-bg;
-        border: 1px solid @gray;
         padding: 6px 8px;
         text-indent: 2em;
         line-height: 1.6em;
-        background: @yellow;
-        max-height: 20em;
+        max-height: 25em;
         overflow-y: scroll;
+      }
+      .content:focus {
+        background: @yellow;
       }
       .similarCases {
         .content {

@@ -1,19 +1,24 @@
 <div id="judgment-case-list-Editor">
     <section class='editor'>
       <div class="left">
-        <button ui-sref='judgment.case_list' class="btn btn-danger btn-xs btn-close">
-          <i class="glyphicon glyphicon-remove"></i>
-        </button>
-        <hr />
+
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button ui-sref='judgment.case_list' class="btn btn-danger btn-xs btn-close">
+              <i class="glyphicon glyphicon-remove"></i>
+            </button>
+          </span>
+          <input type="text" class="form-control" ng-model="tree.query" placeholder="文书菜单过滤 ...">
+        </div>
         <div class="menu-tree">
           <treecontrol class="tree-classic"
              tree-model="Editor.treeData"
-             options="Editor.treeOptions"
+             filter-expression = 'tree.query'
+             options="Editor.treeSectionOptions"
              on-selection="showSelected(node)">
-             <a ng-click="Editor.jumpToSection(node.id)">{{node.name}}</a>
+             <a ng-click="Editor.operation.jumpToSection(node.id)">{{node.name}}</a>
           </treecontrol>
         </div>
-
       </div>
       <div class="center">
         <div id='judgment' style="text-align: justify">
@@ -120,13 +125,13 @@
       </div>
       <menu class="right">
         <div class="btn-group">
-          <button class="btn btn-default btn-sm" ng-click='Editor.saveJudgment()'>
+          <button class="btn btn-default btn-sm" ng-click='Editor.operation.saveJudgment()'>
             <i class="fa fa-floppy-o">&nbsp;保存</i>
           </button>
           <button class="btn btn-default btn-sm">
             <i class="fa fa-eye">&nbsp;预览</i>
           </button>
-          <button class="btn btn-default btn-sm" ng-click='Editor.exportWORD()'>
+          <button class="btn btn-default btn-sm" ng-click='Editor.operation.exportWORD()'>
             <i class="fa fa-file-word-o">&nbsp;导出</i>
           </button>
           <div class="btn-group">
@@ -152,40 +157,44 @@
         <uib-accordion close-others=true>
           <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
             <div class="list-group">
-              <a class="list-group-item">案件名称：{{Editor.targetJudgment.lawCaseTitle}}</a>
-              <a class="list-group-item">审理程序：{{Editor.targetJudgment.targetJudgment}}</a>
-              <a class="list-group-item">案件类型：{{Editor.targetJudgment.category}}</a>
-              <a class="list-group-item">案由：{{Editor.targetJudgment.causeOfAction}}</a>
-              <a class="list-group-item">受理日期：{{Editor.targetJudgment.acceptedDate}}</a>
+              <a class="list-group-item">案件名称：{{Editor.judgment.lawCaseTitle}}</a>
+              <a class="list-group-item">审理程序：{{Editor.judgment.judgment}}</a>
+              <a class="list-group-item">案件类型：{{Editor.judgment.category}}</a>
+              <a class="list-group-item">案由：{{Editor.judgment.causeOfAction}}</a>
+              <a class="list-group-item">受理日期：{{Editor.judgment.acceptedDate}}</a>
             </div>
           </div>
           <div heading='文书模板' uib-accordion-group class="panel-default">
             <div class="template-tree">
               <treecontrol class="tree-light"
                  tree-model="Editor.reasonTree"
-                 options="Editor.reasonTreeOptions"
+                 options="Editor.treeTemplateOptions"
                  on-selection="showSelected(node)">
-                 <span class='tree-item' ng-click='Editor.matchTemplateTreeInfo(node.treeId)'>{{node.conditionName}}</span>
+                 <span class='tree-item' ng-click='Editor.templateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            <div ng-if='Editor.accordThinkInfo' >
-              <button ng-click='Editor.transferTemplateTreeInfo(Editor.accordThinkInfo)' class="btn btn-default btn-xs">
-                <i class="fa fa-code-fork"> 引用</i>
-              </button>
-              <button ng-click='Editor.updateTemplateTreeInfo(Editor.accordThinkInfo)' class="btn btn-primary btn-xs pull-right">
-                <i class="fa fa-floppy-o"> 修改</i>
-              </button>
-              <div class="content" contenteditable="true" ng-model='Editor.accordThinkInfo'>
-                {{Editor.accordThinkInfo}}
+            <div class='template-tree-box' ng-if='Editor.templateTree.accordThinkInfo' >
+              <div class="btn-group">
+                <button ng-click='Editor.templateTree.transfer(Editor.templateTree.accordThinkInfo)' class="btn btn-default btn-xs">
+                  <i class="fa fa-code-fork">&nbsp;引用</i>
+                </button>
+                <button ng-click='Editor.templateTree.update(Editor.templateTree.accordThinkInfo)' class="btn btn-success btn-xs">
+                  <i class="fa fa-pencil-square-o">&nbsp;修改</i>
+                </button>
+              </div>
+              <div class="content" contenteditable="true" ng-model='Editor.templateTree.accordThinkInfo'>
+                {{Editor.templateTree.accordThinkInfo}}
               </div>
             </div>
-            <div ng-if='Editor.verdictThinkInfo'>
-              <button  class="btn btn-default btn-xs">
-                <i class="fa fa-code-fork"> 引用</i>
-              </button>
-              <button class="btn btn-primary btn-xs pull-right">
-                <i class="fa fa-floppy-o"> 修改</i>
-              </button>
+            <div class='template-tree-box' ng-if='Editor.verdictThinkInfo'>
+              <div class="btn-group">
+                <button class="btn btn-default btn-xs">
+                  <i class="fa fa-code-fork">&nbsp;引用</i>
+                </button>
+                <button class="btn btn-success btn-xs">
+                  <i class="fa fa-pencil-square-o">&nbsp;修改</i>
+                </button>
+              </div>
               <div class="content" contenteditable="true">
                 {{Editor.verdictThinkInfo}}
               </div>
@@ -195,21 +204,21 @@
           <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default">
             <ul class="list-group">
               <a class="list-group-item"
-                 ng-repeat='similarCase in Editor.similarCases'
-                 ng-click = "Editor.selectSimilarCase(similarCase)">
+                 ng-repeat='similarCase in Editor.similarCase.list'
+                 ng-click = "Editor.similarCase.select(similarCase)">
                 <span class="badge">{{similarCase.similarity}}</span>
                 （{{$index+1}}）{{similarCase.caseTitle}} ({{similarCase.judgeDate}})
               </a>
             </ul>
-            <div ng-if='Editor.selectedSimilarCase.orgText' class="content">
-              {{Editor.selectedSimilarCase.orgText}}
+            <div ng-if='Editor.similarCase.selected.orgText' class="content">
+              {{Editor.similarCase.selected.orgText}}
             </div>
           </div>
           <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default">
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="相似案例关联法条">
                 <ul class="list-group">
-                  <a ng-repeat='similarCase in Editor.similarCases' class="list-group-item">
+                  <a ng-repeat='similarCase in Editor.similarCase.list' class="list-group-item">
                     <span class="badge">{{similarCase.similarity}}</span>
                     {{similarCase.laws[0]}}
                   </a>
@@ -262,7 +271,7 @@
       <span class="input-group-btn">
         <button class="btn btn-danger"><i class="fa fa-share"></i></button>
       </span>
-      <input class="form-control" type="number" placeholder="计算结果">
+      <input class="form-control" type="text" placeholder="计算结果">
     </div>
     <div>
       <button class="btn btn-primary">7</button>
