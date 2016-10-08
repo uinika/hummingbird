@@ -12,11 +12,11 @@
         </div>
         <div class="menu-tree">
           <treecontrol class="tree-classic"
-             tree-model="Editor.treeData"
+             tree-model="Editor.Constant.treeData"
              filter-expression = 'tree.query'
-             options="Editor.treeSectionOptions"
+             options="Editor.Constant.treeSectionOptions"
              on-selection="showSelected(node)">
-             <a ng-click="Editor.operation.jumpToSection(node.id)">{{node.name}}</a>
+             <a ng-click="Editor.Operation.jumpToSection(node.id)">{{node.name}}</a>
           </treecontrol>
         </div>
       </div>
@@ -42,96 +42,96 @@
           <div id="judgment-head">
             <p data-placeholder="文书标题-法院名称"
                id="courtName"
-               ng-model="Editor.template.templateArticle.indexTitle.courtName"
+               ng-model="Editor.Template.templateArticle.indexTitle.courtName"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="文书标题-文书名称"
                id="lawCaseTitle"
-               ng-model="Editor.template.templateArticle.indexTitle.lawCaseTitle"
+               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseTitle"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="文书标题-案号"
                id="lawCaseCode"
-               ng-model="Editor.template.templateArticle.indexTitle.lawCaseCode"
+               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseCode"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
           </div>
           <div id="judgment-body">
             <p data-placeholder="首部-当事人"
                id="accuser"
-               ng-model="Editor.template.templateArticle.parties.accuser"
+               ng-model="Editor.Template.templateArticle.parties.accuser"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="accuserAgent"
-               ng-model="Editor.template.templateArticle.parties.accuserAgent"
+               ng-model="Editor.Template.templateArticle.parties.accuserAgent"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="defendant"
-               ng-model="Editor.template.templateArticle.parties.defendant"
+               ng-model="Editor.Template.templateArticle.parties.defendant"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="defendantAgent"
-               ng-model="Editor.template.templateArticle.parties.defendantAgent"
+               ng-model="Editor.Template.templateArticle.parties.defendantAgent"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="首部-案件由来和审理经过"
                id="caseGeneral"
-               ng-model="Editor.template.templateArticle.parties.caseGeneral"
+               ng-model="Editor.Template.templateArticle.parties.caseGeneral"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-诉讼请求"
                id="claims"
-               ng-model="Editor.template.templateArticle.fact.claims"
+               ng-model="Editor.Template.templateArticle.fact.claims"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="argued"
-               ng-model="Editor.template.templateArticle.fact.argued"
+               ng-model="Editor.Template.templateArticle.fact.argued"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-事实"
                id="factResult"
-               ng-model="Editor.template.templateArticle.fact.factResult"
+               ng-model="Editor.Template.templateArticle.fact.factResult"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="理由"
                id="reason"
-               ng-model="Editor.template.templateArticle.reason"
+               ng-model="Editor.Template.templateArticle.reason"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
-               ng-model="Editor.template.templateArticle.caseMain"
+               ng-model="Editor.Template.templateArticle.caseMain"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
                id="legalCosts"
-               ng-model="Editor.template.templateArticle.bottom.legalCosts"
+               ng-model="Editor.Template.templateArticle.bottom.legalCosts"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="尾部-告知事项"
                id="informInfo"
-               ng-model="Editor.template.templateArticle.bottom.informInfo"
+               ng-model="Editor.Template.templateArticle.bottom.informInfo"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
           </div>
           <div id="judgment-foot">
             <p data-placeholder="落款-署名"
                id="chiefJudge"
-               ng-model="Editor.template.templateArticle.inscribe.chiefJudge"
+               ng-model="Editor.Template.templateArticle.inscribe.chiefJudge"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="judge"
-               ng-model="Editor.template.templateArticle.inscribe.judge"
+               ng-model="Editor.Template.templateArticle.inscribe.judge"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="courtClerk"
-               ng-model="Editor.template.templateArticle.inscribe.courtClerk"
+               ng-model="Editor.Template.templateArticle.inscribe.courtClerk"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
             <p data-placeholder="落款-日期"
                id="judgmentDate"
-               ng-model="Editor.template.templateArticle.inscribe.judgmentDate"
+               ng-model="Editor.Template.templateArticle.inscribe.judgmentDate"
                medium-editor bind-options="Editor.mediumEditorOptions"></p>
           </div>
         </div>
       </div>
       <menu class="right">
         <div class="btn-group">
-          <button class="btn btn-default btn-sm" ng-click='Editor.operation.saveJudgment()'>
+          <button class="btn btn-default btn-sm" ng-click='Editor.Operation.saveJudgment()'>
             <i class="fa fa-floppy-o">&nbsp;保存</i>
           </button>
           <button class="btn btn-default btn-sm">
             <i class="fa fa-eye">&nbsp;预览</i>
           </button>
-          <button class="btn btn-default btn-sm" ng-click='Editor.operation.exportWORD()'>
+          <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
             <i class="fa fa-file-word-o">&nbsp;导出</i>
           </button>
           <div class="btn-group">
@@ -149,7 +149,7 @@
             </ul>
           </div>
           <button class="btn btn-default btn-sm"
-              uib-popover-template="Editor.calculator"
+              uib-popover-template="Editor.Constant.calculator"
               popover-placement="bottom-right">
             <i class="fa fa-calculator">&nbsp;计算器</i>
           </button>
@@ -157,38 +157,38 @@
         <uib-accordion close-others=true>
           <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
             <div class="list-group">
-              <a class="list-group-item">案件名称：{{Editor.judgment.lawCaseTitle}}</a>
-              <a class="list-group-item">审理程序：{{Editor.judgment.judgment}}</a>
-              <a class="list-group-item">案件类型：{{Editor.judgment.category}}</a>
-              <a class="list-group-item">案由：{{Editor.judgment.causeOfAction}}</a>
-              <a class="list-group-item">受理日期：{{Editor.judgment.acceptedDate}}</a>
+              <a class="list-group-item">案件名称：{{Editor.Judgment.lawCaseTitle}}</a>
+              <a class="list-group-item">审理程序：{{Editor.Judgment.judgment}}</a>
+              <a class="list-group-item">案件类型：{{Editor.Judgment.category}}</a>
+              <a class="list-group-item">案由：{{Editor.Judgment.causeOfAction}}</a>
+              <a class="list-group-item">受理日期：{{Editor.Judgment.acceptedDate}}</a>
             </div>
           </div>
           <div heading='文书模板' uib-accordion-group class="panel-default">
             <div class="template-tree">
               <treecontrol class="tree-light"
                  tree-model="Editor.reasonTree"
-                 options="Editor.treeTemplateOptions"
+                 options="Editor.Constant.treeTemplateOptions"
                  on-selection="showSelected(node)">
-                 <span class='tree-item' ng-click='Editor.templateTree.match(node.treeId)'>{{node.conditionName}}</span>
+                 <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            <div class='template-tree-box' ng-if='Editor.templateTree.accordThinkInfo' >
+            <div class='template-tree-box' ng-if='Editor.TemplateTree.accordThinkInfo' >
               <div class="btn-group">
-                <button ng-click='Editor.templateTree.transfer(Editor.templateTree.accordThinkInfo)' class="btn btn-default btn-xs">
+                <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.accordThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
-                <button ng-click='Editor.templateTree.update(Editor.templateTree.accordThinkInfo)' class="btn btn-success btn-xs">
+                <button ng-click='Editor.TemplateTree.update(Editor.TemplateTree.accordThinkInfo)' class="btn btn-success btn-xs">
                   <i class="fa fa-pencil-square-o">&nbsp;修改</i>
                 </button>
               </div>
-              <div class="content" contenteditable="true" ng-model='Editor.templateTree.accordThinkInfo'>
-                {{Editor.templateTree.accordThinkInfo}}
+              <div class="content" contenteditable="true" ng-model='Editor.TemplateTree.accordThinkInfo'>
+                {{Editor.TemplateTree.accordThinkInfo}}
               </div>
             </div>
-            <div class='template-tree-box' ng-if='Editor.verdictThinkInfo'>
+            <div class='template-tree-box' ng-if='Editor.TemplateTree.verdictThinkInfo'>
               <div class="btn-group">
-                <button class="btn btn-default btn-xs">
+                <button ng-click='Editor.TemplateTree.transfer({verdictThinkInfo: Editor.TemplateTree.verdictThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
                 <button class="btn btn-success btn-xs">
@@ -196,7 +196,7 @@
                 </button>
               </div>
               <div class="content" contenteditable="true">
-                {{Editor.verdictThinkInfo}}
+                {{Editor.TemplateTree.verdictThinkInfo}}
               </div>
             </div>
 
@@ -204,21 +204,21 @@
           <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default">
             <ul class="list-group">
               <a class="list-group-item"
-                 ng-repeat='similarCase in Editor.similarCase.list'
-                 ng-click = "Editor.similarCase.select(similarCase)">
+                 ng-repeat='similarCase in Editor.SimilarCase.list'
+                 ng-click = "Editor.SimilarCase.choose(similarCase)">
                 <span class="badge">{{similarCase.similarity}}</span>
                 （{{$index+1}}）{{similarCase.caseTitle}} ({{similarCase.judgeDate}})
               </a>
             </ul>
-            <div ng-if='Editor.similarCase.selected.orgText' class="content">
-              {{Editor.similarCase.selected.orgText}}
+            <div ng-if='Editor.SimilarCase.selected.orgText' class="content">
+              {{Editor.SimilarCase.selected.orgText}}
             </div>
           </div>
           <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default">
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="相似案例关联法条">
                 <ul class="list-group">
-                  <a ng-repeat='similarCase in Editor.similarCase.list' class="list-group-item">
+                  <a ng-repeat='similarCase in Editor.SimilarCase.list' class="list-group-item">
                     <span class="badge">{{similarCase.similarity}}</span>
                     {{similarCase.laws[0]}}
                   </a>
@@ -227,7 +227,7 @@
               <uib-tab index="1"
                 heading="案件类型关联法条">
                 <ul class="list-group">
-                  <a ng-repeat='lawItem in Editor.lawItems' class="list-group-item">
+                  <a ng-repeat='lawItem in Editor.LawItem.list' class="list-group-item">
                     {{lawItem.case_accord}}
                   </a>
                 </ul>

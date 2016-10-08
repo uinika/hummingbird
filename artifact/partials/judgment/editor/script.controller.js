@@ -6,111 +6,119 @@
 
   function EditorController(editorConstant, editorService, $location, $anchorScroll, $uibModal) {
     var vm = this;
-    /* Constant */
-    vm.calculator = 'calculator.html';
-    vm.treeData = editorConstant.TreeData;
-    vm.treeSectionOptions = editorConstant.TreeOptions;
-    vm.treeTemplateOptions = editorConstant.ReasonTreeOptions;
-    vm.mediumEditorOptions = editorConstant.mediumEditorOptions;
-    /* Variable */
-    vm.judgment = {};
-    vm.template = {};
-    vm.lawItems = [];
-    //
-    vm.similarCase = {};
-    vm.similarCase.list = [];
-    vm.similarCase.selected = {};
-    vm.similarCase.select = selectSimilarCase;
-    //
-    vm.operation = operation();
-    //
-    vm.templateTree = templateTree();
-    vm.templateTree.accordThinkInfo  = '';
-    vm.templateTree.verdictThinkInfo = '';
+    vm.Judgment = {};
+    vm.Template = {};
+    vm.LawItem = {
+      list: []
+    };
+    vm.Operation = operation();
+    vm.Constant = {
+      calculator: 'calculator.html',
+      treeData: editorConstant.TreeData,
+      treeSectionOptions: editorConstant.TreeOptions,
+      treeTemplateOptions: editorConstant.ReasonTreeOptions,
+      mediumEditorOptions: editorConstant.mediumEditorOptions
+    };
+    vm.SimilarCase = {
+      list: [],
+      selected: {},
+      choose: chooseSimilarCase
+    };
+    vm.TemplateTree ={
+      accordThinkInfo: '',
+      verdictThinkInfo: '',
+      match: templateTree().match,
+      transfer: templateTree().transfer,
+      update: templateTree().update
+    };
 
     !function init() {
       // Loding judgment from session storage
       var judgment = sessionStorage.targetJudgment;
       if (judgment) {
-        vm.judgment = JSON.parse(judgment);
+        vm.Judgment = JSON.parse(judgment);
         // Template content
-        editorService.getJudgmentTemplate(vm.judgment)
+        editorService.Template.fetch(vm.Judgment)
         .then(function(data) {
-           vm.template = data.body[0];
+           vm.Template = data.body[0];
            // Init judgment match
-           editorService.matchTemplateTree()
+           editorService.TemplateTree.fetch()
            .then(function(data){
              vm.reasonTree = data.body;
            });
            // Init similar case
-           editorService.fetchSimilarCase(
-               vm.template.templateArticle.parties.caseGeneral
-             + vm.template.templateArticle.fact.claims
-             + vm.template.templateArticle.fact.argued
-             + vm.template.templateArticle.fact.factResult
+           editorService.SimilarCase.fetch(
+               vm.Template.templateArticle.parties.caseGeneral
+             + vm.Template.templateArticle.fact.claims
+             + vm.Template.templateArticle.fact.argued
+             + vm.Template.templateArticle.fact.factResult
            ).then(function(data){
              if(data && data.body){
-               vm.similarCase.list = data.body;
+               vm.SimilarCase.list = data.body;
              }
            });
         });
         // Init low item
-        editorService.fetchLawItem({
-          causeOfAction: vm.judgment.causeOfAction
+        editorService.LawItem.fetch({
+          causeOfAction: vm.Judgment.causeOfAction
         })
         .then(function(data) {
-           vm.lawItems = data.body;
+           vm.LawItem.list = data.body;
         });
       };
     }();
 
-    function selectSimilarCase(similarCase) {
-      vm.similarCase.selected = similarCase;
+    /**  */
+    function chooseSimilarCase(similarCase) {
+      vm.SimilarCase.selected = similarCase;
     };
 
+    /** templateTree event handler */
     function templateTree() {
       return {
-        match: function (treeId) {
-          editorService.matchTemplateTreeInfo({treeId: treeId })
+        match: function(treeId) {
+          editorService.TemplateTree.match({treeId: treeId })
           .then(function(data) {
             var body = data.body[0];
-            if(body.accordThinkInfo && body.verdictThinkInfo) {
-               vm.templateTree.accordThinkInfo  = body.accordThinkInfo;
-               vm.verdictThinkInfo = body.verdictThinkInfo;
-            }
-            else {
-              vm.templateTree.accordThinkInfo  = '';
-              vm.verdictThinkInfo = '';
-            }
+            vm.TemplateTree.accordThinkInfo  = body && body.accordThinkInfo ? body.accordThinkInfo : '';
+            vm.TemplateTree.verdictThinkInfo = body && body.verdictThinkInfo ? body.verdictThinkInfo : '';
           })
         },
-        transfer: function (info) {
-          vm.template.templateArticle.reason = info;
+        transfer: function(templates) {
+          if(templates.hasOwnProperty('accordThinkInfo')) {
+            vm.Template.templateArticle.reason = templates.accordThinkInfo;
+          }
+          else if(templates.hasOwnProperty('verdictThinkInfo')){
+            vm.Template.templateArticle.caseMain = templates.verdictThinkInfo
+          }
         },
-        update: function (info) {
-          editorService.updateTemplateTreeInfo({
+        update: function(info) {
+          editorService.TemplateTree.update({
             autoId: 1,
             treeId: 1,
             conditionName: '',
             accordThinkInfo: '',
             verdictThinkInfo: ''
           })
+          .then(function(data) {
+            alert(data);
+          })
         }
       }
     };
 
+    /** operation event handler */
     function operation() {
       return {
-        // Save Judgment
         saveJudgment: function () {
-          editorService.saveJudgmentTemplate({
-            articleContentJson: JSON.stringify(vm.template.templateArticle),
+          editorService.Judgment.save({
+            articleContentJson: JSON.stringify(vm.Template.templateArticle),
             articleContent: $('.editor>.center').text().trim(),
             articleHtml: $('.editor>.center').html().trim(),
-            articleId: vm.judgment.articleId,
+            articleId: vm.Judgment.articleId,
             templateId: vm.targetTemplate.templateId,
-            causeOfAction: vm.judgment.causeOfAction,
-            lawCaseName: vm.judgment.lawCaseName
+            causeOfAction: vm.Judgment.causeOfAction,
+            lawCaseName: vm.Judgment.lawCaseName
           })
           .then(function(data) {
             if(data && data.head) {
@@ -118,17 +126,15 @@
             }
           })
         },
-        // Jump to section by anchor
         jumpToSection: function (id) {
           $location.hash(id);
           $anchorScroll.yOffset = 58;
           $anchorScroll();
         },
-        // Export MS word
         exportWORD: function () {
-          editorService.exportWORD({
-            articleId: vm.judgment.articleId,
-            lawCaseName: vm.judgment.lawCaseName,
+          editorService.Operation.exportWORD({
+            articleId: vm.Judgment.articleId,
+            lawCaseName: vm.Judgment.lawCaseName,
             articleHtml: $('.editor>.center').html().trim()
           })
         }

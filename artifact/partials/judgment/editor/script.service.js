@@ -6,88 +6,113 @@
 
   function editorService($http, URL, validate, $window) {
     return {
-      getJudgmentTemplate: getJudgmentTemplate,
-      saveJudgmentTemplate: saveJudgmentTemplate,
-      exportWORD: exportWORD,
-      matchTemplateTree: matchTemplateTree,
-      matchTemplateTreeInfo: matchTemplateTreeInfo,
-      updateTemplateTreeInfo: updateTemplateTreeInfo,
-      fetchLawItem: fetchLawItem,
-      fetchSimilarCase: fetchSimilarCase
+      Template: {
+        fetch: new Template().fetch
+      },
+      Judgment: {
+        save: new Judgment().save
+      },
+      Operation: {
+        exportWORD: new Operation().exportWORD
+      },
+      TemplateTree: {
+        fetch: new TemplateTree().fetch,
+        match: new TemplateTree().match,
+        update: new TemplateTree().update
+      },
+      LawItem: {
+        fetch: new LawItem().fetch
+      },
+      SimilarCase: {
+        fetch: new SimilarCase().fetch
+      }
     };
-    // Get Judgment Content
-    function getJudgmentTemplate(params) {
-      return $http.get(
-        URL + '/verdict/template', { params: params }
-      ).then(function(result) {
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      })
+
+    function Template(){
+      this.fetch = function(params) {
+        return $http.get(
+          URL + '/verdict/template', { params: params }
+        ).then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
     };
-    // Save Judgment Content
-    function saveJudgmentTemplate(data) {
-      return $http.post(
-        URL + '/verdict/writ', data
-      ).then(function(result) {
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      })
+
+    function Judgment() {
+      this.save = function(data) {
+        return $http.post(
+          URL + '/verdict/writ', data
+        ).then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
     };
-    // Export Judgment by WORD
-    function exportWORD(data) {
-      var converted = htmlDocx.asBlob(data.articleHtml);
-      window.saveAs(converted, data.lawCaseName+'.docx');
+
+    function Operation() {
+      this.exportWORD = function(data) {
+        var converted = htmlDocx.asBlob(data.articleHtml);
+        window.saveAs(converted, data.lawCaseName+'.docx');
+      };
     };
-    // Fetch Low Item
-    function fetchLawItem(params) {
-      return $http.get(
-        URL + '/case/brief/find/laws', { params: params }
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      })
+
+    function LawItem(){
+      this.fetch = function(params) {
+        return $http.get(
+          URL + '/case/brief/find/laws', { params: params }
+        ).then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
     };
-    // Fetch Similar Case
-    function fetchSimilarCase(data) {
-      return $http.post(
-        URL + '/case/similar/verdict', { articleContent: data }
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      })
+
+    function SimilarCase() {
+      this.fetch = function(data) {
+        return $http.post(
+          URL + '/case/similar/verdict', { articleContent: data }
+        ).then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
     };
-    // Match all Judgment
-    function matchTemplateTree(target) {
-      return $http.get(
-        URL + '/conditon/tree'
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
+
+    function TemplateTree() {
+      this.fetch = function(target) {
+        return $http.get(
+          URL + '/conditon/tree'
+        ).then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        });
+      };
+      this.match = function(params) {
+        return $http.get(
+          URL + '/conditon/tree/info', { params: params }
+        ).then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        });
+      };
+      this.update = function(data) {
+        return $http.put(
+          URL + '/conditon/tree/info', data
+        ).then(function(result){
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        });
+      };
     };
-    function matchTemplateTreeInfo(params) {
-      return $http.get(
-        URL + '/conditon/tree/info', { params: params }
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
-    };
-    function updateTemplateTreeInfo(data) {
-      return $http.put(
-        URL + '/conditon/tree/info', data
-      ).then(function(result){
-        if(validate(result.data, 200)){
-          return result.data;
-        }
-      });
-    };
+
 
   };
 
