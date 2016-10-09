@@ -25,8 +25,8 @@
       choose: similarCase().choose
     };
     vm.TemplateTree ={
-      accordThinkInfo: '',
-      verdictThinkInfo: '',
+      display: false,
+      selectedContent: {},
       match: templateTree().match,
       transfer: templateTree().transfer,
       update: templateTree().update
@@ -75,17 +75,21 @@
           vm.SimilarCase.selected = similarCase;
         }
       }
-    }
+    };
 
     /** templateTree event handler */
     function templateTree() {
       return {
         match: function(treeId) {
-          editorService.TemplateTree.match({treeId: treeId })
+          editorService.TemplateTree.match({treeId: treeId})
           .then(function(data) {
             var body = data.body[0];
-            vm.TemplateTree.accordThinkInfo  = body && body.accordThinkInfo ? body.accordThinkInfo : '';
-            vm.TemplateTree.verdictThinkInfo = body && body.verdictThinkInfo ? body.verdictThinkInfo : '';
+            if(body && body.accordThinkInfo && body.verdictThinkInfo){
+              vm.TemplateTree.display = true;
+              vm.TemplateTree.selectedContent = body;
+            }else{
+              vm.TemplateTree.display = false;
+            }
           })
         },
         transfer: function(templates) {
@@ -97,15 +101,16 @@
           }
         },
         update: function(info) {
+          var selectedContent = vm.TemplateTree.selectedContent;
           editorService.TemplateTree.update({
-            autoId: 1,
-            treeId: 1,
-            conditionName: '',
-            accordThinkInfo: '',
-            verdictThinkInfo: ''
+            autoId: selectedContent.autoId,
+            treeId: selectedContent.treeId,
+            conditionName: selectedContent.conditionName,
+            accordThinkInfo: selectedContent.accordThinkInfo,
+            verdictThinkInfo: selectedContent.verdictThinkInfo
           })
           .then(function(data) {
-            alert(data);
+            alert(data.head.message)
           })
         }
       }

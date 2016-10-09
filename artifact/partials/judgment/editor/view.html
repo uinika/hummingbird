@@ -43,83 +43,83 @@
             <p data-placeholder="文书标题-法院名称"
                id="courtName"
                ng-model="Editor.Template.templateArticle.indexTitle.courtName"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="文书标题-文书名称"
                id="lawCaseTitle"
                ng-model="Editor.Template.templateArticle.indexTitle.lawCaseTitle"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="文书标题-案号"
                id="lawCaseCode"
                ng-model="Editor.Template.templateArticle.indexTitle.lawCaseCode"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
           </div>
           <div id="judgment-body">
             <p data-placeholder="首部-当事人"
                id="accuser"
                ng-model="Editor.Template.templateArticle.parties.accuser"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="accuserAgent"
                ng-model="Editor.Template.templateArticle.parties.accuserAgent"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="defendant"
                ng-model="Editor.Template.templateArticle.parties.defendant"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="首部-当事人"
                id="defendantAgent"
                ng-model="Editor.Template.templateArticle.parties.defendantAgent"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="首部-案件由来和审理经过"
                id="caseGeneral"
                ng-model="Editor.Template.templateArticle.parties.caseGeneral"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实-诉讼请求"
                id="claims"
                ng-model="Editor.Template.templateArticle.fact.claims"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="argued"
                ng-model="Editor.Template.templateArticle.fact.argued"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实-事实"
                id="factResult"
                ng-model="Editor.Template.templateArticle.fact.factResult"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="理由"
                id="reason"
                ng-model="Editor.Template.templateArticle.reason"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
                ng-model="Editor.Template.templateArticle.caseMain"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
                id="legalCosts"
                ng-model="Editor.Template.templateArticle.bottom.legalCosts"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="尾部-告知事项"
                id="informInfo"
                ng-model="Editor.Template.templateArticle.bottom.informInfo"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
           </div>
           <div id="judgment-foot">
             <p data-placeholder="落款-署名"
                id="chiefJudge"
                ng-model="Editor.Template.templateArticle.inscribe.chiefJudge"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="judge"
                ng-model="Editor.Template.templateArticle.inscribe.judge"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实-证据"
                id="courtClerk"
                ng-model="Editor.Template.templateArticle.inscribe.courtClerk"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="落款-日期"
                id="judgmentDate"
                ng-model="Editor.Template.templateArticle.inscribe.judgmentDate"
-               medium-editor bind-options="Editor.mediumEditorOptions"></p>
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
           </div>
         </div>
       </div>
@@ -173,30 +173,36 @@
                  <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            <div class='template-tree-box' ng-if='Editor.TemplateTree.accordThinkInfo' >
+            <div class='template-tree-box' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
-                <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.accordThinkInfo})' class="btn btn-default btn-xs">
+                <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
-                <button ng-click='Editor.TemplateTree.update(Editor.TemplateTree.accordThinkInfo)' class="btn btn-success btn-xs">
+                <button ng-click='Editor.TemplateTree.update()' class="btn btn-success btn-xs">
                   <i class="fa fa-pencil-square-o">&nbsp;修改</i>
                 </button>
               </div>
-              <div class="content" contenteditable="true" ng-model='Editor.TemplateTree.accordThinkInfo'>
-                {{Editor.TemplateTree.accordThinkInfo}}
+              <div class="content" medium-editor
+                data-placeholder="本院认为内容"
+                bind-options="Editor.Constant.mediumEditorOptions"
+                ng-model='Editor.TemplateTree.selectedContent.accordThinkInfo'>
+                {{Editor.TemplateTree.selectedContent.accordThinkInfo}}
               </div>
             </div>
-            <div class='template-tree-box' ng-if='Editor.TemplateTree.verdictThinkInfo'>
+            <div class='template-tree-box' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
-                <button ng-click='Editor.TemplateTree.transfer({verdictThinkInfo: Editor.TemplateTree.verdictThinkInfo})' class="btn btn-default btn-xs">
+                <button ng-click='Editor.TemplateTree.transfer({verdictThinkInfo: Editor.TemplateTree.selectedContent.verdictThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
-                <button class="btn btn-success btn-xs">
+                <button ng-click='Editor.TemplateTree.update()' class="btn btn-success btn-xs">
                   <i class="fa fa-pencil-square-o">&nbsp;修改</i>
                 </button>
               </div>
-              <div class="content" contenteditable="true">
-                {{Editor.TemplateTree.verdictThinkInfo}}
+              <div class="content" medium-editor
+                data-placeholder="裁判主文内容"
+                bind-options="Editor.Constant.mediumEditorOptions"
+                ng-model='Editor.TemplateTree.selectedContent.verdictThinkInfo'>
+                {{Editor.TemplateTree.selectedContent.verdictThinkInfo}}
               </div>
             </div>
 
@@ -256,11 +262,7 @@
         </uib-accordion>
       </menu>
     </section>
-    <!--
-    <aside class="bottom">
-      bottom
-    </aside>
-    -->
+
   </div>
 </div>
 
