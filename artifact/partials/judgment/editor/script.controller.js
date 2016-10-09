@@ -22,7 +22,7 @@
     vm.SimilarCase = {
       list: [],
       selected: {},
-      choose: chooseSimilarCase
+      choose: similarCase().choose
     };
     vm.TemplateTree ={
       accordThinkInfo: '',
@@ -69,9 +69,13 @@
     }();
 
     /**  */
-    function chooseSimilarCase(similarCase) {
-      vm.SimilarCase.selected = similarCase;
-    };
+    function similarCase() {
+      return {
+        choose: function(similarCase) {
+          vm.SimilarCase.selected = similarCase;
+        }
+      }
+    }
 
     /** templateTree event handler */
     function templateTree() {
