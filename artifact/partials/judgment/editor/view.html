@@ -21,24 +21,24 @@
         </div>
       </div>
       <div class="center">
+        <style>
+          #judgment-head #courtName {
+            text-align: center; line-height: 25pt; margin: 0.5pt 0cm; font-family: 宋体; font-size: 22pt;
+          }
+          #judgment-head #lawCaseTitle {
+            text-align: center; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 26pt;
+          }
+          #judgment-head #lawCaseCode {
+            text-align: right; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+          }
+          #judgment-body p {
+            line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+          }
+          #judgment-foot p {
+            text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+          }
+        </style>
         <div id='judgment' style="text-align: justify">
-          <style>
-            #judgment-head #courtName {
-              text-align: center; line-height: 25pt; margin: 0.5pt 0cm; font-family: 宋体; font-size: 22pt;
-            }
-            #judgment-head #lawCaseTitle {
-              text-align: center; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 26pt;
-            }
-            #judgment-head #lawCaseCode {
-              text-align: right; line-height: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
-            }
-            #judgment-body p {
-              line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
-            }
-            #judgment-foot p {
-              text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
-            }
-          </style>
           <div id="judgment-head">
             <p data-placeholder="文书标题-法院名称"
                id="courtName"
@@ -128,8 +128,8 @@
           <button class="btn btn-default btn-sm" ng-click='Editor.Operation.saveJudgment()'>
             <i class="fa fa-floppy-o">&nbsp;保存</i>
           </button>
-          <button class="btn btn-default btn-sm">
-            <i class="fa fa-eye">&nbsp;预览</i>
+          <button ng-click='Editor.Operation.printJudgment()' class="btn btn-default btn-sm">
+            <i class="fa fa-print">&nbsp;打印</i>
           </button>
           <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
             <i class="fa fa-file-word-o">&nbsp;导出</i>

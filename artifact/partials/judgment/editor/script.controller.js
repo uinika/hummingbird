@@ -2,9 +2,9 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['editorConstant', 'editorService', '$location', '$anchorScroll', '$uibModal'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state'];
 
-  function EditorController(editorConstant, editorService, $location, $anchorScroll, $uibModal) {
+  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state) {
     var vm = this;
     vm.Judgment = {};
     vm.Template = {};
@@ -125,15 +125,24 @@
             articleContent: $('.editor>.center').text().trim(),
             articleHtml: $('.editor>.center').html().trim(),
             articleId: vm.Judgment.articleId,
-            templateId: vm.targetTemplate.templateId,
+            templateId: vm.Template.templateId,
             causeOfAction: vm.Judgment.causeOfAction,
             lawCaseName: vm.Judgment.lawCaseName
           })
           .then(function(data) {
-            if(data && data.head) {
-              alert(data.head.message);
+            alert(data.head.message);
+            return data.head.status
+          })
+          .then(function(status){
+            if(status===200){
+              $state.go('judgment.doc_list');
             }
           })
+        },
+        printJudgment: function() {
+          $window.document.body.innerHTML = $(".center").html();
+          $window.print();
+          $window.location.reload();
         },
         jumpToSection: function (id) {
           $location.hash(id);
