@@ -145,6 +145,7 @@
           $window.location.reload();
         },
         jumpToSection: function (id) {
+          $('#'+id).focus();
           $location.hash(id);
           $anchorScroll.yOffset = 58;
           $anchorScroll();
