@@ -11,9 +11,14 @@
     vm.LawItem = {
       list: []
     };
-    vm.Operation = operation();
+    vm.Operation = {
+      isTabOpen: false,
+      saveJudgment: operation().saveJudgment,
+      printJudgment: operation().printJudgment,
+      jumpToSection: operation().jumpToSection,
+      exportWORD: operation().exportWORD
+    };
     vm.Constant = {
-      calculator: 'calculator.html',
       treeData: editorConstant.TreeData,
       treeSectionOptions: editorConstant.TreeOptions,
       treeTemplateOptions: editorConstant.ReasonTreeOptions,

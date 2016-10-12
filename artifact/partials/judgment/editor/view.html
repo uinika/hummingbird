@@ -134,28 +134,12 @@
           <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
             <i class="fa fa-file-word-o">&nbsp;导出</i>
           </button>
-          <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-history">&nbsp;历史</i>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <div class="list-group">
-                <a class="list-group-item">第1次修改</a>
-                <a class="list-group-item">第2次修改</a>
-                <a class="list-group-item">第3次修改</a>
-                <a class="list-group-item">第4次修改</a>
-              </div>
-            </ul>
-          </div>
-          <button class="btn btn-default btn-sm"
-              uib-popover-template="Editor.Constant.calculator"
-              popover-placement="bottom-right">
-            <i class="fa fa-calculator">&nbsp;诉讼费计算器</i>
-          </button>
         </div>
         <uib-accordion close-others=true>
-          <div heading='案件信息' uib-accordion-group class="panel-default" is-open=true>
+          <div uib-accordion-group class="panel-default" is-open=true>
+            <uib-accordion-heading>
+              <i class="fa fa-database">&nbsp;&nbsp;案件信息</i>
+            </uib-accordion-heading>
             <div class="list-group">
               <a class="list-group-item">案件名称：{{Editor.Judgment.lawCaseTitle}}</a>
               <a class="list-group-item">审理程序：{{Editor.Judgment.judgment}}</a>
@@ -164,7 +148,10 @@
               <a class="list-group-item">受理日期：{{Editor.Judgment.acceptedDate}}</a>
             </div>
           </div>
-          <div heading='文书模板' uib-accordion-group class="panel-default">
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
+            </uib-accordion-heading>
             <div class="template-tree">
               <treecontrol class="tree-light"
                  tree-model="Editor.reasonTree"
@@ -207,7 +194,10 @@
             </div>
 
           </div>
-          <div ng-class='similarCases' heading='相似案例' uib-accordion-group class="panel-default">
+          <div ng-class='similarCases' uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-puzzle-piece">&nbsp;&nbsp;相似案例</i>
+            </uib-accordion-heading>
             <ul class="list-group">
               <a class="list-group-item"
                  ng-repeat='similarCase in Editor.SimilarCase.list'
@@ -220,7 +210,10 @@
               {{Editor.SimilarCase.selected.orgText}}
             </div>
           </div>
-          <div ng-class='lawitem' heading='关联法条' uib-accordion-group class="panel-default">
+          <div ng-class='lawitem' uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-tag">&nbsp;&nbsp;关联法条</i>
+            </uib-accordion-heading>
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="相似案例关联法条">
                 <ul class="list-group">
@@ -240,7 +233,10 @@
               </uib-tab>
             </uib-tabset>
           </div>
-          <div heading='案件材料' uib-accordion-group class="panel-default">
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-bookmark-o">&nbsp;&nbsp;案件材料</i>
+            </uib-accordion-heading>
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="起诉书">
                 <div class="material"><img src="assets/images/demo/material-1.jpg"></div>
@@ -259,6 +255,21 @@
               </uib-tab>
             </uib-tabset>
           </div>
+
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-hourglass-end">&nbsp;&nbsp;编辑历史</i>
+            </uib-accordion-heading>
+            test
+          </div>
+
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-calculator">&nbsp;&nbsp;费用计算</i>
+            </uib-accordion-heading>
+            test
+          </div>
+
         </uib-accordion>
       </menu>
     </section>
