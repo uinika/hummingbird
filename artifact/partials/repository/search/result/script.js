@@ -13,18 +13,27 @@
       vm.Paging.itemsPerPage = 10;
       vm.keyword = $stateParams.keyword;
 
-      repositorySearchFactory.searchByKeyword({
-        keyword:vm.keyword,
-        type:$stateParams.type,
-        pageSize: vm.Paging.itemsPerPage,
-        current: vm.Paging.currentPage
-      }).then(function(result) {
-        if(result.data.body) {
-          vm.data = result.data.body;
-          vm.total = result.data.head.total;
-        }
+      vm.Paging.pageChanged = function() {
+        searchByKeyword();
+      }
 
-      })
+      searchByKeyword();
+      function searchByKeyword() {
+        repositorySearchFactory.searchByKeyword({
+          keyword:vm.keyword,
+          type:$stateParams.type,
+          pageSize: vm.Paging.itemsPerPage,
+          current: vm.Paging.currentPage
+        }).then(function(result) {
+          if(result.data.body) {
+            vm.data = result.data.body;
+            vm.total = result.data.head.total;
+            vm.Paging.totalItems = result.data.head.total;
+          }
+
+        })
+      }
+
 
     }
   ]);
