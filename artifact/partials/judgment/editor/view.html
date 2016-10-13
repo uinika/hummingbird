@@ -1,7 +1,6 @@
 <div id="judgment-case-list-Editor">
     <section class='editor'>
       <div class="left">
-
         <div class="input-group input-group-sm">
           <span class="input-group-btn">
             <button ui-sref='judgment.case_list' class="btn btn-danger btn-xs btn-close">
@@ -170,7 +169,7 @@
                  <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            <div class='template-tree-box' ng-if='Editor.TemplateTree.display'>
+            <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
                 <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
@@ -186,7 +185,7 @@
                 {{Editor.TemplateTree.selectedContent.accordThinkInfo}}
               </div>
             </div>
-            <div class='template-tree-box' ng-if='Editor.TemplateTree.display'>
+            <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
                 <button ng-click='Editor.TemplateTree.transfer({verdictThinkInfo: Editor.TemplateTree.selectedContent.verdictThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
@@ -224,7 +223,7 @@
             <uib-accordion-heading>
               <i class="fa fa-qrcode">&nbsp;&nbsp;关联法条</i>
             </uib-accordion-heading>
-            <uib-tabset active="activeJustified" justified="true">
+            <uib-tabset active="activePill">
               <uib-tab index="0" heading="相似案例关联法条">
                 <ul class="list-group">
                   <a ng-repeat='similarCase in Editor.SimilarCase.list' class="list-group-item">
@@ -247,20 +246,20 @@
             <uib-accordion-heading>
               <i class="fa fa-bookmark-o">&nbsp;&nbsp;案件材料</i>
             </uib-accordion-heading>
-            <uib-tabset active="activeJustified" justified="true">
+            <uib-tabset active="activePill" type='pills'>
               <uib-tab index="0" heading="起诉书">
                 <div class="material"><img src="assets/images/demo/material-1.jpg"></div>
               </uib-tab>
-              <uib-tab index="1" heading="原告身份证明">
+              <uib-tab index="1" heading="原告身份">
                 <div class="material"><img src="assets/images/demo/material-2.jpg"></div>
               </uib-tab>
-              <uib-tab index="3" heading="委托代理人证明">
+              <uib-tab index="3" heading="委托代理人">
                 <div class="material"><img src="assets/images/demo/material-3.jpg"></div>
               </uib-tab>
-              <uib-tab index="4" heading="起诉事项证明材料">
+              <uib-tab index="4" heading="起诉事项">
                 <div class="material"><img src="assets/images/demo/material-4.jpg"></div>
               </uib-tab>
-              <uib-tab index="5" heading="证据材料">
+              <uib-tab index="5" heading="证据">
                 <div class="material"><img src="assets/images/demo/material-5.jpg"></div>
               </uib-tab>
             </uib-tabset>
@@ -269,7 +268,17 @@
             <uib-accordion-heading>
               <i class="fa fa-hourglass-end">&nbsp;&nbsp;编辑历史</i>
             </uib-accordion-heading>
-            test
+            <ul class='timeline'>
+              <li class='block' ng-repeat='history in Editor.Judgment.historyList'>
+                <p>
+                  <span class="text-primary pull-left">{{history.updateTime}}</span>
+                  <span class="text-primary pull-right">{{history.updateBy}}</span>
+                </p>
+                <b class="text-warning">{{history.updateLabel}}</b>
+                <span class="text-muted">{{history.updateInfo | limitTo:80}}</span>
+              </li>
+
+            </ul>
           </div>
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>

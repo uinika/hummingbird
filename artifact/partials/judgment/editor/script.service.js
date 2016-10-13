@@ -10,7 +10,8 @@
         fetch: new Template().fetch
       },
       Judgment: {
-        save: new Judgment().save
+        save: new Judgment().save,
+        history: new Judgment().history
       },
       Operation: {
         exportWORD: new Operation().exportWORD
@@ -45,6 +46,15 @@
         return $http.post(
           URL + '/verdict/writ', data
         ).then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      };
+      this.history = function(params) {
+        return $http.get(
+          URL + '/verdict/update/log', { params: params }
+        ).then(function(result){
           if(validate(result.data, 200)){
             return result.data;
           }

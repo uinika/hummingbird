@@ -6,7 +6,9 @@
 
   function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state) {
     var vm = this;
-    vm.Judgment = {};
+    vm.Judgment = {
+      historyList: []
+    };
     vm.Template = {};
     vm.LawItem = {
       list: []
@@ -70,6 +72,13 @@
         .then(function(data) {
            vm.LawItem.list = data.body;
         });
+        // zoomI
+        editorService.Judgment.history({
+          articleId: vm.Judgment.articleId
+        })
+        .then(function(data){
+          vm.Judgment.historyList = data.body;
+        })
       };
     }();
 
