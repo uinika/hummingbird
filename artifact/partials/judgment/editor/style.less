@@ -40,6 +40,18 @@
       flex: 4;
       margin: 0 0 0 -1px;
       padding: 0;
+      .operation {
+        height: 36px;
+        border-bottom: 1px solid @gray;
+        display: flex;
+        justify-content: space-between;
+        .left {
+          flex-grow: 2;
+        }
+        .right {
+          flex-grow: 3;
+        }
+      }
       .panel-group {
         .panel {
           .clean;
@@ -122,6 +134,13 @@
           text-decoration: none;
         }
       }
+      .calculator {
+        margin: 5px 25px 9px 12px;
+        .btn-group {
+          margin: 8px 2px 10px;
+        }
+      }
+
     }
   }
 

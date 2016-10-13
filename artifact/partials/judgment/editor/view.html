@@ -124,16 +124,26 @@
         </div>
       </div>
       <menu class="right">
-        <div class="btn-group">
-          <button class="btn btn-default btn-sm" ng-click='Editor.Operation.saveJudgment()'>
-            <i class="fa fa-floppy-o">&nbsp;保存</i>
-          </button>
-          <button ng-click='Editor.Operation.printJudgment()' class="btn btn-default btn-sm">
-            <i class="fa fa-print">&nbsp;打印</i>
-          </button>
-          <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
-            <i class="fa fa-file-word-o">&nbsp;导出</i>
-          </button>
+        <div class="operation">
+          <div class="left">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">
+                <input type="checkbox">
+              </span>
+              <input disabled type="text" class="form-control" value="自动保存 2016年10月13日 15:59">
+            </div>
+          </div>
+          <div class="right btn-group">
+            <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
+              <i class="fa fa-file-word-o">&nbsp;导出</i>
+            </button>
+            <button ng-click='Editor.Operation.printJudgment()' class="btn btn-default btn-sm">
+              <i class="fa fa-print">&nbsp;打印</i>
+            </button>
+            <button class="btn btn-primary btn-sm" ng-click='Editor.Operation.saveJudgment()'>
+              <i class="fa fa-floppy-o">&nbsp;保存</i>
+            </button>
+          </div>
         </div>
         <uib-accordion close-others=true>
           <div uib-accordion-group class="panel-default" is-open=true>
@@ -196,7 +206,7 @@
           </div>
           <div ng-class='similarCases' uib-accordion-group class="panel-default">
             <uib-accordion-heading>
-              <i class="fa fa-puzzle-piece">&nbsp;&nbsp;相似案例</i>
+              <i class="fa fa-file-text-o">&nbsp;&nbsp;相似案例</i>
             </uib-accordion-heading>
             <ul class="list-group">
               <a class="list-group-item"
@@ -212,7 +222,7 @@
           </div>
           <div ng-class='lawitem' uib-accordion-group class="panel-default">
             <uib-accordion-heading>
-              <i class="fa fa-tag">&nbsp;&nbsp;关联法条</i>
+              <i class="fa fa-qrcode">&nbsp;&nbsp;关联法条</i>
             </uib-accordion-heading>
             <uib-tabset active="activeJustified" justified="true">
               <uib-tab index="0" heading="相似案例关联法条">
@@ -255,21 +265,35 @@
               </uib-tab>
             </uib-tabset>
           </div>
-
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-hourglass-end">&nbsp;&nbsp;编辑历史</i>
             </uib-accordion-heading>
             test
           </div>
-
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-calculator">&nbsp;&nbsp;费用计算</i>
             </uib-accordion-heading>
-            test
-          </div>
+            <div class="calculator form-group form-group-sm">
+              <label>输入标的额或诉讼费：</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-keyboard-o"></i></div>
+                <input ng-model='Editor.test1' type="text" class="form-control" placeholder="(诉讼/保全/执行标的)或(案件受理费/保全费/执行费)">
+              </div>
+              <label>计算得出的费用结果：</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                <input ng-model='Editor.test2' type="text" class="form-control" placeholder="">
+              </div>
+              <div class="btn-group pull-right">
+                <button ng-click='Editor.test2=Editor.test1*12' class="btn btn-default btn-xs">受理费用</button>
+                <button ng-click='Editor.test2=Editor.test1*0.6' class="btn btn-default btn-xs">保全费用</button>
+                <button ng-click='Editor.test2=Editor.test1*9.3' class="btn btn-default btn-xs">执行费用</button>
+              </div>
 
+            </div>
+          </div>
         </uib-accordion>
       </menu>
     </section>
