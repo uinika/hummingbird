@@ -51,6 +51,7 @@
         month = (month.length == 2 ? month : ("0" + month));
         var year = date.getFullYear();
         $scope.searchParam.judgmentDate = year + month;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       };
 
@@ -104,6 +105,7 @@
         vm.name = target.getAttribute('data-name');
         $scope.searchParam.causeOfAction = vm.name;
         $scope.searchParam.level = level;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
@@ -113,6 +115,7 @@
         var target = ev.target || ev.srcElement;
         vm.courtLevel = target.getAttribute('data-court-level');
         $scope.searchParam.courtLevel = vm.courtLevel;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
@@ -122,6 +125,7 @@
         var target = ev.target || ev.srcElement;
         vm.docType = target.getAttribute('data-docType');
         $scope.searchParam.docType = vm.docType;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
@@ -131,6 +135,7 @@
         var target = ev.target || ev.srcElement;
         vm.courtPlace = target.getAttribute('data-court-place');
         $scope.searchParam.courtPlace = vm.courtPlace;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
