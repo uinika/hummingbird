@@ -19,7 +19,7 @@
         summaryStructureFactory.getSummary({
           caseBrief: vm.name
         }).then(function(result) {
-          if(result.data.body[0]) {
+          if(result.data.body && result.data.body[0]) {
             vm.total = result.data.body[0];
             vm.showExplain = false;
             vm.showTotal = true;
