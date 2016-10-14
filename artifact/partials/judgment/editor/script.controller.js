@@ -2,9 +2,9 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state', '$scope'];
 
-  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state) {
+  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope) {
     var vm = this;
     vm.Judgment = {
       historyList: []
@@ -18,9 +18,11 @@
       saveJudgment: operation().saveJudgment,
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
-      exportWORD: operation().exportWORD
+      exportWORD: operation().exportWORD,
+      openMaterial: operation().openMaterial
     };
     vm.Constant = {
+      materials: editorConstant.materials,
       treeData: editorConstant.TreeData,
       treeSectionOptions: editorConstant.TreeOptions,
       treeTemplateOptions: editorConstant.ReasonTreeOptions,
@@ -170,6 +172,14 @@
             lawCaseName: vm.Judgment.lawCaseName,
             articleHtml: $('.editor>.center').html().trim()
           })
+        },
+        openMaterial: function(material) {
+          console.log(material);
+          vm.Operation.targetMaterial = material;
+          var modalInstance = $uibModal.open({
+            templateUrl: 'materialModal.html',
+            scope: $scope
+          });
         }
       }
     };

@@ -127,9 +127,9 @@
           <div class="left">
             <div class="input-group input-group-sm">
               <span class="input-group-addon">
-                <input type="checkbox">
+                <input type="checkbox" checked>
               </span>
-              <input disabled type="text" class="form-control" value="自动保存 2016年10月13日 15:59">
+              <input disabled type="text" class="form-control" value="自动保存 2016.10.13-15:59">
             </div>
           </div>
           <div class="operate-btn btn-group">
@@ -247,20 +247,11 @@
               <i class="fa fa-bookmark-o">&nbsp;&nbsp;案件材料</i>
             </uib-accordion-heading>
             <uib-tabset active="activePill" type='pills'>
-              <uib-tab index="0" heading="起诉书">
-                <div class="material"><img src="assets/images/demo/material-1.jpg"></div>
-              </uib-tab>
-              <uib-tab index="1" heading="原告身份">
-                <div class="material"><img src="assets/images/demo/material-2.jpg"></div>
-              </uib-tab>
-              <uib-tab index="3" heading="委托代理人">
-                <div class="material"><img src="assets/images/demo/material-3.jpg"></div>
-              </uib-tab>
-              <uib-tab index="4" heading="起诉事项">
-                <div class="material"><img src="assets/images/demo/material-4.jpg"></div>
-              </uib-tab>
-              <uib-tab index="5" heading="证据">
-                <div class="material"><img src="assets/images/demo/material-5.jpg"></div>
+              <uib-tab ng-repeat='material in Editor.Constant.materials'
+                index="$index" heading="{{material.tag}}">
+                <div class="material" ng-click='Editor.Operation.openMaterial(material)'>
+                  <img ng-src="{{material.path}}">
+                </div>
               </uib-tab>
             </uib-tabset>
           </div>
@@ -311,34 +302,6 @@
 </div>
 
 
-<script type="text/ng-template" id="calculator.html">
-  <div id="calculator">
-    <div class="input-group input-group-sm">
-      <span class="input-group-btn">
-        <button class="btn btn-danger"><i class="fa fa-share"></i></button>
-      </span>
-      <input class="form-control" type="text" placeholder="计算结果">
-    </div>
-    <div>
-      <button class="btn btn-primary">7</button>
-      <button class="btn btn-primary">8</button>
-      <button class="btn btn-primary">9</button>
-      <button class="btn btn-default">&plus;</button>
-      <button class="btn btn-default">&minus;</button>
-    </div>
-    <div>
-      <button class="btn btn-primary">4</button>
-      <button class="btn btn-primary">5</button>
-      <button class="btn btn-primary">6</button>
-      <button class="btn btn-default">&times;</button>
-      <button class="btn btn-default">&divide;</button>
-    </div>
-    <div>
-      <button class="btn btn-primary">1</button>
-      <button class="btn btn-primary">2</button>
-      <button class="btn btn-primary">3</button>
-      <button class="btn btn-primary">0</button>
-      <button class="btn btn-success">&equals;</button>
-    </div>
-  </div>
+<script type="text/ng-template" id="materialModal.html">
+  <img ng-src="{{Editor.Operation.targetMaterial.path}}">
 </script>

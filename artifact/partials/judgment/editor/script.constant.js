@@ -85,12 +85,13 @@
         toolbar:false,
         spellcheck: false
       },
-      // Open Status
-      'openStatus': {
-        isFactResult: false,
-        isReason: false,
-        isCaseMain: false
-      }
+      'materials': [
+        {tag: '案件材料', path: 'assets/images/demo/material-1.jpg'},
+        {tag: '原告身份', path: 'assets/images/demo/material-2.jpg'},
+        {tag: '委托代理人', path: 'assets/images/demo/material-3.jpg'},
+        {tag: '起诉事项', path: 'assets/images/demo/material-4.jpg'},
+        {tag: '证据', path: 'assets/images/demo/material-5.jpg'}
+      ]
     })
 
 })();
