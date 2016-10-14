@@ -4,7 +4,8 @@
 
   module.constant('URL',
       // 'http://localhost:5005'
-      'http://172.16.1.67:8080/'
+      // 'http://172.16.1.67:8080/'
+      'http://172.16.1.75:8080/CourtDecisionSystem'
       // 'http://172.16.1.68:8080/court_decision_system'
       // location.protocol + '//' + location.host + '/CourtDecisionSystem'
   );
