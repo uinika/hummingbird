@@ -148,6 +148,11 @@
             vm.total = result.data.head.total;
             $scope.Paging.totalItems = vm.total;
           }
+          else {
+            vm.dataList = null;
+            vm.total = 0;
+            $scope.Paging.totalItems = vm.total;
+          }
         })
       }
 
