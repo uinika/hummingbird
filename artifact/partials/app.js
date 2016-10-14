@@ -34,6 +34,10 @@
         templateUrl: 'partials/layout/view.html',
         controller: 'layoutController',
         controllerAs: 'layout'
+      })
+      .state('demo', {
+        url: '/demo',
+        templateUrl: 'partials/demo/flash.htm'
       });
     /** HTTP Interceptor */
     $httpProvider.interceptors.push(interceptor);
