@@ -154,26 +154,31 @@
       function removeCauseOfAction() {
         $scope.searchParam.causeOfAction = null;
         $scope.searchParam.level = null;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
       function removeDoctype() {
         $scope.searchParam.docType = null;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
       function removeCourtLevel() {
         $scope.searchParam.courtLevel = null;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
       function removeCourtPlace() {
         $scope.searchParam.courtPlace = null;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
 
       function removeJudgmentDate() {
         $scope.searchParam.judgmentDate = null;
+        $scope.Paging.currentPage = 1;
         searchByCondition();
       }
     }
