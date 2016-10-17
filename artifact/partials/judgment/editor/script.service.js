@@ -14,7 +14,8 @@
         history: new Judgment().history
       },
       Operation: {
-        exportWORD: new Operation().exportWORD
+        exportWORD: new Operation().exportWORD,
+        autoComplete: new Operation().autoComplete
       },
       TemplateTree: {
         fetch: new TemplateTree().fetch,
@@ -67,6 +68,15 @@
         var converted = htmlDocx.asBlob(data.articleHtml);
         window.saveAs(converted, data.lawCaseName+'.docx');
       };
+      this.autoComplete = function(params){
+        return $http.get(
+          URL + '/verdict/auto/fill', {params: params}
+        ).then(function(result) {
+          if(validate(result.data, 200)){
+            return result.data;
+          }
+        })
+      }
     };
 
     function LawItem(){

@@ -19,7 +19,8 @@
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
       exportWORD: operation().exportWORD,
-      openMaterial: operation().openMaterial
+      openMaterial: operation().openMaterial,
+      autoComplete:  operation().autoComplete
     };
     vm.Constant = {
       materials: editorConstant.materials,
@@ -174,12 +175,21 @@
           })
         },
         openMaterial: function(material) {
-          console.log(material);
           vm.Operation.targetMaterial = material;
           var modalInstance = $uibModal.open({
             templateUrl: 'materialModal.html',
             scope: $scope
           });
+        },
+        autoComplete: function() {
+          // console.log(window.getSelection().anchorOffset);
+          // console.log(vm.Template.templateArticle.caseMain);
+          editorService.Operation.autoComplete({
+            keyword: vm.Template.templateArticle.caseMain
+          })
+          .then(function(data) {
+            console.log(data);
+          })
         }
       }
     };

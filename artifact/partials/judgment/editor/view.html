@@ -91,6 +91,7 @@
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="裁判主文"
                id="caseMain"
+               ng-change="Editor.Operation.autoComplete()"
                ng-model="Editor.Template.templateArticle.caseMain"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="尾部-诉讼费用负担"
