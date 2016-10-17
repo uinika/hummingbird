@@ -15,6 +15,7 @@
     };
     vm.Operation = {
       isTabOpen: false,
+      suggestions: [],
       saveJudgment: operation().saveJudgment,
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
@@ -188,7 +189,10 @@
             keyword: vm.Template.templateArticle.caseMain
           })
           .then(function(data) {
-            console.log(data);
+            if(data && data.body) {
+              console.log(data.body);
+              vm.Operation.suggestions = data.body
+            }
           })
         }
       }

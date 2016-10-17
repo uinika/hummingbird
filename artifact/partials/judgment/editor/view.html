@@ -292,8 +292,18 @@
                 <button ng-click='Editor.test2=Editor.test1*0.6' class="btn btn-default btn-xs">保全费用</button>
                 <button ng-click='Editor.test2=Editor.test1*9.3' class="btn btn-default btn-xs">执行费用</button>
               </div>
-
             </div>
+          </div>
+          <div ng-if='Editor.Operation.suggestions.length!=0' uib-accordion-group class="panel-default" is-open=true>
+            <uib-accordion-heading>
+              <i class="fa fa-code">&nbsp;&nbsp;智能提示</i>
+            </uib-accordion-heading>
+            <ul class="list-group">
+              <a class="list-group-item"
+                 ng-repeat='suggestion in Editor.Operation.suggestions'>
+                {{$index+1}} {{suggestion.phrase}}
+              <a/>
+            </ul>
           </div>
         </uib-accordion>
       </menu>
