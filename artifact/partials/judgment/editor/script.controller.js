@@ -102,7 +102,7 @@
           editorService.TemplateTree.match({treeId: treeId})
           .then(function(data) {
             var body = data.body[0];
-            if(body && body.accordThinkInfo && body.verdictThinkInfo){
+            if(body && body.accordThinkInfo || body.verdictThinkInfo){
               vm.TemplateTree.display = true;
               vm.TemplateTree.selectedContent = body;
             }else{

@@ -30,7 +30,19 @@
             { name: "事实", id: "factResult" }
           ]
         },
-        { name: "理由", id: "reason" },
+        { name: "理由", id: "reason",
+          children: [
+            { name: "1.合同效力", id: "reason" },
+            { name: "2.合同履行", id: "reason" },
+            { name: "3.被告抗辩诉讼时效", id: "reason" },
+            { name: "4.借款合同解除", id: "reason" },
+            { name: "5.违约责任", id: "reason" },
+            { name: "6.借款合同无效、撤销的法律后果", id: "reason" },
+            { name: "7.是否原告诉求借款人配偶共同还款", id: "reason" },
+            { name: "8.是否有担保合同", id: "reason" },
+            { name: "9.是否有其他诉讼请求", id: "reason" }
+          ]
+        },
         { name: "裁判主文", id: "caseMain" },
         {
           name: "尾部",

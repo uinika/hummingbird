@@ -22,10 +22,10 @@ Router.route('/verdict/writ')
 Router.route('/verdict/export/word')
   .post(function(request, response) {
     console.log(request.body.data);
-    let protocal = Util.protocal();
-    protocal.head.status = 200;
-    protocal.head.message = 'http response sucess';
-    response.json(protocal);
+    let protocol = Util.protocol();
+    protocol.head.status = 200;
+    protocol.head.message = 'http response sucess';
+    response.json(protocol);
 });
 // Editor
 // Match
