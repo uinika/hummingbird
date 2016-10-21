@@ -5,7 +5,7 @@
         <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="Editor.TemplateTree.dialog.cancel()">
-          <span class="glyphicon glyphicon-remove"></span>
+          <span class="glyphicon glyphicon-minus"></span>
         </md-button>
       </div>
     </md-toolbar>
@@ -38,12 +38,8 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button ng-click="answer('not useful')">
-        取消
-      </md-button>
-      <md-button ng-click="answer('useful')">
-        确定
-      </md-button>
+      <md-button class="md-warn" ng-click="Editor.TemplateTree.dialog.cancel()">取消</md-button>
+      <md-button class="md-primary" ng-click="Editor.TemplateTree.dialog.submit()">确定</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

@@ -44,7 +44,8 @@
       update: templateTree().update,
       dialog: {
         show: templateTree().dialog.show,
-        cancel: templateTree().dialog.cancel
+        cancel: templateTree().dialog.cancel,
+        submit: templateTree().dialog.submit
       }
     };
 
@@ -104,11 +105,10 @@
     function templateTree() {
       return {
         match: function(treeId, rootId) {
-          console.log(treeId + "-----" + rootId);
           if(rootId) {
             editorService.TemplateTree.match({treeId: treeId})
             .then(function(data) {
-              vm.TemplateTree.result[rootId] = data.body[0].accordThinkInfo || "暂无内容，请继续选择！";
+              vm.TemplateTree.result[rootId] = data.body[0].accordThinkInfo || "暂无内容";
             })
           }
         },
@@ -142,11 +142,20 @@
               scope: $scope,
               preserveScope: true
             })
-            .then(function(result) {
-
-            });
           },
           cancel: function() {
+            $mdDialog.cancel();
+          },
+          submit: function() {
+            var resultArray = vm.TemplateTree.result;
+            var resultString = '';
+            for (var i=0; i<resultArray.length; i++) {
+              var result = resultArray[i];
+              if(result && result!=='暂无内容') {
+                resultString += result;
+              }
+            }
+            vm.Template.templateArticle.reason = resultString;
             $mdDialog.cancel();
           }
         }
