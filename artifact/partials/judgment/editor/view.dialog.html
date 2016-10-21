@@ -1,0 +1,49 @@
+<md-dialog id='dialog-template-tree'>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="Editor.TemplateTree.dialog.cancel()">
+          <span class="glyphicon glyphicon-remove"></span>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="content">
+        <div class="left">
+          <md-stepper id="stepper-demo"
+          md-vertical="true">
+            <md-step md-label="{{reasonTree.conditionName}}"  ng-repeat='reasonTree in Editor.TemplateTree.tree'>
+              <md-step-body>
+                <treecontrol class="tree-light"
+                   tree-model="reasonTree.subs"
+                   options="Editor.Constant.treeTemplateOptions"
+                   on-selection="showSelected(node)">
+                   <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId, node.rootId)'>{{node.conditionName}}</span>
+                </treecontrol>
+              </md-step-body>
+            </md-step>
+          </md-stepper>
+        </div>
+        <div class="right">
+          <md-input-container class="md-block" ng-repeat='reasonTree in Editor.TemplateTree.tree'>
+            <label>{{reasonTree.conditionName}}</label>
+            <textarea ng-model="Editor.TemplateTree.result[reasonTree.treeId]" rows="1" md-select-on-focus></textarea>
+          </md-input-container>
+        </div>
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="answer('not useful')">
+        取消
+      </md-button>
+      <md-button ng-click="answer('useful')">
+        确定
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

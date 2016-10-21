@@ -158,11 +158,17 @@
               <a class="list-group-item">受理日期：{{Editor.Judgment.acceptedDate}}</a>
             </div>
           </div>
+          <div class="panel panel-default">
+           <div class="panel-heading">
+             <h4 class="panel-title">
+               <a role="button" ng-click='Editor.TemplateTree.dialog.show($event)'>
+                 <i class="fa fa-building-o" >&nbsp;&nbsp;文书模板</i>
+               </a>
+             </h4>
+           </div>
+          </div>
+          <!--
           <div uib-accordion-group class="panel-default">
-            <uib-accordion-heading>
-              <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
-            </uib-accordion-heading>
-            <!--
             <uib-accordion-heading>
               <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
             </uib-accordion-heading>
@@ -174,7 +180,6 @@
                  <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            -->
             <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
                 <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
@@ -207,8 +212,8 @@
                 {{Editor.TemplateTree.selectedContent.verdictThinkInfo}}
               </div>
             </div>
-
           </div>
+          -->
           <div ng-class='similarCases' uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-file-text-o">&nbsp;&nbsp;相似案例</i>

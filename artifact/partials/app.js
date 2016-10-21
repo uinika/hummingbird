@@ -6,7 +6,7 @@
     'ngAnimate',
     'ui.router',
     'ngMaterial',
-    'md-steppers',
+    'mdSteppers',
     'ui.bootstrap',
     'angular-medium-editor',
     'treeControl',

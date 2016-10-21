@@ -2,9 +2,9 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state', '$scope'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state', '$scope', '$mdDialog'];
 
-  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope) {
+  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope, $mdDialog) {
     var vm = this;
     vm.Judgment = {
       historyList: []
@@ -36,11 +36,16 @@
       choose: similarCase().choose
     };
     vm.TemplateTree ={
-      display: false,
+      tree: [],
+      result: [],
       selectedContent: {},
       match: templateTree().match,
       transfer: templateTree().transfer,
-      update: templateTree().update
+      update: templateTree().update,
+      dialog: {
+        show: templateTree().dialog.show,
+        cancel: templateTree().dialog.cancel
+      }
     };
 
     !function init() {
@@ -55,7 +60,7 @@
            // Init judgment match
            editorService.TemplateTree.fetch()
            .then(function(data){
-             vm.reasonTree = data.body;
+             vm.TemplateTree.tree = data.body;
            });
            // Init similar case
            editorService.SimilarCase.fetch(
@@ -98,17 +103,14 @@
     /** templateTree event handler */
     function templateTree() {
       return {
-        match: function(treeId) {
-          editorService.TemplateTree.match({treeId: treeId})
-          .then(function(data) {
-            var body = data.body[0];
-            if(body && body.accordThinkInfo || body.verdictThinkInfo){
-              vm.TemplateTree.display = true;
-              vm.TemplateTree.selectedContent = body;
-            }else{
-              vm.TemplateTree.display = false;
-            }
-          })
+        match: function(treeId, rootId) {
+          console.log(treeId + "-----" + rootId);
+          if(rootId) {
+            editorService.TemplateTree.match({treeId: treeId})
+            .then(function(data) {
+              vm.TemplateTree.result[rootId] = data.body[0].accordThinkInfo || "暂无内容，请继续选择！";
+            })
+          }
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
@@ -130,6 +132,23 @@
           .then(function(data) {
             alert(data.head.message)
           })
+        },
+        dialog: {
+          show: function(event) {
+            $mdDialog.show({
+              templateUrl: 'partials/judgment/editor/view.dialog.html',
+              clickOutsideToClose:true,
+              fullscreen: true,
+              scope: $scope,
+              preserveScope: true
+            })
+            .then(function(result) {
+
+            });
+          },
+          cancel: function() {
+            $mdDialog.cancel();
+          }
         }
       }
     };
