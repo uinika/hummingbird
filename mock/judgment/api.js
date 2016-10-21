@@ -56,5 +56,13 @@ Router.route('/conditon/tree')
   .get(function(request, response) {
     response.json(Util.json('/judgment/data/editor/conditon-tree.json'));
 });
+Router.route('/conditon/tree/info')
+  .get(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/conditon-tree-info.json'));
+});
+Router.route('/verdict/update/log')
+  .get(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/verdict-update-log.json'));
+});
 /** Module export */
 module.exports = Router;
