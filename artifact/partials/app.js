@@ -5,6 +5,8 @@
   angular.module('app', [
     'ngAnimate',
     'ui.router',
+    'ngMaterial',
+    'md-steppers',
     'ui.bootstrap',
     'angular-medium-editor',
     'treeControl',

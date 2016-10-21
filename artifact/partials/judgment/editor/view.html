@@ -162,6 +162,10 @@
             <uib-accordion-heading>
               <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
             </uib-accordion-heading>
+            <!--
+            <uib-accordion-heading>
+              <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
+            </uib-accordion-heading>
             <div class="template-tree">
               <treecontrol class="tree-light"
                  tree-model="Editor.reasonTree"
@@ -170,6 +174,7 @@
                  <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
+            -->
             <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
               <div class="btn-group">
                 <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
