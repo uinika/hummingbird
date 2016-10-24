@@ -27,7 +27,13 @@
       materials: editorConstant.materials,
       treeData: editorConstant.TreeData,
       treeSectionOptions: editorConstant.TreeOptions,
-      treeTemplateOptions: editorConstant.ReasonTreeOptions,
+      treeTemplateOptions: {
+        nodeChildren: "nodes",
+        dirSelectable: false,
+        isSelectable: function(node) {
+          return node.treeId == 1;
+        }
+      },
       mediumEditorOptions: editorConstant.mediumEditorOptions
     };
     vm.SimilarCase = {
@@ -37,17 +43,12 @@
     };
     vm.TemplateTree ={
       tree: [],
-      result: [],
       selectedContent: {},
       match: templateTree().match,
       transfer: templateTree().transfer,
-      update: templateTree().update,
-      dialog: {
-        show: templateTree().dialog.show,
-        cancel: templateTree().dialog.cancel,
-        submit: templateTree().dialog.submit
-      }
+      update: templateTree().update
     };
+
 
     !function init() {
       // Loding judgment from session storage
@@ -108,13 +109,13 @@
           if(rootId) {
             editorService.TemplateTree.match({treeId: treeId})
             .then(function(data) {
-              vm.TemplateTree.result[rootId] = data.body[0].accordThinkInfo || "暂无内容";
+              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "暂无内容";
             })
           }
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
-            vm.Template.templateArticle.reason = templates.accordThinkInfo;
+            vm.Template.templateArticle.reason += "\n" + templates.accordThinkInfo;
           }
           else if(templates.hasOwnProperty('verdictThinkInfo')){
             vm.Template.templateArticle.caseMain = templates.verdictThinkInfo
@@ -132,32 +133,6 @@
           .then(function(data) {
             alert(data.head.message)
           })
-        },
-        dialog: {
-          show: function(event) {
-            $mdDialog.show({
-              templateUrl: 'partials/judgment/editor/view.dialog.html',
-              clickOutsideToClose:true,
-              fullscreen: true,
-              scope: $scope,
-              preserveScope: true
-            })
-          },
-          cancel: function() {
-            $mdDialog.cancel();
-          },
-          submit: function() {
-            var resultArray = vm.TemplateTree.result;
-            var resultString = '';
-            for (var i=0; i<resultArray.length; i++) {
-              var result = resultArray[i];
-              if(result && result!=='暂无内容') {
-                resultString += result;
-              }
-            }
-            vm.Template.templateArticle.reason = resultString;
-            $mdDialog.cancel();
-          }
         }
       }
     };

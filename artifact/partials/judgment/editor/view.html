@@ -81,11 +81,11 @@
                id="argued"
                ng-model="Editor.Template.templateArticle.fact.argued"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实-事实"
+            <p data-placeholder="事实"
                id="factResult"
                ng-model="Editor.Template.templateArticle.fact.factResult"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="理由"
+            <p data-placeholder="本院认为"
                id="reason"
                ng-model="Editor.Template.templateArticle.reason"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
@@ -158,29 +158,20 @@
               <a class="list-group-item">受理日期：{{Editor.Judgment.acceptedDate}}</a>
             </div>
           </div>
-          <div class="panel panel-default">
-           <div class="panel-heading">
-             <h4 class="panel-title">
-               <a role="button" ng-click='Editor.TemplateTree.dialog.show($event)'>
-                 <i class="fa fa-building-o" >&nbsp;&nbsp;文书模板</i>
-               </a>
-             </h4>
-           </div>
-          </div>
-          <!--
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
             </uib-accordion-heading>
             <div class="template-tree">
-              <treecontrol class="tree-light"
-                 tree-model="Editor.reasonTree"
+              <treecontrol class="tree-boot"
+                 tree-model="Editor.TemplateTree.tree"
+                 on-selection="Editor.TemplateTree.match(node.treeId, node.rootId)"
                  options="Editor.Constant.treeTemplateOptions"
                  on-selection="showSelected(node)">
-                 <span class='tree-item' ng-click='Editor.TemplateTree.match(node.treeId)'>{{node.conditionName}}</span>
+                 <span class='tree-item'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
-            <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
+            <div class='template-tree-box animated zoomIn'>
               <div class="btn-group">
                 <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
@@ -196,24 +187,7 @@
                 {{Editor.TemplateTree.selectedContent.accordThinkInfo}}
               </div>
             </div>
-            <div class='template-tree-box animated zoomIn' ng-if='Editor.TemplateTree.display'>
-              <div class="btn-group">
-                <button ng-click='Editor.TemplateTree.transfer({verdictThinkInfo: Editor.TemplateTree.selectedContent.verdictThinkInfo})' class="btn btn-default btn-xs">
-                  <i class="fa fa-code-fork">&nbsp;引用</i>
-                </button>
-                <button ng-click='Editor.TemplateTree.update()' class="btn btn-success btn-xs">
-                  <i class="fa fa-pencil-square-o">&nbsp;修改</i>
-                </button>
-              </div>
-              <div class="content" medium-editor
-                data-placeholder="裁判主文内容"
-                bind-options="Editor.Constant.mediumEditorOptions"
-                ng-model='Editor.TemplateTree.selectedContent.verdictThinkInfo'>
-                {{Editor.TemplateTree.selectedContent.verdictThinkInfo}}
-              </div>
-            </div>
           </div>
-          -->
           <div ng-class='similarCases' uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-file-text-o">&nbsp;&nbsp;相似案例</i>

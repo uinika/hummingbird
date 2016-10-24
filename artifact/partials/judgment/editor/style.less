@@ -92,8 +92,15 @@
             .template-tree {
               padding-top: 12px;
               padding-bottom: 15px;
+              .tree-unselectable {
+                .tree-item {
+                  color: @font-label !important;
+                }
+              }
               .tree-item {
+                margin-left: -4px;
                 font-size: 12px;
+                color: @gray-font;
               }
             }
             .template-tree-box {
