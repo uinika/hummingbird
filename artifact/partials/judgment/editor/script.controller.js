@@ -6,12 +6,16 @@
 
   function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope, $mdDialog) {
     var vm = this;
-    vm.Judgment = {
-      historyList: []
-    };
+    vm.Judgment = { historyList: [] };
     vm.Template = {};
-    vm.LawItem = {
-      list: []
+    vm.TemplateTree ={
+      tree: [],
+      selectedContent: {},
+      selectedNode: {},
+      expandedNodes: [],
+      match: templateTree().match,
+      transfer: templateTree().transfer,
+      update: templateTree().update
     };
     vm.Operation = {
       isTabOpen: false,
@@ -20,36 +24,32 @@
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
       exportWORD: operation().exportWORD,
-      openMaterial: operation().openMaterial,
       autoComplete:  operation().autoComplete
-    };
-    vm.Constant = {
-      materials: editorConstant.materials,
-      treeData: editorConstant.TreeData,
-      treeSectionOptions: editorConstant.TreeOptions,
-      treeTemplateOptions: {
-        nodeChildren: "nodes",
-        dirSelectable: false,
-        isSelectable: function(node) {
-          return node.treeId == 1;
-        }
-      },
-      mediumEditorOptions: editorConstant.mediumEditorOptions
     };
     vm.SimilarCase = {
       list: [],
       selected: {},
       choose: similarCase().choose
     };
-    vm.TemplateTree ={
-      tree: [],
-      selectedContent: {},
-      match: templateTree().match,
-      transfer: templateTree().transfer,
-      update: templateTree().update
+    vm.LawItem = {
+      list: []
     };
-
-
+    vm.Constant = {
+      materials: editorConstant.materials,
+      treeData: editorConstant.TreeData,
+      treeSectionOptions: {
+        nodeChildren: "children",
+        dirSelectable: false
+      },
+      treeTemplateOptions: {
+        nodeChildren: "nodes",
+        dirSelectable: false,
+        isSelectable: function(node) {
+          return node.rootId == 1;
+        }
+      },
+      mediumEditorOptions: editorConstant.mediumEditorOptions
+    };
     !function init() {
       // Loding judgment from session storage
       var judgment = sessionStorage.targetJudgment;
@@ -93,7 +93,7 @@
       };
     }();
 
-    /**  */
+    /** similar case */
     function similarCase() {
       return {
         choose: function(similarCase) {
@@ -105,17 +105,26 @@
     /** templateTree event handler */
     function templateTree() {
       return {
-        match: function(treeId, rootId) {
-          if(rootId) {
-            editorService.TemplateTree.match({treeId: treeId})
+        match: function(node) {
+          var jumpTo = node.jumpTo;
+          if(!jumpTo) {
+            editorService.TemplateTree.match({treeId: node.treeId})
             .then(function(data) {
               vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "暂无内容";
             })
           }
+          else {
+            // Target
+            var jumpToNode = _.find(vm.TemplateTree.tree, {'treeId': jumpTo});
+            // Select
+            vm.TemplateTree.selectedNode = jumpToNode;
+            // Expand
+            vm.TemplateTree.expandedNodes = [jumpToNode];
+          }
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
-            vm.Template.templateArticle.reason += "\n" + templates.accordThinkInfo;
+            vm.Template.templateArticle.reason += templates.accordThinkInfo;
           }
           else if(templates.hasOwnProperty('verdictThinkInfo')){
             vm.Template.templateArticle.caseMain = templates.verdictThinkInfo
@@ -177,13 +186,6 @@
             lawCaseName: vm.Judgment.lawCaseName,
             articleHtml: $('.editor>.center').html().trim()
           })
-        },
-        openMaterial: function(material) {
-          vm.Operation.targetMaterial = material;
-          var modalInstance = $uibModal.open({
-            templateUrl: 'materialModal.html',
-            scope: $scope
-          });
         },
         autoComplete: function() {
           // console.log(window.getSelection().anchorOffset);

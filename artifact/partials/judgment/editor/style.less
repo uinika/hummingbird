@@ -75,7 +75,6 @@
             height: 10px;
           }
         }
-
       }
       .panel-group {
         .panel {
@@ -90,11 +89,16 @@
             .clean;
             border: none;
             .template-tree {
-              padding-top: 12px;
-              padding-bottom: 15px;
+              padding: 8px auto 10px auto;
+              margin-left: 8px;
               .tree-unselectable {
                 .tree-item {
                   color: @font-label !important;
+                }
+              }
+              .tree-selected {
+                .tree-item {
+                  color: @white;
                 }
               }
               .tree-item {
@@ -142,7 +146,7 @@
         }
       }
       .content {
-        font-size: 12px;
+        font-size: 13px;
         color: @footer-bg;
         padding: 6px 8px;
         text-indent: 2em;

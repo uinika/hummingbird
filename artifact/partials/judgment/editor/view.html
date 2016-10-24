@@ -11,11 +11,12 @@
         </div>
         <div class="menu-tree">
           <treecontrol class="tree-classic"
-             tree-model="Editor.Constant.treeData"
+             tree-model = "Editor.Constant.treeData"
              filter-expression = 'tree.query'
-             options="Editor.Constant.treeSectionOptions"
-             on-selection="showSelected(node)">
-             <a ng-click="Editor.Operation.jumpToSection(node.id)">{{node.name}}</a>
+             options = "Editor.Constant.treeSectionOptions"
+             expanded-nodes = "Editor.Constant.treeData"
+             on-selection="Editor.Operation.jumpToSection(node.id)">
+             {{node.name}}
           </treecontrol>
         </div>
       </div>
@@ -165,9 +166,10 @@
             <div class="template-tree">
               <treecontrol class="tree-boot"
                  tree-model="Editor.TemplateTree.tree"
-                 on-selection="Editor.TemplateTree.match(node.treeId, node.rootId)"
+                 on-selection="Editor.TemplateTree.match(node)"
                  options="Editor.Constant.treeTemplateOptions"
-                 on-selection="showSelected(node)">
+                 expanded-nodes="Editor.TemplateTree.expandedNodes"
+                 selected-node="Editor.TemplateTree.selectedNode">
                  <span class='tree-item'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
