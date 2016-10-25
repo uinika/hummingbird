@@ -15,7 +15,8 @@
       expandedNodes: [],
       match: templateTree().match,
       transfer: templateTree().transfer,
-      update: templateTree().update
+      update: templateTree().update,
+      refresh: templateTree().refresh
     };
     vm.Operation = {
       isTabOpen: false,
@@ -50,6 +51,8 @@
       },
       mediumEditorOptions: editorConstant.mediumEditorOptions
     };
+
+    /** Initial */
     !function init() {
       // Loding judgment from session storage
       var judgment = sessionStorage.targetJudgment;
@@ -81,7 +84,9 @@
           causeOfAction: vm.Judgment.causeOfAction
         })
         .then(function(data) {
-           vm.LawItem.list = data.body;
+          if(data.body) {
+            vm.LawItem.list = data.body;
+          }
         });
         // zoomI
         editorService.Judgment.history({
@@ -106,20 +111,42 @@
     function templateTree() {
       return {
         match: function(node) {
-          var jumpTo = node.jumpTo;
-          if(!jumpTo) {
+          var jump = node.jump;
+          var end = node.end;
+          var next = node.next;
+          var currentNodetreeId = node.treeId;
+          var currentNoderootId = node.rootId;
+          console.log("jump：" + jump + " | next：" + next + " | end：" + end);
+          if(next) {
             editorService.TemplateTree.match({treeId: node.treeId})
             .then(function(data) {
-              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "暂无内容";
+              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
             })
-          }
-          else {
-            // Target
-            var jumpToNode = _.find(vm.TemplateTree.tree, {'treeId': jumpTo});
-            // Select
+            .then(function() {
+              var nextNode = _.find(vm.TemplateTree.tree, {'treeId': next});
+              var currentNode = _.find(vm.TemplateTree.tree, {'treeId': currentNoderootId});
+              vm.TemplateTree.selectedNode = nextNode;
+              vm.TemplateTree.expandedNodes = [nextNode];
+              vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+                return node.rootId === nextNode.treeId || node.treeId === currentNode.treeId;
+              }
+            })
+          }else if(jump) {
+            var jumpToNode = _.find(vm.TemplateTree.tree, {'treeId': jump});
             vm.TemplateTree.selectedNode = jumpToNode;
-            // Expand
             vm.TemplateTree.expandedNodes = [jumpToNode];
+            vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+              return node.rootId === jumpToNode.treeId;
+            };
+          }else if(end) {
+            vm.TemplateTree.expandedNodes = [];
+            vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+              return node.rootId === 0;
+            }
+            alert("流程结束!");
+          }else {
+            console.info("jump：" + jump + " | next：" + next + " | end：" + end);
+            console.warn("TemplateTree -> match -> no handler");
           }
         },
         transfer: function(templates) {
@@ -142,6 +169,15 @@
           .then(function(data) {
             alert(data.head.message)
           })
+        },
+        refresh: function() {
+          // Target
+          var targetNode = _.find(vm.TemplateTree.tree, {'treeId': 1});
+          vm.TemplateTree.selectedNode = targetNode;
+          vm.TemplateTree.expandedNodes = [targetNode];
+          vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+            return node.rootId === 1;
+          }
         }
       }
     };

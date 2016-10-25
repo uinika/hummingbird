@@ -162,8 +162,13 @@
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
               <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
+
             </uib-accordion-heading>
             <div class="template-tree">
+              <button class="pull-right btn btn-default btn-sm"
+                ng-click="Editor.TemplateTree.refresh()">
+                <i class="pull-right glyphicon glyphicon-refresh"></i>
+              </button>
               <treecontrol class="tree-boot"
                  tree-model="Editor.TemplateTree.tree"
                  on-selection="Editor.TemplateTree.match(node)"
