@@ -29,7 +29,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 4,
@@ -41,7 +41,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 5,
@@ -53,7 +53,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 6,
@@ -65,7 +65,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 7,
@@ -77,11 +77,11 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 8,
-        "conditionName": "企业法定代表人（负责人）以个人名义借款",
+        "conditionName": "企业法定代表人(负责人)以个人名义借款",
         "conditonExplain": null,
         "parentTreeId": 2,
         "jumpTo": null,
@@ -115,7 +115,7 @@
             "nodes": [],
             "next": 42,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 1
           }],
           "next": null,
@@ -132,7 +132,7 @@
           "nodes": [],
           "next": 42,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 1
         }],
         "next": null,
@@ -141,7 +141,7 @@
         "rootId": 1
       }, {
         "treeId": 13,
-        "conditionName": "企业法定代表人（负责人）以企业名义借款，所借款项用于个人，原告同时起诉企业和个人",
+        "conditionName": "企业法定代表人(负责人)以企业名义借款，所借款项用于个人，原告同时起诉企业和个人",
         "conditonExplain": null,
         "parentTreeId": 2,
         "jumpTo": null,
@@ -149,7 +149,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 14,
@@ -161,7 +161,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 15,
@@ -180,7 +180,7 @@
           "nodes": [],
           "next": 42,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 1
         }, {
           "treeId": 17,
@@ -192,7 +192,7 @@
           "nodes": [],
           "next": 42,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 1
         }, {
           "treeId": 18,
@@ -204,7 +204,7 @@
           "nodes": [],
           "next": 42,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 1
         }],
         "next": null,
@@ -221,7 +221,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 20,
@@ -233,7 +233,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 21,
@@ -245,7 +245,7 @@
         "nodes": [],
         "next": 42,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 1
       }],
       "next": null,
@@ -305,7 +305,7 @@
         "nodes": [],
         "next": null,
         "jump": 91,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 27,
@@ -317,7 +317,7 @@
         "nodes": [],
         "next": null,
         "jump": 91,
-        "end": false,
+        "end": true,
         "rootId": 1
       }, {
         "treeId": 28,
@@ -329,7 +329,7 @@
         "nodes": [],
         "next": null,
         "jump": 91,
-        "end": false,
+        "end": true,
         "rootId": 1
       }],
       "next": null,
@@ -372,7 +372,7 @@
           "nodes": [],
           "next": null,
           "jump": 91,
-          "end": false,
+          "end": true,
           "rootId": 1
         }, {
           "treeId": 33,
@@ -420,7 +420,7 @@
           "nodes": [],
           "next": null,
           "jump": 91,
-          "end": false,
+          "end": true,
           "rootId": 1
         }, {
           "treeId": 37,
@@ -468,7 +468,7 @@
           "nodes": [],
           "next": null,
           "jump": 91,
-          "end": false,
+          "end": true,
           "rootId": 1
         }, {
           "treeId": 41,
@@ -521,7 +521,7 @@
         "nodes": [],
         "next": 48,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 42
       }, {
         "treeId": 45,
@@ -533,7 +533,7 @@
         "nodes": [],
         "next": 48,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 42
       }, {
         "treeId": 46,
@@ -545,7 +545,7 @@
         "nodes": [],
         "next": 48,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 42
       }, {
         "treeId": 47,
@@ -593,7 +593,7 @@
         "nodes": [],
         "next": 56,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 48
       }, {
         "treeId": 51,
@@ -605,7 +605,7 @@
         "nodes": [],
         "next": 56,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 48
       }, {
         "treeId": 52,
@@ -617,7 +617,7 @@
         "nodes": [],
         "next": 56,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 48
       }, {
         "treeId": 53,
@@ -689,7 +689,7 @@
         "nodes": [],
         "next": 63,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 56
       }, {
         "treeId": 59,
@@ -701,7 +701,7 @@
         "nodes": [],
         "next": 63,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 56
       }, {
         "treeId": 60,
@@ -713,7 +713,7 @@
         "nodes": [],
         "next": 63,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 56
       }, {
         "treeId": 61,
@@ -725,7 +725,7 @@
         "nodes": [],
         "next": 63,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 56
       }],
       "next": null,
@@ -742,7 +742,7 @@
       "nodes": [],
       "next": 63,
       "jump": null,
-      "end": false,
+      "end": true,
       "rootId": 56
     }],
     "next": null,
@@ -780,7 +780,7 @@
           "nodes": [],
           "next": 73,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 63
         }, {
           "treeId": 67,
@@ -792,7 +792,7 @@
           "nodes": [],
           "next": 73,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 63
         }, {
           "treeId": 68,
@@ -804,7 +804,7 @@
           "nodes": [],
           "next": 73,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 63
         }, {
           "treeId": 69,
@@ -816,7 +816,7 @@
           "nodes": [],
           "next": 73,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 63
         }, {
           "treeId": 70,
@@ -828,7 +828,7 @@
           "nodes": [],
           "next": 73,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 63
         }],
         "next": null,
@@ -845,7 +845,7 @@
         "nodes": [],
         "next": 73,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 63
       }],
       "next": null,
@@ -862,7 +862,7 @@
       "nodes": [],
       "next": 73,
       "jump": null,
-      "end": false,
+      "end": true,
       "rootId": 63
     }],
     "next": null,
@@ -893,7 +893,7 @@
         "nodes": [],
         "next": 91,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 73
       }, {
         "treeId": 76,
@@ -919,7 +919,7 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }, {
             "treeId": 79,
@@ -931,7 +931,7 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }],
           "next": null,
@@ -955,7 +955,7 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }],
           "next": null,
@@ -979,11 +979,11 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }, {
             "treeId": 84,
-            "conditionName": "年利率超过24%至36%以下（24%〈约定利息≤36%）",
+            "conditionName": "年利率超过24%至36%以下(24%〈约定利息≤36%)",
             "conditonExplain": null,
             "parentTreeId": 82,
             "jumpTo": null,
@@ -991,7 +991,7 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }, {
             "treeId": 85,
@@ -1003,7 +1003,7 @@
             "nodes": [],
             "next": 91,
             "jump": null,
-            "end": false,
+            "end": true,
             "rootId": 73
           }, {
             "treeId": 86,
@@ -1022,7 +1022,7 @@
               "nodes": [],
               "next": 91,
               "jump": null,
-              "end": false,
+              "end": true,
               "rootId": 73
             }, {
               "treeId": 88,
@@ -1034,7 +1034,7 @@
               "nodes": [],
               "next": 91,
               "jump": null,
-              "end": false,
+              "end": true,
               "rootId": 73
             }],
             "next": null,
@@ -1056,7 +1056,7 @@
           "nodes": [],
           "next": 91,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 73
         }, {
           "treeId": 90,
@@ -1068,7 +1068,7 @@
           "nodes": [],
           "next": 91,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 73
         }],
         "next": null,
@@ -1094,7 +1094,7 @@
     "last": "N",
     "nodes": [{
       "treeId": 92,
-      "conditionName": "合同无效（撤销）",
+      "conditionName": "合同无效(撤销)",
       "conditonExplain": null,
       "parentTreeId": 91,
       "jumpTo": null,
@@ -1116,7 +1116,7 @@
           "nodes": [],
           "next": 99,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 91
         }],
         "next": null,
@@ -1140,7 +1140,7 @@
           "nodes": [],
           "next": 99,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 91
         }, {
           "treeId": 97,
@@ -1152,7 +1152,7 @@
           "nodes": [],
           "next": 99,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 91
         }],
         "next": null,
@@ -1169,7 +1169,7 @@
         "nodes": [],
         "next": 99,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 91
       }],
       "next": null,
@@ -1212,7 +1212,7 @@
           "nodes": [],
           "next": 106,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 99
         }, {
           "treeId": 103,
@@ -1224,7 +1224,7 @@
           "nodes": [],
           "next": 106,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 99
         }, {
           "treeId": 104,
@@ -1236,7 +1236,7 @@
           "nodes": [],
           "next": 106,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 99
         }],
         "next": null,
@@ -1258,7 +1258,7 @@
       "nodes": [],
       "next": 106,
       "jump": null,
-      "end": false,
+      "end": true,
       "rootId": 99
     }],
     "next": null,
@@ -1289,7 +1289,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 109,
@@ -1301,7 +1301,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 110,
@@ -1313,7 +1313,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 111,
@@ -1325,7 +1325,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 112,
@@ -1337,7 +1337,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 113,
@@ -1349,7 +1349,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 114,
@@ -1361,7 +1361,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 115,
@@ -1373,7 +1373,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 116,
@@ -1385,7 +1385,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 117,
@@ -1397,7 +1397,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 118,
@@ -1409,7 +1409,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 119,
@@ -1421,7 +1421,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 120,
@@ -1433,7 +1433,7 @@
         "nodes": [],
         "next": 128,
         "jump": null,
-        "end": false,
+        "end": true,
         "rootId": 106
       }, {
         "treeId": 121,
@@ -1452,7 +1452,7 @@
           "nodes": [],
           "next": 128,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 106
         }, {
           "treeId": 123,
@@ -1464,7 +1464,7 @@
           "nodes": [],
           "next": 128,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 106
         }],
         "next": null,
@@ -1488,7 +1488,7 @@
           "nodes": [],
           "next": 128,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 106
         }, {
           "treeId": 126,
@@ -1500,7 +1500,7 @@
           "nodes": [],
           "next": 128,
           "jump": null,
-          "end": false,
+          "end": true,
           "rootId": 106
         }],
         "next": null,
@@ -1522,7 +1522,7 @@
       "nodes": [],
       "next": 128,
       "jump": null,
-      "end": false,
+      "end": true,
       "rootId": 106
     }],
     "next": null,
@@ -1546,7 +1546,7 @@
       "nodes": [],
       "next": null,
       "jump": null,
-      "end": false,
+      "end": true,
       "rootId": 128
     }],
     "next": null,
