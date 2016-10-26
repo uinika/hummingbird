@@ -139,11 +139,21 @@
               return node.rootId === jumpToNode.treeId;
             };
           }else if(end) {
-            vm.TemplateTree.expandedNodes = [];
-            vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-              return node.rootId === 0;
-            }
-            alert("流程结束!");
+            editorService.TemplateTree.match({treeId: node.treeId})
+            .then(function(data) {
+              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+            })
+            .then(function() {
+              vm.TemplateTree.expandedNodes = [];
+            })
+            .then(function() {
+              vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+                return node.rootId === 0;
+              }
+            })
+            .then(function() {
+              alert("流程结束!");
+            });
           }else {
             console.info("jump：" + jump + " | next：" + next + " | end：" + end);
             console.warn("TemplateTree -> match -> no handler");

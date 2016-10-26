@@ -36,8 +36,8 @@
           name: "尾部",
           id: "",
           children: [
-            { name: "诉讼费用负担", id: "legalCosts" },
-            { name: "告知事项", id: "informInfo" }
+            { name: "告知事项", id: "informInfo" },
+            { name: "诉讼费用负担", id: "legalCosts" }
           ]
         },
         {
