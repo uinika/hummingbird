@@ -7,6 +7,8 @@ const Gulp = require("gulp"),
       MinifyCSS = require('gulp-clean-css'),
       MinHtml = require('gulp-htmlmin'),
       Replace = require('gulp-replace'),
+      Compress = require('gulp-zip'),
+      Moment = require('moment'),
       Delete = require('del');
 
 /** gulp */
@@ -53,7 +55,7 @@ Gulp.task('default', ['pack'], () => {
 /** gulp build */
 Gulp.task('build', () => {
   const source = './artifact/';
-  const target = './release/';
+  const target = './build/';
   // html
   Gulp.src([source + 'partials/**/*.html'])
     .pipe(MinHtml({collapseWhitespace: true}))
@@ -82,9 +84,17 @@ Gulp.task('build', () => {
     .pipe(Gulp.dest(target + '/libraries'));
 });
 
+Gulp.task('release', ['build'], () => {
+  let releaseTime = Moment().format('YYYY.MM.DD hh:mm:ss');
+  let releaseName = 'release ' + releaseTime + '.zip';
+  return Gulp.src('./build/**/*')
+    .pipe(Compress(releaseName))
+    .pipe(Gulp.dest('./release'));
+});
+
 /** gulp clean */
 Gulp.task('clean', () => {
   Delete([
-    './release/**/*'
+    './release/**/*', './build/**/*'
   ]);
 });
