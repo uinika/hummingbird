@@ -12,6 +12,7 @@
       tree: [],
       selectedContent: {},
       selectedNode: {},
+      selectedNodes: [],
       expandedNodes: [],
       match: templateTree().match,
       transfer: templateTree().transfer,
@@ -118,6 +119,7 @@
           var currentNoderootId = node.rootId;
           console.log("jump：" + jump + " | next：" + next + " | end：" + end);
           if(next) {
+            vm.TemplateTree.selectedNodes.push(currentNoderootId);
             editorService.TemplateTree.match({treeId: node.treeId})
             .then(function(data) {
               vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
@@ -128,10 +130,11 @@
               vm.TemplateTree.selectedNode = nextNode;
               vm.TemplateTree.expandedNodes = [nextNode];
               vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-                return node.rootId === nextNode.treeId || node.treeId === currentNode.treeId;
+                return node.rootId === nextNode.treeId;
               }
             })
           }else if(jump) {
+            vm.TemplateTree.selectedNodes.push(currentNoderootId);
             var jumpToNode = _.find(vm.TemplateTree.tree, {'treeId': jump});
             vm.TemplateTree.selectedNode = jumpToNode;
             vm.TemplateTree.expandedNodes = [jumpToNode];
@@ -139,9 +142,12 @@
               return node.rootId === jumpToNode.treeId;
             };
           }else if(end) {
+            vm.TemplateTree.selectedNodes.push(currentNoderootId);
             editorService.TemplateTree.match({treeId: node.treeId})
             .then(function(data) {
-              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+              if(data && data.body && data.body[0] && data.body[0].accordThinkInfo ) {
+                vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+              }
             })
             .then(function() {
               vm.TemplateTree.expandedNodes = [];
@@ -158,6 +164,7 @@
             console.info("jump：" + jump + " | next：" + next + " | end：" + end);
             console.warn("TemplateTree -> match -> no handler");
           }
+          console.log(vm.TemplateTree.selectedNodes);
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
@@ -181,7 +188,7 @@
           })
         },
         refresh: function() {
-          // Target
+          vm.TemplateTree.selectedNodes = [];
           var targetNode = _.find(vm.TemplateTree.tree, {'treeId': 1});
           vm.TemplateTree.selectedNode = targetNode;
           vm.TemplateTree.expandedNodes = [targetNode];

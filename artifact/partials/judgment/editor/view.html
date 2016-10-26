@@ -95,31 +95,31 @@
                ng-change="Editor.Operation.autoComplete()"
                ng-model="Editor.Template.templateArticle.caseMain"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
+            <p data-placeholder="尾部-诉讼费用负担"
+               id="legalCosts"
+               ng-model="Editor.Template.templateArticle.bottom.legalCosts"
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="尾部-告知事项"
                id="informInfo"
                ng-model="Editor.Template.templateArticle.bottom.informInfo"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-             <p data-placeholder="尾部-诉讼费用负担"
-                id="legalCosts"
-                ng-model="Editor.Template.templateArticle.bottom.legalCosts"
-                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
           </div>
           <div id="judgment-foot">
-            <p data-placeholder="落款-署名"
+            <p data-placeholder="落款-审判长"
                id="chiefJudge"
                ng-model="Editor.Template.templateArticle.inscribe.chiefJudge"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实-证据"
+            <p data-placeholder="落款-审判员"
                id="judge"
                ng-model="Editor.Template.templateArticle.inscribe.judge"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实-证据"
-               id="courtClerk"
-               ng-model="Editor.Template.templateArticle.inscribe.courtClerk"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="落款-日期"
                id="judgmentDate"
                ng-model="Editor.Template.templateArticle.inscribe.judgmentDate"
+               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
+            <p data-placeholder="落款-书记员"
+               id="courtClerk"
+               ng-model="Editor.Template.templateArticle.inscribe.courtClerk"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
           </div>
         </div>

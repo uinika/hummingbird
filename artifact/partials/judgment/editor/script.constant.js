@@ -36,8 +36,8 @@
           name: "尾部",
           id: "",
           children: [
-            { name: "告知事项", id: "informInfo" },
-            { name: "诉讼费用负担", id: "legalCosts" }
+            { name: "诉讼费用负担", id: "legalCosts" },
+            { name: "告知事项", id: "informInfo" }
           ]
         },
         {
@@ -45,8 +45,8 @@
           children: [
             { name: "审判长", id: "chiefJudge" },
             { name: "审判员", id: "judge" },
-            { name: "书记员", id: "courtClerk" },
-            { name: "判决日期", id: "judgmentDate" }
+            { name: "判决日期", id: "judgmentDate" },
+            { name: "书记员", id: "courtClerk" }
           ]
         }
       ],
