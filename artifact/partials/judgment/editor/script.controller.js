@@ -130,7 +130,7 @@
               vm.TemplateTree.selectedNode = nextNode;
               vm.TemplateTree.expandedNodes = [nextNode];
               vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-                return node.rootId === nextNode.treeId;
+                return node.rootId === nextNode.treeId || _.indexOf(vm.TemplateTree.selectedNodes, node.rootId) !== -1;
               }
             })
           }else if(jump) {
@@ -139,7 +139,7 @@
             vm.TemplateTree.selectedNode = jumpToNode;
             vm.TemplateTree.expandedNodes = [jumpToNode];
             vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-              return node.rootId === jumpToNode.treeId;
+              return node.rootId === jumpToNode.treeId || _.indexOf(vm.TemplateTree.selectedNodes, node.rootId) !== -1;
             };
           }else if(end) {
             vm.TemplateTree.selectedNodes.push(currentNoderootId);
