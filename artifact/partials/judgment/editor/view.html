@@ -161,37 +161,52 @@
           </div>
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
-              <i class="fa fa-building-o">&nbsp;&nbsp;文书模板</i>
+              <i class="fa fa-building-o">&nbsp;&nbsp;裁判理由</i>
             </uib-accordion-heading>
             <div class="template-tree">
               <button class="pull-right btn btn-default btn-sm"
-                ng-click="Editor.TemplateTree.refresh()">
+                ng-click="Editor.ReasonTree.refresh()">
                 <i class="pull-right glyphicon glyphicon-refresh"></i>
               </button>
               <treecontrol class="tree-boot"
-                 tree-model="Editor.TemplateTree.tree"
-                 on-selection="Editor.TemplateTree.match(node)"
-                 options="Editor.Constant.treeTemplateOptions"
-                 expanded-nodes="Editor.TemplateTree.expandedNodes"
-                 selected-node="Editor.TemplateTree.selectedNode">
+                 tree-model="Editor.ReasonTree.tree"
+                 on-selection="Editor.ReasonTree.match(node)"
+                 options="Editor.Constant.reasonTreeOptions"
+                 expanded-nodes="Editor.ReasonTree.expandedNodes"
+                 selected-node="Editor.ReasonTree.selectedNode">
                  <span class='tree-item'>{{node.conditionName}}</span>
               </treecontrol>
             </div>
             <div class='template-tree-box animated zoomIn'>
               <div class="btn-group">
-                <button ng-click='Editor.TemplateTree.transfer({accordThinkInfo: Editor.TemplateTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
+                <button ng-click='Editor.ReasonTree.transfer({accordThinkInfo: Editor.ReasonTree.selectedContent.accordThinkInfo})' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
-                <button ng-click='Editor.TemplateTree.update()' class="btn btn-success btn-xs">
-                  <i class="fa fa-pencil-square-o">&nbsp;修改</i>
+                <button ng-click='Editor.ReasonTree.update()' class="btn btn-success btn-xs">
+                  <i class="fa fa-pencil-square-o">&nbsp;更新</i>
                 </button>
               </div>
+                <button class='btn btn-warning btn-xs pull-right' ng-click='Editor.ReasonTree.empty()' class="btn btn-default btn-xs">
+                  <i class="fa fa-reply">&nbsp;清除</i>
+                </button>
               <div class="content" medium-editor
                 data-placeholder="本院认为内容"
                 bind-options="Editor.Constant.mediumEditorOptions"
-                ng-model='Editor.TemplateTree.selectedContent.accordThinkInfo'>
-                {{Editor.TemplateTree.selectedContent.accordThinkInfo}}
+                ng-model='Editor.ReasonTree.selectedContent.accordThinkInfo'>
               </div>
+            </div>
+          </div>
+          <!-- 裁判主文模板 -->
+          <div ng-class='similarCases' uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              <i class="fa fa-star-o">&nbsp;&nbsp;裁判主文</i>
+            </uib-accordion-heading>
+            <div class="template-tree">
+              <treecontrol class="tree-boot"
+                 tree-model="Editor.MainCaseTree.tree[0]"
+                 options="Editor.Constant.caseMainTreeOptions">
+                 <span class='tree-item'>{{node.label}}</span>
+              </treecontrol>
             </div>
           </div>
           <div ng-class='similarCases' uib-accordion-group class="panel-default">

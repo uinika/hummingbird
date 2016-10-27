@@ -8,7 +8,7 @@
     var vm = this;
     vm.Judgment = { historyList: [] };
     vm.Template = {};
-    vm.TemplateTree ={
+    vm.ReasonTree = {
       tree: [],
       selectedContent: {},
       selectedNode: {},
@@ -17,7 +17,11 @@
       match: templateTree().match,
       transfer: templateTree().transfer,
       update: templateTree().update,
-      refresh: templateTree().refresh
+      refresh: templateTree().refresh,
+      empty: templateTree().empty
+    };
+    vm.MainCaseTree = {
+      tree: []
     };
     vm.Operation = {
       isTabOpen: false,
@@ -43,12 +47,17 @@
         nodeChildren: "children",
         dirSelectable: false
       },
-      treeTemplateOptions: {
+      reasonTreeOptions: {
         nodeChildren: "nodes",
         dirSelectable: false,
         isSelectable: function(node) {
           return node.rootId == 1;
         }
+      },
+      caseMainTreeOptions: {
+        nodeChildren: "nodes",
+        dirSelectable: false,
+
       },
       mediumEditorOptions: editorConstant.mediumEditorOptions
     };
@@ -63,10 +72,15 @@
         editorService.Template.fetch(vm.Judgment)
         .then(function(data) {
            vm.Template = data.body[0];
-           // Init judgment match
-           editorService.TemplateTree.fetch()
+           // Init reason tree
+           editorService.ReasonTree.fetch()
            .then(function(data){
-             vm.TemplateTree.tree = data.body;
+             vm.ReasonTree.tree = data.body;
+           });
+           // Init main case tree
+           editorService.MainCaseTree.fetch()
+           .then(function(data){
+             vm.MainCaseTree.tree = data.body;
            });
            // Init similar case
            editorService.SimilarCase.fetch(
@@ -119,41 +133,41 @@
           var currentNoderootId = node.rootId;
           console.log("jump：" + jump + " | next：" + next + " | end：" + end);
           if(next) {
-            vm.TemplateTree.selectedNodes.push(currentNoderootId);
-            editorService.TemplateTree.match({treeId: node.treeId})
+            vm.ReasonTree.selectedNodes.push(currentNoderootId);
+            editorService.ReasonTree.match({treeId: node.treeId})
             .then(function(data) {
-              vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+              vm.ReasonTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
             })
             .then(function() {
-              var nextNode = _.find(vm.TemplateTree.tree, {'treeId': next});
-              var currentNode = _.find(vm.TemplateTree.tree, {'treeId': currentNoderootId});
-              vm.TemplateTree.selectedNode = nextNode;
-              vm.TemplateTree.expandedNodes = [nextNode];
-              vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-                return node.rootId === nextNode.treeId || _.indexOf(vm.TemplateTree.selectedNodes, node.rootId) !== -1;
+              var nextNode = _.find(vm.ReasonTree.tree, {'treeId': next});
+              var currentNode = _.find(vm.ReasonTree.tree, {'treeId': currentNoderootId});
+              vm.ReasonTree.selectedNode = nextNode;
+              vm.ReasonTree.expandedNodes = [nextNode];
+              vm.Constant.reasonTreeOptions.isSelectable = function(node) {
+                return node.rootId === nextNode.treeId || _.indexOf(vm.ReasonTree.selectedNodes, node.rootId) !== -1;
               }
             })
           }else if(jump) {
-            vm.TemplateTree.selectedNodes.push(currentNoderootId);
-            var jumpToNode = _.find(vm.TemplateTree.tree, {'treeId': jump});
-            vm.TemplateTree.selectedNode = jumpToNode;
-            vm.TemplateTree.expandedNodes = [jumpToNode];
-            vm.Constant.treeTemplateOptions.isSelectable = function(node) {
-              return node.rootId === jumpToNode.treeId || _.indexOf(vm.TemplateTree.selectedNodes, node.rootId) !== -1;
+            vm.ReasonTree.selectedNodes.push(currentNoderootId);
+            var jumpToNode = _.find(vm.ReasonTree.tree, {'treeId': jump});
+            vm.ReasonTree.selectedNode = jumpToNode;
+            vm.ReasonTree.expandedNodes = [jumpToNode];
+            vm.Constant.reasonTreeOptions.isSelectable = function(node) {
+              return node.rootId === jumpToNode.treeId || _.indexOf(vm.ReasonTree.selectedNodes, node.rootId) !== -1;
             };
           }else if(end) {
-            vm.TemplateTree.selectedNodes.push(currentNoderootId);
-            editorService.TemplateTree.match({treeId: node.treeId})
+            vm.ReasonTree.selectedNodes.push(currentNoderootId);
+            editorService.ReasonTree.match({treeId: node.treeId})
             .then(function(data) {
               if(data && data.body && data.body[0] && data.body[0].accordThinkInfo ) {
-                vm.TemplateTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+                vm.ReasonTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
               }
             })
             .then(function() {
-              vm.TemplateTree.expandedNodes = [];
+              vm.ReasonTree.expandedNodes = [];
             })
             .then(function() {
-              vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+              vm.Constant.reasonTreeOptions.isSelectable = function(node) {
                 return node.rootId === 0;
               }
             })
@@ -162,21 +176,18 @@
             });
           }else {
             console.info("jump：" + jump + " | next：" + next + " | end：" + end);
-            console.warn("TemplateTree -> match -> no handler");
+            console.warn("ReasonTree -> match -> no handler");
           }
-          console.log(vm.TemplateTree.selectedNodes);
+          console.log(vm.ReasonTree.selectedNodes);
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
             vm.Template.templateArticle.reason += templates.accordThinkInfo;
           }
-          else if(templates.hasOwnProperty('verdictThinkInfo')){
-            vm.Template.templateArticle.caseMain = templates.verdictThinkInfo
-          }
         },
         update: function(info) {
-          var selectedContent = vm.TemplateTree.selectedContent;
-          editorService.TemplateTree.update({
+          var selectedContent = vm.ReasonTree.selectedContent;
+          editorService.ReasonTree.update({
             autoId: selectedContent.autoId,
             treeId: selectedContent.treeId,
             conditionName: selectedContent.conditionName,
@@ -188,13 +199,18 @@
           })
         },
         refresh: function() {
-          vm.TemplateTree.selectedNodes = [];
-          var targetNode = _.find(vm.TemplateTree.tree, {'treeId': 1});
-          vm.TemplateTree.selectedNode = targetNode;
-          vm.TemplateTree.expandedNodes = [targetNode];
-          vm.Constant.treeTemplateOptions.isSelectable = function(node) {
+          vm.ReasonTree.selectedNodes = [];
+          var targetNode = _.find(vm.ReasonTree.tree, {'treeId': 1});
+          vm.ReasonTree.selectedNode = targetNode;
+          vm.ReasonTree.expandedNodes = [targetNode];
+          vm.Constant.reasonTreeOptions.isSelectable = function(node) {
             return node.rootId === 1;
           }
+        },
+        empty: function() {
+          vm.Template.templateArticle.reason = _.replace(vm.Template.templateArticle.reason,
+             vm.ReasonTree.selectedContent.accordThinkInfo, "");
+          vm.ReasonTree.selectedContent.accordThinkInfo = "";
         }
       }
     };

@@ -17,10 +17,13 @@
         exportWORD: new Operation().exportWORD,
         autoComplete: new Operation().autoComplete
       },
-      TemplateTree: {
-        fetch: new TemplateTree().fetch,
-        match: new TemplateTree().match,
-        update: new TemplateTree().update
+      ReasonTree: {
+        fetch: new ReasonTree().fetch,
+        match: new ReasonTree().match,
+        update: new ReasonTree().update
+      },
+      MainCaseTree: {
+        fetch: MainCaseTree().fetch
       },
       LawItem: {
         fetch: new LawItem().fetch
@@ -103,7 +106,7 @@
       };
     };
 
-    function TemplateTree() {
+    function ReasonTree() {
       this.fetch = function(target) {
         return $http.get(
           URL + '/conditon/tree'
@@ -133,8 +136,19 @@
       };
     };
 
+    function MainCaseTree() {
+      return {
+        fetch: function() {
+          return $http.get(
+            URL + '/case/main'
+          ).then(function(result){
+            return result.data;
+          });
+        }
+
+      }
+    }
 
   };
-
 
 })();
