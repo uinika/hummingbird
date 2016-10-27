@@ -14,14 +14,19 @@
       selectedNode: {},
       selectedNodes: [],
       expandedNodes: [],
-      match: templateTree().match,
-      transfer: templateTree().transfer,
-      update: templateTree().update,
-      refresh: templateTree().refresh,
-      empty: templateTree().empty
+      match: reasonTree().match,
+      transfer: reasonTree().transfer,
+      update: reasonTree().update,
+      refresh: reasonTree().refresh,
+      empty: reasonTree().empty
     };
     vm.MainCaseTree = {
-      tree: []
+      tree: [],
+      content: "",
+      match: mainCaseTree().match,
+      toggle: mainCaseTree().toggle,
+      transfer: mainCaseTree().transfer,
+      empty: mainCaseTree().empty
     };
     vm.Operation = {
       isTabOpen: false,
@@ -57,7 +62,7 @@
       caseMainTreeOptions: {
         nodeChildren: "nodes",
         dirSelectable: false,
-
+        multiSelection: false,
       },
       mediumEditorOptions: editorConstant.mediumEditorOptions
     };
@@ -81,7 +86,11 @@
            editorService.MainCaseTree.fetch()
            .then(function(data){
              vm.MainCaseTree.tree = data.body;
-           });
+             return data.body;
+           })
+           .then(function(body){
+             vm.MainCaseTree.content = body[0].content;
+           })
            // Init similar case
            editorService.SimilarCase.fetch(
                vm.Template.templateArticle.parties.caseGeneral
@@ -122,8 +131,30 @@
       }
     };
 
+    function mainCaseTree() {
+      return {
+        match: function(node) {
+          console.log(node);
+          // vm.Constant.caseMainTreeOptions.multiSelection = false;
+          vm.MainCaseTree.content += "<p>" + node.content + "</p>";
+        },
+        toggle: function(node) {
+          vm.Constant.caseMainTreeOptions.multiSelection = true;
+        },
+        transfer: function(node) {
+          vm.Template.templateArticle.caseMain = vm.MainCaseTree.content;
+        },
+        empty: function(node) {
+          vm.Template.templateArticle.reason = _.replace(
+            vm.Template.templateArticle.caseMain,
+            vm.MainCaseTree.content, "");
+          vm.MainCaseTree.content = "";
+        }
+      }
+    };
+
     /** templateTree event handler */
-    function templateTree() {
+    function reasonTree() {
       return {
         match: function(node) {
           var jump = node.jump;
@@ -208,8 +239,9 @@
           }
         },
         empty: function() {
-          vm.Template.templateArticle.reason = _.replace(vm.Template.templateArticle.reason,
-             vm.ReasonTree.selectedContent.accordThinkInfo, "");
+          vm.Template.templateArticle.reason = _.replace(
+            vm.Template.templateArticle.reason,
+            vm.ReasonTree.selectedContent.accordThinkInfo, "");
           vm.ReasonTree.selectedContent.accordThinkInfo = "";
         }
       }
