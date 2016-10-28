@@ -139,18 +139,19 @@
     function mainCaseTree() {
       return {
         match: function(node, $parentNode) {
-          var temp = "";
-          var index = 0;
-          _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
-            temp += "<p>"+ (++index) + "、" + node.content + "</p>";
-          });
-          vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp ;
+          vm.MainCaseTree.content = vm.MainCaseTree.contentHead + "<p>" + node.content + "</p>";
           if($parentNode.tailContent) {
+            var temp = "";
+            var index = 0;
+            _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
+              temp += "<p>"+ (++index) + "、" + node.content + "</p>";
+            });
             vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp
               + "<p>" + $parentNode.tailContent + "</p>";
           }
         },
         toggle: function(node) {
+          vm.MainCaseTree.content = vm.MainCaseTree.contentHead;
           vm.Constant.caseMainTreeOptions.isSelectable = function(eachNode) {
             return node.treeId === eachNode.treeId || node.treeId === eachNode.parentTreeId;
           }
