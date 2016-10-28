@@ -167,6 +167,7 @@
         },
         refresh: function() {
           var enableNode = _.find(vm.MainCaseTree.tree, {'treeId': 3});
+          vm.Constant.caseMainTreeOptions.multiSelection = false;
           vm.Constant.caseMainTreeOptions.isSelectable = function(eachNode) {
             return true;
           }
