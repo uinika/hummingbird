@@ -23,10 +23,14 @@
     vm.MainCaseTree = {
       tree: [],
       content: "",
+      contentHead: "",
+      selectedNodes: [],
+      expandedNodes: [],
       match: mainCaseTree().match,
       toggle: mainCaseTree().toggle,
       transfer: mainCaseTree().transfer,
-      empty: mainCaseTree().empty
+      empty: mainCaseTree().empty,
+      refresh: mainCaseTree().refresh
     };
     vm.Operation = {
       isTabOpen: false,
@@ -90,6 +94,7 @@
            })
            .then(function(body){
              vm.MainCaseTree.content = body[0].content;
+             vm.MainCaseTree.contentHead = body[0].content;
            })
            // Init similar case
            editorService.SimilarCase.fetch(
@@ -133,12 +138,22 @@
 
     function mainCaseTree() {
       return {
-        match: function(node) {
-          console.log(node);
-          // vm.Constant.caseMainTreeOptions.multiSelection = false;
-          vm.MainCaseTree.content += "<p>" + node.content + "</p>";
+        match: function(node, $parentNode) {
+          var temp = "";
+          var index = 0;
+          _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
+            temp += "<p>"+ (++index) + "、" + node.content + "</p>";
+          });
+          vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp ;
+          if($parentNode.tailContent) {
+            vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp
+              + "<p>" + $parentNode.tailContent + "</p>";
+          }
         },
         toggle: function(node) {
+          vm.Constant.caseMainTreeOptions.isSelectable = function(eachNode) {
+            return node.treeId === eachNode.treeId || node.treeId === eachNode.parentTreeId;
+          }
           vm.Constant.caseMainTreeOptions.multiSelection = true;
         },
         transfer: function(node) {
@@ -149,6 +164,15 @@
             vm.Template.templateArticle.caseMain,
             vm.MainCaseTree.content, "");
           vm.MainCaseTree.content = "";
+        },
+        refresh: function() {
+          var enableNode = _.find(vm.MainCaseTree.tree, {'treeId': 3});
+          vm.Constant.caseMainTreeOptions.isSelectable = function(eachNode) {
+            return true;
+          }
+          vm.MainCaseTree.expandedNodes = [];
+          vm.MainCaseTree.selectedNodes = [];
+          vm.MainCaseTree.content = vm.MainCaseTree.contentHead;
         }
       }
     };
@@ -203,7 +227,7 @@
               }
             })
             .then(function() {
-              alert("流程结束!");
+              alert("裁判主文模板已经生成!");
             });
           }else {
             console.info("jump：" + jump + " | next：" + next + " | end：" + end);

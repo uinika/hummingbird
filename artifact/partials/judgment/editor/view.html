@@ -200,7 +200,7 @@
           <!-- 裁判主文模板 -->
           <div ng-class='similarCases' uib-accordion-group class="panel-default">
             <uib-accordion-heading>
-              <i class="fa fa-star-o">&nbsp;&nbsp;裁判主文</i>
+              <i class="fa fa-file-audio-o">&nbsp;&nbsp;裁判主文</i>
             </uib-accordion-heading>
             <div class="template-tree">
               <button class="pull-right btn btn-default btn-sm"
@@ -209,8 +209,10 @@
               </button>
               <treecontrol class="tree-boot"
                  tree-model="Editor.MainCaseTree.tree[0]"
-                 on-selection="Editor.MainCaseTree.match(node)"
+                 on-selection="Editor.MainCaseTree.match(node, $parentNode)"
+                 expanded-nodes="Editor.MainCaseTree.expandedNodes"
                  on-node-toggle="Editor.MainCaseTree.toggle(node)"
+                 selected-nodes="Editor.MainCaseTree.selectedNodes"
                  options="Editor.Constant.caseMainTreeOptions">
                  <span class='tree-item'>{{node.label | limitTo:18 }}</span>
               </treecontrol>
@@ -220,13 +222,7 @@
                 <button ng-click='Editor.MainCaseTree.transfer()' class="btn btn-default btn-xs">
                   <i class="fa fa-code-fork">&nbsp;引用</i>
                 </button>
-                <button ng-click='Editor.MainCaseTree.update()' class="btn btn-success btn-xs">
-                  <i class="fa fa-pencil-square-o">&nbsp;更新</i>
-                </button>
               </div>
-                <button class='btn btn-warning btn-xs pull-right' ng-click='Editor.MainCaseTree.empty()' class="btn btn-default btn-xs">
-                  <i class="fa fa-reply">&nbsp;清除</i>
-                </button>
               <div class="content" medium-editor
                 data-placeholder="本院认为内容"
                 bind-options="Editor.Constant.mediumEditorOptions"
