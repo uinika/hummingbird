@@ -143,9 +143,17 @@
           if($parentNode.tailContent) {
             var temp = "";
             var index = 0;
-            _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
-              temp += "<p>"+ (++index) + "、" + node.content + "</p>";
-            });
+            console.log(vm.MainCaseTree.selectedNodes);
+            if(vm.MainCaseTree.selectedNodes.length > 1) {
+              _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
+                temp += "<p>"+ editorService.MainCaseTree.serialNumber(++index) + "、" + node.content + "</p>";
+              });
+            }
+            else{
+              _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
+                temp += "<p>" + node.content + "</p>";
+              });
+            }
             vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp
               + "<p>" + $parentNode.tailContent + "</p>";
           }
