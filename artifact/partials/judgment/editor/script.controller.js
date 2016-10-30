@@ -143,7 +143,6 @@
           if($parentNode.tailContent) {
             var temp = "";
             var index = 0;
-            console.log(vm.MainCaseTree.selectedNodes);
             if(vm.MainCaseTree.selectedNodes.length > 1) {
               _.forEach(vm.MainCaseTree.selectedNodes, function(node) {
                 temp += "<p>"+ editorService.MainCaseTree.serialNumber(++index) + "、" + node.content + "</p>";
