@@ -93,7 +93,7 @@
              return data.body;
            })
            .then(function(body){
-             vm.MainCaseTree.content = body[0].content;
+            //  vm.MainCaseTree.content = body[0].content;
              vm.MainCaseTree.contentHead = body[0].content;
            })
            // Init similar case
@@ -139,7 +139,7 @@
     function mainCaseTree() {
       return {
         match: function(node, $parentNode) {
-          vm.MainCaseTree.content = vm.MainCaseTree.contentHead + "<p>" + node.content + "</p>";
+          vm.MainCaseTree.content = "<p>" + node.content + "</p>";
           if($parentNode.tailContent) {
             var temp = "";
             var index = 0;
@@ -153,19 +153,18 @@
                 temp += "<p>" + node.content + "</p>";
               });
             }
-            vm.MainCaseTree.content = vm.MainCaseTree.contentHead + temp
+            vm.MainCaseTree.content = temp.substring(0, temp.length-5) + "。</p>"
               + "<p>" + $parentNode.tailContent + "</p>";
           }
         },
         toggle: function(node) {
-          vm.MainCaseTree.content = vm.MainCaseTree.contentHead;
           vm.Constant.caseMainTreeOptions.isSelectable = function(eachNode) {
             return node.treeId === eachNode.treeId || node.treeId === eachNode.parentTreeId;
           }
           vm.Constant.caseMainTreeOptions.multiSelection = true;
         },
         transfer: function(node) {
-          vm.Template.templateArticle.caseMain = vm.MainCaseTree.content;
+          vm.Template.templateArticle.caseMain = vm.MainCaseTree.contentHead + vm.MainCaseTree.content;
         },
         empty: function(node) {
           vm.Template.templateArticle.reason = _.replace(
@@ -180,7 +179,8 @@
           }
           vm.MainCaseTree.expandedNodes = [];
           vm.MainCaseTree.selectedNodes = [];
-          vm.MainCaseTree.content = vm.MainCaseTree.contentHead;
+          vm.MainCaseTree.content = "";
+          vm.Template.templateArticle.caseMain = vm.MainCaseTree.contentHead;
         }
       }
     };
@@ -320,16 +320,15 @@
             articleHtml: $('.editor>.center').html().trim()
           })
         },
-        autoComplete: function() {
-          // console.log(window.getSelection().anchorOffset);
-          // console.log(vm.Template.templateArticle.caseMain);
-          editorService.Operation.autoComplete({
-            keyword: vm.Template.templateArticle.caseMain
+        autoComplete: function(inputString) {
+          return editorService.Operation.autoComplete({
+            keyword: inputString
           })
           .then(function(data) {
             if(data && data.body) {
-              console.log(data.body);
-              vm.Operation.suggestions = data.body
+              return data.body.map(function(item){
+                return item;
+              })
             }
           })
         }

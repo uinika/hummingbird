@@ -84,6 +84,7 @@
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="事实"
                id="factResult"
+               uib-typeahead="suggestion for suggestion in Editor.Operation.autoComplete($viewValue)"
                ng-model="Editor.Template.templateArticle.fact.factResult"
                medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
             <p data-placeholder="本院认为"
