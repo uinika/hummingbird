@@ -34,8 +34,13 @@
           #judgment-body p {
             line-height: 25pt; text-align: justify; text-justify: inter-ideograph; text-indent: 30pt; margin: 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
           }
+          #judgment-foot {
+            float: right;
+            width: 17em;
+            margin: 0.5pt 72pt 0.5pt 0cm;
+          }
           #judgment-foot p {
-            text-align: right; line-height: 25pt; margin: 0.5pt 72pt 0.5pt 0cm; font-family: 仿宋; font-size: 16pt;
+            line-height: 25pt; font-family: 仿宋; font-size: 16pt;
           }
         </style>
         <div id='judgment' style="text-align: justify">
@@ -322,25 +327,9 @@
               </div>
             </div>
           </div>
-          <div ng-if='Editor.Operation.suggestions.length!=0' uib-accordion-group class="panel-default" is-open=true>
-            <uib-accordion-heading>
-              <i class="fa fa-code">&nbsp;&nbsp;智能提示</i>
-            </uib-accordion-heading>
-            <ul class="list-group">
-              <a class="list-group-item"
-                 ng-repeat='suggestion in Editor.Operation.suggestions'>
-                {{$index+1}} {{suggestion.phrase}}
-              <a/>
-            </ul>
-          </div>
         </uib-accordion>
       </menu>
     </section>
 
   </div>
 </div>
-
-
-<script type="text/ng-template" id="materialModal.html">
-  <img ng-src="{{Editor.Operation.targetMaterial.path}}">
-</script>

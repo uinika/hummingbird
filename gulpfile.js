@@ -85,7 +85,7 @@ Gulp.task('build', () => {
 });
 
 Gulp.task('release', ['build'], () => {
-  let releaseTime = Moment().format('YYYY.MM.DD hh:mm:ss');
+  let releaseTime = Moment().format('YYYY.MM.DD HH:mm:ss');
   let releaseName = 'release ' + releaseTime + '.zip';
   return Gulp.src('./build/**/*')
     .pipe(Compress(releaseName))
