@@ -7,7 +7,7 @@ const Express = require('express'),
 
 /** Middlewares */
 App.use('/dev', Express.static('./artifact'));
-App.use('/pro', Express.static('./release'));
+App.use('/pro', Express.static('./build'));
 App.use(Cors({
   origin: 'http://localhost:5006',
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
