@@ -6,8 +6,8 @@ const Express = require('express'),
       Color = require('colors/safe');
 
 /** Middlewares */
-App.use('/dev', Express.static('./artifact'));
-App.use('/pro', Express.static('./build'));
+App.use('/test', Express.static('./artifact'));
+App.use('/build', Express.static('./build'));
 App.use(Cors({
   origin: 'http://localhost:5006',
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
@@ -24,8 +24,8 @@ App.listen(5005);
 
 /* Informations */
 console.info(Color.blue('Livereload  started on http://localhost:5006'));
-console.info(Color.blue('Development started on http://localhost:5005/dev'));
-console.info(Color.blue('Production  started on http://localhost:5005/pro'));
+console.info(Color.blue('Test started on http://localhost:5005/test'));
+console.info(Color.blue('Build started on http://localhost:5005/build'));
 
 /** Routers */
 App.use('/', require('./login/api'));

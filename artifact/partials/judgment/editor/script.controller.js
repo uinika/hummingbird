@@ -194,7 +194,6 @@
           var next = node.next;
           var currentNodetreeId = node.treeId;
           var currentNoderootId = node.rootId;
-          console.log("jump：" + jump + " | next：" + next + " | end：" + end);
           if(next) {
             vm.ReasonTree.selectedNodes.push(currentNoderootId);
             editorService.ReasonTree.match({treeId: node.treeId})
@@ -212,12 +211,18 @@
             })
           }else if(jump) {
             vm.ReasonTree.selectedNodes.push(currentNoderootId);
-            var jumpToNode = _.find(vm.ReasonTree.tree, {'treeId': jump});
-            vm.ReasonTree.selectedNode = jumpToNode;
-            vm.ReasonTree.expandedNodes = [jumpToNode];
-            vm.Constant.reasonTreeOptions.isSelectable = function(node) {
-              return node.rootId === jumpToNode.treeId || _.indexOf(vm.ReasonTree.selectedNodes, node.rootId) !== -1;
-            };
+            editorService.ReasonTree.match({treeId: node.treeId})
+            .then(function(data) {
+              vm.ReasonTree.selectedContent.accordThinkInfo = data.body[0].accordThinkInfo || "";
+            })
+            .then(function(data) {
+              var jumpToNode = _.find(vm.ReasonTree.tree, {'treeId': jump});
+              vm.ReasonTree.selectedNode = jumpToNode;
+              vm.ReasonTree.expandedNodes = [jumpToNode];
+              vm.Constant.reasonTreeOptions.isSelectable = function(node) {
+                return node.rootId === jumpToNode.treeId || _.indexOf(vm.ReasonTree.selectedNodes, node.rootId) !== -1;
+              };
+            })
           }else if(end) {
             vm.ReasonTree.selectedNodes.push(currentNoderootId);
             editorService.ReasonTree.match({treeId: node.treeId})
@@ -241,24 +246,23 @@
             console.info("jump：" + jump + " | next：" + next + " | end：" + end);
             console.warn("ReasonTree -> match -> no handler");
           }
-          console.log(vm.ReasonTree.selectedNodes);
         },
         transfer: function(templates) {
           if(templates.hasOwnProperty('accordThinkInfo')) {
             vm.Template.templateArticle.reason += templates.accordThinkInfo;
           }
         },
-        update: function(info) {
+        update: function() {
           var selectedContent = vm.ReasonTree.selectedContent;
           editorService.ReasonTree.update({
             autoId: selectedContent.autoId,
             treeId: selectedContent.treeId,
             conditionName: selectedContent.conditionName,
-            accordThinkInfo: selectedContent.accordThinkInfo,
-            verdictThinkInfo: selectedContent.verdictThinkInfo
+            accordThinkInfo: selectedContent.accordThinkInfo
           })
           .then(function(data) {
-            alert(data.head.message)
+            if( data && data.head && data.head.message)
+              alert(data.head.message)
           })
         },
         refresh: function() {

@@ -13,26 +13,51 @@
     }
 
     function link(scope, element, attrs, ngModel) {
-      scope.$watch(attrs.ngModel, function(input){
-        editorService.Operation.autoComplete({
-          keyword: input
-        })
-        .then(function(data) {
-          if(data && data.body) {
-            var suggestions = data.body;
-            var temp = "";
-            _.forEach(suggestions, function(suggestion) {
-              temp += joinListGroupItem(suggestion);
+      element.focus(function(){
+        scope.$watch(attrs.ngModel, function(input){
+          editorService.Operation.autoComplete({
+            keyword: input
+          })
+          .then(function(data) {
+            if(data && data.body) {
+              var suggestions = data.body;
+              var temp = "";
+              _.forEach(suggestions, function(suggestion) {
+                temp += joinListGroupItem(suggestion);
+              });
+              $("#wiserv-editor").remove();
+              element.after(joinListGroup(temp));
+              return $("#wiserv-editor");
+            }
+          })
+          .then(function(jqEditor){
+            var jqListGroupItem = jqEditor.find(".list-group-item");
+            jqListGroupItem.first().toggleClass("active");
+            jqListGroupItem.mouseover(function(){
+              jqListGroupItem.removeClass("active");
+              $(this).toggleClass("active");
             });
-            element.next().remove();
-            element.after(joinListGroup(temp));
-          }
-        })
+            return jqListGroupItem;
+          })
+          .then(function(jqListGroupItem){
+            jqListGroupItem.click(function(event){
+              console.log(ngModel);
+              scope.$evalAsync(function() {
+                ngModel.$setViewValue(input + event.target.innerText);
+              });
+              scope[attrs.ngModel] = input + event.target.innerText;
+            })
+          })
+        });
+      });
+
+      element.blur(function() {
+        $("#wiserv-editor").remove();
       });
 
       function joinListGroup(content) {
         return (
-          "<div id='auto-completer'><ul class='list-group'>" + content + "</ul></div>"
+          "<div id='wiserv-editor'><ul class='list-group'>" + content + "</ul></div>"
         );
       };
 
