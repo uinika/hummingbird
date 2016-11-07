@@ -39,6 +39,7 @@
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
       exportWORD: operation().exportWORD,
+      openMaterial: operation().openMaterial,
       autoComplete:  operation().autoComplete
     };
     vm.SimilarCase = {
@@ -323,6 +324,13 @@
             lawCaseName: vm.Judgment.lawCaseName,
             articleHtml: $('.editor>.center').html().trim()
           })
+        },
+        openMaterial: function(material) {
+          vm.Operation.targetMaterial = material;
+          var modalInstance = $uibModal.open({
+            templateUrl: 'partials/judgment/editor/view.material.html',
+            scope: $scope
+          });
         },
         autoComplete: function(inputString) {
           return editorService.Operation.autoComplete({

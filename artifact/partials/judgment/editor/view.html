@@ -14,7 +14,13 @@
              tree-model = "Editor.Constant.treeData"
              filter-expression = 'tree.query'
              options = "Editor.Constant.treeSectionOptions"
-             expanded-nodes = "Editor.Constant.treeData"
+             expanded-nodes = "[
+              Editor.Constant.treeData[0],
+              Editor.Constant.treeData[1],
+              Editor.Constant.treeData[2],
+              Editor.Constant.treeData[5],
+              Editor.Constant.treeData[6],
+             ]"
              on-selection="Editor.Operation.jumpToSection(node.id)">
              {{node.name}}
           </treecontrol>
@@ -45,87 +51,68 @@
         </style>
         <div id='judgment' style="text-align: justify">
           <div id="judgment-head">
-            <p data-placeholder="文书标题-法院名称"
-               id="courtName" wiserv-editor
-               ng-model="Editor.Template.templateArticle.indexTitle.courtName"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="文书标题-文书名称"
-               id="lawCaseTitle" wiserv-editor
-               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseTitle"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="文书标题-案号"
-               id="lawCaseCode" wiserv-editor
-               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseCode"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
+            <p placeholder="文书标题-法院名称"
+               id="courtName" wiserv-editor wiserv-auto-completer  contenteditable
+               ng-model="Editor.Template.templateArticle.indexTitle.courtName"></p>
+            <p placeholder="文书标题-文书名称"
+               id="lawCaseTitle" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseTitle"></p>
+            <p placeholder="文书标题-案号"
+               id="lawCaseCode" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.indexTitle.lawCaseCode"></p>
           </div>
           <div id="judgment-body">
-            <p data-placeholder="首部-当事人"
-               id="accuser" wiserv-editor
-               ng-model="Editor.Template.templateArticle.parties.accuser"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="首部-当事人"
-               id="accuserAgent" wiserv-editor
-               ng-model="Editor.Template.templateArticle.parties.accuserAgent"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="首部-当事人"
-               id="defendant" wiserv-editor
-               ng-model="Editor.Template.templateArticle.parties.defendant"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="首部-当事人"
-               id="defendantAgent" wiserv-editor
-               ng-model="Editor.Template.templateArticle.parties.defendantAgent"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="首部-案件由来和审理经过"
-               id="caseGeneral" wiserv-editor
-               ng-model="Editor.Template.templateArticle.parties.caseGeneral"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实-诉讼请求"
-               id="claims" wiserv-editor
-               ng-model="Editor.Template.templateArticle.fact.claims"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实-证据"
-               id="argued" wiserv-editor
-               ng-model="Editor.Template.templateArticle.fact.argued"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="事实"
-               id="factResult" wiserv-editor
-               ng-model="Editor.Template.templateArticle.fact.factResult"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="本院认为"
-               id="reason" wiserv-editor
-               ng-model="Editor.Template.templateArticle.reason"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="裁判主文"
-               id="caseMain" wiserv-editor
+            <p placeholder="首部-当事人"
+               id="accuser" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.parties.accuser"></p>
+            <p placeholder="首部-当事人"
+               id="accuserAgent" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.parties.accuserAgent"></p>
+            <p placeholder="首部-当事人"
+               id="defendant" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.parties.defendant"></p>
+            <p placeholder="首部-当事人"
+               id="defendantAgent" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.parties.defendantAgent"></p>
+            <p placeholder="首部-案件由来和审理经过"
+               id="caseGeneral" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.parties.caseGeneral"></p>
+            <p placeholder="事实-诉讼请求"
+               id="claims" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.fact.claims"></p>
+            <p placeholder="事实-证据"
+               id="argued" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.fact.argued"></p>
+            <p placeholder="事实"
+               id="factResult" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.fact.factResult"></p>
+            <p placeholder="本院认为"
+               id="reason" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.reason"></p>
+            <p placeholder="裁判主文"
+               id="caseMain" wiserv-editor wiserv-auto-completer contenteditable
                ng-change="Editor.Operation.autoComplete()"
-               ng-model="Editor.Template.templateArticle.caseMain"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="尾部-诉讼费用负担"
-               id="legalCosts" wiserv-editor
-               ng-model="Editor.Template.templateArticle.bottom.legalCosts"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="尾部-告知事项"
-               id="informInfo" wiserv-editor
-               ng-model="Editor.Template.templateArticle.bottom.informInfo"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
+               ng-model="Editor.Template.templateArticle.caseMain"></p>
+            <p placeholder="尾部-诉讼费用负担" wiserv-smart-calculator
+               id="legalCosts" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.bottom.legalCosts"></p>
+            <p placeholder="尾部-告知事项"
+               id="informInfo" wiserv-editor wiserv-auto-completer contenteditable
+               ng-model="Editor.Template.templateArticle.bottom.informInfo"></p>
           </div>
           <div id="judgment-foot">
-            <p data-placeholder="落款-审判长"
+            <p placeholder="落款-审判长"
                id="chiefJudge"
-               ng-model="Editor.Template.templateArticle.inscribe.chiefJudge"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="落款-审判员"
+               ng-model="Editor.Template.templateArticle.inscribe.chiefJudge"></p>
+            <p placeholder="落款-审判员"
                id="judge"
-               ng-model="Editor.Template.templateArticle.inscribe.judge"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="落款-日期"
+               ng-model="Editor.Template.templateArticle.inscribe.judge"></p>
+            <p placeholder="落款-日期"
                id="judgmentDate"
-               ng-model="Editor.Template.templateArticle.inscribe.judgmentDate"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
-            <p data-placeholder="落款-书记员"
+               ng-model="Editor.Template.templateArticle.inscribe.judgmentDate"></p>
+            <p placeholder="落款-书记员"
                id="courtClerk"
-               ng-model="Editor.Template.templateArticle.inscribe.courtClerk"
-               medium-editor bind-options="Editor.Constant.mediumEditorOptions"></p>
+               ng-model="Editor.Template.templateArticle.inscribe.courtClerk"></p>
           </div>
         </div>
       </div>
@@ -196,7 +183,7 @@
                   <i class="fa fa-reply">&nbsp;清除</i>
                 </button>
               <div class="content" medium-editor
-                data-placeholder="本院认为内容"
+                placeholder="本院认为内容"
                 bind-options="Editor.Constant.mediumEditorOptions"
                 ng-model='Editor.ReasonTree.selectedContent.accordThinkInfo'>
               </div>
@@ -229,7 +216,7 @@
                 </button>
               </div>
               <div class="content" medium-editor
-                data-placeholder="本院认为内容"
+                placeholder="本院认为内容"
                 bind-options="Editor.Constant.mediumEditorOptions"
                 ng-model='Editor.MainCaseTree.content'>
               </div>
