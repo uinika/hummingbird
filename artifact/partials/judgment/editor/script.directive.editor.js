@@ -13,7 +13,6 @@
 
     function link(scope, element, attrs, ngModel) {
       if (!ngModel) return;
-      console.log("Editor");
       var templateHTML = template();
       //
       ngModel.$render = function() {
@@ -25,7 +24,7 @@
         }
       });
       //
-      element.on('change', function() {
+      element.on('blur change', function() {
         scope.$evalAsync(read);
       });
       read();

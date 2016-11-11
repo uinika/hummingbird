@@ -3,6 +3,8 @@
   angular.module('app.judgment')
     .directive('wiservSmartCalculator', wiservSmartCalculator);
 
+  // wiservSmartCalculator.$inject = ['$apply'];
+
   function wiservSmartCalculator() {
     return {
       restrict: 'ACE',
@@ -11,9 +13,8 @@
       link: link
     }
     function link(scope, element, attrs, ngModel) {
-      console.log("Calculator");
       scope.$evalAsync(function(){
-
+        
       });
     }
   }

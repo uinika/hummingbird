@@ -13,7 +13,6 @@
       link: link
     }
     function link(scope, element, attrs, ngModel) {
-      console.log("Completer");
       if (!ngModel) return;
       var templateHTML = template();
       //
@@ -32,27 +31,32 @@
         })
         .then(function(data) {
           if(data && data.body) {
-            var suggestions = data.body;
+            var suggestions = data.body[0];
+            var keyword = suggestions.keyword;
+            var result = suggestions.result;
             var temp = "";
-            _.forEach(suggestions, function(suggestion) {
-              temp += templateHTML.joinListGroupItem(suggestion);
+            _.forEach(result, function(result) {
+              temp += templateHTML.joinListGroupItem(result);
             });
             element.siblings().filter("#wiserv-editor").remove();
             element.after(templateHTML.joinListGroup(temp));
-            return element;
+            return {
+              suggestions: suggestions,
+              element: element
+            };
           }
         })
-        .then(function(element){
-          var jqEditor = element.siblings().filter("#wiserv-editor");
+        .then(function(target){
+          var jqEditor = target.element.siblings().filter("#wiserv-editor");
           var jqListGroupItem = jqEditor.find(".list-group-item");
           jqListGroupItem.first().toggleClass("active");
           jqListGroupItem.mouseover(function(){
             jqListGroupItem.removeClass("active");
             $(this).toggleClass("active");
           });
-          return element;
+          return target;
         })
-        .then(function(element){
+        .then(function(target){
           // var jqEditor = element.siblings().filter("#wiserv-editor");
           // var jqListGroupItem = jqEditor.find(".list-group-item");
           // element.keydown(function(event){
@@ -61,15 +65,16 @@
           //     case 13: element.html() = 'TEST'; break;
           //   }
           // });
-          return element;
+          return target;
         })
-        .then(function(element){
-          var jqEditor = element.siblings().filter("#wiserv-editor");
+        .then(function(target){
+          var jqEditor = target.element.siblings().filter("#wiserv-editor");
           var jqListGroupItem = jqEditor.find(".list-group-item");
           jqListGroupItem.click(function(event){
             var selectedText = event.target.innerText;
             var originText = element.html();
-            var targetText = originText += selectedText;
+            var resultText = _.replace(selectedText, target.suggestions.keyword, '');
+            var targetText = originText += resultText;
             element.html(targetText);
             ngModel.$setViewValue(targetText);
             jqEditor.remove();
