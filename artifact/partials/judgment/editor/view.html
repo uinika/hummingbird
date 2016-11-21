@@ -123,10 +123,13 @@
               <span class="input-group-addon">
                 <input type="checkbox" checked>
               </span>
-              <input disabled type="text" class="form-control" value="自动保存 2016.10.13-15:59">
+              <input disabled type="text" class="form-control" value="自动保存">
             </div>
           </div>
           <div class="operate-btn btn-group">
+            <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
+              <i class="fa fa-cogs">&nbsp;纠错</i>
+            </button>
             <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
               <i class="fa fa-file-word-o">&nbsp;导出</i>
             </button>
@@ -305,6 +308,9 @@
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-money"></i></div>
                 <input ng-model='Editor.test2' type="text" class="form-control" placeholder="">
+              </div>
+              <div class="btn-group pull-left">
+                <button ng-click='Editor.test2=Editor.test1*12' class="btn btn-primary btn-xs">插入计算</button>
               </div>
               <div class="btn-group pull-right">
                 <button ng-click='Editor.test2=Editor.test1*12' class="btn btn-default btn-xs">受理费用</button>
