@@ -15,7 +15,8 @@
       },
       Operation: {
         exportWORD: operation().exportWORD,
-        autoComplete: operation().autoComplete
+        autoComplete: operation().autoComplete,
+        errorCorrection: operation().errorCorrection
       },
       ReasonTree: {
         fetch: reasonTree().fetch,
@@ -81,6 +82,15 @@
           return $http.get(
             URL + '/verdict/auto/fill', {params: params}
           ).then(function(result) {
+            if(validate(result.data, 200)){
+              return result.data;
+            }
+          })
+        },
+        errorCorrection: function(article){
+          return $http.post(
+            URL + '/verdict/writ/jc', article
+            ).then(function(result) {
             if(validate(result.data, 200)){
               return result.data;
             }

@@ -35,12 +35,21 @@
     vm.Operation = {
       isTabOpen: false,
       suggestions: [],
+      inputA: "",
+      inputB: "",
+      inputC: "",
+      inputD: "",
       saveJudgment: operation().saveJudgment,
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
       exportWORD: operation().exportWORD,
       openMaterial: operation().openMaterial,
-      autoComplete:  operation().autoComplete
+      autoComplete:  operation().autoComplete,
+      errorCorrection: operation().errorCorrection,
+      counterA: operation().counterA,
+      counterB: operation().counterB,
+      counterC: operation().counterC,
+      counterD: operation().counterD,
     };
     vm.SimilarCase = {
       list: [],
@@ -343,6 +352,39 @@
               })
             }
           })
+        },
+        errorCorrection: function() {
+          editorService.Operation.errorCorrection({
+            words: $('#judgment').text().trim()
+          })
+          .then(function(data) {
+            if(data && data.body) {
+              var words = data.body;
+              var template = $('#judgment').html();
+              var resultTemplate = ""
+              _.forEach(words, function(word) {
+                console.log(word);
+                resultTemplate = _.replace(template, new RegExp(word, 'gim'), "<u>"+word+"</u>")
+              });
+              $('#judgment').html(resultTemplate);
+              $scope.$apply();
+            }
+          })
+        },
+        counterA: function() {
+          console.log(vm.Operation.inputA);
+          $("#legalCosts #a").html(vm.Operation.inputA);
+          $("#legalCosts #aa").html(vm.Operation.inputA/2);
+        },
+        counterB: function() {
+          $("#legalCosts #b").html(vm.Operation.inputB);
+          $("#legalCosts #bb").html(vm.Operation.inputA/2 + parseFloat(vm.Operation.inputB));
+        },
+        counterC: function() {
+          $("#legalCosts #c").html(vm.Operation.inputC)
+        },
+        counterD: function() {
+          $("#legalCosts #d").html(vm.Operation.inputD)
         }
       }
     };

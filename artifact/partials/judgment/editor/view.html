@@ -15,11 +15,11 @@
              filter-expression = 'tree.query'
              options = "Editor.Constant.treeSectionOptions"
              expanded-nodes = "[
-              Editor.Constant.treeData[0],
-              Editor.Constant.treeData[1],
-              Editor.Constant.treeData[2],
-              Editor.Constant.treeData[5],
-              Editor.Constant.treeData[6],
+               Editor.Constant.treeData[0],
+               Editor.Constant.treeData[1],
+               Editor.Constant.treeData[2],
+               Editor.Constant.treeData[5],
+               Editor.Constant.treeData[6],
              ]"
              on-selection="Editor.Operation.jumpToSection(node.id)">
              {{node.name}}
@@ -127,7 +127,7 @@
             </div>
           </div>
           <div class="operate-btn btn-group">
-            <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
+            <button class="btn btn-default btn-sm" ng-click='Editor.Operation.errorCorrection()'>
               <i class="fa fa-cogs">&nbsp;纠错</i>
             </button>
             <button class="btn btn-default btn-sm" ng-click='Editor.Operation.exportWORD()'>
@@ -298,24 +298,34 @@
             <uib-accordion-heading>
               <i class="fa fa-calculator">&nbsp;&nbsp;费用计算</i>
             </uib-accordion-heading>
-            <div class="calculator form-group form-group-sm">
-              <label>输入标的额或诉讼费：</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-keyboard-o"></i></div>
-                <input ng-model='Editor.test1' type="text" class="form-control" placeholder="(诉讼/保全/执行标的)或(案件受理费/保全费/执行费)">
+            <div class="calculator form-group form-sm">
+              <label>案件受理费：</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" ng-click="Editor.Operation.counterA()"><i class="fa fa-keyboard-o"></i></button>
+                </span>
+                <input ng-model='Editor.Operation.inputA' type="text" class="form-control" placeholder="请输入案件受理费...">
               </div>
-              <label>计算得出的费用结果：</label>
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-money"></i></div>
-                <input ng-model='Editor.test2' type="text" class="form-control" placeholder="">
+              <label>诉讼保全费：</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" ng-click="Editor.Operation.counterB()"><i class="fa fa-keyboard-o"></i></button>
+                </span>
+                <input ng-model='Editor.Operation.inputB' type="text" class="form-control" placeholder="请输入诉讼保全费...">
               </div>
-              <div class="btn-group pull-left">
-                <button ng-click='Editor.test2=Editor.test1*12' class="btn btn-primary btn-xs">插入计算</button>
+              <label>原告负担：</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" ng-click="Editor.Operation.counterC()"><i class="fa fa-keyboard-o"></i></button>
+                </span>
+                <input ng-model='Editor.Operation.inputC' type="text" class="form-control" placeholder="请输入原告负担...">
               </div>
-              <div class="btn-group pull-right">
-                <button ng-click='Editor.test2=Editor.test1*12' class="btn btn-default btn-xs">受理费用</button>
-                <button ng-click='Editor.test2=Editor.test1*0.6' class="btn btn-default btn-xs">保全费用</button>
-                <button ng-click='Editor.test2=Editor.test1*9.3' class="btn btn-default btn-xs">执行费用</button>
+              <label>被告负担：</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                  <button ng-model='Editor.Operation.inputD' class="btn btn-info" ng-click="Editor.Operation.counterD()"><i class="fa fa-keyboard-o"></i></button>
+                </span>
+                <input ng-model='Editor.Operation.inputD' type="text" class="form-control" placeholder="请输入被告负担...">
               </div>
             </div>
           </div>

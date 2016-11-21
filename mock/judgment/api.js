@@ -64,6 +64,10 @@ Router.route('/verdict/update/log')
   .get(function(request, response) {
     response.json(Util.json('/judgment/data/editor/verdict-update-log.json'));
 });
+Router.route('/verdict/writ/jc')
+  .post(function(request, response) {
+    response.json(Util.json('/judgment/data/editor/verdict-writ-jc.json'));
+});
 Router.route('/case/main')
   .get(function(request, response) {
     response.json(Util.json('/judgment/data/editor/case-main.json'));
