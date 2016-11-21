@@ -361,13 +361,10 @@
             if(data && data.body) {
               var words = data.body;
               var template = $('#judgment').html();
-              var resultTemplate = ""
               _.forEach(words, function(word) {
-                console.log(word);
-                resultTemplate = _.replace(template, new RegExp(word, 'gim'), "<u>"+word+"</u>")
+                var resultTemplate = _.replace($('#judgment').html(), RegExp(""+word+"", 'gim'), "<span>"+word+"</span>")
+                $('#judgment').html(resultTemplate);
               });
-              $('#judgment').html(resultTemplate);
-              $scope.$apply();
             }
           })
         },
