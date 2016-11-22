@@ -355,17 +355,23 @@
         },
         errorCorrection: function() {
           editorService.Operation.errorCorrection({
-            words: $('#judgment').text().trim()
+            top: $('#judgment-top').text().trim(),
+            bottom: $('#judgment-bottom').text().trim()
           })
           .then(function(data) {
             if(data && data.body) {
               var words = data.body;
-              var template = $('#judgment').html();
               _.forEach(words, function(word) {
-                var resultTemplate = _.replace($('#judgment').html(), RegExp(""+word+"", 'gim'), "<span>"+word+"</span>")
-                $('#judgment').html(resultTemplate);
+                var resultTemplate = _.replace(
+                  $('#judgment-bottom').html(), RegExp(word, 'gim'),
+                  "<span class='correct'>"+word+"</span>"
+                );
+                $('#judgment-bottom').html(resultTemplate);
               });
             }
+          })
+          .then(function(){
+            alert("智能纠错完成，请注意具有红色下划线的文字！");
           })
         },
         counterA: function() {
