@@ -2,9 +2,9 @@
 
   angular.module('app.judgment').controller('EditorController', EditorController);
 
-  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state', '$scope', '$mdDialog'];
+  EditorController.$inject = ['editorConstant', 'editorService', '$window', '$location', '$anchorScroll', '$uibModal', '$state', '$scope', '$mdDialog', '$compile'];
 
-  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope, $mdDialog) {
+  function EditorController(editorConstant, editorService, $window, $location, $anchorScroll, $uibModal, $state, $scope, $mdDialog, $compile) {
     var vm = this;
     vm.Judgment = { historyList: [] };
     vm.Template = {};
@@ -363,10 +363,11 @@
               var words = data.body;
               _.forEach(words, function(word) {
                 var resultTemplate = _.replace(
-                  $('#judgment-bottom').html(), RegExp(word, 'gim'),
+                  $('#judgment-bottom').html(),
+                  RegExp(word, 'gim'),
                   "<span class='correct'>"+word+"</span>"
                 );
-                $('#judgment-bottom').html(resultTemplate);
+                $('#judgment-bottom').html($compile(resultTemplate)($scope));
               });
             }
           })
