@@ -7,7 +7,18 @@
               <i class="glyphicon glyphicon-remove"></i>
             </button>
           </span>
-          <input type="text" class="form-control" ng-model="tree.query" placeholder="文书菜单过滤 ...">
+          <div class="input-group input-group-sm">
+            <input disabled type="text" class="form-control" wiserv-timer>
+            <span class="input-group-addon">
+              <input type="checkbox" checked>
+            </span>
+          </div>
+        </div>
+        <div class="input-group input-group-sm clean-top-border">
+          <span class="input-group-addon" id="sizing-addon3">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+          <input type="text" class="form-control"ng-model="tree.query" placeholder="输入需要过滤的节点">
         </div>
         <div class="menu-tree">
           <treecontrol class="tree-classic"
@@ -122,15 +133,10 @@
       </div>
       <menu class="right">
         <div class="operation">
-          <div class="left">
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon">
-                <input type="checkbox" checked>
-              </span>
-              <input disabled type="text" class="form-control" value="自动保存">
-            </div>
-          </div>
-          <div class="operate-btn btn-group">
+          <div class="operate-btn btn-group pull-right">
+            <button class="btn btn-success btn-sm" ng-click='Editor.Operation.editingMode()'>
+              <i class="fa fa-sliders">&nbsp;智能计算</i>
+            </button>
             <button class="btn btn-default btn-sm" ng-click='Editor.Operation.errorCorrection()'>
               <i class="fa fa-cogs">&nbsp;纠错</i>
             </button>
@@ -300,7 +306,7 @@
           </div>
           <div uib-accordion-group class="panel-default">
             <uib-accordion-heading>
-              <i class="fa fa-calculator">&nbsp;&nbsp;费用计算</i>
+              <i class="fa fa-calculator">&nbsp;&nbsp;计算器</i>
             </uib-accordion-heading>
             <div class="calculator form-group form-sm">
               <label>➀ 案件受理费：</label>

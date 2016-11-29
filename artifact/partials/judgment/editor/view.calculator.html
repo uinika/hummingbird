@@ -1,0 +1,122 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="modal-title">
+    <i class="fa fa-database">&nbsp;
+      裁判文书-公式计算器
+    </i>
+    <span ng-click="Editor.Operation" class="pull-right glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </h5>
+</div>
+<div class="modal-body" id="modal-body">
+  <uib-tabset active="active">
+    <uib-tab index="0">
+      <uib-tab-heading>
+        财产诉讼计算公式 
+      </uib-tab-heading>
+      <div class="calculator form-group form-sm">
+        <label>➀ 案件受理费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-info" ng-click="Editor.Operation.counterA()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input ng-model='Editor.Operation.inputA' type="text" class="form-control" placeholder="请输入案件受理费...">
+        </div>
+        <label>➁ 诉讼保全费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-info" ng-click="Editor.Operation.counterB()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input ng-model='Editor.Operation.inputB' type="text" class="form-control" placeholder="请输入诉讼保全费...">
+        </div>
+        <label>➂ 原告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-info" ng-click="Editor.Operation.counterC()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input ng-model='Editor.Operation.inputC' type="text" class="form-control" placeholder="请输入原告负担...">
+        </div>
+        <label>➃ 被告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button ng-model='Editor.Operation.inputD' class="btn btn-info" ng-click="Editor.Operation.counterD()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input ng-model='Editor.Operation.inputD' type="text" class="form-control" placeholder="请输入被告负担...">
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab index="1">
+      <uib-tab-heading>
+        知识产权诉讼计算公式 
+      </uib-tab-heading>
+      <div class="calculator form-group form-sm">
+        <label>➀ 案件受理费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterA()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputA' type="text" class="form-control" placeholder="请输入案件受理费...">
+        </div>
+        <label>➁ 诉讼保全费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterB()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputB' type="text" class="form-control" placeholder="请输入诉讼保全费...">
+        </div>
+        <label>➂ 原告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterC()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputC' type="text" class="form-control" placeholder="请输入原告负担...">
+        </div>
+        <label>➃ 被告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button ng-model='Editor.Operation.inputD' class="btn btn-default" ng-click="Editor.Operation.counterD()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputD' type="text" class="form-control" placeholder="请输入被告负担...">
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab index="2">
+      <uib-tab-heading>
+        破产案件计算公式
+      </uib-tab-heading>
+            <div class="calculator form-group form-sm">
+        <label>➀ 案件受理费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterA()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputA' type="text" class="form-control" placeholder="请输入案件受理费...">
+        </div>
+        <label>➁ 诉讼保全费：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterB()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputB' type="text" class="form-control" placeholder="请输入诉讼保全费...">
+        </div>
+        <label>➂ 原告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="Editor.Operation.counterC()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputC' type="text" class="form-control" placeholder="请输入原告负担...">
+        </div>
+        <label>➃ 被告负担：</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button ng-model='Editor.Operation.inputD' class="btn btn-default" ng-click="Editor.Operation.counterD()"><i class="fa fa-keyboard-o"></i></button>
+          </span>
+          <input disabled ng-model='Editor.Operation.inputD' type="text" class="form-control" placeholder="请输入被告负担...">
+        </div>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" type="button" ng-click="Editor.Operation.insertGlobalResult()">
+    <i class="glyphicon glyphicon-arrow-down" aria-hidden="true">&nbsp;插入全部结果</i>
+  </button>
+</div>

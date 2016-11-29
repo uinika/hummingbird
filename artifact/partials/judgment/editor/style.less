@@ -10,6 +10,11 @@
     .left {
       flex: 2;
       .clean;
+      .clean-top-border {
+        span, input {
+          border-top: 0;
+        }
+      }
       .menu-tree {
         position: relative;
         top: 1em;
@@ -46,20 +51,10 @@
       .operation {
         height: 36px;
         border-bottom: 1px solid @gray;
-        display: flex;
-        justify-content: space-between;
-        .left {
-          width:100%;
-          float:left;
-          input{
-            cursor:default;
-          }
-        }
         .operate-btn {
-          float:left;
-          width: 254px;
-          margin-left:-190px;
-          z-index:9;
+          float: right;
+          width: auto;
+          z-index: 9;
         }
       }
       .timeline {

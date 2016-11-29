@@ -12,15 +12,10 @@ const Gulp = require("gulp"),
       Delete = require('del');
 
 /** gulp */
-Gulp.task('pack', () => {
-  const server = './mock/server.js';
+Gulp.task('default', () => {
+  // less & concat
   const source = './artifact/partials/';
   const target = './artifact/bundles';
-  Nodemon({
-    script: server,
-    execMap: {js: 'node --harmony'},
-    env: {'NODE_ENV': 'development'}
-  });
   const combine = () => {
     Gulp.src([source + '**/*.less'])
       .pipe(Concat('styles.css'))
@@ -31,12 +26,13 @@ Gulp.task('pack', () => {
       .pipe(Gulp.dest(target));
   };
   combine();
-  Gulp.watch([source + '**/*.less', source + 'app.js', source + '**/*.js'], combine);
-});
-
-/** gulp reload*/
-Gulp.task('default', ['pack'], () => {
-  const target = [
+  Gulp.watch([
+    source + '**/*.less',
+    source + '**/*.js',
+    source + 'app.js'
+  ], combine);
+  // live reload
+  const reloadSource = [
     './artifact/index.html',
     './artifact/partials/**/*.html',
     './artifact/bundles/**/*'
@@ -46,9 +42,16 @@ Gulp.task('default', ['pack'], () => {
     port: 5006,
     livereload: true
   });
-  Gulp.watch(target, () => {
-    Gulp.src(target)
+  Gulp.watch(reloadSource, () => {
+    Gulp.src(reloadSource)
       .pipe(Connect.reload());
+  });
+  // nodemon
+  const server = './mock/server.js';
+  Nodemon({
+    script: server,
+    execMap: {js: 'node --harmony'},
+    env: {'NODE_ENV': 'development'}
   });
 });
 

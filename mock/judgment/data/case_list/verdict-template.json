@@ -30,7 +30,7 @@
       "reason": "本院认为，",
       "caseMain": "据此，依照《中华人民共和国合同法》第五十四条、第五十五条、第五十八条、第五十九条、第六十条、第九十三条、第九十四条、第九十七条、第一百零七条、第一百零九条、第一百一十四条、第二百条、第二百零五条、第二百零六条、第二百零七条、第二百一十一条，《中华人民共和国担保法》第十八条、第二十一条、第二十六条，《中华人民共和国公司法》第十四条第一款，《最高人民法院关于审理民间借贷案件适用法律若干问题的规定》第二十六条、第二十八条、第二十九条，《中华人民共和国民事诉讼法》第六十四条、第一百三十四条第一款、第一百四十四条之规定，判决如下：",
       "bottom": {
-        "legalCosts": "案件受理费<span id='a'>_</span>元（减半收取<span id='aa'>_</span>元），诉讼保全费<span id='b'>_</span>元，共计<span id='bb'>_</span>元，由原告吴世玉负担<span id='c'>_</span>元，被告陈真秀负担<span id='d'>_</span>元。",
+        "legalCosts": "案件受理费<span ng-click='Editor.Operation.popCalculator()' id='a'>_</span>元（减半收取<span ng-click='Editor.Operation.popCalculator()' id='aa'>_</span>元），诉讼保全费<span ng-click='Editor.Operation.popCalculator()' id='b'>_</span>元，共计<span ng-click='Editor.Operation.popCalculator()' id='bb'>_</span>元，由原告吴世玉负担<span ng-click='Editor.Operation.popCalculator()' id='c'>_</span>元，被告陈真秀负担<span ng-click='Editor.Operation.popCalculator()' id='d'>_</span>元。",
         "informInfo": "如不服本判决，可在判决书送达之日起十五日内，向本院递交上诉状，并按照对方当事人的人数提出副本，上诉于四川省中级人民法院。"
       },
       "inscribe": {

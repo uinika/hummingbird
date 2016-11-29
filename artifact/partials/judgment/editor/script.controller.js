@@ -39,6 +39,9 @@
       inputB: "",
       inputC: "",
       inputD: "",
+      insertGlobalResult: operation().insertGlobalResult,
+      popCalculator: operation().popCalculator,
+      editingMode: operation().editingMode,
       saveJudgment: operation().saveJudgment,
       printJudgment: operation().printJudgment,
       jumpToSection: operation().jumpToSection,
@@ -375,20 +378,38 @@
             alert("智能纠错完成，请注意具有红色下划线的文字！");
           })
         },
+        editingMode: function() {
+          var resultTemplate = $("#judgment-bottom").html(); 
+          $('#judgment-bottom').html($compile(resultTemplate)($scope));
+          alert("已经进入计算模式，请点击诉讼费用段落需要进行计算的位置！");
+        },
+        popCalculator: function() {
+          $uibModal.open({
+            templateUrl: "./partials/judgment/editor/view.calculator.html",
+            scope: $scope
+          });
+        },
+        insertGlobalResult: function() {
+          $("#legalCosts #a").html(vm.Operation.inputA || '_');
+          $("#legalCosts #aa").html(vm.Operation.inputA/2 || '_');
+          $("#legalCosts #b").html(vm.Operation.inputB || '_');
+          $("#legalCosts #bb").html((vm.Operation.inputA/2 + parseFloat(vm.Operation.inputB)) || '_');
+          $("#legalCosts #c").html(vm.Operation.inputC || '_');
+          $("#legalCosts #d").html(vm.Operation.inputD || '_');
+        },
         counterA: function() {
-          console.log(vm.Operation.inputA);
-          $("#legalCosts #a").html(vm.Operation.inputA);
-          $("#legalCosts #aa").html(vm.Operation.inputA/2);
+          $("#legalCosts #a").html(vm.Operation.inputA || '_');
+          $("#legalCosts #aa").html(vm.Operation.inputA/2 || '_');
         },
         counterB: function() {
-          $("#legalCosts #b").html(vm.Operation.inputB);
-          $("#legalCosts #bb").html(vm.Operation.inputA/2 + parseFloat(vm.Operation.inputB));
+          $("#legalCosts #b").html(vm.Operation.inputB || '_');
+          $("#legalCosts #bb").html((vm.Operation.inputA/2 + parseFloat(vm.Operation.inputB)) || '_');
         },
         counterC: function() {
-          $("#legalCosts #c").html(vm.Operation.inputC)
+          $("#legalCosts #c").html(vm.Operation.inputC || '_')
         },
         counterD: function() {
-          $("#legalCosts #d").html(vm.Operation.inputD)
+          $("#legalCosts #d").html(vm.Operation.inputD || '_')
         }
       }
     };
