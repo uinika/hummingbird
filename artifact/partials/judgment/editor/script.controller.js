@@ -35,11 +35,13 @@
     vm.Operation = {
       isTabOpen: false,
       suggestions: [],
+      calculatorModal: {},
       inputA: "",
       inputB: "",
       inputC: "",
       inputD: "",
       insertGlobalResult: operation().insertGlobalResult,
+      closeCalculator: operation().closeCalculator,
       popCalculator: operation().popCalculator,
       editingMode: operation().editingMode,
       saveJudgment: operation().saveJudgment,
@@ -384,10 +386,13 @@
           alert("已经进入计算模式，请点击诉讼费用段落需要进行计算的位置！");
         },
         popCalculator: function() {
-          $uibModal.open({
+          vm.Operation.calculatorModal = $uibModal.open({
             templateUrl: "./partials/judgment/editor/view.calculator.html",
             scope: $scope
           });
+        },
+        closeCalculator: function() {
+          vm.Operation.calculatorModal.close();
         },
         insertGlobalResult: function() {
           $("#legalCosts #a").html(vm.Operation.inputA || '_');
@@ -396,6 +401,7 @@
           $("#legalCosts #bb").html((vm.Operation.inputA/2 + parseFloat(vm.Operation.inputB)) || '_');
           $("#legalCosts #c").html(vm.Operation.inputC || '_');
           $("#legalCosts #d").html(vm.Operation.inputD || '_');
+          vm.Operation.calculatorModal.close();
         },
         counterA: function() {
           $("#legalCosts #a").html(vm.Operation.inputA || '_');
