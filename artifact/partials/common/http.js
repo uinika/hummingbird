@@ -3,12 +3,7 @@
   var module = angular.module('common.http', []);
 
   module.constant('URL',
-      // 'http://localhost:5005'
-      // 'http://172.16.1.67:8080/' //杨东
-      // 'http://172.16.7.95:8888/CourtDecisionSystem' //冉小春
-      'http://192.168.13.77:8080/CourtDecisionSystem'
-      // 'http://172.16.1.68:8080/court_decision_system'
-      // location.protocol + '//' + location.host + '/CourtDecisionSystem'
+    'http://localhost:5005'
   );
 
   module.factory('validate', [
