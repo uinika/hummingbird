@@ -11,6 +11,6 @@
 
 ## Dependencies
 * [Angular 1.5.x](https://angularjs.org/)
-* [NodeJS 6.3.x](https://nodejs.org/)
 * [UI Router 0.3.x](https://github.com/angular-ui/ui-router/tree/legacy)
 * [Lodash 1.5.x](https://lodash.com/)
+* [NodeJS 6.3.x](https://nodejs.org/)
