@@ -1,6 +1,8 @@
 # Hummingbird
 
-![logo](./artifact/assets/logo.jpg)
+> This project has been deprecated !
+
+![logo](./logo.jpg)
 
 ## Installation
 1. git clone https://github.com/uinika/hummingbird.git
